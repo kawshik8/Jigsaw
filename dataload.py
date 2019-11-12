@@ -17,31 +17,33 @@ def rgb_jittering(im):
     return im.astype('uint8')
 
 image_transformer = transforms.Compose([
-    transforms.Resize(256, Image.BILINEAR),
-    transforms.CenterCrop(255)])
+    transforms.Resize((30,30), Image.BILINEAR)])
 
 augment_tile = transforms.Compose([
-    transforms.RandomCrop(64),
-    transforms.Resize((75, 75), Image.BILINEAR),
-    transforms.Lambda(rgb_jittering),
+    #transforms.RandomCrop(64),
+    #transforms.Resize((75, 75), Image.BILINEAR),
+    #transforms.Lambda(rgb_jittering),
     transforms.ToTensor(),])
 
 permutations = np.load('permutations_1000.npy')
 
 class DataLoader(datasets.ImageFolder):
         def __getitem__(self, index):
-            try:
+            #try:
                 #filename = self.data_dir + '/' + self.file_list[index]
                 path,_=self.imgs[index]
                 img = Image.open(path).convert('RGB')
                 if np.random.rand() < 0.30:
                     img = img.convert('LA').convert('RGB')
-                if img.size[0] != 255:
-                    img = image_transformer(img)
+                #print(img.size)
+                #if img.size[0] != 255:
+                img = image_transformer(img)
                 s = float(img.size[0]) / 3
                 a = s / 2
+                #print(a)
                 tiles = [None] * 9
                 for n in range(9):
+                #    print(n)
                     i = n / 3
                     j = n % 3
                     c = [a * i * 2 + a, a * j * 2 + a]
@@ -55,10 +57,14 @@ class DataLoader(datasets.ImageFolder):
                     tile = norm(tile)
                     tiles[n] = tile
                 order = np.random.randint(len(permutations))
+                #print(data.size)
                 data = [tiles[permutations[order][t]] for t in range(9)]
+                
+                #print(len(data),len(data[0]),len(data[0][0]),len(data[0][0][0]))#,len(data[0][0][0][0]))
                 data = torch.stack(data, 0)
+                #print(order)
                 return data, int(order), tiles
-            except:
-                pass
+            #except:
+             #   pass
         def __len__(self):
             return len(self.imgs)

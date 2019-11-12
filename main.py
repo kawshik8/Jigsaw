@@ -32,24 +32,29 @@ def main(args):
     
     data_set = DataLoader(args.image_dir + "/train")#datasets.ImageFolder(args.data + "/train", transform = transforms))#DataLoader(args.image_dir)
     data_loader = torch.utils.data.DataLoader(data_set, batch_size = args.batch_size, shuffle = True,num_workers = args.num_workers)
-    model = models.resnet50(pretrained=False)
-    modules=list(model.children())[:-3]
-    model=nn.Sequential(*modules)
-    print(summary(model, input_size=(3, 8, 8)))
+    #model = models.resnet50(pretrained=False).cuda()
+    #modules=list(model.children())[:-3]
+    #model=nn.Sequential(*modules).cuda()
+    model = Network().cuda()
+    print(summary(model, input_size=(9, 3, 8, 8)))
     #model=Network()#.cuda()#nn.DataParallel(Network()).cuda()
     #model.load_state_dict(torch.load('/mnt/cephfs/lab/wangyuqing/jiasaw/model/imagenet_models/model-6-100.ckpt'))
-    criterion = nn.CrossEntropyLoss()#.cuda()
+    criterion = nn.CrossEntropyLoss().cuda()
     params = list(model.parameters())
     optimizer = torch.optim.Adam(params, lr = args.learning_rate)
     total_step = len(data_loader)
     last_time=0
     for epoch in range(args.num_epochs):
-        try: 
+    #    try: 
             for i, (images, targets, original) in enumerate(data_loader):
-                images=images#.cuda()
-                targets=targets#.cuda()
+                #print(i,(images).shape,(targets).shape,(original).shape)
+                images=images.cuda()
+                targets=targets.cuda()
+                #print(len(targets),targets)#,len(targets[0]))
+                #print(len(images),len(images[0]),len(images[0][0]),len(images[0][0][0]),len(images[0][0][0][0]))
                 outputs = model(images)
-                loss = criterion(outputs, targets)#.cuda()
+                #print(outputs.shape)
+                loss = criterion(outputs, targets).cuda()
                 model.zero_grad()
                 loss.backward()
                 optimizer.step()
@@ -61,21 +66,22 @@ def main(args):
                # Save the model checkpoints
                 if (i + 1) % args.save_step == 0:
                     torch.save(model.state_dict(), os.path.join(args.model_path, 'model-{}-{}.ckpt'.format(epoch + 1, i + 1)))
-        except:
-            pass
+     #   except:
+      #      pass
         
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_path', type = str, default = '../checkpoints', help = 'path for saving trained models')
     parser.add_argument('--image_dir', type = str, default = '../data', help = 'directory for resized images')
-    parser.add_argument('--log_step', type = int, default = 1, help = 'step size for prining log info')
+    parser.add_argument('--log_step', type = int, default = 100, help = 'step size for prining log info')
     parser.add_argument('--save_step', type = int, default = 100, help = 'step size for saving trained models')
 
     # Model parameters
     parser.add_argument('--num_epochs', type = int, default = 100)
-    parser.add_argument('--batch_size', type = int, default = 1024)
-    parser.add_argument('--num_workers', type = int, default = 2)
+    parser.add_argument('--batch_size', type = int, default = 64)
+    parser.add_argument('--num_workers', type = int, default = 4)
     parser.add_argument('--learning_rate', type = float, default = 1e-3)
     args = parser.parse_args()
     print(args)
     main(args)
+
