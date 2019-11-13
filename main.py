@@ -14,6 +14,10 @@ import torchvision
 import torchvision.transforms as transforms
 from torchvision import datasets, models
 from torchsummary import summary
+import torch.nn as nn
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
 
 def main(args):
     if not os.path.exists(args.model_path):
@@ -39,11 +43,19 @@ def main(args):
     #modules=list(model.children())[:-3]
     #model=nn.Sequential(*modules).cuda()
     #model = Network().cuda()
-    model = resnet50().cuda()
+#     if torch.cuda.available():
+#         model = resnet50().cuda()
+#     else:
+    model = resnet50().to(device)
+        
     print(summary(model, input_size=(9, 3, 8, 8)))
     #model=Network()#.cuda()#nn.DataParallel(Network()).cuda()
     #model.load_state_dict(torch.load('/mnt/cephfs/lab/wangyuqing/jiasaw/model/imagenet_models/model-6-100.ckpt'))
-    criterion = nn.CrossEntropyLoss().cuda()
+#     if torch.cuda.available():
+#         criterion = nn.CrossEntropyLoss().cuda()
+#     else:
+    criterion = nn.CrossEntropyLoss().to(device)
+        
     params = list(model.parameters())
     optimizer = torch.optim.Adam(params, lr = args.learning_rate)
     total_step = len(data_loader)
@@ -52,13 +64,17 @@ def main(args):
     #    try: 
             for i, (images, targets, original) in enumerate(data_loader):
                 #print(i,(images).shape,(targets).shape,(original).shape)
-                images=images.cuda()
-                targets=targets.cuda()
+#                 if torch.cuda.available():
+                images=images.to(device)
+                targets=targets.to(device)
                 #print(len(targets),targets)#,len(targets[0]))
                 #print(len(images),len(images[0]),len(images[0][0]),len(images[0][0][0]),len(images[0][0][0][0]))
                 outputs = model(images)
                 #print(outputs.shape)
-                loss = criterion(outputs, targets).cuda()
+#                 if torch.cuda.available():
+                loss = criterion(outputs, targets).to(device)
+#                 else:
+#                     loss = criterion(outputs, targets)
                 model.zero_grad()
                 loss.backward()
                 optimizer.step()

@@ -2,7 +2,10 @@ import torch
 import torch.nn as nn
 #from .utils import load_state_dict_from_url
 from torch import cat
-from .bert import BERT
+from bert import BERT
+from torch.autograd import Variable
+import numpy as np
+Tensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
 
 __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101',
            'resnet152', 'resnext50_32x4d', 'resnext101_32x8d',
@@ -180,7 +183,7 @@ class ResNet(nn.Module):
         self.fc7.add_module('drop7', nn.Dropout(p = 0.5))
 
         self.classifier = nn.Sequential()
-        self.classifier.add_module('fc8', nn.Linear(4096, classes))
+        self.classifier.add_module('fc8', nn.Linear(1024, classes))
         #self.apply(weights_init)
         
         self.attention_pooling = BERT(4096, hidden=1024, n_layers=3, attn_heads=32)
@@ -219,7 +222,8 @@ class ResNet(nn.Module):
         B, T, C, H, W = x.size()
         #print(B,T,C,H,W)
         x = x.transpose(0, 1)
-        x_list = []
+        context = Variable(Tensor(np.random.normal(0, 1, (B, 1, 1024))))
+        x_list = [context]
         for i in range(9):
             z = self.conv1(x[i])
             z = self.bn1(z)
@@ -244,7 +248,7 @@ class ResNet(nn.Module):
         x = cat(x_list, 1)
         #x = self.fc7(x.view(B, -1))
         x = self.attention_pooling.forward(x)
-        x = self.classifier(x)
+        x = self.classifier(x[:,0])
         return x
     
 
