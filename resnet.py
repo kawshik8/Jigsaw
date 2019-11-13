@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 #from .utils import load_state_dict_from_url
 from torch import cat
+from .bert import BERT
 
 __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101',
            'resnet152', 'resnext50_32x4d', 'resnext101_32x8d',
@@ -181,6 +182,8 @@ class ResNet(nn.Module):
         self.classifier = nn.Sequential()
         self.classifier.add_module('fc8', nn.Linear(4096, classes))
         #self.apply(weights_init)
+        
+        self.attention_pooling = BERT(4096, hidden=1024, n_layers=3, attn_heads=32)
 
     def _make_layer(self, block, planes, blocks, stride=1, dilate=False):
         norm_layer = self._norm_layer
@@ -237,8 +240,10 @@ class ResNet(nn.Module):
             z = z.view([B, 1, -1])
             x_list.append(z)
 
+        
         x = cat(x_list, 1)
-        x = self.fc7(x.view(B, -1))
+        #x = self.fc7(x.view(B, -1))
+        x = self.attention_pooling.forward(x)
         x = self.classifier(x)
         return x
     
