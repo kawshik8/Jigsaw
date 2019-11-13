@@ -4,6 +4,7 @@ from dataload import DataLoader
 import torch
 import torch.nn as nn
 from network import Network
+from resnet import resnet50
 import numpy as np
 import time
 import torch.nn.functional as F
@@ -35,7 +36,8 @@ def main(args):
     #model = models.resnet50(pretrained=False).cuda()
     #modules=list(model.children())[:-3]
     #model=nn.Sequential(*modules).cuda()
-    model = Network().cuda()
+    #model = Network().cuda()
+    model = resnet50().cuda()
     print(summary(model, input_size=(9, 3, 8, 8)))
     #model=Network()#.cuda()#nn.DataParallel(Network()).cuda()
     #model.load_state_dict(torch.load('/mnt/cephfs/lab/wangyuqing/jiasaw/model/imagenet_models/model-6-100.ckpt'))
