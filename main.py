@@ -4,7 +4,9 @@ from dataload import DataLoader
 import torch
 import torch.nn as nn
 from network import Network
-from resnet import resnet50
+#from resnet import resnet50
+from resnet import ResNet, resnet50
+#from resnet import resnet50
 import numpy as np
 import time
 import torch.nn.functional as F

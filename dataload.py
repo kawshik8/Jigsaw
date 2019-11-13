@@ -25,7 +25,7 @@ augment_tile = transforms.Compose([
     #transforms.Lambda(rgb_jittering),
     transforms.ToTensor(),])
 
-permutations = np.load('permutations_1000.npy')
+permutations = np.load('./permutations_1000.npy')
 
 class DataLoader(datasets.ImageFolder):
         def __getitem__(self, index):
