@@ -11,7 +11,7 @@ __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101',
            'resnet152', 'resnext50_32x4d', 'resnext101_32x8d',
            'wide_resnet50_2', 'wide_resnet101_2']
 
-classes = 1000
+classes = 10
 
 model_urls = {
     #'resnet18': 'https://download.pytorch.org/models/resnet18-5c106cde.pth',
@@ -183,10 +183,10 @@ class ResNet(nn.Module):
         self.fc7.add_module('drop7', nn.Dropout(p = 0.5))
 
         self.classifier = nn.Sequential()
-        self.classifier.add_module('fc8', nn.Linear(1024, classes))
+        self.classifier.add_module('fc8', nn.Linear(512, classes))
         #self.apply(weights_init)
         
-        self.attention_pooling = BERT(4096, hidden=1024, n_layers=3, attn_heads=32)
+        self.attention_pooling = BERT(4096, hidden=512, n_layers=3, attn_heads=32)
 
     def _make_layer(self, block, planes, blocks, stride=1, dilate=False):
         norm_layer = self._norm_layer
@@ -222,7 +222,7 @@ class ResNet(nn.Module):
         B, T, C, H, W = x.size()
         #print(B,T,C,H,W)
         x = x.transpose(0, 1)
-        context = Variable(Tensor(np.random.normal(0, 1, (B, 1, 1024))))
+        context = Variable(Tensor(np.random.normal(0, 1, (B, 1, 512))))
         x_list = [context]
         for i in range(9):
             z = self.conv1(x[i])
@@ -232,9 +232,9 @@ class ResNet(nn.Module):
 
             z = self.layer1(z)
             z = self.layer2(z)
-            z = self.layer3(z)
+            #z = self.layer3(z)
      #       z = self.layer4(z)
-
+        #    print(z.shape)
             z = self.avgpool(z)
             z = torch.flatten(z, 1)
 #             z = self.conv(x[i])

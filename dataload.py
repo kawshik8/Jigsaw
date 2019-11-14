@@ -5,7 +5,7 @@ import torchvision.transforms as transforms
 from torchvision import datasets
 from PIL import Image
 import os
-
+from sklearn.preprocessing import OneHotEncoder 
 
 
 def rgb_jittering(im):
@@ -32,6 +32,11 @@ class DataLoader(datasets.ImageFolder):
             #try:
                 #filename = self.data_dir + '/' + self.file_list[index]
                 path,_=self.imgs[index]
+                #print(path)
+                #label = np.zeros(10)
+                #label[int(path.split("/")[3])] = 1
+                label = torch.tensor(int(path.split("/")[3]),dtype=torch.long)
+                #print(label)
                 img = Image.open(path).convert('RGB')
                 if np.random.rand() < 0.30:
                     img = img.convert('LA').convert('RGB')
@@ -63,7 +68,8 @@ class DataLoader(datasets.ImageFolder):
                 #print(len(data),len(data[0]),len(data[0][0]),len(data[0][0][0]))#,len(data[0][0][0][0]))
                 data = torch.stack(data, 0)
                 #print(order)
-                return data, int(order), tiles
+                #return data, int(order), tiles
+                return data, label
             #except:
              #   pass
         def __len__(self):
