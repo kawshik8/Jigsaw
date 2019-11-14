@@ -16,6 +16,7 @@ from torchvision import datasets, models
 from torchsummary import summary
 import torch.nn as nn
 
+print("aa")
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
@@ -62,7 +63,7 @@ def main(args):
     last_time=0
     for epoch in range(args.num_epochs):
     #    try: 
-            for i, (images, targets, original) in enumerate(data_loader):
+            for i, (images, targets) in enumerate(data_loader):
                 #print(i,(images).shape,(targets).shape,(original).shape)
 #                 if torch.cuda.available():
                 images=images.to(device)
