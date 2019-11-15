@@ -145,14 +145,14 @@ def validation():
     y_pred = []
     y_true = []
     with torch.no_grad():
-      for i, (images, targets) in enumerate(val_loader):
-        images=images.to(device)
-        targets=targets.to(device)
-        outputs = model(images)
+        for i, (images, targets) in enumerate(val_loader):
+            images=images.to(device)
+            targets=targets.to(device)
+            outputs = model(images)
 
-        validation_loss += criterion(outputs, targets).to(device)#
-        pred = outputs.data.max(1, keepdim= True)[1]
-        correct+= pred.eq(targets.data.view_as(pred)).cpu().sum()
+            validation_loss += criterion(outputs, targets).to(device)#
+            pred = outputs.data.max(1, keepdim= True)[1]
+            correct+= pred.eq(targets.data.view_as(pred)).cpu().sum()
 
     acc = 100. * correct / (len(val_loader)*args.batch_size)
     validation_loss /= len(val_loader)#*args.batch_size

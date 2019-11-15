@@ -158,6 +158,8 @@ class ResNet(nn.Module):
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(512 * block.expansion, num_classes)
 
+        self.pos_embed = nn.Embedding(cfg.max_len, cfg.dim) # position embedding
+        
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
@@ -223,6 +225,7 @@ class ResNet(nn.Module):
         #print(B,T,C,H,W)
         x = x.transpose(0, 1)
         context = Variable(Tensor(np.random.normal(0, 1, (B, 1, 512))))
+        
         x_list = [context]
         for i in range(9):
             z = self.conv1(x[i])
@@ -244,12 +247,31 @@ class ResNet(nn.Module):
             z = z.view([B, 1, -1])
             x_list.append(z)
 
+        x_list = cat(x_list, 1)
         
-        x = cat(x_list, 1)
+        seq_len = 9
+        pos = torch.arange(seq_len, dtype=torch.long, device=x.device)
+        pos = pos.unsqueeze(0).expand_as(x_list)
+            
+        positions = np.arange(9)
+        query_ind = np.random.choice(9,3,replace=False) + 1
+        context_ind = np.array([pos for pos in (positions+1) if pos not in query_ind])
+            
+        #x_list = np.array(x_list)
+        context = x_list[:,context_ind]
+        query = x_list[:,query_ind]
+        x = cat(context, 1)
         #x = self.fc7(x.view(B, -1))
         x = self.attention_pooling.forward(x)
-        x = self.classifier(x[:,0])
-        return x
+        global_context = x[:,0]
+        
+        choice = np.random.choice(3)[0]
+        global_context = global_context + pos[:,query_ind[choice]-1]
+
+        final = torch.squeeze(torch.matmul(torch.unsqueeze(global_context,1),torch.transpose(query,1,2)),1)
+        
+#         x = self.classifier(x[:,0])
+        return final, query_ind[choice]
     
 
     
