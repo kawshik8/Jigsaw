@@ -118,12 +118,13 @@ def train(epoch):
     for i, (images, targets) in enumerate(train_loader):
         correct = 0
         images=images.to(device)
-        targets=targets.to(device)
-        outputs = model(images)
-
-        loss = criterion(outputs, targets).to(device)
-        pred = outputs.data.max(1, keepdim= True)[1]
-        correct+= pred.eq(targets.data.view_as(pred)).cpu().sum()
+        #targets=targets.to(device)
+        output1,output2 = model(images)
+        #print(output1.shape,output2.shape)
+        loss = criterion(output1, output2).to(device)
+        
+        pred = output1.data.max(1, keepdim= True)[1]
+        correct+= pred.eq(output2.data.view_as(pred)).cpu().sum()
 
         model.zero_grad()
         loss.backward()
@@ -147,12 +148,12 @@ def validation():
     with torch.no_grad():
         for i, (images, targets) in enumerate(val_loader):
             images=images.to(device)
-            targets=targets.to(device)
-            outputs = model(images)
+            #targets=targets.to(device)
+            output1,output2 = model(images)
 
-            validation_loss += criterion(outputs, targets).to(device)#
-            pred = outputs.data.max(1, keepdim= True)[1]
-            correct+= pred.eq(targets.data.view_as(pred)).cpu().sum()
+            validation_loss += criterion(output1, output2).to(device)#
+            pred = output1.data.max(1, keepdim= True)[1]
+            correct+= pred.eq(output2.data.view_as(pred)).cpu().sum()
 
     acc = 100. * correct / (len(val_loader)*args.batch_size)
     validation_loss /= len(val_loader)#*args.batch_size

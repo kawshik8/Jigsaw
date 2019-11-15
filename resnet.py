@@ -158,8 +158,6 @@ class ResNet(nn.Module):
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(512 * block.expansion, num_classes)
 
-        self.pos_embed = nn.Embedding(cfg.max_len, cfg.dim) # position embedding
-        
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
@@ -189,6 +187,8 @@ class ResNet(nn.Module):
         #self.apply(weights_init)
         
         self.attention_pooling = BERT(4096, hidden=512, n_layers=3, attn_heads=32)
+        
+        self.pos_embed = nn.Embedding(10, 512) # position embedding
 
     def _make_layer(self, block, planes, blocks, stride=1, dilate=False):
         norm_layer = self._norm_layer
@@ -224,7 +224,7 @@ class ResNet(nn.Module):
         B, T, C, H, W = x.size()
         #print(B,T,C,H,W)
         x = x.transpose(0, 1)
-        context = Variable(Tensor(np.random.normal(0, 1, (B, 1, 512))))
+        context = Variable(Tensor(np.random.normal(0, 1, (B, 1, 512)),device = x.device))
         
         x_list = [context]
         for i in range(9):
@@ -249,32 +249,45 @@ class ResNet(nn.Module):
 
         x_list = cat(x_list, 1)
         
-        seq_len = 9
+        seq_len = T+1
+        #print(seq_len)
         pos = torch.arange(seq_len, dtype=torch.long, device=x.device)
-        pos = pos.unsqueeze(0).expand_as(x_list)
+        #print(pos.shape)
+        pos = pos.unsqueeze(0).repeat(B,1)
+        #print(pos.shape)
+        pos = self.pos_embed(pos)
+        #print(pos.shape)
             
         positions = np.arange(9)
-        query_ind = np.random.choice(9,3,replace=False) + 1
+        query_ind = np.sort(np.random.choice(9,3,replace=False)) + 1
         context_ind = np.array([pos for pos in (positions+1) if pos not in query_ind])
-            
+        context_ind = np.append(np.array([0]),context_ind)
+        print(query_ind)
+        print(context_ind)
         #x_list = np.array(x_list)
         context = x_list[:,context_ind]
+        
         query = x_list[:,query_ind]
-        x = cat(context, 1)
+        #x = cat(context, 1)
         #x = self.fc7(x.view(B, -1))
-        x = self.attention_pooling.forward(x)
+        x = self.attention_pooling.forward(context)
         global_context = x[:,0]
         
-        choice = np.random.choice(3)[0]
-        global_context = global_context + pos[:,query_ind[choice]-1]
+        choice = np.random.choice(3)#, dtype = torch.long)
+        #print(choice)
+        global_context = global_context + pos[:,query_ind[choice]]
 
         final = torch.squeeze(torch.matmul(torch.unsqueeze(global_context,1),torch.transpose(query,1,2)),1)
         
 #         x = self.classifier(x[:,0])
-        return final, query_ind[choice]
-    
-
-    
+        #print(final.shape,B)
+        #print(np.array(choice).shape)
+        #print(torch.from_numpy(np.array(choice)).shape)
+#         print(torch.from_numpy(np.array(choice)).shape)
+        #print(torch.unsqueeze(torch.Tensor(torch.Tensor(choice),device = x.device),0).shape)
+        final_choice = torch.from_numpy(np.array(choice)).repeat(B)
+        #print(final_choice.shape)
+        return final, final_choice.type(torch.long)
 
     # Allow for accessing forward method in a inherited class
     forward = _forward
