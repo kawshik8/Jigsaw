@@ -286,10 +286,10 @@ class ResNet(nn.Module):
             #print(choices[i].shape)
             choices[i] = zero
             
-        print(choices.shape)
-        print(pos.shape)
+        #print(choices.shape)
+        #print(pos.shape)
         pos_random = torch.sum(pos*choices,dim=1)
-        print(pos_random.shape)
+        #print(pos_random.shape)
         #print(global_con
         global_context = global_context + pos_random#pos[:,query_ind[choice]]
 
@@ -302,7 +302,7 @@ class ResNet(nn.Module):
 #         print(torch.from_numpy(np.array(choice)).shape)
         #print(torch.unsqueeze(torch.Tensor(torch.Tensor(choice),device = x.device),0).shape)
         final_choice = torch.from_numpy(np.array(choices_ind))#.repeat(B)
-        print(final_choice.shape)
+        #print(final_choice.shape)
         return final, final_choice.type(torch.long)
 
     # Allow for accessing forward method in a inherited class
