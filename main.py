@@ -23,7 +23,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--model_path', type = str, default = '../checkpoints', help = 'path for saving trained models')
 parser.add_argument('--image_dir', type = str, default = '../data', help = 'directory for resized images')
 parser.add_argument('--log_step', type = int, default = 100, help = 'step size for prining log info')
-parser.add_argument('--save_step', type = int, default = 100, help = 'step size for saving trained models')
+parser.add_argument('--save_epoch', type = int, default = 1, help = 'step size for saving trained models')
 
 # Model parameters
 parser.add_argument('--num_epochs', type = int, default = 100)
@@ -144,22 +144,23 @@ def validation():
     correct = 0
     y_pred = []
     y_true = []
-    for i, (images, targets) in enumerate(val_loader):
+    with torch.no_grad():
+      for i, (images, targets) in enumerate(val_loader):
         images=images.to(device)
         targets=targets.to(device)
         outputs = model(images)
 
-        validation_loss += criterion(outputs, targets)#.to(device)#
+        validation_loss += criterion(outputs, targets).to(device)#
         pred = outputs.data.max(1, keepdim= True)[1]
         correct+= pred.eq(targets.data.view_as(pred)).cpu().sum()
 
-    acc = 100. * correct / (len(val_loader))
-    validation_loss /= len(val_loader)
+    acc = 100. * correct / (len(val_loader)*args.batch_size)
+    validation_loss /= len(val_loader)#*args.batch_size
     print('\nValidation set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
-        validation_loss, correct, len(val_loader),
+        validation_loss, correct, len(val_loader)*args.batch_size,
         acc))
-    if epoch == args.epochs:
-        print(epoch)
+    #if epoch == args.epochs:
+    #    print(epoch)
     return acc,validation_loss
      
 
@@ -179,8 +180,8 @@ if __name__ == '__main__':
         va,vl = validation()
         scheduler.step(vl)
         print(va,vl)
-        if (i + 1) % args.save_step == 0:
-            torch.save(model.state_dict(), os.path.join(args.model_path, 'model-{}-{}.ckpt'.format(epoch + 1, i + 1)))        
+        if (epoch + 1) % args.save_epoch == 0:
+            torch.save(model.state_dict(), os.path.join(args.model_path, 'model-{}.ckpt'.format(epoch + 1)))        
 
 #         if va > val_acc:
 #             val_acc = va
