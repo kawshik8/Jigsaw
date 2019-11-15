@@ -275,7 +275,7 @@ class ResNet(nn.Module):
         
         choices_ind = [np.random.choice(3) for i in range(B)]#, dtype = torch.long)
      
-        choices = torch.zeros((B,x_list.shape[1],x_list.shape[2]))
+        choices = torch.zeros((B,x_list.shape[1],x_list.shape[2]),device=x.device)
         #print(choices_ind)
         for i in range(len(choices_ind)):
             zero = torch.zeros((x_list.shape[1],x_list.shape[2]))
@@ -301,7 +301,7 @@ class ResNet(nn.Module):
         #print(torch.from_numpy(np.array(choice)).shape)
 #         print(torch.from_numpy(np.array(choice)).shape)
         #print(torch.unsqueeze(torch.Tensor(torch.Tensor(choice),device = x.device),0).shape)
-        final_choice = torch.from_numpy(np.array(choices_ind))#.repeat(B)
+        final_choice = torch.from_numpy(np.array(choices_ind)).to(x.device)#.repeat(B)
         #print(final_choice.shape)
         return final, final_choice.type(torch.long)
 
