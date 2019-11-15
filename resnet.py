@@ -262,8 +262,8 @@ class ResNet(nn.Module):
         query_ind = np.sort(np.random.choice(9,3,replace=False)) + 1
         context_ind = np.array([pos for pos in (positions+1) if pos not in query_ind])
         context_ind = np.append(np.array([0]),context_ind)
-        print(query_ind)
-        print(context_ind)
+#         print(query_ind)
+#         print(context_ind)
         #x_list = np.array(x_list)
         context = x_list[:,context_ind]
         
@@ -273,9 +273,25 @@ class ResNet(nn.Module):
         x = self.attention_pooling.forward(context)
         global_context = x[:,0]
         
-        choice = np.random.choice(3)#, dtype = torch.long)
-        #print(choice)
-        global_context = global_context + pos[:,query_ind[choice]]
+        choices_ind = [np.random.choice(3) for i in range(B)]#, dtype = torch.long)
+     
+        choices = torch.zeros((B,x_list.shape[1],x_list.shape[2]))
+        #print(choices_ind)
+        for i in range(len(choices_ind)):
+            zero = torch.zeros((x_list.shape[1],x_list.shape[2]))
+            #print(zero.shape)
+            #print(zero)
+            zero[choices_ind[i]] = 1
+            #print(zero)
+            #print(choices[i].shape)
+            choices[i] = zero
+            
+        print(choices.shape)
+        print(pos.shape)
+        pos_random = torch.sum(pos*choices,dim=1)
+        print(pos_random.shape)
+        #print(global_con
+        global_context = global_context + pos_random#pos[:,query_ind[choice]]
 
         final = torch.squeeze(torch.matmul(torch.unsqueeze(global_context,1),torch.transpose(query,1,2)),1)
         
@@ -285,8 +301,8 @@ class ResNet(nn.Module):
         #print(torch.from_numpy(np.array(choice)).shape)
 #         print(torch.from_numpy(np.array(choice)).shape)
         #print(torch.unsqueeze(torch.Tensor(torch.Tensor(choice),device = x.device),0).shape)
-        final_choice = torch.from_numpy(np.array(choice)).repeat(B)
-        #print(final_choice.shape)
+        final_choice = torch.from_numpy(np.array(choices_ind))#.repeat(B)
+        print(final_choice.shape)
         return final, final_choice.type(torch.long)
 
     # Allow for accessing forward method in a inherited class
