@@ -34,16 +34,17 @@ parser.add_argument(
     "--pretrain-task",
     type=str,
     default="cifar10_un",
-    choices=["cifar10_un", "stl10_un", "mnist_un", "imagenet_un", ""],
-    help="pretrain task, _un is for unsupervised. " " means skip pretrain",
+    choices=["cifar10_un", "stl10_un", "mnist_un", "imagenet_un", "none"],
+    help="pretrain task, '_un' is for unsupervised. 'none' means skip pretrain",
 )
 parser.add_argument(
     "--finetune-tasks",
     type=str,
     default="cifar10_lp5",
-    help="""any subset from [cifar10, mnist, imagenet] x [_lp5, _lp10, _lp20, _lp100]
-    (percent of labels available) and stl10_fd X [0, ..., 9] (fold number of supervised data),
-    seperated by comma (no space!), e.g. "stl_10_fd0,cifar10_lp5" """,
+    help="""any non-empty subset from ['cifar10', 'mnist', 'imagenet'] x ['_lp5', '_lp10', '_lp20', '_lp100']
+    (percent of labels available) and 'stl10_fd' X ['0', ..., '9'] (fold number of supervised data),
+    seperated by comma (no space!), e.g. 'stl_10_fd0,cifar10_lp5'.
+    or, choose 'none' to skip finetune&evaluation. """,
 )
 # num_patches
 parser.add_argument(
@@ -146,7 +147,6 @@ parser.add_argument(
 
 def process_args(args):
     # TODO: some asserts, check the arguments
-    args.pretrain_task = [args.pretrain_task].remove("")
-    args.finetune_tasks = args.finetune_tasks.split(",").remove("")
+    args.pretrain_task = [args.pretrain_task].remove("none")
+    args.finetune_tasks = args.finetune_tasks.split(",").remove("none")
     args.exp_dir = os.path.join(args.results_dir, args.exp_name)
-
