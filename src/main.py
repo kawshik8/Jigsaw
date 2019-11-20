@@ -20,6 +20,11 @@ def main(args):
     log.info("Start creating tasks")
     pretrain_task = [get_task(taskname, args) for taskname in args.pretrain_task]
     finetune_tasks = [get_task(taskname, args) for taskname in args.finetune_tasks]
+    log.info("Start loading data")
+    for task in pretrain_task:
+        task.load_data()
+    for task in finetune_tasks:
+        task.load_data()
     log.info("Start creating models")
     model = get_model(args.model, args)
     model.to(args.device)
