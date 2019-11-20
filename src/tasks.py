@@ -100,7 +100,7 @@ class Task(object):
         inputs:
             raw_data
         outputs:
-            batch_input: dict[str, dict[str, tensor]]: from split to tensors of each field
+            preproc_data: dict[str, dict[str, tensor]]: from split to tensors of each field
                 "idx": long (bs), index of the image instance
                 "image": float (bs, num_patches, channels, height, width), pixels from raw and
                 transformed image
@@ -186,23 +186,15 @@ class CIFAR10(Task):
         return raw_data
 
     def _preprocess_data(self, raw_data):
-        return
+        return preproc_data
 
 
-class CIFAR100(Task):
+class CIFAR100(CIFAR10):
     def __init__(self, name, args, pretrain=False, label_pct=0.0):
-        super().__init__(name, args, pretrain)
-        self.label_pct = label_pct
-
-    @staticmethod
-    def _get_transforms():
-        return train_transform, eval_transform
+        super().__init__(name, args, pretrain, label_pct)
 
     def _load_raw_data(self):
         return raw_data
-
-    def _preprocess_data(self, raw_data):
-        return
 
 
 class STL10(Task):
@@ -218,7 +210,7 @@ class STL10(Task):
         return raw_data
 
     def _preprocess_data(self, raw_data):
-        return
+        return preproc_data
 
 
 class MNIST(Task):
@@ -234,7 +226,7 @@ class MNIST(Task):
         return raw_data
 
     def _preprocess_data(self, raw_data):
-        return
+        return preproc_data
 
 
 class ImageNet(Task):
@@ -255,4 +247,4 @@ class ImageNet(Task):
 
     def _preprocess_data(self, raw_data):
         raise NotImplementedError
-        return
+        return preproc_data
