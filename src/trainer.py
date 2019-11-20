@@ -43,7 +43,7 @@ class Trainer(object):
         self.task.reset_scorers()
         with torch.no_grad():
             for batch, batch_input in enumerate(self.task.data_iterators[split]):
-                batch_output = self.model(batch_input)
+                batch_output = self.model(batch_input, self.task)
                 self.task.update_scorers(batch_input, batch_output)
                 if (batch + 1) % self.report_interval == 0:
                     log.info(
@@ -69,7 +69,7 @@ class Trainer(object):
         for epoch in range(math.ceil(self.max_iters / len(self.task.data_iterators["train"]))):
             for batch, batch_input in enumerate(self.task.data_iterators["train"]):
                 self.model.zero_grad()
-                batch_output = self.model(batch_input)
+                batch_output = self.model(batch_input, self.task)
                 self.task.update_scorers(batch_input, batch_output)
                 batch_output["loss"].backward()
                 if self.args.clip != 0:

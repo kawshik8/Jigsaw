@@ -22,7 +22,7 @@ class JigsawModel(nn.Module):
         self.pretrain_params = []
         self.finetune_params = []
 
-    def forward(self, batch_input):
+    def forward(self, batch_input, task=None):
         """
         inputs:
             batch_input: dict[str, tensor]: inputs in one minibatch
@@ -33,6 +33,7 @@ class JigsawModel(nn.Module):
                 "label": long (bs), class label of the image, only in fine-tune
                 (if cfgs.dup_pos > 0, each image instance in minibatch will have (1 + dup_pos)
                 transformed versions.)
+            task: task object
         outputs:
             batch_output: dict[str, tensor]: outputs in one minibatch
                 "loss": float (1), full loss of a batch
@@ -140,7 +141,7 @@ class SelfieModel(JigsawModel):
         self.pretrain_params = list(self.position_embedding.parameters())
         self.finetune_params = list(self.cls_classifiers.parameters())
 
-    def forward(self, batch_input):
+    def forward(self, batch_input, task=None):
         batch_output = {}
         device = batch_input["image"].device
         bs = batch_input["image"].size(0)
@@ -181,7 +182,7 @@ class SelfieModel(JigsawModel):
 
         elif self.stage == "finetune":
             hidden = self.attention_pooling(patches)
-            cls_pred = self.cls_classifier[batch_input["taskname"]](hidden)
+            cls_pred = self.cls_classifier[task.name](hidden)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             if self.args.transfer_paradigm == "bound":
                 raise NotImplementedError
