@@ -16,19 +16,12 @@ parser.add_argument(
     default="/scratch/hl3236/cv_results/",
     help="directory to save results and files",
 )
-# load_ckpt
-parser.add_argument(
-    "--load-ckpt",
-    type=str,
-    default="",
-    help="load parameters from a checkpoint, choose auto to resume interrupted experiment",
-)
-
-# Data settings
 # data_dir
 parser.add_argument(
     "--data-dir", type=str, default="/scratch/hl3236/data/", help="directory of the data files",
 )
+
+# Data settings
 # pretrain_task and finetune_task
 parser.add_argument(
     "--pretrain-task",
@@ -62,7 +55,7 @@ parser.add_argument(
     help="number of transformed versions per image stored, 0 means transforming on-the-fly",
 )
 # num_workers
-parser.add_argument("--num_workers", type=int, default=4, help="number of cpu workers in iterator")
+parser.add_argument("--num_workers", type=int, default=16, help="number of cpu workers in iterator")
 # batch_size
 parser.add_argument(
     "--batch-size", type=int, default=64, help="number of images per minibatch",
@@ -90,6 +83,13 @@ parser.add_argument("--model", type=str, default="selfie", options=["selfie"])
 
 
 # Training settings
+# load_ckpt
+parser.add_argument(
+    "--load-ckpt",
+    type=str,
+    default="",
+    help="load parameters from a checkpoint, choose auto to resume interrupted experiment",
+)
 # clip
 parser.add_argument("--clip", type=float, default=0.5, help="gradient clip")
 # learning_rate
