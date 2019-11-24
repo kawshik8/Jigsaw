@@ -6,6 +6,7 @@ import os
 import torch
 import json
 import numpy
+from PIL import Image
 from torchvision import datasets, transforms
 
 
@@ -44,6 +45,77 @@ def task_num_class(name):
         return 10
 
 
+class RandomTranslateWithReflect:
+    """
+    Translate image randomly
+
+    Translate vertically and horizontally by n pixels where
+    n is integer drawn uniformly independently for each axis
+    from [-max_translation, max_translation].
+
+    Fill the uncovered blank area with reflect padding.
+    """
+
+    def __init__(self, max_translation):
+        self.max_translation = max_translation
+
+    def __call__(self, old_image):
+        xtranslation, ytranslation = numpy.random.randint(
+            -self.max_translation, self.max_translation + 1, size=2
+        )
+        xpad, ypad = abs(xtranslation), abs(ytranslation)
+        xsize, ysize = old_image.size
+
+        flipped_lr = old_image.transpose(Image.FLIP_LEFT_RIGHT)
+        flipped_tb = old_image.transpose(Image.FLIP_TOP_BOTTOM)
+        flipped_both = old_image.transpose(Image.ROTATE_180)
+
+        new_image = Image.new("RGB", (xsize + 2 * xpad, ysize + 2 * ypad))
+
+        new_image.paste(old_image, (xpad, ypad))
+
+        new_image.paste(flipped_lr, (xpad + xsize - 1, ypad))
+        new_image.paste(flipped_lr, (xpad - xsize + 1, ypad))
+
+        new_image.paste(flipped_tb, (xpad, ypad + ysize - 1))
+        new_image.paste(flipped_tb, (xpad, ypad - ysize + 1))
+
+        new_image.paste(flipped_both, (xpad - xsize + 1, ypad - ysize + 1))
+        new_image.paste(flipped_both, (xpad + xsize - 1, ypad - ysize + 1))
+        new_image.paste(flipped_both, (xpad - xsize + 1, ypad + ysize - 1))
+        new_image.paste(flipped_both, (xpad + xsize - 1, ypad + ysize - 1))
+
+        new_image = new_image.crop(
+            (
+                xpad - xtranslation,
+                ypad - ytranslation,
+                xpad + xsize - xtranslation,
+                ypad + ysize - ytranslation,
+            )
+        )
+        return new_image
+
+
+class DupTransform:
+    def __init__(self, num_dup, transform=lambda x: x):
+        self.num_dup = num_dup
+        self.transform = transform
+
+    def __call__(self, inp):
+        output = [self.transform(inp) for _ in range(self.num_dup)]
+        return output
+
+
+class RandZero:
+    def __init__(self, num_patches, num_query):
+        self.num_patches = num_patches
+        self.num_query = num_query
+
+    def __call__(self, query):
+        mask = torch.randperm(self.num_patches) <= self.num_query
+        return query * mask
+
+
 class TransformDataset(torch.utils.data.dataset):
     def __init__(self, transform, tensors):
         super().__init__()
@@ -79,8 +151,7 @@ class Task(object):
         else:
             self.eval_metric = "cls_acc"
 
-    @staticmethod
-    def _get_transforms():
+    def _get_transforms(self):
         """
         outputs:
             train_transform: ...
@@ -96,6 +167,23 @@ class Task(object):
                 label: long (*), class label of the image, set to 0 when unavailable
         """
         raise NotImplementedError
+
+    def _preprocess_data(self, data):
+        output = {}
+        for split, dataset in data.items():
+            idx, image, label = zip(*[(idx, img, label) for idx, (img, label) in enumerate(data)])
+            output[split] = {
+                "idx": torch.LongTensor(idx),
+                "image": image,
+                "query": torch.ones((len(image), self.args.num_patches), dtype=torch.long),
+                "label": torch.LongTensor(label),
+            }
+            if self.pretrain:
+                del output[split]["label"]
+            else:
+                del output[split]["query"]
+
+        return output
 
     def make_data_split(self, train_data, pct=1.0):
         split_filename = os.path.join(self.path, "%s.json" % self.name)
@@ -120,6 +208,7 @@ class Task(object):
         """
         log.info("Loading %s data" % self.name)
         data = self._load_raw_data()
+        data = self._preprocess_data(data)
 
         train_transform, eval_transform = self._get_transforms()
         if self.pretrain:
@@ -170,8 +259,34 @@ class CIFAR10(Task):
         super().__init__(name, args, pretrain)
         self.label_pct = label_pct
 
-    @staticmethod
-    def _get_transforms():
+    def _get_transforms(self):
+        flip_lr = transforms.RandomHorizontalFlip(p=0.5)
+        normalize = transforms.Normalize(mean=[0.491, 0.482, 0.447], std=[0.247, 0.244, 0.262],)
+        col_jitter = transforms.RandomApply([transforms.ColorJitter(0.4, 0.4, 0.4, 0.2)], p=0.8)
+        img_jitter = transforms.RandomApply([RandomTranslateWithReflect(4)], p=0.8)
+        rnd_gray = transforms.RandomGrayscale(p=0.25)
+        if self.pretrain:
+            train_transform = eval_transform = {
+                "idx": DupTransform(self.args.dup_pos),
+                "image": DupTransform(
+                    self.args.dup_pos,
+                    transforms.Compose(
+                        [img_jitter, col_jitter, rnd_gray, transforms.ToTensor(), normalize]
+                    ),
+                ),
+                "query": DupTransform(
+                    self.args.dup_pos, RandZero(self.args.num_patches, self.args.num_query)
+                ),
+            }
+        else:
+            train_transform = {
+                "image": transforms.Compose(
+                    [flip_lr, img_jitter, col_jitter, rnd_gray, transforms.ToTensor(), normalize]
+                ),
+            }
+            eval_transform = {
+                "image": transforms.Compose([transforms.ToTensor(), normalize]),
+            }
         return train_transform, eval_transform
 
     def _load_raw_data(self):
@@ -217,8 +332,39 @@ class STL10(Task):
         super().__init__(name, args, pretrain)
         self.fold = fold
 
-    @staticmethod
-    def _get_transforms():
+    def _get_transforms(self):
+        flip_lr = transforms.RandomHorizontalFlip(p=0.5)
+        normalize = transforms.Normalize(mean=(0.43, 0.42, 0.39), std=(0.27, 0.26, 0.27))
+        col_jitter = transforms.RandomApply([transforms.ColorJitter(0.4, 0.4, 0.4, 0.2)], p=0.8)
+        rnd_gray = transforms.RandomGrayscale(p=0.25)
+        rand_crop = transforms.RandomResizedCrop(
+            64, scale=(0.3, 1.0), ratio=(0.7, 1.4), interpolation=3
+        )
+        center_crop = transforms.Compose(
+            [transforms.Resize(70, interpolation=3), transforms.CenterCrop(64)]
+        )
+        if self.pretrain:
+            train_transform = eval_transform = {
+                "idx": DupTransform(self.args.dup_pos),
+                "image": DupTransform(
+                    self.args.dup_pos,
+                    transforms.Compose(
+                        [rand_crop, col_jitter, rnd_gray, transforms.ToTensor(), normalize]
+                    ),
+                ),
+                "query": DupTransform(
+                    self.args.dup_pos, RandZero(self.args.num_patches, self.args.num_query)
+                ),
+            }
+        else:
+            train_transform = {
+                "image": transforms.Compose(
+                    [flip_lr, rand_crop, col_jitter, rnd_gray, transforms.ToTensor(), normalize]
+                ),
+            }
+            eval_transform = {
+                "image": transforms.Compose([center_crop, transforms.ToTensor(), normalize]),
+            }
         return train_transform, eval_transform
 
     def _load_raw_data(self):
@@ -246,8 +392,7 @@ class MNIST(Task):
         super().__init__(name, args, pretrain)
         self.label_pct = label_pct
 
-    @staticmethod
-    def _get_transforms():
+    def _get_transforms(self):
         return train_transform, eval_transform
 
     def _load_raw_data(self):
