@@ -47,13 +47,6 @@ parser.add_argument(
 parser.add_argument(
     "--num_queries", type=int, default=8, help="number of patches an image to predict"
 )
-# cache_transform
-parser.add_argument(
-    "--cache-transform",
-    type=int,
-    default=0,
-    help="number of transformed versions per image stored, 0 means transforming on-the-fly",
-)
 # num_workers
 parser.add_argument("--num_workers", type=int, default=16, help="number of cpu workers in iterator")
 # batch_size

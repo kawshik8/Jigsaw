@@ -4,7 +4,9 @@
 import logging as log
 import os
 import torch
-import torchvision as V
+import json
+import numpy
+from torchvision import datasets, transforms
 
 
 def get_task(name, args):
@@ -71,6 +73,7 @@ class Task(object):
         self.pretrain = pretrain
         self.data_iterators = {}
         self.reset_scorers()
+        self.path = os.path.join(args.data_dir, self.name.split("-")[0])
         if pretrain:
             self.eval_metric = "jigsaw_acc"
         else:
@@ -88,56 +91,45 @@ class Task(object):
     def _load_raw_data(self):
         """
         outputs:
-            raw_data: dict[str, dict[str, tensor]]: from split to tensors of each field
-                "idx": long (*), index of the image instance
-                "image": float (*, channels, height, width), pixels from image
-                "label": long (*), class label of the image, set to 0 when unavailable
+            raw_data: dict[str, list[(image, label)]]: from split to list of data
+                image: pil (*), raw image
+                label: long (*), class label of the image, set to 0 when unavailable
         """
         raise NotImplementedError
 
-    def _preprocess_data(self, raw_data):
-        """
-        inputs:
-            raw_data
-        outputs:
-            preproc_data: dict[str, dict[str, tensor]]: from split to tensors of each field
-                "idx": long (bs), index of the image instance
-                "image": float (bs, num_patches, channels, height, width), pixels from raw and
-                transformed image
-                "query": bool (bs, num_patches), which patches are queried, only in pretrain
-                "label": long (bs), class label of the image, only in fine-tune
-                (if cfgs.dup_pos > 0, each image instance in minibatch will have (1 + dup_pos)
-                transformed versions.)
-        """
-        raise NotImplementedError
+    def make_data_split(self, train_data, pct=1.0):
+        split_filename = os.path.join(self.path, "%s.json" % self.name)
+        if os.path.exist(split_filename):
+            with open(split_filename, "r") as f:
+                split = json.loads(f.read(split_filename))
+        else:
+            full_size = len(train_data)
+            train_size = int(full_size * pct * 0.9)
+            val_size = int(full_size * pct * 0.1) + train_size
+            full_idx = numpy.random.permutation(full_size)
+            split = {"train": full_idx[:train_size], "val": full_idx[train_size:val_size]}
+            with open(split_filename, "w") as f:
+                f.write(json.dumps(split))
+        train_data = [train_data[idx] for idx in split["train"]]
+        val_data = [train_data[idx] for idx in split["val"]]
+        return train_data, val_data
 
     def load_data(self):
         """
-        load and preprocess data, create data iterators. use cached data when available.
+        load data, create data iterators. use cached data when available.
         """
         log.info("Loading %s data" % self.name)
-        preprocessed_cache = os.path.join(
-            self.args.exp_dir, "data_cache", "%s_preproc.data" % self.name
-        )
-        if os.path.exist(preprocessed_cache):
-            preproc_data = torch.load(preprocessed_cache)
-        else:
-            raw_cache = os.path.join(self.args.exp_dir, "data_cache", "%s_raw.data" % self.name)
-            if os.path.exist(raw_cache):
-                raw_data = torch.load(raw_cache)
-            else:
-                raw_data = self._load_raw_data()
-            preproc_data = self._preprocess_data(raw_data)
+        data = self._load_raw_data()
 
         train_transform, eval_transform = self._get_transforms()
         if self.pretrain:
-            preproc_data["train"] = TransformDataset(train_transform, preproc_data["train"])
+            data["train"] = TransformDataset(train_transform, data["train"])
         else:
-            preproc_data["train"] = TransformDataset(train_transform, preproc_data["train"])
-            preproc_data["val"] = TransformDataset(eval_transform, preproc_data["val"])
-            preproc_data["test"] = TransformDataset(eval_transform, preproc_data["test"])
+            data["train"] = TransformDataset(train_transform, data["train"])
+            data["val"] = TransformDataset(eval_transform, data["val"])
+            data["test"] = TransformDataset(eval_transform, data["test"])
 
-        for split, dataset in preproc_data.items():
+        for split, dataset in data.items():
             self.data_iterators[split] = torch.utils.data.DataLoader(
                 dataset=dataset,
                 batch_size=self.args.batch_size,
@@ -183,10 +175,20 @@ class CIFAR10(Task):
         return train_transform, eval_transform
 
     def _load_raw_data(self):
+        cifar10_train = datasets.CIFAR10(root=self.path, train=True, download=True)
+        if self.pretrain:
+            cifar10_train_f = datasets.CIFAR10(
+                root=self.path,
+                train=True,
+                transform=transforms.RandomHorizontalFlip(p=1.0),
+                download=True,
+            )
+            raw_data = {"train": cifar10_train + cifar10_train_f}
+        else:
+            cifar10_test = datasets.CIFAR10(root=self.path, train=False, download=True)
+            cifar10_train, cifar10_val = self.make_data_split(cifar10_train, self.label_pct)
+            raw_data = {"train": cifar10_train, "val": cifar10_val, "test": cifar10_test}
         return raw_data
-
-    def _preprocess_data(self, raw_data):
-        return preproc_data
 
 
 class CIFAR100(CIFAR10):
@@ -194,6 +196,19 @@ class CIFAR100(CIFAR10):
         super().__init__(name, args, pretrain, label_pct)
 
     def _load_raw_data(self):
+        cifar100_train = datasets.CIFAR100(root=self.path, train=True, download=True)
+        if self.pretrain:
+            cifar100_train_f = datasets.CIFAR100(
+                root=self.path,
+                train=True,
+                transform=transforms.RandomHorizontalFlip(p=1.0),
+                download=True,
+            )
+            raw_data = {"train": cifar100_train + cifar100_train_f}
+        else:
+            cifar100_test = datasets.CIFAR100(root=self.path, train=False, download=True)
+            cifar100_train, cifar100_val = self.make_data_split(cifar100_train, self.label_pct)
+            raw_data = {"train": cifar100_train, "val": cifar100_val, "test": cifar100_test}
         return raw_data
 
 
@@ -207,10 +222,23 @@ class STL10(Task):
         return train_transform, eval_transform
 
     def _load_raw_data(self):
+        stl10_unlabeled = datasets.STL10(root=self.path, split="unlabeled", download=True)
+        if self.pretrain:
+            stl10_unlabeled_f = datasets.STL10(
+                root=self.path,
+                split="unlabeled",
+                transform=transforms.RandomHorizontalFlip(p=1.0),
+                download=True,
+            )
+            raw_data = {"train": stl10_unlabeled + stl10_unlabeled_f}
+        else:
+            stl10_train = datasets.STL10(
+                root=self.path, split="train", folds=self.fold, download=True
+            )
+            stl10_test = datasets.STL10(root=self.path, split="test", download=True)
+            stl10_train, stl10_val = self.make_data_split(stl10_train)
+            raw_data = {"train": stl10_train, "val": stl10_val, "test": stl10_test}
         return raw_data
-
-    def _preprocess_data(self, raw_data):
-        return preproc_data
 
 
 class MNIST(Task):
@@ -223,10 +251,20 @@ class MNIST(Task):
         return train_transform, eval_transform
 
     def _load_raw_data(self):
+        mnist_train = datasets.MNIST(root=self.path, train=True, download=True)
+        if self.pretrain:
+            mnist_train_f = datasets.MNIST(
+                root=self.path,
+                train=True,
+                transform=transforms.RandomHorizontalFlip(p=1.0),
+                download=True,
+            )
+            raw_data = {"train": mnist_train + mnist_train_f}
+        else:
+            mnist_test = datasets.MNIST(root=self.path, train=False, download=True)
+            mnist_train, mnist_val = self.make_data_split(mnist_train, self.label_pct)
+            raw_data = {"train": mnist_train, "val": mnist_val, "test": mnist_test}
         return raw_data
-
-    def _preprocess_data(self, raw_data):
-        return preproc_data
 
 
 class ImageNet(Task):
@@ -244,7 +282,3 @@ class ImageNet(Task):
         raise NotImplementedError
         raw_data = None
         return raw_data
-
-    def _preprocess_data(self, raw_data):
-        raise NotImplementedError
-        return preproc_data

@@ -110,7 +110,7 @@ class SelfieModel(JigsawModel):
         self.num_context = self.num_patches - self.num_queries
         self.d_model = 256
 
-        full_resnet = resnet.resnet34()
+        full_resnet = resnet.resnet50()
         self.patch_network = nn.Sequential(
             full_resnet.conv1,
             full_resnet.bn1,
@@ -184,8 +184,6 @@ class SelfieModel(JigsawModel):
             hidden = self.attention_pooling(patches)
             cls_pred = self.cls_classifier[task.name](hidden)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
-            if self.args.transfer_paradigm == "bound":
-                raise NotImplementedError
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).mean()
         return batch_output
