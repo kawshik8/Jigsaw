@@ -9,10 +9,10 @@ import torchvision.models.resnet as resnet
 def get_model(name, args):
     if name == "selfie":
         return SelfieModel(args)
-    elif name == "AllP":
+    elif name == "Allp":
         return AllPatchModel(args)
     elif name == "Exp":
-        return ExchangeSelfieModel(args)
+        return ExchangePatchModel(args)
     else:
         raise NotImplementedError
 
@@ -201,7 +201,7 @@ class AllPatchModel(JigsawModel):
         super().__init__(args)
 
         self.args = args
-        self.num_aug_patches = args.num_aug_patches
+        self.num_aug = args.num_aug
         self.num_patches = args.num_patches
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
@@ -242,49 +242,55 @@ class AllPatchModel(JigsawModel):
 
     def forward(self, batch_input, task=None):
         batch_output = {}
-        device = batch_input["image"].device#batch_input["aug"].device
-        bs = batch_input["image"].size(0)
-
-        patches = self.patch_network(batch_input["image"].flatten(0, 1)).view(
-            bs, self.num_patches, -1
-        )  # (bs, num_aug_patches, d_model)
         if self.stage == "pretrain":
-            final_exchange = self.attention_pooling(
-                patches
-            ) # (bs, aug_num_patches, d_model)
-            final = self.avg_pool(final_exchange.transpose(1,2)).view(bs,self.d_model)
+            inp = batch_input["aug"]
+        else:
+            inp = batch_input["image"]
+
+        device = inp.device#batch_input["aug"].device
+        bs = inp.size(0)
+
+        patches = self.patch_network(inp.flatten(0, 1)).view(
+            bs, self.num_patches, -1
+        )  # (bs, num_patches, d_model)
+        attn_pool = self.attention_pooling(patches)# (bs, aug_patches, d_model)
+        final = self.avg_pool(attn_pool.transpose(1,2)).view(bs,self.d_model) # (bs, d_model)
+
+        if self.stage == "pretrain":
             
-            similarity = torch.bmm(
+            similarity = torch.mm(
                 final, final.transpose(0,1)
             )  # (bs, bs)
             
             jigsaw_pred = F.sigmoid(similarity) # (bs , bs)
+
             jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float32)
             for i in range(bs):
-                indices = torch.arange((i/self.num_aug_patches)*self.num_aug_patches,((i/self.num_aug_patches)+1)*self.num_aug_patches)
+                indices = torch.arange((i/self.num_aug)*self.num_aug,((i/self.num_aug)+1)*self.num_aug)
+                #### Creates an array of size self.num_aug_patches 
                 jigsaw_label[i] = jigsaw_labels[i].scatter_(dim=0, index=label, value=1.)
+                #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
             batch_output["loss"] = F.cross_entropy(jigsaw_pred, jigsaw_label)
             jigsaw_pred1 = jigsaw_pred.clone()
             jigsaw_pred[jigsaw_pred1>0.5] = 1
             jigsaw_pred[jigsaw_pred1<=0.5] = 0
-            batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).mean()
+            batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
-            hidden = self.attention_pooling(patches)
-            hidden = self.avg_pool(hidden.transpose(1,2)).view(bs,self.d_model)
-            cls_pred = self.cls_classifier[task.name](hidden)
+            
+            cls_pred = self.cls_classifier[task.name](final)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
         return batch_output
 
-class ExchangeSelfieModel(JigsawModel):
+class ExchangePatchModel(JigsawModel):
     def __init__(self, args):
         super().__init__(args)
 
         self.args = args
-        self.num_aug_patches = args.num_aug_patches
+        self.num_aug = args.num_aug
         self.num_patches = args.num_patches
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
@@ -329,17 +335,6 @@ class ExchangeSelfieModel(JigsawModel):
             encoder_layer=final_transformer_layer, num_layers=3, norm=final_layer_norm
         )
 
-        self.Exchange_network = nn.Sequential(
-            self.initial_layers,
-            self.attention_exchange1,
-            self.res_block1,
-            self.attention_exchange2,
-            self.res_block2,
-            self.attention_exchange3,
-            self.res_block3,
-            self.attention_pooling,
-        )
-
         #self.position_embedding = nn.Embedding(self.num_patches, self.d_model)
         self.cls_classifiers = nn.ModuleDict()
 
@@ -352,43 +347,69 @@ class ExchangeSelfieModel(JigsawModel):
 
         self.avg_pool = nn.AvgPool1d(self.num_patches)
 
+        self.Exchange_network = nn.Sequential(
+            self.initial_layers,
+            self.attention_exchange1,
+            self.res_block1,
+            self.attention_exchange2,
+            self.res_block2,
+            self.attention_exchange3,
+            self.res_block3,
+            self.attention_pooling,
+        )
+
         self.shared_params = list(self.Exchange_network.parameters())
         #self.shared_params += list(self.attention_pooling.parameters())
-        self.pretrain_params = list(self.position_embedding.parameters())
+        self.pretrain_params = list(self.avg_pool.parameters())
         self.finetune_params = list(self.cls_classifiers.parameters())
 
     def forward(self, batch_input, task=None):
         batch_output = {}
-        device = batch_input["aug"].device
-        bs = batch_input["aug"].size(0)
 
-        patches = self.Exchange_network(batch_input["aug"].flatten(0, 1)).view(
-            bs, self.num_patches, -1
-        )  # (bs, num_aug_patches, d_model)
         if self.stage == "pretrain":
-           
-            final = self.avg_pool(patches.transpose(1,2)).view(bs,self.d_model)
-            
-            similarity = torch.bmm(
-                patches, patches.transpose(0,1)
+            inp = batch_input["aug"]
+        else:
+            inp = batch_input["image"]
+
+        device = inp.device
+        bs = inp.size(0)
+
+        input_attn1 = self.initial_layers(inp) # (bs, num_aug_patches, f1*h*w)
+        output_attn1 = self.attention_exchange1(input_attn1.view(bs,self.num_patches,-1)).view_as(input_attn1)
+
+        input_attn2 = self.res_block1(output_attn1)# (bs, num_aug_patches, f2*h*w)
+        output_attn2 = self.attention_exchange2(input_attn2.view(bs,self.num_patches,-1)).view_as(input_attn2) 
+
+        input_attn3 = self.res_block2(output_attn2)# (bs, num_aug_patches, f3*h*w)
+        output_attn3 = self.attention_exchange3(input_attn3.view(bs,self.num_patches,-1)).view_as(input_attn3)
+
+        input_attn_pool = self.res_block3(output_attn3)# (bs, num_aug_patches, d_model)
+        output_attn_pool = self.attention_pooling(input_attn_pool.view(bs,self.num_patches,-1)).view_as(input_attn_pool)
+        final = self.avg_pool(output_attn_pool.transpose(1,2)).view(bs,self.d_model)
+        # self.Exchange_network(batch_input["aug"].flatten(0, 1)).view(
+        #     bs, self.num_patches, -1
+        # )  # (bs, num_aug_patches, d_model)
+        if self.stage == "pretrain":
+
+            similarity = torch.mm(
+                final, final.transpose(0,1)
             )  # (bs, bs)
             
             jigsaw_pred = F.sigmoid(similarity) # (bs , bs)
             jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float32)
             for i in range(bs):
-                indices = torch.arange((i/self.num_aug_patches)*self.num_aug_patches,((i/self.num_aug_patches)+1)*self.num_aug_patches)
+                indices = torch.arange((i/self.num_aug)*self.num_aug,((i/self.num_aug)+1)*self.num_aug)
                 jigsaw_label[i] = jigsaw_labels[i].scatter_(dim=0, index=label, value=1.)
 
             batch_output["loss"] = F.cross_entropy(jigsaw_pred, jigsaw_label)
             jigsaw_pred1 = jigsaw_pred.clone()
             jigsaw_pred[jigsaw_pred1>0.5] = 1
             jigsaw_pred[jigsaw_pred1<=0.5] = 0
-            batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).mean()
+            batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
             #hidden = self.attention_pooling(patches)
-            hidden = self.avg_pool(patches.transpose(1,2)).view(bs,self.d_model)
-            cls_pred = self.cls_classifier[task.name](hidden)
+            cls_pred = self.cls_classifier[task.name](final)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()

@@ -235,7 +235,7 @@ class ResNet(nn.Module):
 
             z = self.layer1(z)
             z = self.layer2(z)
-            #z = self.layer3(z)
+            z = self.layer3(z)
      #       z = self.layer4(z)
         #    print(z.shape)
             z = self.avgpool(z)

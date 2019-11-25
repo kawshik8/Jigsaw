@@ -43,6 +43,10 @@ parser.add_argument(
 parser.add_argument(
     "--num_patches", type=int, default=16, help="number of patches an image is broken into"
 )
+# num_aug
+parser.add_argument(
+    "--num_aug", type=int, default=8, help="number of augmentations for each image"
+)
 # num_queries
 parser.add_argument(
     "--num_queries", type=int, default=8, help="number of patches an image to predict"
@@ -70,7 +74,7 @@ parser.add_argument(
 
 # Model settings
 # model
-parser.add_argument("--model", type=str, default="selfie", choices=["selfie"])
+parser.add_argument("--model", type=str, default="selfie", choices=["selfie","Allp","Exp"])
 # TODO: some settings about model extensions
 # TODO: e.g. whether to use negative example from minibatch
 
