@@ -283,7 +283,7 @@ class CIFAR10(Task):
         col_jitter = transforms.RandomApply([transforms.ColorJitter(0.4, 0.4, 0.4, 0.2)], p=0.8)
         img_jitter = transforms.RandomApply([RandomTranslateWithReflect(4)], p=0.8)
         rnd_gray = transforms.RandomGrayscale(p=0.25)
-        rnd_affine = transforms.RandomAffine(rotation_range=30, translation_range=(0.2,0.2))
+        rnd_affine = transforms.RandomAffine(degrees=30, translate=(0.2,0.2))
         if self.pretrain:
             train_transform = eval_transform = {
                 "idx": DupTransform(self.args.dup_pos),
@@ -393,7 +393,7 @@ class STL10(Task):
         center_crop = transforms.Compose(
             [transforms.Resize(70, interpolation=3), transforms.CenterCrop(64)]
         )
-        rnd_affine = transforms.RandomAffine(rotation_range=30, translation_range=(0.2,0.2))
+        rnd_affine = transforms.RandomAffine(degrees=30, translate=(0.2,0.2))
         if self.pretrain:
             train_transform = eval_transform = {
                 "idx": DupTransform(self.args.dup_pos),

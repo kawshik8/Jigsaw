@@ -49,7 +49,7 @@ parser.add_argument(
 )
 # num_queries
 parser.add_argument(
-    "--num_queries", type=int, default=8, help="number of patches an image to predict"
+    "--num_queries", type=int, default=4, help="number of patches an image to predict"
 )
 # num_workers
 parser.add_argument("--num_workers", type=int, default=16, help="number of cpu workers in iterator")
