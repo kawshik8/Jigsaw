@@ -9,6 +9,10 @@ import torchvision.models.resnet as resnet
 def get_model(name, args):
     if name == "selfie":
         return SelfieModel(args)
+    elif name == "AllP":
+        return AllPatchModel(args)
+    elif name == "Exp":
+        return ExchangeSelfieModel(args)
     else:
         raise NotImplementedError
 
