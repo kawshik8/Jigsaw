@@ -2,12 +2,16 @@ import torch
 import torch.nn as nn
 #from .utils import load_state_dict_from_url
 from torch import cat
+from bert import BERT
+from torch.autograd import Variable
+import numpy as np
+Tensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
 
 __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101',
            'resnet152', 'resnext50_32x4d', 'resnext101_32x8d',
            'wide_resnet50_2', 'wide_resnet101_2']
 
-classes = 1000
+classes = 10
 
 model_urls = {
     #'resnet18': 'https://download.pytorch.org/models/resnet18-5c106cde.pth',
@@ -179,8 +183,12 @@ class ResNet(nn.Module):
         self.fc7.add_module('drop7', nn.Dropout(p = 0.5))
 
         self.classifier = nn.Sequential()
-        self.classifier.add_module('fc8', nn.Linear(4096, classes))
+        self.classifier.add_module('fc8', nn.Linear(512, classes))
         #self.apply(weights_init)
+        
+        self.attention_pooling = BERT(4096, hidden=512, n_layers=3, attn_heads=32)
+        
+        self.pos_embed = nn.Embedding(10, 512) # position embedding
 
     def _make_layer(self, block, planes, blocks, stride=1, dilate=False):
         norm_layer = self._norm_layer
@@ -216,7 +224,9 @@ class ResNet(nn.Module):
         B, T, C, H, W = x.size()
         #print(B,T,C,H,W)
         x = x.transpose(0, 1)
-        x_list = []
+        context = Variable(Tensor(np.random.normal(0, 1, (B, 1, 512)),device = x.device))
+        
+        x_list = [context]
         for i in range(9):
             z = self.conv1(x[i])
             z = self.bn1(z)
@@ -225,9 +235,9 @@ class ResNet(nn.Module):
 
             z = self.layer1(z)
             z = self.layer2(z)
-            z = self.layer3(z)
+            #z = self.layer3(z)
      #       z = self.layer4(z)
-
+        #    print(z.shape)
             z = self.avgpool(z)
             z = torch.flatten(z, 1)
 #             z = self.conv(x[i])
@@ -237,13 +247,63 @@ class ResNet(nn.Module):
             z = z.view([B, 1, -1])
             x_list.append(z)
 
-        x = cat(x_list, 1)
-        x = self.fc7(x.view(B, -1))
-        x = self.classifier(x)
-        return x
-    
+        x_list = cat(x_list, 1)
+        
+        seq_len = T+1
+        #print(seq_len)
+        pos = torch.arange(seq_len, dtype=torch.long, device=x.device)
+        #print(pos.shape)
+        pos = pos.unsqueeze(0).repeat(B,1)
+        #print(pos.shape)
+        pos = self.pos_embed(pos)
+        #print(pos.shape)
+            
+        positions = np.arange(9)
+        query_ind = np.sort(np.random.choice(9,3,replace=False)) + 1
+        context_ind = np.array([pos for pos in (positions+1) if pos not in query_ind])
+        context_ind = np.append(np.array([0]),context_ind)
+#         print(query_ind)
+#         print(context_ind)
+        #x_list = np.array(x_list)
+        context = x_list[:,context_ind]
+        
+        query = x_list[:,query_ind]
+        #x = cat(context, 1)
+        #x = self.fc7(x.view(B, -1))
+        x = self.attention_pooling.forward(context)
+        global_context = x[:,0]
+        
+        choices_ind = [np.random.choice(3) for i in range(B)]#, dtype = torch.long)
+     
+        choices = torch.zeros((B,x_list.shape[1],x_list.shape[2]),device=x.device)
+        #print(choices_ind)
+        for i in range(len(choices_ind)):
+            zero = torch.zeros((x_list.shape[1],x_list.shape[2]))
+            #print(zero.shape)
+            #print(zero)
+            zero[choices_ind[i]] = 1
+            #print(zero)
+            #print(choices[i].shape)
+            choices[i] = zero
+            
+        #print(choices.shape)
+        #print(pos.shape)
+        pos_random = torch.sum(pos*choices,dim=1)
+        #print(pos_random.shape)
+        #print(global_con
+        global_context = global_context + pos_random#pos[:,query_ind[choice]]
 
-    
+        final = torch.squeeze(torch.matmul(torch.unsqueeze(global_context,1),torch.transpose(query,1,2)),1)
+        
+#         x = self.classifier(x[:,0])
+        #print(final.shape,B)
+        #print(np.array(choice).shape)
+        #print(torch.from_numpy(np.array(choice)).shape)
+#         print(torch.from_numpy(np.array(choice)).shape)
+        #print(torch.unsqueeze(torch.Tensor(torch.Tensor(choice),device = x.device),0).shape)
+        final_choice = torch.from_numpy(np.array(choices_ind)).to(x.device)#.repeat(B)
+        #print(final_choice.shape)
+        return final, final_choice.type(torch.long)
 
     # Allow for accessing forward method in a inherited class
     forward = _forward
