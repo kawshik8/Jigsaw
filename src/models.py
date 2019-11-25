@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-import torchvision.model.resnet as resnet
+import torchvision.models.resnet as resnet
 
 
 def get_model(name, args):

@@ -70,7 +70,7 @@ parser.add_argument(
 
 # Model settings
 # model
-parser.add_argument("--model", type=str, default="selfie", options=["selfie"])
+parser.add_argument("--model", type=str, default="selfie", choices=["selfie"])
 # TODO: some settings about model extensions
 # TODO: e.g. whether to use negative example from minibatch
 
@@ -131,7 +131,7 @@ parser.add_argument(
     "--transfer-paradigm",
     type=str,
     default="frozen",
-    options=["frozen", "tunable", "bound"],
+    choices=["frozen", "tunable", "bound"],
     help="""frozen: use fixed representation,
             tunable: finetune the whole model,
             (unimplemented) bound: parameters are tunable but decay towards pretrained model""",
@@ -140,6 +140,6 @@ parser.add_argument(
 
 def process_args(args):
     # TODO: some asserts, check the arguments
-    args.pretrain_task = [args.pretrain_task].remove("none")
-    args.finetune_tasks = args.finetune_tasks.split(",").remove("none")
+    args.pretrain_task = filter(lambda task: task != "none", [args.pretrain_task])
+    args.finetune_tasks = filter(lambda task: task != "none", args.finetune_tasks.split(","))
     args.exp_dir = os.path.join(args.results_dir, args.exp_name)

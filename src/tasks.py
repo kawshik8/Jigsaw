@@ -12,26 +12,26 @@ from torchvision import datasets, transforms
 
 def get_task(name, args):
 
-    if name == "stl10-un":
+    if name == "stl10_un":
         return STL10(name, args, pretrain=True)
-    if name.startswith("stl10-fd"):
-        return STL10(name, args, fold=int(name.replace("stl10-fd", "")))
-    elif name == "cifar10-un":
+    if name.startswith("stl10_fd"):
+        return STL10(name, args, fold=int(name.replace("stl10_fd", "")))
+    elif name == "cifar10_un":
         return CIFAR10(name, args, pretrain=True)
-    elif name.startswith("cifar10-lp"):
-        return CIFAR10(name, args, label_pct=float(name.replace("cifar10-lp", "")) / 100)
-    elif name == "cifar100-un":
+    elif name.startswith("cifar10_lp"):
+        return CIFAR10(name, args, label_pct=float(name.replace("cifar10_lp", "")) / 100)
+    elif name == "cifar100_un":
         return CIFAR100(name, args, pretrain=True)
-    elif name.startswith("cifar100-lp"):
-        return CIFAR100(name, args, label_pct=float(name.replace("cifar100-lp", "")) / 100)
-    elif name.startswith("mnist-un"):
+    elif name.startswith("cifar100_lp"):
+        return CIFAR100(name, args, label_pct=float(name.replace("cifar100_lp", "")) / 100)
+    elif name.startswith("mnist_un"):
         return MNIST(name, args, pretrain=True)
-    elif name.startswith("mnist-lp"):
-        return MNIST(name, args, label_pct=float(name.replace("mnist-lp", "")) / 100)
-    elif name.startswith("imagenet-un"):
+    elif name.startswith("mnist_lp"):
+        return MNIST(name, args, label_pct=float(name.replace("mnist_lp", "")) / 100)
+    elif name.startswith("imagenet_un"):
         return ImageNet(name, args, pretrain=True)
-    elif name.startswith("imagenet-lp"):
-        return ImageNet(name, args, label_pct=float(name.replace("imagenet-lp", "")) / 100)
+    elif name.startswith("imagenet_lp"):
+        return ImageNet(name, args, label_pct=float(name.replace("imagenet_lp", "")) / 100)
     else:
         raise NotImplementedError
 
@@ -107,18 +107,17 @@ class DupTransform:
 
 
 class RandZero:
-    def __init__(self, num_patches, num_query):
+    def __init__(self, num_patches, num_queries):
         self.num_patches = num_patches
-        self.num_query = num_query
+        self.num_queries = num_queries
 
     def __call__(self, query):
-        mask = torch.randperm(self.num_patches) <= self.num_query
+        mask = torch.randperm(self.num_patches) <= self.num_queries
         return query * mask
 
 
-class TransformDataset(torch.utils.data.dataset):
+class TransformDataset(torch.utils.data.dataset.Dataset):
     def __init__(self, transform, tensors):
-        super().__init__()
         self.transform = transform
         self.tensors = tensors
         for key in self.tensors:
@@ -129,7 +128,7 @@ class TransformDataset(torch.utils.data.dataset):
         return {key: self.transform[key](tensor[index]) for key, tensor in self.tensors.items()}
 
     def __len__(self):
-        return self.tensors.values[0].size(0)
+        return len(list(self.tensors.values())[0])
 
 
 class Task(object):
@@ -145,7 +144,7 @@ class Task(object):
         self.pretrain = pretrain
         self.data_iterators = {}
         self.reset_scorers()
-        self.path = os.path.join(args.data_dir, self.name.split("-")[0])
+        self.path = os.path.join(args.data_dir, self.name.split("_")[0])
         if pretrain:
             self.eval_metric = "jigsaw_acc"
         else:
@@ -171,7 +170,9 @@ class Task(object):
     def _preprocess_data(self, data):
         output = {}
         for split, dataset in data.items():
-            idx, image, label = zip(*[(idx, img, label) for idx, (img, label) in enumerate(data)])
+            idx, image, label = zip(
+                *[(idx, img, label) for idx, (img, label) in enumerate(dataset)]
+            )
             output[split] = {
                 "idx": torch.LongTensor(idx),
                 "image": image,
@@ -187,19 +188,19 @@ class Task(object):
 
     def make_data_split(self, train_data, pct=1.0):
         split_filename = os.path.join(self.path, "%s.json" % self.name)
-        if os.path.exist(split_filename):
+        if os.path.exists(split_filename):
             with open(split_filename, "r") as f:
-                split = json.loads(f.read(split_filename))
+                split = json.loads(f.read())
         else:
             full_size = len(train_data)
             train_size = int(full_size * pct * 0.9)
             val_size = int(full_size * pct * 0.1) + train_size
-            full_idx = numpy.random.permutation(full_size)
+            full_idx = numpy.random.permutation(full_size).tolist()
             split = {"train": full_idx[:train_size], "val": full_idx[train_size:val_size]}
             with open(split_filename, "w") as f:
                 f.write(json.dumps(split))
-        train_data = [train_data[idx] for idx in split["train"]]
         val_data = [train_data[idx] for idx in split["val"]]
+        train_data = [train_data[idx] for idx in split["train"]]
         return train_data, val_data
 
     def load_data(self):
@@ -275,7 +276,7 @@ class CIFAR10(Task):
                     ),
                 ),
                 "query": DupTransform(
-                    self.args.dup_pos, RandZero(self.args.num_patches, self.args.num_query)
+                    self.args.dup_pos, RandZero(self.args.num_patches, self.args.num_queries)
                 ),
             }
         else:
@@ -353,7 +354,7 @@ class STL10(Task):
                     ),
                 ),
                 "query": DupTransform(
-                    self.args.dup_pos, RandZero(self.args.num_patches, self.args.num_query)
+                    self.args.dup_pos, RandZero(self.args.num_patches, self.args.num_queries)
                 ),
             }
         else:

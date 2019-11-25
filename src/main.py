@@ -3,7 +3,7 @@ import os
 import logging as log
 
 from args import parser, process_args
-from task import get_task
+from tasks import get_task
 from models import get_model
 from trainer import Trainer
 from utils import config_logging, load_model, save_model
