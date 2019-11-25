@@ -65,39 +65,43 @@ class JigsawModel(nn.Module):
             optimizer = optim.AdamW(param_groups)
             scheduler = torch.optim.lr_scheduler.OneCycleLR(
                 optimizer=optimizer,
-                anneal_strategy="cosine",
+                anneal_strategy="cos",
                 total_steps=self.args.pretrain_total_iters,
-                pct_start=self.args.warmup / self.args.pretrain_total_iters,
+                pct_start=self.args.warmup_iters / self.args.pretrain_total_iters,
                 cycle_momentum=False,
+                max_lr=self.args.pretrain_learning_rate,
             )
         elif stage == "finetune":
             param_groups = [
                 {
                     "params": self.finetune_params,
                     "max_lr": self.args.pretrain_learning_rate,
-                    "weight_decay": self.args.pretrain_weight_decay,
+                    "weight_decay": self.args.finetune_weight_decay,
                 }
             ]
-            if self.args.transfer_paradigm in ["tunable", "bound"]:
+            if self.args.transfer_paradigm == "tunable":
                 param_groups.append(
                     {
                         "params": self.shared_params,
                         "max_lr": self.args.finetune_learning_rate,
-                        "weight_decay": self.args.finetune_weight_decay
-                        if self.args.transfer_paradigm == "tunable"
-                        else 0.0,
+                        "weight_decay": self.args.finetune_weight_decay,
                     }
                 )
             optimizer = optim.AdamW(param_groups)
             scheduler = torch.optim.lr_scheduler.OneCycleLR(
                 optimizer=optimizer,
-                anneal_strategy="cosine",
+                anneal_strategy="cos",
                 total_steps=self.args.finetune_total_iters,
                 pct_start=self.args.warmup / self.args.finetune_total_iters,
                 cycle_momentum=False,
+                max_lr=self.args.finetune_learning_rate,
             )
 
         return optimizer, scheduler
+
+
+def masked_select(inp, mask):
+    return inp.flatten(0, len(mask.size()) - 1)[mask.flatten().nonzero()[:, 0]]
 
 
 class SelfieModel(JigsawModel):
@@ -108,7 +112,6 @@ class SelfieModel(JigsawModel):
         self.num_patches = args.num_patches
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
-        self.d_model = 256
 
         full_resnet = resnet.resnet50()
         self.patch_network = nn.Sequential(
@@ -121,15 +124,16 @@ class SelfieModel(JigsawModel):
             full_resnet.layer3,
         )
 
+        self.d_model = 1024
         transformer_layer = nn.TransformerEncoderLayer(d_model=self.d_model, nhead=8)
-        layer_norm = nn.LayerNorm(d_model=self.d_model)
+        layer_norm = nn.LayerNorm(normalized_shape=self.d_model)
         self.attention_pooling = nn.TransformerEncoder(
             encoder_layer=transformer_layer, num_layers=3, norm=layer_norm
         )
         self.position_embedding = nn.Embedding(self.num_patches, self.d_model)
         self.cls_classifiers = nn.ModuleDict()
 
-        from task import task_num_class
+        from tasks import task_num_class
 
         for taskname in args.finetune_tasks:
             self.cls_classifiers[taskname] = nn.Linear(self.d_model, task_num_class(taskname))
@@ -147,11 +151,11 @@ class SelfieModel(JigsawModel):
             bs, self.num_patches, -1
         )  # (bs, num_patches, d_model)
         if self.stage == "pretrain":
-            query_patch = torch.masked_select(patches, batch_input["query"].unsqueeze(2)).view(
+            query_patch = masked_select(patches, batch_input["query"]).view(
                 bs, self.num_queries, self.d_model
             )  # (bs, num_queries, d_model)
             visible_patch = (
-                torch.masked_select(patches, batch_input["query"].unsqueeze(2) == 0)
+                masked_select(patches, ~batch_input["query"])
                 .view(bs, 1, self.num_context, self.d_model)
                 .repeat(1, self.num_queries, 1, 1)
                 .flatten(0, 1)
@@ -175,13 +179,15 @@ class SelfieModel(JigsawModel):
             jigsaw_label = (
                 torch.arange(0, self.num_queries, device=device).repeat(bs).long()
             )  # (bs * num_queries)
-            batch_output["loss"] = F.nllloss(jigsaw_pred, jigsaw_label)
-            batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=2) == jigsaw_label).mean()
+            batch_output["loss"] = F.nll_loss(jigsaw_pred, jigsaw_label)
+            batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
             hidden = self.attention_pooling(patches).mean(dim=1)
             cls_pred = self.cls_classifier[task.name](hidden)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
-            batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).mean()
+            batch_output["cls_acc"] = (
+                (batch_output["predict"] == batch_input["label"]).float().mean()
+            )
         return batch_output

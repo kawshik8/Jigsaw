@@ -8,7 +8,7 @@ from utils import save_model
 
 
 class Trainer(object):
-    def __init__(self, args, model, task, stage):
+    def __init__(self, stage, model, task, args):
         """
         Setup training / evaluating
         """
@@ -66,18 +66,22 @@ class Trainer(object):
         log.info("Start training %s" % self.task.name)
         self.model.train()
         self.task.reset_scorers()
-        for epoch in range(math.ceil(self.max_iters / len(self.task.data_iterators["train"]))):
+        all_param = [param for group in self.optimizer.param_groups for param in group["params"]]
+        for epoch in range(math.ceil(self.total_iters / len(self.task.data_iterators["train"]))):
             for batch, batch_input in enumerate(self.task.data_iterators["train"]):
+                if self.stage == "pretrain":
+                    for k, v in batch_input.items():
+                        batch_input[k] = v.flatten(0, 1)
                 self.model.zero_grad()
                 batch_output = self.model(batch_input, self.task)
                 self.task.update_scorers(batch_input, batch_output)
                 batch_output["loss"].backward()
                 if self.args.clip != 0:
-                    torch.nn.utils.clip_grad_norm_(self.optimizer.parameters(), self.args.clip)
+                    torch.nn.utils.clip_grad_norm_(all_param, self.args.clip)
                 self.optimizer.step()
                 self.scheduler.step()
                 self.training_infos["current_iter"] += 1
-                if self.training_infos["current_iter"] % self.report_interval_iters == 0:
+                if self.training_infos["current_iter"] % self.report_interval == 0:
                     log.info(
                         "train batch %d / %d (iter %d), current average result %s"
                         % (

@@ -102,7 +102,7 @@ class DupTransform:
         self.transform = transform
 
     def __call__(self, inp):
-        output = [self.transform(inp) for _ in range(self.num_dup)]
+        output = torch.stack([self.transform(inp) for _ in range(self.num_dup + 1)], dim=0)
         return output
 
 
@@ -112,8 +112,25 @@ class RandZero:
         self.num_queries = num_queries
 
     def __call__(self, query):
-        mask = torch.randperm(self.num_patches) <= self.num_queries
+        mask = torch.randperm(self.num_patches) < self.num_queries
         return query * mask
+
+
+class ToPatches:
+    def __init__(self, num_patches):
+        self.num_div = int(numpy.sqrt(num_patches))
+
+    def __call__(self, inp):
+        channel, height, width = inp.size()
+        out = (
+            inp.view(
+                channel, self.num_div, height // self.num_div, self.num_div, width // self.num_div
+            )
+            .transpose(2, 3)
+            .flatten(1, 2)
+            .transpose(0, 1)
+        )
+        return out
 
 
 class TransformDataset(torch.utils.data.dataset.Dataset):
@@ -176,7 +193,7 @@ class Task(object):
             output[split] = {
                 "idx": torch.LongTensor(idx),
                 "image": image,
-                "query": torch.ones((len(image), self.args.num_patches), dtype=torch.long),
+                "query": torch.ones((len(image), self.args.num_patches), dtype=torch.bool),
                 "label": torch.LongTensor(label),
             }
             if self.pretrain:
@@ -237,8 +254,8 @@ class Task(object):
         else:
             self.scorers.update({"loss": [], "cls_acc": []})
 
-    def updata_scorers(self, batch_input, batch_output):
-        count = len(batch_input["ids"])
+    def update_scorers(self, batch_input, batch_output):
+        count = len(batch_input["idx"])
         self.scorers["count"] += count
         for key in self.scorers.keys():
             if key != "count":
@@ -272,7 +289,14 @@ class CIFAR10(Task):
                 "image": DupTransform(
                     self.args.dup_pos,
                     transforms.Compose(
-                        [img_jitter, col_jitter, rnd_gray, transforms.ToTensor(), normalize]
+                        [
+                            img_jitter,
+                            col_jitter,
+                            rnd_gray,
+                            transforms.ToTensor(),
+                            normalize,
+                            ToPatches(self.args.num_patches),
+                        ]
                     ),
                 ),
                 "query": DupTransform(
@@ -282,11 +306,21 @@ class CIFAR10(Task):
         else:
             train_transform = {
                 "image": transforms.Compose(
-                    [flip_lr, img_jitter, col_jitter, rnd_gray, transforms.ToTensor(), normalize]
+                    [
+                        flip_lr,
+                        img_jitter,
+                        col_jitter,
+                        rnd_gray,
+                        transforms.ToTensor(),
+                        normalize,
+                        ToPatches(self.args.num_patches),
+                    ]
                 ),
             }
             eval_transform = {
-                "image": transforms.Compose([transforms.ToTensor(), normalize]),
+                "image": transforms.Compose(
+                    [transforms.ToTensor(), normalize, ToPatches(self.args.num_patches)]
+                ),
             }
         return train_transform, eval_transform
 
@@ -350,7 +384,14 @@ class STL10(Task):
                 "image": DupTransform(
                     self.args.dup_pos,
                     transforms.Compose(
-                        [rand_crop, col_jitter, rnd_gray, transforms.ToTensor(), normalize]
+                        [
+                            rand_crop,
+                            col_jitter,
+                            rnd_gray,
+                            transforms.ToTensor(),
+                            normalize,
+                            ToPatches(self.args.num_patches),
+                        ]
                     ),
                 ),
                 "query": DupTransform(
@@ -360,11 +401,26 @@ class STL10(Task):
         else:
             train_transform = {
                 "image": transforms.Compose(
-                    [flip_lr, rand_crop, col_jitter, rnd_gray, transforms.ToTensor(), normalize]
+                    [
+                        flip_lr,
+                        rand_crop,
+                        col_jitter,
+                        rnd_gray,
+                        transforms.ToTensor(),
+                        normalize,
+                        ToPatches(self.args.num_patches),
+                    ]
                 ),
             }
             eval_transform = {
-                "image": transforms.Compose([center_crop, transforms.ToTensor(), normalize]),
+                "image": transforms.Compose(
+                    [
+                        center_crop,
+                        transforms.ToTensor(),
+                        normalize,
+                        ToPatches(self.args.num_patches),
+                    ]
+                ),
             }
         return train_transform, eval_transform
 

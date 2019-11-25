@@ -140,6 +140,6 @@ parser.add_argument(
 
 def process_args(args):
     # TODO: some asserts, check the arguments
-    args.pretrain_task = filter(lambda task: task != "none", [args.pretrain_task])
-    args.finetune_tasks = filter(lambda task: task != "none", args.finetune_tasks.split(","))
+    args.pretrain_task = list(filter(lambda task: task != "none", [args.pretrain_task]))
+    args.finetune_tasks = list(filter(lambda task: task != "none", args.finetune_tasks.split(",")))
     args.exp_dir = os.path.join(args.results_dir, args.exp_name)
