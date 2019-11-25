@@ -49,7 +49,8 @@ def main(args):
         finetune.train()
 
     # evaluate
-    # TODO: evaluate result on test split, write prediction for leaderboard submission
+    # TODO: evaluate result on test split, write prediction for leaderboard submission (for dataset
+    # without test labels)
     log.info("Done")
     return
 

@@ -132,9 +132,7 @@ class SelfieModel(JigsawModel):
         from task import task_num_class
 
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname] = nn.Sequential(
-                nn.AvgPool1d(self.num_patches), nn.Linear(self.d_model, task_num_class(taskname))
-            )
+            self.cls_classifiers[taskname] = nn.Linear(self.d_model, task_num_class(taskname))
 
         self.shared_params = list(self.patch_network.parameters())
         self.shared_params += list(self.attention_pooling.parameters())
@@ -181,7 +179,7 @@ class SelfieModel(JigsawModel):
             batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=2) == jigsaw_label).mean()
 
         elif self.stage == "finetune":
-            hidden = self.attention_pooling(patches)
+            hidden = self.attention_pooling(patches).mean(dim=1)
             cls_pred = self.cls_classifier[task.name](hidden)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
