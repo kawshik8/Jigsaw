@@ -8,7 +8,7 @@
 #SBATCH --mail-user=kk4161@nyu.edu
 #SBATCH --output=slurm_%j.out
 
-python3 src/main.py --batch-size 128 --exp-name Selfie-2 --results-dir "./results" --data-dir "./data"
+python3 src/main.py --batch-size 32 --model Exp --exp-name Exp-1 --results-dir "./results" --data-dir "./data"
 
 
 

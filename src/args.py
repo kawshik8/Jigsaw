@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 # exp_name
 parser.add_argument("--exp-name", type=str, default="debug", help="experiment name")
 # device
-parser.add_argument("--device", type=str, default="cuda", help="which device to run on")
+parser.add_argument("--device", type=str, default="cuda:0", help="which device to run on")
 # results_dir
 parser.add_argument(
     "--results-dir",
