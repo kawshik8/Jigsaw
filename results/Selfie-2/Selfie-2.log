@@ -1,0 +1,301 @@
+2019-11-25 21:39:46,997 [MainThread  ] Experiment Selfie-2
+2019-11-25 21:39:46,998 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=0, exp_dir='./results/Selfie-2', exp_name='Selfie-2', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='selfie', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 21:39:46,998 [MainThread  ] Start creating tasks
+2019-11-25 21:39:46,998 [MainThread  ] Start loading data
+2019-11-25 21:39:46,999 [MainThread  ] Loading cifar10_un data
+2019-11-25 21:39:57,937 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 21:40:00,508 [MainThread  ] Start creating models
+2019-11-25 21:40:01,387 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 21:40:01,388 [MainThread  ] Start training cifar10_un
+2019-11-25 21:43:22,728 [MainThread  ] Experiment Selfie-2
+2019-11-25 21:43:22,729 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=0, exp_dir='./results/Selfie-2', exp_name='Selfie-2', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='selfie', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=1, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 21:43:22,729 [MainThread  ] Start creating tasks
+2019-11-25 21:43:22,729 [MainThread  ] Start loading data
+2019-11-25 21:43:22,729 [MainThread  ] Loading cifar10_un data
+2019-11-25 21:43:32,550 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 21:43:35,246 [MainThread  ] Start creating models
+2019-11-25 21:43:36,298 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 21:43:36,318 [MainThread  ] Start training cifar10_un
+2019-11-25 21:44:21,370 [MainThread  ] Experiment Selfie-2
+2019-11-25 21:44:21,371 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=0, exp_dir='./results/Selfie-2', exp_name='Selfie-2', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='selfie', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=1, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 21:44:21,371 [MainThread  ] Start creating tasks
+2019-11-25 21:44:21,371 [MainThread  ] Start loading data
+2019-11-25 21:44:21,371 [MainThread  ] Loading cifar10_un data
+2019-11-25 21:44:31,191 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 21:44:33,886 [MainThread  ] Start creating models
+2019-11-25 21:44:34,797 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 21:44:34,798 [MainThread  ] Start training cifar10_un
+2019-11-25 21:44:56,018 [MainThread  ] train batch 1 / 1562 (iter 1), current average result {'jigsaw_acc': tensor(0.2617), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:45:04,827 [MainThread  ] train batch 2 / 1562 (iter 2), current average result {'jigsaw_acc': tensor(0.2637), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:45:13,111 [MainThread  ] train batch 3 / 1562 (iter 3), current average result {'jigsaw_acc': tensor(0.2630), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:45:21,305 [MainThread  ] train batch 4 / 1562 (iter 4), current average result {'jigsaw_acc': tensor(0.2461), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:45:30,457 [MainThread  ] train batch 5 / 1562 (iter 5), current average result {'jigsaw_acc': tensor(0.2391), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:45:38,631 [MainThread  ] train batch 6 / 1562 (iter 6), current average result {'jigsaw_acc': tensor(0.2402), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:45:46,855 [MainThread  ] train batch 7 / 1562 (iter 7), current average result {'jigsaw_acc': tensor(0.2444), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:45:55,386 [MainThread  ] train batch 8 / 1562 (iter 8), current average result {'jigsaw_acc': tensor(0.2397), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:46:03,636 [MainThread  ] train batch 9 / 1562 (iter 9), current average result {'jigsaw_acc': tensor(0.2435), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:46:11,778 [MainThread  ] train batch 10 / 1562 (iter 10), current average result {'jigsaw_acc': tensor(0.2453), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:46:20,631 [MainThread  ] train batch 11 / 1562 (iter 11), current average result {'jigsaw_acc': tensor(0.2479), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:46:29,506 [MainThread  ] train batch 12 / 1562 (iter 12), current average result {'jigsaw_acc': tensor(0.2474), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:46:36,985 [MainThread  ] train batch 13 / 1562 (iter 13), current average result {'jigsaw_acc': tensor(0.2485), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:46:44,426 [MainThread  ] train batch 14 / 1562 (iter 14), current average result {'jigsaw_acc': tensor(0.2528), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:46:55,763 [MainThread  ] train batch 15 / 1562 (iter 15), current average result {'jigsaw_acc': tensor(0.2526), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:47:05,250 [MainThread  ] train batch 16 / 1562 (iter 16), current average result {'jigsaw_acc': tensor(0.2507), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:47:14,295 [MainThread  ] train batch 17 / 1562 (iter 17), current average result {'jigsaw_acc': tensor(0.2484), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:47:21,768 [MainThread  ] train batch 18 / 1562 (iter 18), current average result {'jigsaw_acc': tensor(0.2463), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:47:30,986 [MainThread  ] train batch 19 / 1562 (iter 19), current average result {'jigsaw_acc': tensor(0.2473), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:47:39,639 [MainThread  ] train batch 20 / 1562 (iter 20), current average result {'jigsaw_acc': tensor(0.2457), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:47:47,578 [MainThread  ] train batch 21 / 1562 (iter 21), current average result {'jigsaw_acc': tensor(0.2453), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:47:55,262 [MainThread  ] train batch 22 / 1562 (iter 22), current average result {'jigsaw_acc': tensor(0.2468), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:48:03,399 [MainThread  ] train batch 23 / 1562 (iter 23), current average result {'jigsaw_acc': tensor(0.2476), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:48:12,877 [MainThread  ] train batch 24 / 1562 (iter 24), current average result {'jigsaw_acc': tensor(0.2487), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:48:21,009 [MainThread  ] train batch 25 / 1562 (iter 25), current average result {'jigsaw_acc': tensor(0.2503), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:48:28,509 [MainThread  ] train batch 26 / 1562 (iter 26), current average result {'jigsaw_acc': tensor(0.2495), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:48:36,905 [MainThread  ] train batch 27 / 1562 (iter 27), current average result {'jigsaw_acc': tensor(0.2503), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:48:46,617 [MainThread  ] train batch 28 / 1562 (iter 28), current average result {'jigsaw_acc': tensor(0.2500), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:48:55,224 [MainThread  ] train batch 29 / 1562 (iter 29), current average result {'jigsaw_acc': tensor(0.2495), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:49:03,396 [MainThread  ] train batch 30 / 1562 (iter 30), current average result {'jigsaw_acc': tensor(0.2496), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 21:49:13,748 [MainThread  ] train batch 31 / 1562 (iter 31), current average result {'jigsaw_acc': tensor(0.2496), 'loss': tensor(1.3863, grad_fn=<DivBackward0>)}
+2019-11-25 22:21:57,587 [MainThread  ] Experiment Selfie-2
+2019-11-25 22:21:57,597 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Selfie-2', exp_name='Selfie-2', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='selfie', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:21:57,597 [MainThread  ] Start creating tasks
+2019-11-25 22:21:57,597 [MainThread  ] Start loading data
+2019-11-25 22:21:57,597 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:22:07,243 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:22:09,516 [MainThread  ] Start creating models
+2019-11-25 22:22:35,194 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:22:35,198 [MainThread  ] Start training cifar10_un
+2019-11-25 22:23:52,689 [MainThread  ] train batch 250 / 1562 (iter 250), current average result {'loss': tensor(1.5046, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2585, device='cuda:0')}
+2019-11-25 22:25:05,295 [MainThread  ] train batch 500 / 1562 (iter 500), current average result {'loss': tensor(1.4575, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2668, device='cuda:0')}
+2019-11-25 22:26:17,752 [MainThread  ] train batch 750 / 1562 (iter 750), current average result {'loss': tensor(1.4429, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2718, device='cuda:0')}
+2019-11-25 22:27:30,147 [MainThread  ] train batch 1000 / 1562 (iter 1000), current average result {'loss': tensor(1.4336, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2733, device='cuda:0')}
+2019-11-25 22:28:42,794 [MainThread  ] train batch 1250 / 1562 (iter 1250), current average result {'loss': tensor(1.4279, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2697, device='cuda:0')}
+2019-11-25 22:29:54,914 [MainThread  ] train batch 1500 / 1562 (iter 1500), current average result {'loss': tensor(1.4230, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2665, device='cuda:0')}
+2019-11-25 22:31:11,122 [MainThread  ] train batch 188 / 1562 (iter 1750), current average result {'loss': tensor(1.4187, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2641, device='cuda:0')}
+2019-11-25 22:32:22,827 [MainThread  ] train batch 438 / 1562 (iter 2000), current average result {'loss': tensor(1.4154, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2624, device='cuda:0')}
+2019-11-25 22:33:34,308 [MainThread  ] train batch 688 / 1562 (iter 2250), current average result {'loss': tensor(1.4126, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2609, device='cuda:0')}
+2019-11-25 22:34:45,738 [MainThread  ] train batch 938 / 1562 (iter 2500), current average result {'loss': tensor(1.4103, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2599, device='cuda:0')}
+2019-11-25 22:35:57,517 [MainThread  ] train batch 1188 / 1562 (iter 2750), current average result {'loss': tensor(1.4083, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2589, device='cuda:0')}
+2019-11-25 22:37:09,231 [MainThread  ] train batch 1438 / 1562 (iter 3000), current average result {'loss': tensor(1.4067, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2580, device='cuda:0')}
+2019-11-25 22:38:26,043 [MainThread  ] train batch 126 / 1562 (iter 3250), current average result {'loss': tensor(1.4053, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2575, device='cuda:0')}
+2019-11-25 22:41:11,199 [MainThread  ] Experiment Selfie-2
+2019-11-25 22:41:11,200 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Selfie-2', exp_name='Selfie-2', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='selfie', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:41:11,200 [MainThread  ] Start creating tasks
+2019-11-25 22:41:11,201 [MainThread  ] Start loading data
+2019-11-25 22:41:11,201 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:41:18,530 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:41:20,776 [MainThread  ] Start creating models
+2019-11-25 22:41:24,315 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:41:24,316 [MainThread  ] Start training cifar10_un
+2019-11-25 22:42:47,860 [MainThread  ] train batch 250 / 1562 (iter 250), current average result {'jigsaw_acc': tensor(0.2579, device='cuda:0'), 'loss': tensor(1.4989, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 22:45:26,220 [MainThread  ] Experiment Selfie-2
+2019-11-25 22:45:26,221 [MainThread  ] Receive config Namespace(batch_size=512, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Selfie-2', exp_name='Selfie-2', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='selfie', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:45:26,221 [MainThread  ] Start creating tasks
+2019-11-25 22:45:26,221 [MainThread  ] Start loading data
+2019-11-25 22:45:26,221 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:45:33,400 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:45:35,615 [MainThread  ] Start creating models
+2019-11-25 22:45:39,094 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:45:39,094 [MainThread  ] Start training cifar10_un
+2019-11-25 22:47:53,777 [MainThread  ] Experiment Selfie-2
+2019-11-25 22:47:53,777 [MainThread  ] Receive config Namespace(batch_size=256, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Selfie-2', exp_name='Selfie-2', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='selfie', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:47:53,778 [MainThread  ] Start creating tasks
+2019-11-25 22:47:53,778 [MainThread  ] Start loading data
+2019-11-25 22:47:53,778 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:48:01,100 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:48:03,319 [MainThread  ] Start creating models
+2019-11-25 22:48:06,799 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:48:06,800 [MainThread  ] Start training cifar10_un
+2019-11-25 22:49:06,125 [MainThread  ] Experiment Selfie-2
+2019-11-25 22:49:06,125 [MainThread  ] Receive config Namespace(batch_size=128, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Selfie-2', exp_name='Selfie-2', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='selfie', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:49:06,125 [MainThread  ] Start creating tasks
+2019-11-25 22:49:06,126 [MainThread  ] Start loading data
+2019-11-25 22:49:06,126 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:49:13,427 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:49:15,646 [MainThread  ] Start creating models
+2019-11-25 22:49:19,138 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:49:19,138 [MainThread  ] Start training cifar10_un
+2019-11-25 22:51:58,632 [MainThread  ] train batch 250 / 781 (iter 250), current average result {'jigsaw_acc': tensor(0.2609, device='cuda:0'), 'loss': tensor(1.4859, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 22:54:29,516 [MainThread  ] train batch 500 / 781 (iter 500), current average result {'jigsaw_acc': tensor(0.2705, device='cuda:0'), 'loss': tensor(1.4445, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 22:57:00,554 [MainThread  ] train batch 750 / 781 (iter 750), current average result {'jigsaw_acc': tensor(0.2785, device='cuda:0'), 'loss': tensor(1.4268, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 22:59:39,493 [MainThread  ] train batch 219 / 781 (iter 1000), current average result {'jigsaw_acc': tensor(0.2849, device='cuda:0'), 'loss': tensor(1.4135, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:02:10,161 [MainThread  ] train batch 469 / 781 (iter 1250), current average result {'jigsaw_acc': tensor(0.2890, device='cuda:0'), 'loss': tensor(1.4039, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:04:40,639 [MainThread  ] train batch 719 / 781 (iter 1500), current average result {'jigsaw_acc': tensor(0.2922, device='cuda:0'), 'loss': tensor(1.3966, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:07:19,588 [MainThread  ] train batch 188 / 781 (iter 1750), current average result {'jigsaw_acc': tensor(0.2952, device='cuda:0'), 'loss': tensor(1.3907, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:09:50,042 [MainThread  ] train batch 438 / 781 (iter 2000), current average result {'jigsaw_acc': tensor(0.2979, device='cuda:0'), 'loss': tensor(1.3860, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:12:20,688 [MainThread  ] train batch 688 / 781 (iter 2250), current average result {'jigsaw_acc': tensor(0.3002, device='cuda:0'), 'loss': tensor(1.3821, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:15:00,709 [MainThread  ] train batch 157 / 781 (iter 2500), current average result {'jigsaw_acc': tensor(0.3020, device='cuda:0'), 'loss': tensor(1.3787, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:17:31,397 [MainThread  ] train batch 407 / 781 (iter 2750), current average result {'jigsaw_acc': tensor(0.3035, device='cuda:0'), 'loss': tensor(1.3759, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:20:02,040 [MainThread  ] train batch 657 / 781 (iter 3000), current average result {'jigsaw_acc': tensor(0.3040, device='cuda:0'), 'loss': tensor(1.3741, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:22:42,193 [MainThread  ] train batch 126 / 781 (iter 3250), current average result {'jigsaw_acc': tensor(0.3046, device='cuda:0'), 'loss': tensor(1.3727, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:25:13,296 [MainThread  ] train batch 376 / 781 (iter 3500), current average result {'jigsaw_acc': tensor(0.3073, device='cuda:0'), 'loss': tensor(1.3696, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:27:44,833 [MainThread  ] train batch 626 / 781 (iter 3750), current average result {'jigsaw_acc': tensor(0.3105, device='cuda:0'), 'loss': tensor(1.3658, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:30:25,768 [MainThread  ] train batch 95 / 781 (iter 4000), current average result {'jigsaw_acc': tensor(0.3135, device='cuda:0'), 'loss': tensor(1.3620, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:32:57,333 [MainThread  ] train batch 345 / 781 (iter 4250), current average result {'jigsaw_acc': tensor(0.3168, device='cuda:0'), 'loss': tensor(1.3583, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:35:29,166 [MainThread  ] train batch 595 / 781 (iter 4500), current average result {'jigsaw_acc': tensor(0.3196, device='cuda:0'), 'loss': tensor(1.3548, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:38:10,205 [MainThread  ] train batch 64 / 781 (iter 4750), current average result {'jigsaw_acc': tensor(0.3222, device='cuda:0'), 'loss': tensor(1.3518, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:40:41,880 [MainThread  ] train batch 314 / 781 (iter 5000), current average result {'jigsaw_acc': tensor(0.3249, device='cuda:0'), 'loss': tensor(1.3486, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:43:13,650 [MainThread  ] train batch 564 / 781 (iter 5250), current average result {'jigsaw_acc': tensor(0.3274, device='cuda:0'), 'loss': tensor(1.3456, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:45:55,074 [MainThread  ] train batch 33 / 781 (iter 5500), current average result {'jigsaw_acc': tensor(0.3297, device='cuda:0'), 'loss': tensor(1.3428, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:48:27,232 [MainThread  ] train batch 283 / 781 (iter 5750), current average result {'jigsaw_acc': tensor(0.3318, device='cuda:0'), 'loss': tensor(1.3402, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:50:59,179 [MainThread  ] train batch 533 / 781 (iter 6000), current average result {'jigsaw_acc': tensor(0.3340, device='cuda:0'), 'loss': tensor(1.3377, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:53:39,953 [MainThread  ] train batch 2 / 781 (iter 6250), current average result {'jigsaw_acc': tensor(0.3361, device='cuda:0'), 'loss': tensor(1.3352, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:56:12,229 [MainThread  ] train batch 252 / 781 (iter 6500), current average result {'jigsaw_acc': tensor(0.3381, device='cuda:0'), 'loss': tensor(1.3328, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:58:44,192 [MainThread  ] train batch 502 / 781 (iter 6750), current average result {'jigsaw_acc': tensor(0.3401, device='cuda:0'), 'loss': tensor(1.3304, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:01:16,164 [MainThread  ] train batch 752 / 781 (iter 7000), current average result {'jigsaw_acc': tensor(0.3419, device='cuda:0'), 'loss': tensor(1.3283, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:03:58,050 [MainThread  ] train batch 221 / 781 (iter 7250), current average result {'jigsaw_acc': tensor(0.3438, device='cuda:0'), 'loss': tensor(1.3261, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:06:30,250 [MainThread  ] train batch 471 / 781 (iter 7500), current average result {'jigsaw_acc': tensor(0.3455, device='cuda:0'), 'loss': tensor(1.3240, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:09:02,349 [MainThread  ] train batch 721 / 781 (iter 7750), current average result {'jigsaw_acc': tensor(0.3470, device='cuda:0'), 'loss': tensor(1.3222, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:11:43,507 [MainThread  ] train batch 190 / 781 (iter 8000), current average result {'jigsaw_acc': tensor(0.3485, device='cuda:0'), 'loss': tensor(1.3204, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:14:15,709 [MainThread  ] train batch 440 / 781 (iter 8250), current average result {'jigsaw_acc': tensor(0.3500, device='cuda:0'), 'loss': tensor(1.3186, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:16:47,877 [MainThread  ] train batch 690 / 781 (iter 8500), current average result {'jigsaw_acc': tensor(0.3512, device='cuda:0'), 'loss': tensor(1.3170, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:19:28,764 [MainThread  ] train batch 159 / 781 (iter 8750), current average result {'jigsaw_acc': tensor(0.3525, device='cuda:0'), 'loss': tensor(1.3154, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:22:01,066 [MainThread  ] train batch 409 / 781 (iter 9000), current average result {'jigsaw_acc': tensor(0.3539, device='cuda:0'), 'loss': tensor(1.3137, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:24:33,548 [MainThread  ] train batch 659 / 781 (iter 9250), current average result {'jigsaw_acc': tensor(0.3552, device='cuda:0'), 'loss': tensor(1.3121, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:27:14,942 [MainThread  ] train batch 128 / 781 (iter 9500), current average result {'jigsaw_acc': tensor(0.3564, device='cuda:0'), 'loss': tensor(1.3106, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:29:47,495 [MainThread  ] train batch 378 / 781 (iter 9750), current average result {'jigsaw_acc': tensor(0.3576, device='cuda:0'), 'loss': tensor(1.3090, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:32:19,902 [MainThread  ] train batch 628 / 781 (iter 10000), current average result {'jigsaw_acc': tensor(0.3588, device='cuda:0'), 'loss': tensor(1.3075, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:35:02,171 [MainThread  ] train batch 97 / 781 (iter 10250), current average result {'jigsaw_acc': tensor(0.3600, device='cuda:0'), 'loss': tensor(1.3061, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:37:34,592 [MainThread  ] train batch 347 / 781 (iter 10500), current average result {'jigsaw_acc': tensor(0.3611, device='cuda:0'), 'loss': tensor(1.3046, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:40:07,077 [MainThread  ] train batch 597 / 781 (iter 10750), current average result {'jigsaw_acc': tensor(0.3622, device='cuda:0'), 'loss': tensor(1.3032, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:42:49,307 [MainThread  ] train batch 66 / 781 (iter 11000), current average result {'jigsaw_acc': tensor(0.3633, device='cuda:0'), 'loss': tensor(1.3018, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:45:21,813 [MainThread  ] train batch 316 / 781 (iter 11250), current average result {'jigsaw_acc': tensor(0.3643, device='cuda:0'), 'loss': tensor(1.3005, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:47:54,357 [MainThread  ] train batch 566 / 781 (iter 11500), current average result {'jigsaw_acc': tensor(0.3653, device='cuda:0'), 'loss': tensor(1.2992, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:50:36,466 [MainThread  ] train batch 35 / 781 (iter 11750), current average result {'jigsaw_acc': tensor(0.3663, device='cuda:0'), 'loss': tensor(1.2979, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:53:09,138 [MainThread  ] train batch 285 / 781 (iter 12000), current average result {'jigsaw_acc': tensor(0.3672, device='cuda:0'), 'loss': tensor(1.2967, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:55:41,736 [MainThread  ] train batch 535 / 781 (iter 12250), current average result {'jigsaw_acc': tensor(0.3681, device='cuda:0'), 'loss': tensor(1.2955, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 00:58:24,224 [MainThread  ] train batch 4 / 781 (iter 12500), current average result {'jigsaw_acc': tensor(0.3690, device='cuda:0'), 'loss': tensor(1.2943, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:00:56,815 [MainThread  ] train batch 254 / 781 (iter 12750), current average result {'jigsaw_acc': tensor(0.3699, device='cuda:0'), 'loss': tensor(1.2931, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:03:29,516 [MainThread  ] train batch 504 / 781 (iter 13000), current average result {'jigsaw_acc': tensor(0.3708, device='cuda:0'), 'loss': tensor(1.2919, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:06:02,175 [MainThread  ] train batch 754 / 781 (iter 13250), current average result {'jigsaw_acc': tensor(0.3717, device='cuda:0'), 'loss': tensor(1.2908, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:08:44,602 [MainThread  ] train batch 223 / 781 (iter 13500), current average result {'jigsaw_acc': tensor(0.3724, device='cuda:0'), 'loss': tensor(1.2897, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:11:17,259 [MainThread  ] train batch 473 / 781 (iter 13750), current average result {'jigsaw_acc': tensor(0.3732, device='cuda:0'), 'loss': tensor(1.2886, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:13:49,810 [MainThread  ] train batch 723 / 781 (iter 14000), current average result {'jigsaw_acc': tensor(0.3740, device='cuda:0'), 'loss': tensor(1.2875, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:16:32,121 [MainThread  ] train batch 192 / 781 (iter 14250), current average result {'jigsaw_acc': tensor(0.3748, device='cuda:0'), 'loss': tensor(1.2865, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:19:04,879 [MainThread  ] train batch 442 / 781 (iter 14500), current average result {'jigsaw_acc': tensor(0.3756, device='cuda:0'), 'loss': tensor(1.2854, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:21:37,427 [MainThread  ] train batch 692 / 781 (iter 14750), current average result {'jigsaw_acc': tensor(0.3763, device='cuda:0'), 'loss': tensor(1.2844, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:24:19,304 [MainThread  ] train batch 161 / 781 (iter 15000), current average result {'jigsaw_acc': tensor(0.3770, device='cuda:0'), 'loss': tensor(1.2834, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:26:51,936 [MainThread  ] train batch 411 / 781 (iter 15250), current average result {'jigsaw_acc': tensor(0.3777, device='cuda:0'), 'loss': tensor(1.2824, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:29:24,446 [MainThread  ] train batch 661 / 781 (iter 15500), current average result {'jigsaw_acc': tensor(0.3784, device='cuda:0'), 'loss': tensor(1.2814, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:32:06,823 [MainThread  ] train batch 130 / 781 (iter 15750), current average result {'jigsaw_acc': tensor(0.3790, device='cuda:0'), 'loss': tensor(1.2805, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:34:39,537 [MainThread  ] train batch 380 / 781 (iter 16000), current average result {'jigsaw_acc': tensor(0.3797, device='cuda:0'), 'loss': tensor(1.2796, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:37:12,229 [MainThread  ] train batch 630 / 781 (iter 16250), current average result {'jigsaw_acc': tensor(0.3804, device='cuda:0'), 'loss': tensor(1.2787, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:39:54,543 [MainThread  ] train batch 99 / 781 (iter 16500), current average result {'jigsaw_acc': tensor(0.3810, device='cuda:0'), 'loss': tensor(1.2778, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:42:27,098 [MainThread  ] train batch 349 / 781 (iter 16750), current average result {'jigsaw_acc': tensor(0.3817, device='cuda:0'), 'loss': tensor(1.2768, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:44:59,872 [MainThread  ] train batch 599 / 781 (iter 17000), current average result {'jigsaw_acc': tensor(0.3823, device='cuda:0'), 'loss': tensor(1.2759, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:47:42,307 [MainThread  ] train batch 68 / 781 (iter 17250), current average result {'jigsaw_acc': tensor(0.3829, device='cuda:0'), 'loss': tensor(1.2751, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:50:14,858 [MainThread  ] train batch 318 / 781 (iter 17500), current average result {'jigsaw_acc': tensor(0.3835, device='cuda:0'), 'loss': tensor(1.2743, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:52:47,447 [MainThread  ] train batch 568 / 781 (iter 17750), current average result {'jigsaw_acc': tensor(0.3840, device='cuda:0'), 'loss': tensor(1.2734, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:55:30,238 [MainThread  ] train batch 37 / 781 (iter 18000), current average result {'jigsaw_acc': tensor(0.3846, device='cuda:0'), 'loss': tensor(1.2726, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 01:58:02,965 [MainThread  ] train batch 287 / 781 (iter 18250), current average result {'jigsaw_acc': tensor(0.3851, device='cuda:0'), 'loss': tensor(1.2718, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:00:35,374 [MainThread  ] train batch 537 / 781 (iter 18500), current average result {'jigsaw_acc': tensor(0.3857, device='cuda:0'), 'loss': tensor(1.2710, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:03:18,100 [MainThread  ] train batch 6 / 781 (iter 18750), current average result {'jigsaw_acc': tensor(0.3863, device='cuda:0'), 'loss': tensor(1.2701, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:05:50,743 [MainThread  ] train batch 256 / 781 (iter 19000), current average result {'jigsaw_acc': tensor(0.3868, device='cuda:0'), 'loss': tensor(1.2694, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:08:23,267 [MainThread  ] train batch 506 / 781 (iter 19250), current average result {'jigsaw_acc': tensor(0.3874, device='cuda:0'), 'loss': tensor(1.2685, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:10:55,826 [MainThread  ] train batch 756 / 781 (iter 19500), current average result {'jigsaw_acc': tensor(0.3879, device='cuda:0'), 'loss': tensor(1.2678, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:13:38,917 [MainThread  ] train batch 225 / 781 (iter 19750), current average result {'jigsaw_acc': tensor(0.3884, device='cuda:0'), 'loss': tensor(1.2670, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:16:11,831 [MainThread  ] train batch 475 / 781 (iter 20000), current average result {'jigsaw_acc': tensor(0.3889, device='cuda:0'), 'loss': tensor(1.2662, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:18:44,461 [MainThread  ] train batch 725 / 781 (iter 20250), current average result {'jigsaw_acc': tensor(0.3894, device='cuda:0'), 'loss': tensor(1.2654, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:21:26,312 [MainThread  ] train batch 194 / 781 (iter 20500), current average result {'jigsaw_acc': tensor(0.3900, device='cuda:0'), 'loss': tensor(1.2647, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:23:58,971 [MainThread  ] train batch 444 / 781 (iter 20750), current average result {'jigsaw_acc': tensor(0.3904, device='cuda:0'), 'loss': tensor(1.2640, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:26:31,558 [MainThread  ] train batch 694 / 781 (iter 21000), current average result {'jigsaw_acc': tensor(0.3909, device='cuda:0'), 'loss': tensor(1.2633, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:29:14,537 [MainThread  ] train batch 163 / 781 (iter 21250), current average result {'jigsaw_acc': tensor(0.3914, device='cuda:0'), 'loss': tensor(1.2625, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:31:47,337 [MainThread  ] train batch 413 / 781 (iter 21500), current average result {'jigsaw_acc': tensor(0.3919, device='cuda:0'), 'loss': tensor(1.2618, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:34:19,978 [MainThread  ] train batch 663 / 781 (iter 21750), current average result {'jigsaw_acc': tensor(0.3924, device='cuda:0'), 'loss': tensor(1.2610, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:37:03,389 [MainThread  ] train batch 132 / 781 (iter 22000), current average result {'jigsaw_acc': tensor(0.3929, device='cuda:0'), 'loss': tensor(1.2603, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:39:36,284 [MainThread  ] train batch 382 / 781 (iter 22250), current average result {'jigsaw_acc': tensor(0.3933, device='cuda:0'), 'loss': tensor(1.2596, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:42:09,015 [MainThread  ] train batch 632 / 781 (iter 22500), current average result {'jigsaw_acc': tensor(0.3938, device='cuda:0'), 'loss': tensor(1.2589, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:44:51,983 [MainThread  ] train batch 101 / 781 (iter 22750), current average result {'jigsaw_acc': tensor(0.3942, device='cuda:0'), 'loss': tensor(1.2582, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:47:24,728 [MainThread  ] train batch 351 / 781 (iter 23000), current average result {'jigsaw_acc': tensor(0.3947, device='cuda:0'), 'loss': tensor(1.2575, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:49:57,409 [MainThread  ] train batch 601 / 781 (iter 23250), current average result {'jigsaw_acc': tensor(0.3951, device='cuda:0'), 'loss': tensor(1.2568, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:52:39,960 [MainThread  ] train batch 70 / 781 (iter 23500), current average result {'jigsaw_acc': tensor(0.3956, device='cuda:0'), 'loss': tensor(1.2561, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:55:12,815 [MainThread  ] train batch 320 / 781 (iter 23750), current average result {'jigsaw_acc': tensor(0.3960, device='cuda:0'), 'loss': tensor(1.2554, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 02:57:45,752 [MainThread  ] train batch 570 / 781 (iter 24000), current average result {'jigsaw_acc': tensor(0.3964, device='cuda:0'), 'loss': tensor(1.2548, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:00:28,186 [MainThread  ] train batch 39 / 781 (iter 24250), current average result {'jigsaw_acc': tensor(0.3968, device='cuda:0'), 'loss': tensor(1.2542, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:03:01,003 [MainThread  ] train batch 289 / 781 (iter 24500), current average result {'jigsaw_acc': tensor(0.3972, device='cuda:0'), 'loss': tensor(1.2535, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:05:33,813 [MainThread  ] train batch 539 / 781 (iter 24750), current average result {'jigsaw_acc': tensor(0.3976, device='cuda:0'), 'loss': tensor(1.2529, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:08:17,710 [MainThread  ] train batch 8 / 781 (iter 25000), current average result {'jigsaw_acc': tensor(0.3981, device='cuda:0'), 'loss': tensor(1.2522, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:10:50,545 [MainThread  ] train batch 258 / 781 (iter 25250), current average result {'jigsaw_acc': tensor(0.3985, device='cuda:0'), 'loss': tensor(1.2516, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:13:23,395 [MainThread  ] train batch 508 / 781 (iter 25500), current average result {'jigsaw_acc': tensor(0.3989, device='cuda:0'), 'loss': tensor(1.2509, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:15:56,255 [MainThread  ] train batch 758 / 781 (iter 25750), current average result {'jigsaw_acc': tensor(0.3992, device='cuda:0'), 'loss': tensor(1.2503, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:18:39,285 [MainThread  ] train batch 227 / 781 (iter 26000), current average result {'jigsaw_acc': tensor(0.3996, device='cuda:0'), 'loss': tensor(1.2497, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:21:12,300 [MainThread  ] train batch 477 / 781 (iter 26250), current average result {'jigsaw_acc': tensor(0.4000, device='cuda:0'), 'loss': tensor(1.2491, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:23:45,308 [MainThread  ] train batch 727 / 781 (iter 26500), current average result {'jigsaw_acc': tensor(0.4004, device='cuda:0'), 'loss': tensor(1.2485, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:26:29,117 [MainThread  ] train batch 196 / 781 (iter 26750), current average result {'jigsaw_acc': tensor(0.4007, device='cuda:0'), 'loss': tensor(1.2479, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:29:02,231 [MainThread  ] train batch 446 / 781 (iter 27000), current average result {'jigsaw_acc': tensor(0.4011, device='cuda:0'), 'loss': tensor(1.2472, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:31:35,185 [MainThread  ] train batch 696 / 781 (iter 27250), current average result {'jigsaw_acc': tensor(0.4015, device='cuda:0'), 'loss': tensor(1.2466, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:34:18,731 [MainThread  ] train batch 165 / 781 (iter 27500), current average result {'jigsaw_acc': tensor(0.4018, device='cuda:0'), 'loss': tensor(1.2460, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:36:51,687 [MainThread  ] train batch 415 / 781 (iter 27750), current average result {'jigsaw_acc': tensor(0.4022, device='cuda:0'), 'loss': tensor(1.2454, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:39:24,720 [MainThread  ] train batch 665 / 781 (iter 28000), current average result {'jigsaw_acc': tensor(0.4025, device='cuda:0'), 'loss': tensor(1.2448, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:42:07,868 [MainThread  ] train batch 134 / 781 (iter 28250), current average result {'jigsaw_acc': tensor(0.4029, device='cuda:0'), 'loss': tensor(1.2443, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:44:40,652 [MainThread  ] train batch 384 / 781 (iter 28500), current average result {'jigsaw_acc': tensor(0.4032, device='cuda:0'), 'loss': tensor(1.2437, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:47:13,488 [MainThread  ] train batch 634 / 781 (iter 28750), current average result {'jigsaw_acc': tensor(0.4036, device='cuda:0'), 'loss': tensor(1.2431, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:49:56,893 [MainThread  ] train batch 103 / 781 (iter 29000), current average result {'jigsaw_acc': tensor(0.4039, device='cuda:0'), 'loss': tensor(1.2426, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:52:29,830 [MainThread  ] train batch 353 / 781 (iter 29250), current average result {'jigsaw_acc': tensor(0.4043, device='cuda:0'), 'loss': tensor(1.2420, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:55:02,738 [MainThread  ] train batch 603 / 781 (iter 29500), current average result {'jigsaw_acc': tensor(0.4046, device='cuda:0'), 'loss': tensor(1.2414, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 03:57:46,747 [MainThread  ] train batch 72 / 781 (iter 29750), current average result {'jigsaw_acc': tensor(0.4050, device='cuda:0'), 'loss': tensor(1.2408, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:00:19,701 [MainThread  ] train batch 322 / 781 (iter 30000), current average result {'jigsaw_acc': tensor(0.4053, device='cuda:0'), 'loss': tensor(1.2403, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:02:52,767 [MainThread  ] train batch 572 / 781 (iter 30250), current average result {'jigsaw_acc': tensor(0.4056, device='cuda:0'), 'loss': tensor(1.2398, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:05:36,755 [MainThread  ] train batch 41 / 781 (iter 30500), current average result {'jigsaw_acc': tensor(0.4059, device='cuda:0'), 'loss': tensor(1.2392, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:08:09,783 [MainThread  ] train batch 291 / 781 (iter 30750), current average result {'jigsaw_acc': tensor(0.4063, device='cuda:0'), 'loss': tensor(1.2387, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:10:42,716 [MainThread  ] train batch 541 / 781 (iter 31000), current average result {'jigsaw_acc': tensor(0.4066, device='cuda:0'), 'loss': tensor(1.2381, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:13:25,856 [MainThread  ] train batch 10 / 781 (iter 31250), current average result {'jigsaw_acc': tensor(0.4069, device='cuda:0'), 'loss': tensor(1.2376, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:15:58,841 [MainThread  ] train batch 260 / 781 (iter 31500), current average result {'jigsaw_acc': tensor(0.4072, device='cuda:0'), 'loss': tensor(1.2371, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:18:31,727 [MainThread  ] train batch 510 / 781 (iter 31750), current average result {'jigsaw_acc': tensor(0.4075, device='cuda:0'), 'loss': tensor(1.2366, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:21:04,621 [MainThread  ] train batch 760 / 781 (iter 32000), current average result {'jigsaw_acc': tensor(0.4078, device='cuda:0'), 'loss': tensor(1.2360, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:23:48,828 [MainThread  ] train batch 229 / 781 (iter 32250), current average result {'jigsaw_acc': tensor(0.4081, device='cuda:0'), 'loss': tensor(1.2355, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:26:22,070 [MainThread  ] train batch 479 / 781 (iter 32500), current average result {'jigsaw_acc': tensor(0.4084, device='cuda:0'), 'loss': tensor(1.2350, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:28:55,039 [MainThread  ] train batch 729 / 781 (iter 32750), current average result {'jigsaw_acc': tensor(0.4087, device='cuda:0'), 'loss': tensor(1.2345, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:31:39,221 [MainThread  ] train batch 198 / 781 (iter 33000), current average result {'jigsaw_acc': tensor(0.4090, device='cuda:0'), 'loss': tensor(1.2340, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:34:12,267 [MainThread  ] train batch 448 / 781 (iter 33250), current average result {'jigsaw_acc': tensor(0.4093, device='cuda:0'), 'loss': tensor(1.2335, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:36:45,367 [MainThread  ] train batch 698 / 781 (iter 33500), current average result {'jigsaw_acc': tensor(0.4096, device='cuda:0'), 'loss': tensor(1.2330, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:39:29,488 [MainThread  ] train batch 167 / 781 (iter 33750), current average result {'jigsaw_acc': tensor(0.4099, device='cuda:0'), 'loss': tensor(1.2325, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:42:02,609 [MainThread  ] train batch 417 / 781 (iter 34000), current average result {'jigsaw_acc': tensor(0.4102, device='cuda:0'), 'loss': tensor(1.2320, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:44:35,735 [MainThread  ] train batch 667 / 781 (iter 34250), current average result {'jigsaw_acc': tensor(0.4105, device='cuda:0'), 'loss': tensor(1.2315, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:47:20,501 [MainThread  ] train batch 136 / 781 (iter 34500), current average result {'jigsaw_acc': tensor(0.4108, device='cuda:0'), 'loss': tensor(1.2310, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:49:53,728 [MainThread  ] train batch 386 / 781 (iter 34750), current average result {'jigsaw_acc': tensor(0.4110, device='cuda:0'), 'loss': tensor(1.2305, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:52:27,097 [MainThread  ] train batch 636 / 781 (iter 35000), current average result {'jigsaw_acc': tensor(0.4113, device='cuda:0'), 'loss': tensor(1.2300, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:55:11,565 [MainThread  ] train batch 105 / 781 (iter 35250), current average result {'jigsaw_acc': tensor(0.4116, device='cuda:0'), 'loss': tensor(1.2295, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 04:57:44,756 [MainThread  ] train batch 355 / 781 (iter 35500), current average result {'jigsaw_acc': tensor(0.4118, device='cuda:0'), 'loss': tensor(1.2291, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:00:17,954 [MainThread  ] train batch 605 / 781 (iter 35750), current average result {'jigsaw_acc': tensor(0.4121, device='cuda:0'), 'loss': tensor(1.2286, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:03:02,703 [MainThread  ] train batch 74 / 781 (iter 36000), current average result {'jigsaw_acc': tensor(0.4124, device='cuda:0'), 'loss': tensor(1.2282, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:05:36,008 [MainThread  ] train batch 324 / 781 (iter 36250), current average result {'jigsaw_acc': tensor(0.4126, device='cuda:0'), 'loss': tensor(1.2277, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:08:09,162 [MainThread  ] train batch 574 / 781 (iter 36500), current average result {'jigsaw_acc': tensor(0.4129, device='cuda:0'), 'loss': tensor(1.2272, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:10:54,101 [MainThread  ] train batch 43 / 781 (iter 36750), current average result {'jigsaw_acc': tensor(0.4131, device='cuda:0'), 'loss': tensor(1.2268, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:13:27,366 [MainThread  ] train batch 293 / 781 (iter 37000), current average result {'jigsaw_acc': tensor(0.4134, device='cuda:0'), 'loss': tensor(1.2263, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:16:00,712 [MainThread  ] train batch 543 / 781 (iter 37250), current average result {'jigsaw_acc': tensor(0.4136, device='cuda:0'), 'loss': tensor(1.2259, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:18:44,903 [MainThread  ] train batch 12 / 781 (iter 37500), current average result {'jigsaw_acc': tensor(0.4139, device='cuda:0'), 'loss': tensor(1.2254, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:21:18,133 [MainThread  ] train batch 262 / 781 (iter 37750), current average result {'jigsaw_acc': tensor(0.4141, device='cuda:0'), 'loss': tensor(1.2250, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:23:51,400 [MainThread  ] train batch 512 / 781 (iter 38000), current average result {'jigsaw_acc': tensor(0.4144, device='cuda:0'), 'loss': tensor(1.2245, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:26:24,621 [MainThread  ] train batch 762 / 781 (iter 38250), current average result {'jigsaw_acc': tensor(0.4146, device='cuda:0'), 'loss': tensor(1.2241, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:29:10,316 [MainThread  ] train batch 231 / 781 (iter 38500), current average result {'jigsaw_acc': tensor(0.4149, device='cuda:0'), 'loss': tensor(1.2237, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:31:43,773 [MainThread  ] train batch 481 / 781 (iter 38750), current average result {'jigsaw_acc': tensor(0.4151, device='cuda:0'), 'loss': tensor(1.2232, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:34:17,038 [MainThread  ] train batch 731 / 781 (iter 39000), current average result {'jigsaw_acc': tensor(0.4154, device='cuda:0'), 'loss': tensor(1.2228, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:37:02,181 [MainThread  ] train batch 200 / 781 (iter 39250), current average result {'jigsaw_acc': tensor(0.4156, device='cuda:0'), 'loss': tensor(1.2224, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:39:35,468 [MainThread  ] train batch 450 / 781 (iter 39500), current average result {'jigsaw_acc': tensor(0.4159, device='cuda:0'), 'loss': tensor(1.2219, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:42:08,839 [MainThread  ] train batch 700 / 781 (iter 39750), current average result {'jigsaw_acc': tensor(0.4161, device='cuda:0'), 'loss': tensor(1.2215, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:44:54,165 [MainThread  ] train batch 169 / 781 (iter 40000), current average result {'jigsaw_acc': tensor(0.4163, device='cuda:0'), 'loss': tensor(1.2211, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:47:27,551 [MainThread  ] train batch 419 / 781 (iter 40250), current average result {'jigsaw_acc': tensor(0.4166, device='cuda:0'), 'loss': tensor(1.2207, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:50:01,074 [MainThread  ] train batch 669 / 781 (iter 40500), current average result {'jigsaw_acc': tensor(0.4168, device='cuda:0'), 'loss': tensor(1.2203, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:52:46,234 [MainThread  ] train batch 138 / 781 (iter 40750), current average result {'jigsaw_acc': tensor(0.4170, device='cuda:0'), 'loss': tensor(1.2199, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:55:19,513 [MainThread  ] train batch 388 / 781 (iter 41000), current average result {'jigsaw_acc': tensor(0.4173, device='cuda:0'), 'loss': tensor(1.2194, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 05:57:52,796 [MainThread  ] train batch 638 / 781 (iter 41250), current average result {'jigsaw_acc': tensor(0.4175, device='cuda:0'), 'loss': tensor(1.2190, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:00:38,447 [MainThread  ] train batch 107 / 781 (iter 41500), current average result {'jigsaw_acc': tensor(0.4177, device='cuda:0'), 'loss': tensor(1.2186, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:03:11,887 [MainThread  ] train batch 357 / 781 (iter 41750), current average result {'jigsaw_acc': tensor(0.4179, device='cuda:0'), 'loss': tensor(1.2182, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:05:45,337 [MainThread  ] train batch 607 / 781 (iter 42000), current average result {'jigsaw_acc': tensor(0.4182, device='cuda:0'), 'loss': tensor(1.2178, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:08:31,234 [MainThread  ] train batch 76 / 781 (iter 42250), current average result {'jigsaw_acc': tensor(0.4184, device='cuda:0'), 'loss': tensor(1.2174, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:11:04,594 [MainThread  ] train batch 326 / 781 (iter 42500), current average result {'jigsaw_acc': tensor(0.4187, device='cuda:0'), 'loss': tensor(1.2170, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:13:38,077 [MainThread  ] train batch 576 / 781 (iter 42750), current average result {'jigsaw_acc': tensor(0.4189, device='cuda:0'), 'loss': tensor(1.2165, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:16:24,089 [MainThread  ] train batch 45 / 781 (iter 43000), current average result {'jigsaw_acc': tensor(0.4192, device='cuda:0'), 'loss': tensor(1.2161, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:18:57,460 [MainThread  ] train batch 295 / 781 (iter 43250), current average result {'jigsaw_acc': tensor(0.4194, device='cuda:0'), 'loss': tensor(1.2157, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:21:30,900 [MainThread  ] train batch 545 / 781 (iter 43500), current average result {'jigsaw_acc': tensor(0.4196, device='cuda:0'), 'loss': tensor(1.2153, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:24:16,949 [MainThread  ] train batch 14 / 781 (iter 43750), current average result {'jigsaw_acc': tensor(0.4199, device='cuda:0'), 'loss': tensor(1.2149, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:26:50,426 [MainThread  ] train batch 264 / 781 (iter 44000), current average result {'jigsaw_acc': tensor(0.4201, device='cuda:0'), 'loss': tensor(1.2145, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:29:23,972 [MainThread  ] train batch 514 / 781 (iter 44250), current average result {'jigsaw_acc': tensor(0.4203, device='cuda:0'), 'loss': tensor(1.2141, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:31:57,462 [MainThread  ] train batch 764 / 781 (iter 44500), current average result {'jigsaw_acc': tensor(0.4206, device='cuda:0'), 'loss': tensor(1.2137, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:34:43,320 [MainThread  ] train batch 233 / 781 (iter 44750), current average result {'jigsaw_acc': tensor(0.4208, device='cuda:0'), 'loss': tensor(1.2132, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:37:16,829 [MainThread  ] train batch 483 / 781 (iter 45000), current average result {'jigsaw_acc': tensor(0.4211, device='cuda:0'), 'loss': tensor(1.2128, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:39:50,563 [MainThread  ] train batch 733 / 781 (iter 45250), current average result {'jigsaw_acc': tensor(0.4213, device='cuda:0'), 'loss': tensor(1.2124, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:42:36,789 [MainThread  ] train batch 202 / 781 (iter 45500), current average result {'jigsaw_acc': tensor(0.4215, device='cuda:0'), 'loss': tensor(1.2120, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:45:10,332 [MainThread  ] train batch 452 / 781 (iter 45750), current average result {'jigsaw_acc': tensor(0.4218, device='cuda:0'), 'loss': tensor(1.2116, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-26 06:47:43,916 [MainThread  ] train batch 702 / 781 (iter 46000), current average result {'jigsaw_acc': tensor(0.4220, device='cuda:0'), 'loss': tensor(1.2112, device='cuda:0', grad_fn=<DivBackward0>)}

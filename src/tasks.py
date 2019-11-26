@@ -193,6 +193,7 @@ class Task(object):
             output[split] = {
                 "idx": torch.LongTensor(idx),
                 "image": image,
+                "aug": image,
                 "query": torch.ones((len(image), self.args.num_patches), dtype=torch.bool),
                 "label": torch.LongTensor(label),
             }
