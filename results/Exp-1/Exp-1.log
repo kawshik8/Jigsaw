@@ -1,0 +1,200 @@
+2019-11-25 19:19:12,034 [MainThread  ] Experiment Exp-1
+2019-11-25 19:19:12,035 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:19:12,035 [MainThread  ] Start creating tasks
+2019-11-25 19:19:12,035 [MainThread  ] Start loading data
+2019-11-25 19:19:12,035 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:19:19,352 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:19:21,641 [MainThread  ] Start creating models
+2019-11-25 19:19:25,188 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:19:25,189 [MainThread  ] Start training cifar10_un
+2019-11-25 19:23:20,213 [MainThread  ] Experiment Exp-1
+2019-11-25 19:23:20,222 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:23:20,222 [MainThread  ] Start creating tasks
+2019-11-25 19:23:20,222 [MainThread  ] Start loading data
+2019-11-25 19:23:20,222 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:23:27,788 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:23:30,035 [MainThread  ] Start creating models
+2019-11-25 19:23:33,536 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:23:33,537 [MainThread  ] Start training cifar10_un
+2019-11-25 19:25:34,775 [MainThread  ] Experiment Exp-1
+2019-11-25 19:25:34,776 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:25:34,776 [MainThread  ] Start creating tasks
+2019-11-25 19:25:34,777 [MainThread  ] Start loading data
+2019-11-25 19:25:34,777 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:25:42,173 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:25:44,391 [MainThread  ] Start creating models
+2019-11-25 19:25:47,918 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:25:47,918 [MainThread  ] Start training cifar10_un
+2019-11-25 19:26:59,150 [MainThread  ] Experiment Exp-1
+2019-11-25 19:26:59,159 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:26:59,159 [MainThread  ] Start creating tasks
+2019-11-25 19:26:59,159 [MainThread  ] Start loading data
+2019-11-25 19:26:59,159 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:27:06,419 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:27:08,681 [MainThread  ] Start creating models
+2019-11-25 19:27:12,219 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:27:12,220 [MainThread  ] Start training cifar10_un
+2019-11-25 19:30:36,279 [MainThread  ] Experiment Exp-1
+2019-11-25 19:30:36,280 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:30:36,280 [MainThread  ] Start creating tasks
+2019-11-25 19:30:36,280 [MainThread  ] Start loading data
+2019-11-25 19:30:36,281 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:30:43,813 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:30:46,020 [MainThread  ] Start creating models
+2019-11-25 19:30:49,559 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:30:49,559 [MainThread  ] Start training cifar10_un
+2019-11-25 19:31:27,244 [MainThread  ] Experiment Exp-1
+2019-11-25 19:31:27,245 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:31:27,245 [MainThread  ] Start creating tasks
+2019-11-25 19:31:27,245 [MainThread  ] Start loading data
+2019-11-25 19:31:27,245 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:31:34,516 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:31:36,826 [MainThread  ] Start creating models
+2019-11-25 19:31:40,396 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:31:40,396 [MainThread  ] Start training cifar10_un
+2019-11-25 19:32:05,790 [MainThread  ] Experiment Exp-1
+2019-11-25 19:32:05,790 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:32:05,790 [MainThread  ] Start creating tasks
+2019-11-25 19:32:05,791 [MainThread  ] Start loading data
+2019-11-25 19:32:05,791 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:32:13,041 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:32:15,256 [MainThread  ] Start creating models
+2019-11-25 19:32:18,819 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:32:18,819 [MainThread  ] Start training cifar10_un
+2019-11-25 19:33:04,497 [MainThread  ] Experiment Exp-1
+2019-11-25 19:33:04,506 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:33:04,506 [MainThread  ] Start creating tasks
+2019-11-25 19:33:04,506 [MainThread  ] Start loading data
+2019-11-25 19:33:04,507 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:33:11,827 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:33:14,047 [MainThread  ] Start creating models
+2019-11-25 19:33:17,629 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:33:17,630 [MainThread  ] Start training cifar10_un
+2019-11-25 19:35:11,599 [MainThread  ] Experiment Exp-1
+2019-11-25 19:35:11,621 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:35:11,621 [MainThread  ] Start creating tasks
+2019-11-25 19:35:11,621 [MainThread  ] Start loading data
+2019-11-25 19:35:11,621 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:35:18,858 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:35:21,213 [MainThread  ] Start creating models
+2019-11-25 19:35:24,876 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:35:24,876 [MainThread  ] Start training cifar10_un
+2019-11-25 19:36:50,996 [MainThread  ] Experiment Exp-1
+2019-11-25 19:36:50,997 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:36:50,997 [MainThread  ] Start creating tasks
+2019-11-25 19:36:50,997 [MainThread  ] Start loading data
+2019-11-25 19:36:50,997 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:36:58,420 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:37:00,620 [MainThread  ] Start creating models
+2019-11-25 19:37:04,235 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:37:04,235 [MainThread  ] Start training cifar10_un
+2019-11-25 19:42:42,295 [MainThread  ] Experiment Exp-1
+2019-11-25 19:42:42,304 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=10, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:42:42,304 [MainThread  ] Start creating tasks
+2019-11-25 19:42:42,304 [MainThread  ] Start loading data
+2019-11-25 19:42:42,304 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:42:49,676 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:42:51,994 [MainThread  ] Start creating models
+2019-11-25 19:42:55,664 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:42:55,664 [MainThread  ] Start training cifar10_un
+2019-11-25 19:44:06,177 [MainThread  ] Experiment Exp-1
+2019-11-25 19:44:06,178 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=10, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:44:06,178 [MainThread  ] Start creating tasks
+2019-11-25 19:44:06,179 [MainThread  ] Start loading data
+2019-11-25 19:44:06,179 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:44:13,561 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:44:15,778 [MainThread  ] Start creating models
+2019-11-25 19:44:19,404 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:44:19,405 [MainThread  ] Start training cifar10_un
+2019-11-25 19:44:44,652 [MainThread  ] train batch 10 / 1562 (iter 10), current average result {'loss': tensor(27.2473, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 19:45:06,852 [MainThread  ] train batch 20 / 1562 (iter 20), current average result {'loss': tensor(27.2473, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 19:45:29,071 [MainThread  ] train batch 30 / 1562 (iter 30), current average result {'loss': tensor(27.2473, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 19:45:51,269 [MainThread  ] train batch 40 / 1562 (iter 40), current average result {'loss': tensor(27.2473, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 19:46:13,456 [MainThread  ] train batch 50 / 1562 (iter 50), current average result {'loss': tensor(27.2473, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 19:46:35,667 [MainThread  ] train batch 60 / 1562 (iter 60), current average result {'loss': tensor(27.2473, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 19:46:57,890 [MainThread  ] train batch 70 / 1562 (iter 70), current average result {'loss': tensor(27.2473, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 19:57:06,977 [MainThread  ] Experiment Exp-1
+2019-11-25 19:57:07,040 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:57:07,040 [MainThread  ] Start creating tasks
+2019-11-25 19:57:07,040 [MainThread  ] Start loading data
+2019-11-25 19:57:07,040 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:57:15,614 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:57:17,883 [MainThread  ] Start creating models
+2019-11-25 19:57:22,326 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:57:22,326 [MainThread  ] Start training cifar10_un
+2019-11-25 20:06:43,619 [MainThread  ] train batch 250 / 1562 (iter 250), current average result {'loss': tensor(27.2472, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 20:16:01,086 [MainThread  ] train batch 500 / 1562 (iter 500), current average result {'loss': tensor(27.2471, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 20:25:20,599 [MainThread  ] train batch 750 / 1562 (iter 750), current average result {'loss': tensor(27.2473, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 20:34:40,386 [MainThread  ] train batch 1000 / 1562 (iter 1000), current average result {'loss': tensor(27.2475, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 20:43:59,069 [MainThread  ] train batch 1250 / 1562 (iter 1250), current average result {'loss': tensor(27.2475, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 20:53:18,577 [MainThread  ] train batch 1500 / 1562 (iter 1500), current average result {'loss': tensor(27.2473, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 21:02:44,028 [MainThread  ] train batch 188 / 1562 (iter 1750), current average result {'loss': tensor(27.2471, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 21:12:02,849 [MainThread  ] train batch 438 / 1562 (iter 2000), current average result {'loss': tensor(27.2470, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 21:21:28,535 [MainThread  ] train batch 688 / 1562 (iter 2250), current average result {'loss': tensor(27.2469, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 21:30:48,816 [MainThread  ] train batch 938 / 1562 (iter 2500), current average result {'loss': tensor(27.2470, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 21:40:10,722 [MainThread  ] train batch 1188 / 1562 (iter 2750), current average result {'loss': tensor(27.2472, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.0139, device='cuda:0')}
+2019-11-25 22:12:19,563 [MainThread  ] Experiment Exp-1
+2019-11-25 22:12:19,573 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:12:19,574 [MainThread  ] Start creating tasks
+2019-11-25 22:12:19,574 [MainThread  ] Start loading data
+2019-11-25 22:12:19,574 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:12:27,169 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:12:29,381 [MainThread  ] Start creating models
+2019-11-25 22:12:33,484 [MainThread  ] Experiment Exp-1
+2019-11-25 22:12:33,496 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:12:33,496 [MainThread  ] Start creating tasks
+2019-11-25 22:12:33,497 [MainThread  ] Start loading data
+2019-11-25 22:12:33,497 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:12:34,191 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:12:34,193 [MainThread  ] Start training cifar10_un
+2019-11-25 22:21:52,472 [MainThread  ] train batch 250 / 1562 (iter 250), current average result {'jigsaw_acc': tensor(0.4247, device='cuda:0'), 'loss': tensor(0.6931, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 22:32:37,352 [MainThread  ] Experiment Exp-1
+2019-11-25 22:32:37,354 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:32:37,354 [MainThread  ] Start creating tasks
+2019-11-25 22:32:37,354 [MainThread  ] Start loading data
+2019-11-25 22:32:37,354 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:32:44,739 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:32:46,947 [MainThread  ] Start creating models
+2019-11-25 22:32:50,541 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:32:50,541 [MainThread  ] Start training cifar10_un
+2019-11-25 22:41:34,917 [MainThread  ] Experiment Exp-1
+2019-11-25 22:41:34,918 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:41:34,918 [MainThread  ] Start creating tasks
+2019-11-25 22:41:34,918 [MainThread  ] Start loading data
+2019-11-25 22:41:34,918 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:41:42,055 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:41:44,250 [MainThread  ] Start creating models
+2019-11-25 22:41:47,892 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:41:47,892 [MainThread  ] Start training cifar10_un
+2019-11-25 22:52:49,319 [MainThread  ] Experiment Exp-1
+2019-11-25 22:52:49,335 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:52:49,335 [MainThread  ] Start creating tasks
+2019-11-25 22:52:49,335 [MainThread  ] Start loading data
+2019-11-25 22:52:49,335 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:52:56,476 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:52:58,669 [MainThread  ] Start creating models
+2019-11-25 22:53:02,258 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:53:02,259 [MainThread  ] Start training cifar10_un
+2019-11-25 22:54:46,353 [MainThread  ] Experiment Exp-1
+2019-11-25 22:54:46,354 [MainThread  ] Receive config Namespace(batch_size=56, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:54:46,354 [MainThread  ] Start creating tasks
+2019-11-25 22:54:46,354 [MainThread  ] Start loading data
+2019-11-25 22:54:46,354 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:54:53,549 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:54:55,845 [MainThread  ] Start creating models
+2019-11-25 22:54:59,440 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:54:59,441 [MainThread  ] Start training cifar10_un
+2019-11-25 22:56:32,233 [MainThread  ] Experiment Exp-1
+2019-11-25 22:56:32,234 [MainThread  ] Receive config Namespace(batch_size=32, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Exp-1', exp_name='Exp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Exp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:56:32,234 [MainThread  ] Start creating tasks
+2019-11-25 22:56:32,234 [MainThread  ] Start loading data
+2019-11-25 22:56:32,234 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:56:39,683 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:56:41,891 [MainThread  ] Start creating models
+2019-11-25 22:56:45,508 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:56:45,508 [MainThread  ] Start training cifar10_un
+2019-11-25 23:01:53,863 [MainThread  ] train batch 250 / 3125 (iter 250), current average result {'loss': tensor(0.8975, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4025, device='cuda:0')}
+2019-11-25 23:06:59,853 [MainThread  ] train batch 500 / 3125 (iter 500), current average result {'loss': tensor(0.8231, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3094, device='cuda:0')}
+2019-11-25 23:12:05,659 [MainThread  ] train batch 750 / 3125 (iter 750), current average result {'loss': tensor(0.8557, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2190, device='cuda:0')}
+2019-11-25 23:17:11,581 [MainThread  ] train batch 1000 / 3125 (iter 1000), current average result {'loss': tensor(0.8586, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2604, device='cuda:0')}
+2019-11-25 23:22:17,941 [MainThread  ] train batch 1250 / 3125 (iter 1250), current average result {'loss': tensor(0.8435, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2946, device='cuda:0')}

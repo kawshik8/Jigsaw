@@ -1,0 +1,86 @@
+2019-11-25 19:15:36,053 [MainThread  ] Experiment Allp-1
+2019-11-25 19:15:36,054 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Allp-1', exp_name='Allp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Allp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:15:36,054 [MainThread  ] Start creating tasks
+2019-11-25 19:15:36,055 [MainThread  ] Start loading data
+2019-11-25 19:15:36,055 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:15:43,447 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:15:45,679 [MainThread  ] Start creating models
+2019-11-25 19:15:49,149 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:15:49,150 [MainThread  ] Start training cifar10_un
+2019-11-25 19:18:58,516 [MainThread  ] Experiment Allp-1
+2019-11-25 19:18:58,517 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Allp-1', exp_name='Allp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='selfie', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 19:18:58,517 [MainThread  ] Start creating tasks
+2019-11-25 19:18:58,518 [MainThread  ] Start loading data
+2019-11-25 19:18:58,518 [MainThread  ] Loading cifar10_un data
+2019-11-25 19:19:06,834 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 19:19:09,041 [MainThread  ] Start creating models
+2019-11-25 19:19:19,900 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 19:19:19,900 [MainThread  ] Start training cifar10_un
+2019-11-25 19:20:37,564 [MainThread  ] train batch 250 / 1562 (iter 250), current average result {'loss': tensor(13.9278, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2524, device='cuda:0')}
+2019-11-25 19:21:50,371 [MainThread  ] train batch 500 / 1562 (iter 500), current average result {'loss': tensor(10.1363, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2517, device='cuda:0')}
+2019-11-25 19:23:03,094 [MainThread  ] train batch 750 / 1562 (iter 750), current average result {'loss': tensor(7.8033, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2523, device='cuda:0')}
+2019-11-25 19:24:15,676 [MainThread  ] train batch 1000 / 1562 (iter 1000), current average result {'loss': tensor(6.4026, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2518, device='cuda:0')}
+2019-11-25 19:25:28,206 [MainThread  ] train batch 1250 / 1562 (iter 1250), current average result {'loss': tensor(5.5113, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2518, device='cuda:0')}
+2019-11-25 19:26:40,327 [MainThread  ] train batch 1500 / 1562 (iter 1500), current average result {'loss': tensor(4.8709, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2518, device='cuda:0')}
+2019-11-25 19:27:57,484 [MainThread  ] train batch 188 / 1562 (iter 1750), current average result {'loss': tensor(4.4251, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2516, device='cuda:0')}
+2019-11-25 19:29:09,653 [MainThread  ] train batch 438 / 1562 (iter 2000), current average result {'loss': tensor(4.0871, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2512, device='cuda:0')}
+2019-11-25 19:30:22,029 [MainThread  ] train batch 688 / 1562 (iter 2250), current average result {'loss': tensor(3.8338, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2511, device='cuda:0')}
+2019-11-25 19:31:34,091 [MainThread  ] train batch 938 / 1562 (iter 2500), current average result {'loss': tensor(3.6269, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2511, device='cuda:0')}
+2019-11-25 19:32:46,337 [MainThread  ] train batch 1188 / 1562 (iter 2750), current average result {'loss': tensor(3.4558, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2512, device='cuda:0')}
+2019-11-25 19:33:58,509 [MainThread  ] train batch 1438 / 1562 (iter 3000), current average result {'loss': tensor(3.3054, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2511, device='cuda:0')}
+2019-11-25 19:35:15,929 [MainThread  ] train batch 126 / 1562 (iter 3250), current average result {'loss': tensor(3.1726, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2512, device='cuda:0')}
+2019-11-25 19:36:28,086 [MainThread  ] train batch 376 / 1562 (iter 3500), current average result {'loss': tensor(3.0626, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2511, device='cuda:0')}
+2019-11-25 19:37:40,266 [MainThread  ] train batch 626 / 1562 (iter 3750), current average result {'loss': tensor(2.9615, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2510, device='cuda:0')}
+2019-11-25 19:38:52,603 [MainThread  ] train batch 876 / 1562 (iter 4000), current average result {'loss': tensor(2.8766, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2507, device='cuda:0')}
+2019-11-25 19:40:04,928 [MainThread  ] train batch 1126 / 1562 (iter 4250), current average result {'loss': tensor(2.8004, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2507, device='cuda:0')}
+2019-11-25 19:41:17,163 [MainThread  ] train batch 1376 / 1562 (iter 4500), current average result {'loss': tensor(2.7297, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2509, device='cuda:0')}
+2019-11-25 19:42:34,998 [MainThread  ] train batch 64 / 1562 (iter 4750), current average result {'loss': tensor(2.6666, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2510, device='cuda:0')}
+2019-11-25 19:43:47,280 [MainThread  ] train batch 314 / 1562 (iter 5000), current average result {'loss': tensor(2.6139, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2509, device='cuda:0')}
+2019-11-25 19:44:59,294 [MainThread  ] train batch 564 / 1562 (iter 5250), current average result {'loss': tensor(2.5635, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2510, device='cuda:0')}
+2019-11-25 19:46:11,453 [MainThread  ] train batch 814 / 1562 (iter 5500), current average result {'loss': tensor(2.5179, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2509, device='cuda:0')}
+2019-11-25 19:47:23,645 [MainThread  ] train batch 1064 / 1562 (iter 5750), current average result {'loss': tensor(2.4759, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2509, device='cuda:0')}
+2019-11-25 19:48:35,893 [MainThread  ] train batch 1314 / 1562 (iter 6000), current average result {'loss': tensor(2.4369, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2509, device='cuda:0')}
+2019-11-25 19:49:53,942 [MainThread  ] train batch 2 / 1562 (iter 6250), current average result {'loss': tensor(2.4038, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2508, device='cuda:0')}
+2019-11-25 19:51:06,468 [MainThread  ] train batch 252 / 1562 (iter 6500), current average result {'loss': tensor(2.3713, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2508, device='cuda:0')}
+2019-11-25 19:52:19,099 [MainThread  ] train batch 502 / 1562 (iter 6750), current average result {'loss': tensor(2.3423, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2507, device='cuda:0')}
+2019-11-25 19:53:31,660 [MainThread  ] train batch 752 / 1562 (iter 7000), current average result {'loss': tensor(2.3150, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2508, device='cuda:0')}
+2019-11-25 19:54:44,305 [MainThread  ] train batch 1002 / 1562 (iter 7250), current average result {'loss': tensor(2.2894, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2508, device='cuda:0')}
+2019-11-25 19:55:56,855 [MainThread  ] train batch 1252 / 1562 (iter 7500), current average result {'loss': tensor(2.2637, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2507, device='cuda:0')}
+2019-11-25 19:57:09,492 [MainThread  ] train batch 1502 / 1562 (iter 7750), current average result {'loss': tensor(2.2407, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2507, device='cuda:0')}
+2019-11-25 19:58:27,413 [MainThread  ] train batch 190 / 1562 (iter 8000), current average result {'loss': tensor(2.2193, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2506, device='cuda:0')}
+2019-11-25 19:59:39,891 [MainThread  ] train batch 440 / 1562 (iter 8250), current average result {'loss': tensor(2.1990, device='cuda:0', grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2504, device='cuda:0')}
+2019-11-25 22:12:15,661 [MainThread  ] Experiment Allp-1
+2019-11-25 22:12:15,756 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Allp-1', exp_name='Allp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Allp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:12:15,756 [MainThread  ] Start creating tasks
+2019-11-25 22:12:15,756 [MainThread  ] Start loading data
+2019-11-25 22:12:15,756 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:12:25,648 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:12:27,910 [MainThread  ] Start creating models
+2019-11-25 22:12:31,360 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:12:31,361 [MainThread  ] Start training cifar10_un
+2019-11-25 22:19:31,130 [MainThread  ] train batch 250 / 1562 (iter 250), current average result {'jigsaw_acc': tensor(0.4364, device='cuda:0'), 'loss': tensor(0.6932, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 22:26:26,716 [MainThread  ] train batch 500 / 1562 (iter 500), current average result {'jigsaw_acc': tensor(0.4622, device='cuda:0'), 'loss': tensor(0.6931, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 22:32:39,524 [MainThread  ] Experiment Allp-1
+2019-11-25 22:32:39,535 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Allp-1', exp_name='Allp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Allp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:32:39,535 [MainThread  ] Start creating tasks
+2019-11-25 22:32:39,535 [MainThread  ] Start loading data
+2019-11-25 22:32:39,536 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:32:48,204 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:32:50,450 [MainThread  ] Start creating models
+2019-11-25 22:32:59,347 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:32:59,347 [MainThread  ] Start training cifar10_un
+2019-11-25 22:41:34,906 [MainThread  ] Experiment Allp-1
+2019-11-25 22:41:34,907 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Allp-1', exp_name='Allp-1', finetune_ckpt_interval=0, finetune_tasks=['cifar10_lp5'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, finetuning_learning_rate=0.0001, load_ckpt='', model='Allp', num_aug=8, num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-25 22:41:34,907 [MainThread  ] Start creating tasks
+2019-11-25 22:41:34,907 [MainThread  ] Start loading data
+2019-11-25 22:41:34,907 [MainThread  ] Loading cifar10_un data
+2019-11-25 22:41:42,211 [MainThread  ] Loading cifar10_lp5 data
+2019-11-25 22:41:44,531 [MainThread  ] Start creating models
+2019-11-25 22:41:48,031 [MainThread  ] Setup trainer for cifar10_un
+2019-11-25 22:41:48,031 [MainThread  ] Start training cifar10_un
+2019-11-25 22:49:24,885 [MainThread  ] train batch 250 / 1562 (iter 250), current average result {'jigsaw_acc': tensor(0.4062, device='cuda:0'), 'loss': tensor(1.0549, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 22:56:56,261 [MainThread  ] train batch 500 / 1562 (iter 500), current average result {'jigsaw_acc': tensor(0.4106, device='cuda:0'), 'loss': tensor(0.8857, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:04:27,898 [MainThread  ] train batch 750 / 1562 (iter 750), current average result {'jigsaw_acc': tensor(0.4110, device='cuda:0'), 'loss': tensor(0.8299, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:11:59,122 [MainThread  ] train batch 1000 / 1562 (iter 1000), current average result {'jigsaw_acc': tensor(0.4252, device='cuda:0'), 'loss': tensor(0.7990, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:19:30,054 [MainThread  ] train batch 1250 / 1562 (iter 1250), current average result {'jigsaw_acc': tensor(0.4438, device='cuda:0'), 'loss': tensor(0.7781, device='cuda:0', grad_fn=<DivBackward0>)}
+2019-11-25 23:27:00,739 [MainThread  ] train batch 1500 / 1562 (iter 1500), current average result {'jigsaw_acc': tensor(0.4575, device='cuda:0'), 'loss': tensor(0.7639, device='cuda:0', grad_fn=<DivBackward0>)}
