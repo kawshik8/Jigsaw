@@ -72,6 +72,7 @@ class Trainer(object):
                 if self.stage == "pretrain":
                     for k, v in batch_input.items():
                         batch_input[k] = v.flatten(0, 1)
+                        batch_input[k] = batch_input[k].to(self.args.device)
                 self.model.zero_grad()
                 batch_output = self.model(batch_input, self.task)
                 self.task.update_scorers(batch_input, batch_output)
