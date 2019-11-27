@@ -13,6 +13,8 @@ def get_model(name, args):
         return AllPatchModel(args)
     elif name == "Exp":
         return ExchangePatchModel(args)
+    elif name == "baseline":
+        return BaselineModel(args)
     else:
         raise NotImplementedError
 

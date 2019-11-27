@@ -70,7 +70,7 @@ parser.add_argument(
 
 # Model settings
 # model
-parser.add_argument("--model", type=str, default="selfie", choices=["selfie","Allp","Exp"])
+parser.add_argument("--model", type=str, default="selfie", choices=["baseline","selfie","Allp","Exp"])
 # TODO: some settings about model extensions
 # TODO: e.g. whether to use negative example from minibatch
 
