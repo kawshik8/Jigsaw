@@ -107,6 +107,62 @@ class JigsawModel(nn.Module):
 def masked_select(inp, mask):
     return inp.flatten(0, len(mask.size()) - 1)[mask.flatten().nonzero()[:, 0]]
 
+class BaselineModel(JigsawModel):
+    def __init__(self, args):
+        super().__init__(args)
+
+        self.args = args
+        self.num_patches = args.num_patches
+        self.d_model = 1024
+
+        full_resnet = resnet.resnet50()
+        self.patch_network = nn.Sequential(
+            full_resnet.conv1,
+            full_resnet.bn1,
+            full_resnet.relu,
+            full_resnet.maxpool,
+            full_resnet.layer1,
+            full_resnet.layer2,
+            full_resnet.layer3,
+        )
+
+        self.cls_classifiers = nn.ModuleDict()
+
+        from tasks import task_num_class
+
+        for taskname in args.finetune_tasks:
+            self.cls_classifiers[taskname] = nn.Sequential(
+                nn.AvgPool1d(self.num_patches), nn.Linear(self.d_model, task_num_class(taskname))
+            )
+
+        self.avg_pool = nn.AvgPool1d(self.num_patches)
+        self.sigmoid = nn.Sigmoid()
+        self.shared_params = list(self.patch_network.parameters())
+        self.shared_params += list(self.attention_pooling.parameters())
+        self.pretrain_params = list(self.sigmoid.parameters())
+        self.finetune_params = list(self.cls_classifiers.parameters())
+
+    def forward(self, batch_input, task=None):
+        batch_output = {}
+        
+        inp = batch_input["image"]
+
+        device = inp.device#batch_input["aug"].device
+        bs = inp.size(0)
+
+        patches = self.patch_network(inp.flatten(0, 1)).view(
+            bs, self.num_patches, -1
+        )  # (bs, num_patches, d_model)
+        # pool = self.attention_pooling(patches)# (bs, aug_patches, d_model)
+        final = self.avg_pool(patches.transpose(1,2)).view(bs,self.d_model) # (bs, d_model)
+
+        cls_pred = self.cls_classifier[task.name](final)
+        batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
+        batch_output["predict"] = cls_pred.max(dim=1)[1]
+        batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
+
+        return batch_output
+
 
 class SelfieModel(JigsawModel):
     def __init__(self, args):
@@ -203,7 +259,7 @@ class AllPatchModel(JigsawModel):
         super().__init__(args)
 
         self.args = args
-        self.num_aug = args.num_aug
+        self.dup-pos = args.dup-pos
         self.num_patches = args.num_patches
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
@@ -244,10 +300,8 @@ class AllPatchModel(JigsawModel):
 
     def forward(self, batch_input, task=None):
         batch_output = {}
-        if self.stage == "pretrain":
-            inp = batch_input["aug"]
-        else:
-            inp = batch_input["image"]
+        
+        inp = batch_input["image"]
 
         device = inp.device#batch_input["aug"].device
         bs = inp.size(0)
@@ -268,9 +322,9 @@ class AllPatchModel(JigsawModel):
 
             jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
             for i in range(bs):
-                #print((i/self.num_aug)*self.num_aug,((i/self.num_aug)+1)*self.num_aug)
-                indices = torch.arange(int((i/self.num_aug))*self.num_aug,int(((i/self.num_aug))+1)*self.num_aug).type(torch.long).to(device)
-                #### Creates an array of size self.num_aug_patches 
+                
+                indices = torch.arange(int((i/self.dup-pos))*self.dup-pos,int(((i/self.dup-pos))+1)*self.dup-pos).type(torch.long).to(device)
+                #### Creates an array of size self.dup-pos_patches 
                 jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
                 #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
@@ -293,7 +347,7 @@ class ExchangePatchModel(JigsawModel):
         super().__init__(args)
 
         self.args = args
-        self.num_aug = args.num_aug
+        self.dup-pos = args.dup-pos
         self.num_patches = args.num_patches
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
@@ -370,10 +424,7 @@ class ExchangePatchModel(JigsawModel):
     def forward(self, batch_input, task=None):
         batch_output = {}
 
-        if self.stage == "pretrain":
-            inp = batch_input["aug"]
-        else:
-            inp = batch_input["image"]
+        inp = batch_input["image"]
 
         device = inp.device
         bs = inp.size(0)
@@ -394,9 +445,7 @@ class ExchangePatchModel(JigsawModel):
         input_attn_pool = self.res_block3(output_attn3)# (bs, num_aug_patches, d_model)
         output_attn_pool = self.attention_pooling(input_attn_pool.view(bs,self.num_patches,-1)).view_as(input_attn_pool)
         final = self.avg_pool(output_attn_pool.view(bs,self.num_patches,-1).transpose(1,2)).view(bs,self.d_model)
-        # self.Exchange_network(batch_input["aug"].flatten(0, 1)).view(
-        #     bs, self.num_patches, -1
-        # )  # (bs, num_aug_patches, d_model)
+        
         if self.stage == "pretrain":
 
             similarity = torch.mm(
@@ -407,9 +456,9 @@ class ExchangePatchModel(JigsawModel):
 
             jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
             for i in range(bs):
-                #print((i/self.num_aug)*self.num_aug,((i/self.num_aug)+1)*self.num_aug)
-                indices = torch.arange(int((i/self.num_aug))*self.num_aug,int(((i/self.num_aug))+1)*self.num_aug).type(torch.long).to(device)
-                #### Creates an array of size self.num_aug_patches 
+                #print((i/self.dup-pos)*self.dup-pos,((i/self.dup-pos)+1)*self.dup-pos)
+                indices = torch.arange(int((i/self.dup-pos))*self.dup-pos,int(((i/self.dup-pos))+1)*self.dup-pos).type(torch.long).to(device)
+                #### Creates an array of size self.dup-pos_patches 
                 jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
                 #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 

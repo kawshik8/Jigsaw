@@ -193,7 +193,6 @@ class Task(object):
             output[split] = {
                 "idx": torch.LongTensor(idx),
                 "image": image,
-                "aug": image,
                 "query": torch.ones((len(image), self.args.num_patches), dtype=torch.bool),
                 "label": torch.LongTensor(label),
             }
@@ -300,19 +299,6 @@ class CIFAR10(Task):
                         ]
                     ),
                 ),
-                "aug": DupTransform(
-                    self.args.num_aug,
-                    transforms.Compose(
-                        [
-                            img_jitter,
-                            col_jitter,
-                            rnd_gray,
-                            transforms.ToTensor(),
-                            normalize,
-                            ToPatches(self.args.num_patches),
-                        ]
-                    ),
-                ),
                 "query": DupTransform(
                     self.args.dup_pos, RandZero(self.args.num_patches, self.args.num_queries)
                 ),
@@ -397,19 +383,6 @@ class STL10(Task):
                 "idx": DupTransform(self.args.dup_pos),
                 "image": DupTransform(
                     self.args.dup_pos,
-                    transforms.Compose(
-                        [
-                            rand_crop,
-                            col_jitter,
-                            rnd_gray,
-                            transforms.ToTensor(),
-                            normalize,
-                            ToPatches(self.args.num_patches),
-                        ]
-                    ),
-                ),
-                "aug": DupTransform(
-                    self.args.num_aug,
                     transforms.Compose(
                         [
                             rand_crop,
