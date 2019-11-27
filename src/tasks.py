@@ -260,7 +260,7 @@ class Task(object):
         self.scorers["count"] += count
         for key in self.scorers.keys():
             if key != "count":
-                self.scorers[key].append(batch_output[key] * count)
+                self.scorers[key].append(batch_output[key].cpu().sum() * count)
 
     def report_scorers(self, reset=False):
         avg_scores = {
