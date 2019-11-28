@@ -55,7 +55,7 @@ parser.add_argument(
 )
 # cache_pos
 parser.add_argument(
-    "--dup-pos",
+    "--dup_pos",
     type=int,
     default=0,
     help="number of duplicated positive images per image in minibatch",
@@ -78,9 +78,9 @@ parser.add_argument("--model", type=str, default="selfie", choices=["baseline","
 # Training settings
 # load_ckpt
 parser.add_argument(
-    "--load-ckpt",
+    "--load_ckpt",
     type=str,
-    default="",
+    default="none",
     help="load parameters from a checkpoint, choose auto to resume interrupted experiment",
 )
 # clip
@@ -90,7 +90,7 @@ parser.add_argument(
     "--pretrain-learning-rate", type=float, default=3e-4, help="learning rate for pretraining"
 )
 parser.add_argument(
-    "--finetuning-learning-rate", type=float, default=1e-4, help="learning rate for finetuning"
+    "--finetune_learning_rate", type=float, default=1e-4, help="learning rate for finetuning"
 )
 # weight_decay
 parser.add_argument(
@@ -109,7 +109,7 @@ parser.add_argument(
     default=10000,
     help="maximum iters for finetuning, set to 0 to skip finetune training",
 )
-parser.add_argument("--warmup-iters", type=int, default=1000, help="lr warmup iters")
+parser.add_argument("--warmup_iters", type=int, default=1000, help="lr warmup iters")
 parser.add_argument(
     "--report-interval", type=int, default=250, help="number of iteratiopns between reports"
 )

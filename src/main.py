@@ -27,8 +27,9 @@ def main(args):
         task.load_data()
     log.info("Start creating models")
     model = get_model(args.model, args)
+    log.info("Loaded %s model" % (args.model))
     model.to(args.device)
-    if args.load_ckpt:
+    if args.load_ckpt != "none":
         load_model(args.load_ckpt, model)
 
     # pretrain
@@ -44,7 +45,8 @@ def main(args):
 
     # finetune
     for task in finetune_tasks:
-        load_model(model, pretrain_complete_ckpt)
+        if pretrain_complete_ckpt != "none":
+            load_model(model, pretrain_complete_ckpt)
         finetune = Trainer("finetune", model, task, args)
         finetune.train()
 

@@ -14,3 +14,4 @@ data/cifar10/cifar-10-batches-py/readme.html
 data/cifar10/cifar-10-batches-py/test_batch
 data/cifar10/cifar-10-python.tar.gz
 data/cifar10/cifar10_lp5.json
+data/cifar10/cifar10_lp100.json

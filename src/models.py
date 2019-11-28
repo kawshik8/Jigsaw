@@ -98,7 +98,7 @@ class JigsawModel(nn.Module):
                 optimizer=optimizer,
                 anneal_strategy="cos",
                 total_steps=self.args.finetune_total_iters,
-                pct_start=self.args.warmup / self.args.finetune_total_iters,
+                pct_start=self.args.warmup_iters / self.args.finetune_total_iters,
                 cycle_momentum=False,
                 max_lr=self.args.finetune_learning_rate,
             )
@@ -133,15 +133,13 @@ class BaselineModel(JigsawModel):
         from tasks import task_num_class
 
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname] = nn.Sequential(
-                nn.AvgPool1d(self.num_patches), nn.Linear(self.d_model, task_num_class(taskname))
-            )
+            self.cls_classifiers[taskname] = nn.Linear(self.d_model, task_num_class(taskname))
 
         self.avg_pool = nn.AvgPool1d(self.num_patches)
         self.sigmoid = nn.Sigmoid()
         self.shared_params = list(self.patch_network.parameters())
-        self.shared_params += list(self.attention_pooling.parameters())
-        self.pretrain_params = list(self.sigmoid.parameters())
+        #self.shared_params += list(self.attention_pooling.parameters())
+        self.pretrain_params = list(self.cls_classifiers.parameters())
         self.finetune_params = list(self.cls_classifiers.parameters())
 
     def forward(self, batch_input, task=None):
@@ -157,8 +155,8 @@ class BaselineModel(JigsawModel):
         )  # (bs, num_patches, d_model)
         # pool = self.attention_pooling(patches)# (bs, aug_patches, d_model)
         final = self.avg_pool(patches.transpose(1,2)).view(bs,self.d_model) # (bs, d_model)
-
-        cls_pred = self.cls_classifier[task.name](final)
+        #print(final.shape)
+        cls_pred = self.cls_classifiers[task.name](final)
         batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
         batch_output["predict"] = cls_pred.max(dim=1)[1]
         batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
@@ -248,7 +246,7 @@ class SelfieModel(JigsawModel):
 
         elif self.stage == "finetune":
             hidden = self.attention_pooling(patches).mean(dim=1)
-            cls_pred = self.cls_classifier[task.name](hidden)
+            cls_pred = self.cls_classifiers[task.name](hidden)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (
@@ -261,7 +259,7 @@ class AllPatchModel(JigsawModel):
         super().__init__(args)
 
         self.args = args
-        self.dup-pos = args.dup-pos
+        self.dup_pos = args.dup_pos
         self.num_patches = args.num_patches
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
@@ -289,9 +287,7 @@ class AllPatchModel(JigsawModel):
         from tasks import task_num_class
 
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname] = nn.Sequential(
-                nn.AvgPool1d(self.num_patches), nn.Linear(self.d_model, task_num_class(taskname))
-            )
+            self.cls_classifiers[taskname] = nn.Linear(self.d_model, task_num_class(taskname))
 
         self.avg_pool = nn.AvgPool1d(self.num_patches)
         self.sigmoid = nn.Sigmoid()
@@ -325,8 +321,8 @@ class AllPatchModel(JigsawModel):
             jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
             for i in range(bs):
                 
-                indices = torch.arange(int((i/self.dup-pos))*self.dup-pos,int(((i/self.dup-pos))+1)*self.dup-pos).type(torch.long).to(device)
-                #### Creates an array of size self.dup-pos_patches 
+                indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
+                #### Creates an array of size self.dup_pos_patches 
                 jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
                 #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
@@ -338,7 +334,7 @@ class AllPatchModel(JigsawModel):
 
         elif self.stage == "finetune":
             
-            cls_pred = self.cls_classifier[task.name](final)
+            cls_pred = self.cls_classifiers[task.name](final)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
@@ -349,7 +345,7 @@ class ExchangePatchModel(JigsawModel):
         super().__init__(args)
 
         self.args = args
-        self.dup-pos = args.dup-pos
+        self.dup_pos = args.dup_pos
         self.num_patches = args.num_patches
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
@@ -400,9 +396,7 @@ class ExchangePatchModel(JigsawModel):
         from tasks import task_num_class
 
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname] = nn.Sequential(
-                nn.AvgPool1d(self.num_patches), nn.Linear(self.d_model, task_num_class(taskname))
-            )
+            self.cls_classifiers[taskname] = nn.Linear(self.d_model, task_num_class(taskname))
 
         self.avg_pool = nn.AvgPool1d(self.num_patches)
 
@@ -458,9 +452,9 @@ class ExchangePatchModel(JigsawModel):
 
             jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
             for i in range(bs):
-                #print((i/self.dup-pos)*self.dup-pos,((i/self.dup-pos)+1)*self.dup-pos)
-                indices = torch.arange(int((i/self.dup-pos))*self.dup-pos,int(((i/self.dup-pos))+1)*self.dup-pos).type(torch.long).to(device)
-                #### Creates an array of size self.dup-pos_patches 
+                #print((i/self.dup_pos)*self.dup_pos,((i/self.dup_pos)+1)*self.dup_pos)
+                indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
+                #### Creates an array of size self.dup_pos_patches 
                 jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
                 #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
@@ -472,7 +466,7 @@ class ExchangePatchModel(JigsawModel):
 
         elif self.stage == "finetune":
             #hidden = self.attention_pooling(patches)
-            cls_pred = self.cls_classifier[task.name](final)
+            cls_pred = self.cls_classifiers[task.name](final)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()

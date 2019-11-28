@@ -94,7 +94,7 @@ class Trainer(object):
                     )
                 if (
                     self.val_interval > 0
-                    and self.self.training_infos["current_iter"] % self.val_interval == 0
+                    and self.training_infos["current_iter"] % self.val_interval == 0
                 ):
                     eval_scores = self.eval("val")
                     if eval_scores[self.task.eval_metric] < self.training_infos["best_performance"]:
