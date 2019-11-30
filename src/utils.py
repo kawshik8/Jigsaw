@@ -21,7 +21,7 @@ def load_model(load_ckpt, model):
     log.info("Load parameters from %s" % load_ckpt)
 
 
-def save_model(save_ckpt, model):
+def save_model(model, save_ckpt):
     """
     Save the parameters of the model to a checkpoint
     """
