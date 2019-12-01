@@ -30,14 +30,14 @@ def main(args):
     log.info("Loaded %s model" % (args.model))
     model.to(args.device)
     if args.load_ckpt != "none":
-        load_model(args.load_ckpt, model)
+        load_model(model, pretrain_complete_ckpt)
 
     # pretrain
     if len(pretrain_task):
         pretrain = Trainer("pretrain", model, pretrain_task[0], args)
         pretrain.train()
         pretrain_complete_ckpt = os.path.join(
-            args.exp_dir, "pretrain_%s_complete.ckpt" % pretrain_task[0].name
+            args.exp_dir, "pretrain_%s_complete.pth" % pretrain_task[0].name
         )
         save_model(model, pretrain_complete_ckpt)
     else:

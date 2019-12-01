@@ -81,7 +81,7 @@ class JigsawModel(nn.Module):
             param_groups = [
                 {
                     "params": self.finetune_params,
-                    "max_lr": self.args.pretrain_learning_rate,
+                    "max_lr": self.args.finetune_learning_rate,
                     "weight_decay": self.args.finetune_weight_decay,
                 }
             ]
