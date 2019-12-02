@@ -55,7 +55,7 @@ class Trainer(object):
                         )
                     )
 
-        scores = self.task.report_scorers(reset=True, show_details=False)
+        scores = self.task.report_scorers(reset=True)
         log.info("Evalutation complete\nAverage result %s" % scores.__str__())
         return scores
 
