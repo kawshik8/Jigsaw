@@ -12,17 +12,16 @@ def config_logging(log_file):
     )
 
 
-def load_model(load_ckpt, model):
+def load_model(model, load_ckpt):
     """
     Load a model, for training, evaluation or prediction
     """
-    print(load_ckpt)
     model_state = torch.load(load_ckpt)
     model.load_state_dict(model_state)
     log.info("Load parameters from %s" % load_ckpt)
 
 
-def save_model(save_ckpt, model):
+def save_model(model, save_ckpt):
     """
     Save the parameters of the model to a checkpoint
     """

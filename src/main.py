@@ -31,7 +31,7 @@ def main(args):
     model.to(args.device)
     args.load_ckpt = os.path.join(args.exp_dir, args.load_ckpt)
     if args.load_ckpt != "none":
-        load_model(args.load_ckpt, model)
+        load_model(model, pretrain_complete_ckpt)
 
     # pretrain
     if len(pretrain_task):
