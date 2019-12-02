@@ -1,0 +1,6 @@
+2019-11-28 22:11:34,785 [MainThread  ] Experiment Baseline-supervised
+2019-11-28 22:11:34,786 [MainThread  ] Receive config Namespace(batch_size=128, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=0, exp_dir='./results/Baseline-supervised', exp_name='Baseline-supervised', finetune_ckpt_interval=0, finetune_learning_rate=0.0001, finetune_tasks=['cifar10_lp100'], finetune_total_iters=10000, finetune_val_interval=2000, finetune_weight_decay=0.01, load_ckpt='none', model='baseline', num_patches=16, num_queries=4, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.0003, pretrain_task=[], pretrain_total_iters=100000, pretrain_weight_decay=0.01, report_interval=250, results_dir='./results', transfer_paradigm='frozen', warmup_iters=1000)
+2019-11-28 22:11:34,786 [MainThread  ] Start creating tasks
+2019-11-28 22:11:34,787 [MainThread  ] Start loading data
+2019-11-28 22:11:34,787 [MainThread  ] Loading cifar10_lp100 data
+2019-11-28 22:11:41,007 [MainThread  ] Start creating models
