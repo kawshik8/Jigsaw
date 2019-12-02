@@ -29,6 +29,7 @@ def main(args):
     model = get_model(args.model, args)
     log.info("Loaded %s model" % (args.model))
     model.to(args.device)
+    args.load_ckpt = os.path.join(args.exp_dir, args.load_ckpt)
     if args.load_ckpt != "none":
         load_model(model, pretrain_complete_ckpt)
 
@@ -39,14 +40,14 @@ def main(args):
         pretrain_complete_ckpt = os.path.join(
             args.exp_dir, "pretrain_%s_complete.pth" % pretrain_task[0].name
         )
-        save_model(model, pretrain_complete_ckpt)
+        save_model(pretrain_complete_ckpt, model)
     else:
         pretrain_complete_ckpt = args.load_ckpt
 
     # finetune
     for task in finetune_tasks:
         if pretrain_complete_ckpt != "none":
-            load_model(model, pretrain_complete_ckpt)
+            load_model(pretrain_complete_ckpt, model)
         finetune = Trainer("finetune", model, task, args)
         finetune.train()
 

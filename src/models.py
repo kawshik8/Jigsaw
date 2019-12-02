@@ -68,6 +68,7 @@ class JigsawModel(nn.Module):
                     "weight_decay": self.args.pretrain_weight_decay,
                 }
             ]
+            #print(self.args.pretrain_learning_rate)
             optimizer = optim.AdamW(param_groups)
             scheduler = torch.optim.lr_scheduler.OneCycleLR(
                 optimizer=optimizer,

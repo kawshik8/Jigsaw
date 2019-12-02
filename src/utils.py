@@ -16,7 +16,6 @@ def load_model(model, load_ckpt):
     """
     Load a model, for training, evaluation or prediction
     """
-    
     model_state = torch.load(load_ckpt)
     model.load_state_dict(model_state)
     log.info("Load parameters from %s" % load_ckpt)
