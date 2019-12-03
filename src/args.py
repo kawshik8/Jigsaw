@@ -53,7 +53,7 @@ parser.add_argument("--num-workers", type=int, default=16, help="number of cpu w
 parser.add_argument(
     "--batch-size", type=int, default=64, help="number of images per minibatch",
 )
-# cache_pos
+# dup_pos
 parser.add_argument(
     "--dup-pos",
     type=int,
