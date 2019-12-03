@@ -41,21 +41,21 @@ parser.add_argument(
 )
 # num_patches
 parser.add_argument(
-    "--num_patches", type=int, default=16, help="number of patches an image is broken into"
+    "--num-patches", type=int, default=16, help="number of patches an image is broken into"
 )
 # num_queries
 parser.add_argument(
-    "--num_queries", type=int, default=4, help="number of patches an image to predict"
+    "--num-queries", type=int, default=4, help="number of patches an image to predict"
 )
 # num_workers
-parser.add_argument("--num_workers", type=int, default=16, help="number of cpu workers in iterator")
+parser.add_argument("--num-workers", type=int, default=16, help="number of cpu workers in iterator")
 # batch_size
 parser.add_argument(
     "--batch-size", type=int, default=64, help="number of images per minibatch",
 )
-# cache_pos
+# dup_pos
 parser.add_argument(
-    "--dup_pos",
+    "--dup-pos",
     type=int,
     default=0,
     help="number of duplicated positive images per image in minibatch",
@@ -70,7 +70,9 @@ parser.add_argument(
 
 # Model settings
 # model
-parser.add_argument("--model", type=str, default="selfie", choices=["baseline","selfie","Allp","Exp"])
+parser.add_argument(
+    "--model", type=str, default="selfie", choices=["baseline", "selfie", "Allp", "Exp"]
+)
 # TODO: some settings about model extensions
 # TODO: e.g. whether to use negative example from minibatch
 
@@ -78,7 +80,7 @@ parser.add_argument("--model", type=str, default="selfie", choices=["baseline","
 # Training settings
 # load_ckpt
 parser.add_argument(
-    "--load_ckpt",
+    "--load-ckpt",
     type=str,
     default="none",
     help="load parameters from a checkpoint, choose auto to resume interrupted experiment",
@@ -90,7 +92,7 @@ parser.add_argument(
     "--pretrain-learning-rate", type=float, default=3e-4, help="learning rate for pretraining"
 )
 parser.add_argument(
-    "--finetune_learning_rate", type=float, default=1e-4, help="learning rate for finetuning"
+    "--finetune-learning-rate", type=float, default=1e-4, help="learning rate for finetuning"
 )
 # weight_decay
 parser.add_argument(
@@ -109,7 +111,7 @@ parser.add_argument(
     default=10000,
     help="maximum iters for finetuning, set to 0 to skip finetune training",
 )
-parser.add_argument("--warmup_iters", type=int, default=1000, help="lr warmup iters")
+parser.add_argument("--warmup-iters", type=int, default=1000, help="lr warmup iters")
 parser.add_argument(
     "--report-interval", type=int, default=250, help="number of iteratiopns between reports"
 )
@@ -131,10 +133,9 @@ parser.add_argument(
     "--transfer-paradigm",
     type=str,
     default="frozen",
-    choices=["frozen", "tunable", "bound"],
+    choices=["frozen", "tunable"],
     help="""frozen: use fixed representation,
-            tunable: finetune the whole model,
-            (unimplemented) bound: parameters are tunable but decay towards pretrained model""",
+            tunable: finetune the whole model""",
 )
 
 
