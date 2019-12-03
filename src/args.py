@@ -45,7 +45,7 @@ parser.add_argument(
 )
 # num_queries
 parser.add_argument(
-    "--num_queries", type=int, default=4, help="number of patches an image to predict"
+    "--num_queries_percentage", type=float, default=0.75, help="number of patches an image to predict", options=["0.5","0.75"]
 )
 # num_workers
 parser.add_argument("--num_workers", type=int, default=16, help="number of cpu workers in iterator")
@@ -140,6 +140,7 @@ parser.add_argument(
 
 def process_args(args):
     # TODO: some asserts, check the arguments
+    args.num_queries = round(args.num_queries_percentage * args.num_patches)
     args.pretrain_task = list(filter(lambda task: task != "none", [args.pretrain_task]))
     args.finetune_tasks = list(filter(lambda task: task != "none", args.finetune_tasks.split(",")))
     args.exp_dir = os.path.join(args.results_dir, args.exp_name)
