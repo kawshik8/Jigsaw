@@ -12,7 +12,7 @@ def config_logging(log_file):
     )
 
 
-def load_model(model, load_ckpt):
+def load_model(load_ckpt, model):
     """
     Load a model, for training, evaluation or prediction
     """
@@ -21,7 +21,7 @@ def load_model(model, load_ckpt):
     log.info("Load parameters from %s" % load_ckpt)
 
 
-def save_model(model, save_ckpt):
+def save_model(save_ckpt, model):
     """
     Save the parameters of the model to a checkpoint
     """

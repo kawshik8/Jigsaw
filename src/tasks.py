@@ -231,6 +231,7 @@ class Task(object):
         train_transform, eval_transform = self._get_transforms()
         if self.pretrain:
             data["train"] = TransformDataset(train_transform, data["train"])
+            data["val"] = TransformDataset(eval_transform, data["val"])
         else:
             data["train"] = TransformDataset(train_transform, data["train"])
             data["val"] = TransformDataset(eval_transform, data["val"])

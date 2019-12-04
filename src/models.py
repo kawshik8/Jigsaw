@@ -282,8 +282,8 @@ class SelfieModel_revised(JigsawModel):
 
         self.d_model = 1024
 
-        self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.args.batch_size, self.d_model), dtype = torch.float, requires_grad=True))
-
+        self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.d_model,), dtype = torch.float, requires_grad=True))
+        #print(self.attention_pool_u0.shape)
         transformer_layer = nn.TransformerEncoderLayer(d_model=self.d_model, nhead=32, dropout=0.1, dim_feedforward=640, activation='gelu')
         layer_norm = nn.LayerNorm(normalized_shape=self.d_model)
         self.attention_pooling = nn.TransformerEncoder(
@@ -308,7 +308,9 @@ class SelfieModel_revised(JigsawModel):
         
         device = batch_input["image"].device
         bs = batch_input["image"].size(0)
-        self.attention_pool_u0 = self.attention_pool_u0.to(device)
+        #print(self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).shape)
+        u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
+        u0 = u0.to(device)
         patches = self.patch_network(batch_input["image"].flatten(0, 1)).view(
             bs, self.num_patches, -1
         )
@@ -328,7 +330,8 @@ class SelfieModel_revised(JigsawModel):
             ).view(
                 bs, self.num_queries, self.d_model
             ) # (bs, num_queries, d_model)
-            u0 = self.attention_pool_u0.view(bs,1,1,self.d_model).repeat(1,self.num_queries,1,1).flatten(0,1) # (bs * num_queries, 1, d_model)
+         #   print(self.attention_pool_u0.shape,query_patch.shape)
+            u0 = u0.view(bs,1,1,self.d_model).repeat(1,self.num_queries,1,1).flatten(0,1) # (bs * num_queries, 1, d_model)
             global_vector = self.attention_pooling(
                 torch.cat([u0, visible_patch], dim=1)
             )[:, 0, :].view_as(
@@ -351,7 +354,9 @@ class SelfieModel_revised(JigsawModel):
             batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
-            u0 = self.attention_pool_u0.view(
+            #u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
+            #u0 = u0.to(device)
+            u0 = u0.view(
                 bs,1,self.d_model
             ) # (bs, 1, d_model)
             hidden = self.attention_pooling(torch.cat([u0, patches], dim=1))[:,0,:]
