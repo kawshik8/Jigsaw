@@ -22,7 +22,7 @@ class Trainer(object):
         self.report_interval = args.report_interval
         if stage == "pretrain":
             self.total_iters = args.pretrain_total_iters
-            self.val_interval = 0
+            self.val_interval = args.val_interval
             self.ckpt_interval = args.pretrain_ckpt_interval
         elif stage == "finetune":
             self.total_iters = args.finetune_total_iters
