@@ -45,7 +45,7 @@ parser.add_argument(
 )
 # num_queries
 parser.add_argument(
-    "--num_queries_percentage", type=float, default=0.25, help="number of patches an image to predict", options=["0.5","0.25"]
+    "--num_queries_percentage", type=float, default=0.25, help="number of patches an image to predict", choices=["0.5","0.25"]
 )
 # num_workers
 parser.add_argument("--num_workers", type=int, default=16, help="number of cpu workers in iterator")
@@ -114,6 +114,9 @@ parser.add_argument(
     "--report-interval", type=int, default=250, help="number of iteratiopns between reports"
 )
 parser.add_argument("--finetune-val-interval", type=int, default=2000, help="validation interval")
+parser.add_argument(
+    "--pretrain-val-interval", type=int, default=2000, help="pretrain validation interval"
+)
 parser.add_argument(
     "--pretrain-ckpt-interval",
     type=int,
