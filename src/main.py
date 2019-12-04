@@ -29,9 +29,10 @@ def main(args):
     model = get_model(args.model, args)
     log.info("Loaded %s model" % (args.model))
     model.to(args.device)
-    args.load_ckpt = os.path.join(args.exp_dir, args.load_ckpt)
-    if args.load_ckpt != "none":
-        load_model(model, pretrain_complete_ckpt)
+    if args.load_ckpt!="none":
+        args.load_ckpt = os.path.join(args.exp_dir, args.load_ckpt)
+    #if args.load_ckpt != "none":
+    #    load_model(model, pretrain_complete_ckpt)
 
     # pretrain
     if len(pretrain_task):

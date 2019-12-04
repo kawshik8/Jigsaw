@@ -4,13 +4,13 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import torchvision.models.resnet as resnet
-
+import itertools
 
 def get_model(name, args):
     if name == "selfie":
         return SelfieModel(args)
     elif name == "selfie1":
-        return SelfieModel-revised(args)
+        return SelfieModel_revised(args)
     elif name == "Allp":
         return AllPatchModel(args)
     elif name == "Exp":
@@ -257,7 +257,7 @@ class SelfieModel(JigsawModel):
             )
         return batch_output
 
-class SelfieModel-revised(JigsawModel):
+class SelfieModel_revised(JigsawModel):
     def __init__(self, args):
         super().__init__(args)
 
@@ -282,7 +282,7 @@ class SelfieModel-revised(JigsawModel):
 
         self.d_model = 1024
 
-        self.attention_pool_u0 = torch.randn(size = (self.args.batch-size, self.d_model), dtype = torch.float, requires_grad=True)
+        self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.args.batch_size, self.d_model), dtype = torch.float, requires_grad=True))
 
         transformer_layer = nn.TransformerEncoderLayer(d_model=self.d_model, nhead=32, dropout=0.1, dim_feedforward=640, activation='gelu')
         layer_norm = nn.LayerNorm(normalized_shape=self.d_model)
@@ -299,7 +299,7 @@ class SelfieModel-revised(JigsawModel):
 
         self.shared_params = list(self.patch_network.parameters())
         self.shared_params += list(self.attention_pooling.parameters())
-        self.shared_params += list(self.attention_pool_u0.parameters())
+        self.shared_params += [self.attention_pool_u0]
         self.pretrain_params = list(self.position_embedding.parameters())
         self.finetune_params = list(self.cls_classifiers.parameters())
 
@@ -308,9 +308,9 @@ class SelfieModel-revised(JigsawModel):
         
         device = batch_input["image"].device
         bs = batch_input["image"].size(0)
-
+        self.attention_pool_u0 = self.attention_pool_u0.to(device)
         patches = self.patch_network(batch_input["image"].flatten(0, 1)).view(
-            bs, num_patches, -1
+            bs, self.num_patches, -1
         )
 
         if self.stage == "pretrain":
@@ -328,11 +328,7 @@ class SelfieModel-revised(JigsawModel):
             ).view(
                 bs, self.num_queries, self.d_model
             ) # (bs, num_queries, d_model)
-            u0 = self.attention_pool_u0.view(
-                bs,1,1,self.d_model)
-                .repeat(1,self.num_queries,1,1)
-                .flatten(0,1)
-            ) # (bs * num_queries, 1, d_model)
+            u0 = self.attention_pool_u0.view(bs,1,1,self.d_model).repeat(1,self.num_queries,1,1).flatten(0,1) # (bs * num_queries, 1, d_model)
             global_vector = self.attention_pooling(
                 torch.cat([u0, visible_patch], dim=1)
             )[:, 0, :].view_as(
@@ -356,7 +352,7 @@ class SelfieModel-revised(JigsawModel):
 
         elif self.stage == "finetune":
             u0 = self.attention_pool_u0.view(
-                bs,1,self.d_model)
+                bs,1,self.d_model
             ) # (bs, 1, d_model)
             hidden = self.attention_pooling(torch.cat([u0, patches], dim=1))[:,0,:]
             cls_pred = self.cls_classifiers[task.name](hidden)
