@@ -71,6 +71,7 @@ class Trainer(object):
         log.info("Start training %s" % self.task.name)
         self.model.train()
         self.task.reset_scorers()
+        self.val_interval = len(self.task.data_iterators["train"])
         all_param = [param for group in self.optimizer.param_groups for param in group["params"]]
         for epoch in range(math.ceil(self.total_iters / len(self.task.data_iterators["train"]))):
             for batch, batch_input in enumerate(self.task.data_iterators["train"]):

@@ -290,6 +290,7 @@ class CIFAR10(Task):
                     self.args.dup_pos,
                     transforms.Compose(
                         [
+                            flip_lr,
                             img_jitter,
                             col_jitter,
                             rnd_gray,
@@ -327,13 +328,8 @@ class CIFAR10(Task):
     def _load_raw_data(self):
         cifar10_train = datasets.CIFAR10(root=self.path, train=True, download=True)
         if self.pretrain:
-            cifar10_train_f = datasets.CIFAR10(
-                root=self.path,
-                train=True,
-                transform=transforms.RandomHorizontalFlip(p=1.0),
-                download=True,
-            )
-            raw_data = {"train": cifar10_train + cifar10_train_f}
+            cifar10_train, cifar10_val = self.make_data_split(cifar10_train, 1.0)
+            raw_data = {"train": cifar10_train, "val": cifar10_val}
         else:
             cifar10_test = datasets.CIFAR10(root=self.path, train=False, download=True)
             cifar10_train, cifar10_val = self.make_data_split(cifar10_train, self.label_pct)
@@ -348,13 +344,8 @@ class CIFAR100(CIFAR10):
     def _load_raw_data(self):
         cifar100_train = datasets.CIFAR100(root=self.path, train=True, download=True)
         if self.pretrain:
-            cifar100_train_f = datasets.CIFAR100(
-                root=self.path,
-                train=True,
-                transform=transforms.RandomHorizontalFlip(p=1.0),
-                download=True,
-            )
-            raw_data = {"train": cifar100_train + cifar100_train_f}
+            cifar100_train, cifar100_val = self.make_data_split(cifar100_train, 1.0)
+            raw_data = {"train": cifar100_train, "val": cifar100_val}
         else:
             cifar100_test = datasets.CIFAR100(root=self.path, train=False, download=True)
             cifar100_train, cifar100_val = self.make_data_split(cifar100_train, self.label_pct)
