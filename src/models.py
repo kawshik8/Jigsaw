@@ -390,7 +390,9 @@ class AllPatchModel(JigsawModel):
             full_resnet.layer3,
         )
 
-        transformer_layer = nn.TransformerEncoderLayer(d_model=self.d_model, nhead=32)
+        self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.d_model,), dtype = torch.float, requires_grad=True))
+
+        transformer_layer = nn.TransformerEncoderLayer(d_model=self.d_model, nhead=32, dropout=0.1, dim_feedforward=640, activation='gelu')
         layer_norm = nn.LayerNorm(normalized_shape=self.d_model)
         self.attention_pooling = nn.TransformerEncoder(
             encoder_layer=transformer_layer, num_layers=3, norm=layer_norm
@@ -407,7 +409,8 @@ class AllPatchModel(JigsawModel):
         self.sigmoid = nn.Sigmoid()
         self.shared_params = list(self.patch_network.parameters())
         self.shared_params += list(self.attention_pooling.parameters())
-        self.pretrain_params = list(self.sigmoid.parameters())
+        self.shared_params += [self.attention_pool_u0]
+        #self.pretrain_params = list(self.sigmoid.parameters())
         self.finetune_params = list(self.cls_classifiers.parameters())
 
     def forward(self, batch_input, task=None):
@@ -418,11 +421,17 @@ class AllPatchModel(JigsawModel):
         device = inp.device#batch_input["aug"].device
         bs = inp.size(0)
 
+        u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
+        u0 = u0.to(device)
+
         patches = self.patch_network(inp.flatten(0, 1)).view(
             bs, self.num_patches, -1
         )  # (bs, num_patches, d_model)
-        attn_pool = self.attention_pooling(patches)# (bs, aug_patches, d_model)
-        final = self.avg_pool(attn_pool.transpose(1,2)).view(bs,self.d_model) # (bs, d_model)
+        u0 = u0.view(
+                bs,1,self.d_model
+        ) # (bs, 1, d_model)
+        final = torch.cat([u0, patches], dim=1))[:,0,:]# (bs, aug_patches, d_model)
+        #final = self.avg_pool(attn_pool.transpose(1,2)).view(bs,self.d_model) # (bs, d_model)
 
         if self.stage == "pretrain":
             
@@ -476,19 +485,19 @@ class ExchangePatchModel(JigsawModel):
             full_resnet.maxpool,
         )
 
-        transformer_layer1 = nn.TransformerEncoderLayer(d_model=self.f1, nhead=32)
+        transformer_layer1 = nn.TransformerEncoderLayer(d_model=self.f1, nhead=32, dropout=0.1, dim_feedforward=640, activation='gelu')
         layer_norm1 = nn.LayerNorm(normalized_shape=self.f1)
         self.attention_exchange1 = nn.TransformerEncoder(
             encoder_layer=transformer_layer1, num_layers=3, norm=layer_norm1
         )
 
-        transformer_layer2 = nn.TransformerEncoderLayer(d_model=self.f2, nhead=32)
+        transformer_layer2 = nn.TransformerEncoderLayer(d_model=self.f2, nhead=32, dropout=0.1, dim_feedforward=640, activation='gelu')
         layer_norm2 = nn.LayerNorm(normalized_shape=self.f2)
         self.attention_exchange2 = nn.TransformerEncoder(
             encoder_layer=transformer_layer2, num_layers=3, norm=layer_norm2
         )
 
-        transformer_layer3 = nn.TransformerEncoderLayer(d_model=self.f3, nhead=32)
+        transformer_layer3 = nn.TransformerEncoderLayer(d_model=self.f3, nhead=32, dropout=0.1, dim_feedforward=640, activation='gelu')
         layer_norm3 = nn.LayerNorm(normalized_shape=self.f3)
         self.attention_exchange3 = nn.TransformerEncoder(
             encoder_layer=transformer_layer3, num_layers=3, norm=layer_norm3
@@ -498,7 +507,9 @@ class ExchangePatchModel(JigsawModel):
         self.res_block2  =  full_resnet.layer2
         self.res_block3  =  full_resnet.layer3
 
-        final_transformer_layer = nn.TransformerEncoderLayer(d_model=self.d_model, nhead=32)
+        self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.d_model,), dtype = torch.float, requires_grad=True))
+
+        final_transformer_layer = nn.TransformerEncoderLayer(d_model=self.d_model, nhead=32, dropout=0.1, dim_feedforward=640, activation='gelu')
         final_layer_norm = nn.LayerNorm(normalized_shape=self.d_model)
         self.attention_pooling = nn.TransformerEncoder(
             encoder_layer=final_transformer_layer, num_layers=3, norm=final_layer_norm
@@ -527,7 +538,7 @@ class ExchangePatchModel(JigsawModel):
         self.sigmoid = nn.Sigmoid()
         
         self.shared_params = list(self.Exchange_network.parameters())
-        #self.shared_params += list(self.attention_pooling.parameters())
+        self.shared_params += [self.attention_pool_u0]
         self.pretrain_params = list(self.avg_pool.parameters())
         self.finetune_params = list(self.cls_classifiers.parameters())
 
@@ -538,6 +549,9 @@ class ExchangePatchModel(JigsawModel):
 
         device = inp.device
         bs = inp.size(0)
+
+        u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
+        u0 = u0.to(device)
 
         #print(inp.flatten(0, 1).size())
         input_attn1 = self.initial_layers(inp.flatten(0, 1)) # (bs, num_aug_patches, f1, h1, w1)
@@ -553,10 +567,15 @@ class ExchangePatchModel(JigsawModel):
         output_attn3 = self.attention_exchange3(input_attn3.view(bs,self.num_patches,-1)).view_as(input_attn3)
 
         input_attn_pool = self.res_block3(output_attn3)# (bs, num_aug_patches, d_model)
-        output_attn_pool = self.attention_pooling(input_attn_pool.view(bs,self.num_patches,-1)).view_as(input_attn_pool)
-        final = self.avg_pool(output_attn_pool.view(bs,self.num_patches,-1).transpose(1,2)).view(bs,self.d_model)
+
+        u0 = u0.view(
+            bs,1,self.d_model
+        ) # (bs, 1, d_model)
+        final = torch.cat([u0, input_attn_pool.view(bs,self.num_patches,-1)], dim=1))[:,0,:]# (bs, aug_patches, d_model)
+        # output_attn_pool = self.attention_pooling(input_attn_pool.view(bs,self.num_patches,-1)).view_as(input_attn_pool)
+        # final = self.avg_pool(output_attn_pool.view(bs,self.num_patches,-1).transpose(1,2)).view(bs,self.d_model)
         
-        if self.stage == "pretrain":
+        if self.stage == "pretrain":    
 
             similarity = torch.mm(
                 final, final.transpose(0,1)
