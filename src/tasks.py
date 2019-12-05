@@ -315,13 +315,17 @@ class CIFAR10(Task):
                         rnd_gray,
                         transforms.ToTensor(),
                         normalize,
-                        ToPatches(self.args.num_patches),
+                       # ToPatches(self.args.num_patches),
                     ]
                 ),
             }
             eval_transform = {
                 "image": transforms.Compose(
-                    [transforms.ToTensor(), normalize, ToPatches(self.args.num_patches)]
+                    [
+                        transforms.ToTensor(), 
+                        normalize, 
+                        #ToPatches(self.args.num_patches)
+                    ]
                 ),
             }
         return train_transform, eval_transform

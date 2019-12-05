@@ -277,8 +277,14 @@ class SelfieModel(JigsawModel):
             full_resnet.layer1,
             full_resnet.layer2,
             full_resnet.layer3,
-            self.avg_pool,
         )
+
+        self.pretrain_network = nn.Sequential(
+            self.patch_network,
+            self.avg_pool
+        )
+
+        self.finetune_conv_layer = full_resnet.layer4
 
         self.d_model = 1024
 
@@ -298,10 +304,11 @@ class SelfieModel(JigsawModel):
             self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.d_model, task_num_class(taskname))
 
         self.shared_params = list(self.patch_network.parameters())
-        self.shared_params += list(self.attention_pooling.parameters())
-        self.shared_params += [self.attention_pool_u0]
         self.pretrain_params = list(self.position_embedding.parameters())
+        self.pretrain_params += list(self.attention_pooling.parameters())
+        self.pretrain_params += [self.attention_pool_u0]
         self.finetune_params = list(self.cls_classifiers.parameters())
+        self.finetune_params += list(self.finetune_conv_layer)
 
     def forward(self, batch_input, task=None):
         batch_output = {}
@@ -309,13 +316,14 @@ class SelfieModel(JigsawModel):
         device = batch_input["image"].device
         bs = batch_input["image"].size(0)
         #print(self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).shape)
-        u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
-        u0 = u0.to(device)
-        patches = self.patch_network(batch_input["image"].flatten(0, 1)).view(
-            bs, self.num_patches, -1
-        )
 
         if self.stage == "pretrain":
+
+            u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
+            u0 = u0.to(device)
+            patches = self.pretrain_network(batch_input["image"].flatten(0, 1)).view(
+                bs, self.num_patches, -1
+            )
             query_patch = masked_select(patches, batch_input["query"]).view(
                 bs, self.num_queries, self.d_model
             )  # (bs, num_queries, d_model)
@@ -354,13 +362,12 @@ class SelfieModel(JigsawModel):
             batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
-            #u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
-            #u0 = u0.to(device)
-            u0 = u0.view(
-                bs,1,self.d_model
-            ) # (bs, 1, d_model)
-            hidden = self.attention_pooling(torch.cat([u0, patches], dim=1))[:,0,:]
-            cls_pred = self.cls_classifiers[task.name.split("_")[0]](hidden)
+
+            features = self.patch_network(batch_input["image"])
+            features = self.finetune_conv_layer(features)
+            features_pool = self.avg_pool(features)
+
+            cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (
