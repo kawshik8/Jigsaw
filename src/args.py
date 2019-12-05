@@ -41,11 +41,11 @@ parser.add_argument(
 )
 # num_patches
 parser.add_argument(
-    "--num_patches", type=int, default=16, help="number of patches an image is broken into"
+    "--num-patches", type=int, default=16, help="number of patches an image is broken into"
 )
 # num_queries
 parser.add_argument(
-    "--num_queries_percentage", type=float, default=0.25, help="number of patches an image to predict", choices=["0.5","0.25"]
+    "--num-queries-percentage", type=float, default=0.25, help="number of patches an image to predict", choices=["0.5","0.25"]
 )
 # num_workers
 parser.add_argument("--num_workers", type=int, default=16, help="number of cpu workers in iterator")
@@ -55,7 +55,7 @@ parser.add_argument(
 )
 # cache_pos
 parser.add_argument(
-    "--dup_pos",
+    "--dup-pos",
     type=int,
     default=0,
     help="number of duplicated positive images per image in minibatch",
@@ -78,7 +78,7 @@ parser.add_argument("--model", type=str, default="selfie", choices=["baseline","
 # Training settings
 # load_ckpt
 parser.add_argument(
-    "--load_ckpt",
+    "--load-ckpt",
     type=str,
     default="none",
     help="load parameters from a checkpoint, choose auto to resume interrupted experiment",
@@ -109,7 +109,7 @@ parser.add_argument(
     default=10000,
     help="maximum iters for finetuning, set to 0 to skip finetune training",
 )
-parser.add_argument("--warmup_iters", type=int, default=100, help="lr warmup iters")
+parser.add_argument("--warmup-iters", type=int, default=100, help="lr warmup iters")
 parser.add_argument(
     "--report-interval", type=int, default=250, help="number of iteratiopns between reports"
 )
