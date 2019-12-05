@@ -258,7 +258,7 @@ class SelfieModel(JigsawModel):
         return batch_output
 
 class SelfieModel_revised(JigsawModel):
-    def __init__(self, args):
+    def __init__(self, args, task = None):
         super().__init__(args)
 
         self.args = args
@@ -295,7 +295,7 @@ class SelfieModel_revised(JigsawModel):
         from tasks import task_num_class
 
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname] = nn.Linear(self.d_model, task_num_class(taskname))
+            self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.d_model, task_num_class(taskname))
 
         self.shared_params = list(self.patch_network.parameters())
         self.shared_params += list(self.attention_pooling.parameters())
@@ -360,7 +360,7 @@ class SelfieModel_revised(JigsawModel):
                 bs,1,self.d_model
             ) # (bs, 1, d_model)
             hidden = self.attention_pooling(torch.cat([u0, patches], dim=1))[:,0,:]
-            cls_pred = self.cls_classifiers[task.name](hidden)
+            cls_pred = self.cls_classifiers[task.name.split("_")[0]](hidden)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (
