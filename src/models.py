@@ -287,6 +287,7 @@ class SelfieModel(JigsawModel):
         self.finetune_conv_layer = full_resnet.layer4
 
         self.d_model = 1024
+        self.f_model = 2048
 
         self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.d_model,), dtype = torch.float, requires_grad=True))
         #print(self.attention_pool_u0.shape)
@@ -301,7 +302,7 @@ class SelfieModel(JigsawModel):
         from tasks import task_num_class
 
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.d_model, task_num_class(taskname))
+            self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.f_model, task_num_class(taskname))
 
         self.shared_params = list(self.patch_network.parameters())
         self.pretrain_params = list(self.position_embedding.parameters())
@@ -365,7 +366,8 @@ class SelfieModel(JigsawModel):
 
             features = self.patch_network(batch_input["image"])
             features = self.finetune_conv_layer(features)
-            features_pool = self.avg_pool(features)
+            features_pool = self.avg_pool(features).view(bs,-1)
+            #print(features_pool.shape)
 
             cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
@@ -385,6 +387,7 @@ class AllPatchModel(JigsawModel):
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
         self.d_model = 1024
+        self.f_model = 2048
 
         full_resnet = resnet.resnet50()
         self.patch_network = nn.Sequential(
@@ -395,6 +398,13 @@ class AllPatchModel(JigsawModel):
             full_resnet.layer1,
             full_resnet.layer2,
             full_resnet.layer3,
+        )
+
+        self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
+
+        self.pretrain_network = nn.Sequential(
+            self.patch_network,
+            self.avg_pool
         )
 
         self.finetune_conv_layer = full_resnet.layer4
@@ -412,9 +422,9 @@ class AllPatchModel(JigsawModel):
         from tasks import task_num_class
 
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.d_model, task_num_class(taskname))
+            self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.f_model, task_num_class(taskname))
 
-        self.avg_pool = nn.AvgPool1d(self.num_patches)
+        #self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
         self.sigmoid = nn.Sigmoid()
         self.shared_params = list(self.patch_network.parameters())
         self.pretrain_params = list(self.attention_pooling.parameters())
@@ -438,13 +448,13 @@ class AllPatchModel(JigsawModel):
             u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
             u0 = u0.to(device)
 
-            patches = self.patch_network(inp.flatten(0, 1)).view(
+            patches = self.pretrain_network(inp.flatten(0, 1)).view(
                 bs, self.num_patches, -1
             )  # (bs, num_patches, d_model)
             u0 = u0.view(
                     bs,1,self.d_model
             ) # (bs, 1, d_model)
-            final = torch.cat([u0, patches], dim=1))[:,0,:]
+            final = self.attention_pooling(torch.cat([u0, patches], dim=1))[:,0,:]
             
             similarity = torch.mm(
                 final, final.transpose(0,1)
@@ -470,7 +480,8 @@ class AllPatchModel(JigsawModel):
 
             features = self.patch_network(batch_input["image"])
             features = self.finetune_conv_layer(features)
-            features_pool = self.avg_pool(features)
+            
+            features_pool = self.avg_pool(features).view(bs,-1)
             
             cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
@@ -491,6 +502,7 @@ class ExchangePatchModel(JigsawModel):
         self.f2 = 1024
         self.f3 = 512
         self.d_model = 1024
+        self.f_model = 2048
 
         full_resnet = resnet.resnet50()
         self.initial_layers = nn.Sequential(
@@ -537,9 +549,9 @@ class ExchangePatchModel(JigsawModel):
         from tasks import task_num_class
 
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.d_model, task_num_class(taskname))
+            self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.f_model, task_num_class(taskname))
 
-        self.avg_pool = nn.AvgPool1d(self.num_patches)
+        self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
 
         self.Exchange_network = nn.Sequential(
             self.initial_layers,
@@ -564,7 +576,6 @@ class ExchangePatchModel(JigsawModel):
             self.res_block1,
             self.res_block2,
             self.res_block3,
-            self.res_block4,
         )
 
         self.sigmoid = nn.Sigmoid()
@@ -606,11 +617,12 @@ class ExchangePatchModel(JigsawModel):
             output_attn3 = self.attention_exchange3(input_attn3.view(bs,self.num_patches,-1)).view_as(input_attn3)
 
             input_attn_pool = self.res_block3(output_attn3)# (bs, num_aug_patches, d_model)
-
+            #print(input_attn_pool.shape)
+            input_attn_pool = self.avg_pool(input_attn_pool)
             u0 = u0.view(
                 bs,1,self.d_model
             ) # (bs, 1, d_model)
-            final = torch.cat([u0, input_attn_pool.view(bs,self.num_patches,-1)], dim=1))[:,0,:]   
+            final = self.attention_pooling(torch.cat([u0, input_attn_pool.view(bs,self.num_patches,-1)], dim=1))[:,0,:]   
 
             similarity = torch.mm(
                 final, final.transpose(0,1)
@@ -636,7 +648,7 @@ class ExchangePatchModel(JigsawModel):
             #hidden = self.attention_pooling(patches)
             features = self.patch_network(batch_input["image"])
             features = self.res_block4(features)
-            features_pool = self.avg_pool(features)
+            features_pool = self.avg_pool(features).view(bs,-1)
 
             cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])

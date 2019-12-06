@@ -11,7 +11,7 @@
 source ../env/bin/activate
 module load python3/intel/3.5.3
 
-python3 src/main.py --model selfie --transfer-paradigm "tunable" --batch-size 128 --exp-name selfie-revised-pretrain-finetune-final --results-dir "./results" --data-dir "./data" --finetune-tasks "cifar10_lp100" --pretrain-total-iters 120000 --finetune-total-iters 120000 --finetune_learning_rate 1e-2 --pretrain-learning-rate 1e-2 --pretrain-val-interval 2000 --finetune-val-interval 2000
+python3 src/main.py --model selfie --transfer-paradigm "tunable" --batch-size 128 --exp-name selfie-finetune-whole --results-dir "./results" --data-dir "./data" --finetune-tasks "cifar10_lp100" --pretrain-total-iters 120000 --finetune-total-iters 120000 --finetune_learning_rate 1e-2 --pretrain-learning-rate 1e-2 --pretrain-val-interval 2000 --finetune-val-interval 2000
 
 #python3 src/main.py --model selfie1 --transfer-paradigm "tunable" --batch-size 128 --exp-name Selfie-revised-pretrain-final-100 --results-dir "./results" --data-dir "./data" --finetune-tasks "cifar10_lp100" --pretrain-total-iters 100000 --finetune-total-iters 100000 --finetune_learning_rate 1e-2 --pretrain-learning-rate 1e-2
 
