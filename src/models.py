@@ -308,7 +308,7 @@ class SelfieModel(JigsawModel):
         self.pretrain_params += list(self.attention_pooling.parameters())
         self.pretrain_params += [self.attention_pool_u0]
         self.finetune_params = list(self.cls_classifiers.parameters())
-        self.finetune_params += list(self.finetune_conv_layer)
+        self.finetune_params += list(self.finetune_conv_layer.parameters())
 
     def forward(self, batch_input, task=None):
         batch_output = {}
@@ -397,6 +397,8 @@ class AllPatchModel(JigsawModel):
             full_resnet.layer3,
         )
 
+        self.finetune_conv_layer = full_resnet.layer4
+
         self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.d_model,), dtype = torch.float, requires_grad=True))
 
         transformer_layer = nn.TransformerEncoderLayer(d_model=self.d_model, nhead=32, dropout=0.1, dim_feedforward=640, activation='gelu')
@@ -415,10 +417,10 @@ class AllPatchModel(JigsawModel):
         self.avg_pool = nn.AvgPool1d(self.num_patches)
         self.sigmoid = nn.Sigmoid()
         self.shared_params = list(self.patch_network.parameters())
-        self.shared_params += list(self.attention_pooling.parameters())
-        self.shared_params += [self.attention_pool_u0]
-        #self.pretrain_params = list(self.sigmoid.parameters())
-        self.finetune_params = list(self.cls_classifiers.parameters())
+        self.pretrain_params = list(self.attention_pooling.parameters())
+        self.pretrain_params += [self.attention_pool_u0]
+        self.finetune_params = list(self.finetune_conv_layer.parameters())
+        self.finetune_params += list(self.cls_classifiers.parameters())
 
     def forward(self, batch_input, task=None):
         batch_output = {}
@@ -428,19 +430,21 @@ class AllPatchModel(JigsawModel):
         device = inp.device#batch_input["aug"].device
         bs = inp.size(0)
 
-        u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
-        u0 = u0.to(device)
-
-        patches = self.patch_network(inp.flatten(0, 1)).view(
-            bs, self.num_patches, -1
-        )  # (bs, num_patches, d_model)
-        u0 = u0.view(
-                bs,1,self.d_model
-        ) # (bs, 1, d_model)
-        final = torch.cat([u0, patches], dim=1))[:,0,:]# (bs, aug_patches, d_model)
+        # (bs, aug_patches, d_model)
         #final = self.avg_pool(attn_pool.transpose(1,2)).view(bs,self.d_model) # (bs, d_model)
 
         if self.stage == "pretrain":
+
+            u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
+            u0 = u0.to(device)
+
+            patches = self.patch_network(inp.flatten(0, 1)).view(
+                bs, self.num_patches, -1
+            )  # (bs, num_patches, d_model)
+            u0 = u0.view(
+                    bs,1,self.d_model
+            ) # (bs, 1, d_model)
+            final = torch.cat([u0, patches], dim=1))[:,0,:]
             
             similarity = torch.mm(
                 final, final.transpose(0,1)
@@ -463,8 +467,12 @@ class AllPatchModel(JigsawModel):
             batch_output["jigsaw_acc"] = ((jigsaw_pred1) == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
+
+            features = self.patch_network(batch_input["image"])
+            features = self.finetune_conv_layer(features)
+            features_pool = self.avg_pool(features)
             
-            cls_pred = self.cls_classifiers[task.name.split("_")[0]](final)
+            cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
@@ -513,6 +521,7 @@ class ExchangePatchModel(JigsawModel):
         self.res_block1  =  full_resnet.layer1
         self.res_block2  =  full_resnet.layer2
         self.res_block3  =  full_resnet.layer3
+        self.res_block4  =  full_resnet.layer4
 
         self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.d_model,), dtype = torch.float, requires_grad=True))
 
@@ -542,12 +551,29 @@ class ExchangePatchModel(JigsawModel):
             self.res_block3,
             self.attention_pooling,
         )
+
+        self.pretrain_layers = nn.Sequential(
+            self.attention_exchange1,
+            self.attention_exchange2,
+            self.attention_exchange3,
+            self.attention_pooling,
+        )
+
+        self.patch_network = nn.Sequential(
+            self.initial_layers,
+            self.res_block1,
+            self.res_block2,
+            self.res_block3,
+            self.res_block4,
+        )
+
         self.sigmoid = nn.Sigmoid()
         
-        self.shared_params = list(self.Exchange_network.parameters())
-        self.shared_params += [self.attention_pool_u0]
-        self.pretrain_params = list(self.avg_pool.parameters())
-        self.finetune_params = list(self.cls_classifiers.parameters())
+        self.shared_params = list(self.patch_network.parameters())
+        self.pretrain_params = list(self.pretrain_layers.parameters())
+        self.pretrain_params += [self.attention_pool_u0]
+        self.finetune_params = list(self.res_block4.parameters())
+        self.finetune_params += list(self.cls_classifiers.parameters())
 
     def forward(self, batch_input, task=None):
         batch_output = {}
@@ -557,32 +583,34 @@ class ExchangePatchModel(JigsawModel):
         device = inp.device
         bs = inp.size(0)
 
-        u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
-        u0 = u0.to(device)
-
-        #print(inp.flatten(0, 1).size())
-        input_attn1 = self.initial_layers(inp.flatten(0, 1)) # (bs, num_aug_patches, f1, h1, w1)
-        #print(input_attn1.size())
-        output_attn1 = self.attention_exchange1(input_attn1.view(bs,self.num_patches,-1)).view_as(input_attn1)
-
-        input_attn2 = self.res_block1(output_attn1)# (bs, num_aug_patches, f2, h2, w2)
-        #print(input_attn2.size())
-        output_attn2 = self.attention_exchange2(input_attn2.view(bs,self.num_patches,-1)).view_as(input_attn2) 
-
-        input_attn3 = self.res_block2(output_attn2)# (bs, num_aug_patches, f3, h3, w3)
-        #print(input_attn3.size())
-        output_attn3 = self.attention_exchange3(input_attn3.view(bs,self.num_patches,-1)).view_as(input_attn3)
-
-        input_attn_pool = self.res_block3(output_attn3)# (bs, num_aug_patches, d_model)
-
-        u0 = u0.view(
-            bs,1,self.d_model
-        ) # (bs, 1, d_model)
-        final = torch.cat([u0, input_attn_pool.view(bs,self.num_patches,-1)], dim=1))[:,0,:]# (bs, aug_patches, d_model)
+        # (bs, aug_patches, d_model)
         # output_attn_pool = self.attention_pooling(input_attn_pool.view(bs,self.num_patches,-1)).view_as(input_attn_pool)
         # final = self.avg_pool(output_attn_pool.view(bs,self.num_patches,-1).transpose(1,2)).view(bs,self.d_model)
         
-        if self.stage == "pretrain":    
+        if self.stage == "pretrain": 
+
+            u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
+            u0 = u0.to(device)
+
+            #print(inp.flatten(0, 1).size())
+            input_attn1 = self.initial_layers(inp.flatten(0, 1)) # (bs, num_aug_patches, f1, h1, w1)
+            #print(input_attn1.size())
+            output_attn1 = self.attention_exchange1(input_attn1.view(bs,self.num_patches,-1)).view_as(input_attn1)
+
+            input_attn2 = self.res_block1(output_attn1)# (bs, num_aug_patches, f2, h2, w2)
+            #print(input_attn2.size())
+            output_attn2 = self.attention_exchange2(input_attn2.view(bs,self.num_patches,-1)).view_as(input_attn2) 
+
+            input_attn3 = self.res_block2(output_attn2)# (bs, num_aug_patches, f3, h3, w3)
+            #print(input_attn3.size())
+            output_attn3 = self.attention_exchange3(input_attn3.view(bs,self.num_patches,-1)).view_as(input_attn3)
+
+            input_attn_pool = self.res_block3(output_attn3)# (bs, num_aug_patches, d_model)
+
+            u0 = u0.view(
+                bs,1,self.d_model
+            ) # (bs, 1, d_model)
+            final = torch.cat([u0, input_attn_pool.view(bs,self.num_patches,-1)], dim=1))[:,0,:]   
 
             similarity = torch.mm(
                 final, final.transpose(0,1)
@@ -606,7 +634,11 @@ class ExchangePatchModel(JigsawModel):
 
         elif self.stage == "finetune":
             #hidden = self.attention_pooling(patches)
-            cls_pred = self.cls_classifiers[task.name.split("_")[0]](final)
+            features = self.patch_network(batch_input["image"])
+            features = self.res_block4(features)
+            features_pool = self.avg_pool(features)
+
+            cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
             batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
