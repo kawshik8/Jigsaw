@@ -1,0 +1,624 @@
+2019-12-04 02:30:26,186 [MainThread  ] Experiment Selfie-revised-pretrain-final
+2019-12-04 02:30:26,187 [MainThread  ] Receive config Namespace(batch_size=128, cache_neg=0, clip=0.5, data_dir='./data', device='cuda:0', dup_pos=0, exp_dir='./results/Selfie-revised-pretrain-final', exp_name='Selfie-revised-pretrain-final', finetune_ckpt_interval=0, finetune_learning_rate=0.0001, finetune_tasks=['cifar10_lp10'], finetune_total_iters=20000, finetune_val_interval=2000, finetune_weight_decay=0.0001, load_ckpt='none', model='selfie1', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=100000, pretrain_val_interval=2000, pretrain_weight_decay=0.0001, report_interval=250, results_dir='./results', transfer_paradigm='tunable', warmup_iters=100)
+2019-12-04 02:30:26,187 [MainThread  ] Start creating tasks
+2019-12-04 02:30:26,187 [MainThread  ] Start loading data
+2019-12-04 02:30:26,188 [MainThread  ] Loading cifar10_un data
+2019-12-04 02:30:30,241 [MainThread  ] Loading cifar10_lp10 data
+2019-12-04 02:30:32,715 [MainThread  ] Start creating models
+2019-12-04 02:30:33,096 [MainThread  ] Loaded selfie1 model
+2019-12-04 02:30:44,107 [MainThread  ] Setup trainer for cifar10_un
+2019-12-04 02:30:44,108 [MainThread  ] Start training cifar10_un
+2019-12-04 02:31:45,437 [MainThread  ] train batch 250 / 351 (iter 250), current average result {'loss': tensor(1.5915, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2777)}
+2019-12-04 02:32:46,919 [MainThread  ] train batch 149 / 351 (iter 500), current average result {'loss': tensor(1.5347, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2775)}
+2019-12-04 02:33:47,784 [MainThread  ] train batch 48 / 351 (iter 750), current average result {'loss': tensor(1.5061, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2772)}
+2019-12-04 02:34:46,193 [MainThread  ] train batch 298 / 351 (iter 1000), current average result {'loss': tensor(1.4825, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2836)}
+2019-12-04 02:35:46,642 [MainThread  ] train batch 197 / 351 (iter 1250), current average result {'loss': tensor(1.4646, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2908)}
+2019-12-04 02:36:47,043 [MainThread  ] train batch 96 / 351 (iter 1500), current average result {'loss': tensor(1.4493, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.2970)}
+2019-12-04 02:37:45,348 [MainThread  ] train batch 346 / 351 (iter 1750), current average result {'loss': tensor(1.4358, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3032)}
+2019-12-04 02:38:45,603 [MainThread  ] train batch 245 / 351 (iter 2000), current average result {'loss': tensor(1.4247, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3086)}
+2019-12-04 02:38:45,604 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 02:38:52,104 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.3347), 'jigsaw_acc': tensor(0.3379)}
+2019-12-04 02:38:52,105 [MainThread  ] Best validation updated: {'best_iter': 2000, 'current_iter': 2000, 'best_performance': tensor(0.3379)}
+2019-12-04 02:38:52,226 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 02:39:52,815 [MainThread  ] train batch 144 / 351 (iter 2250), current average result {'loss': tensor(1.3470, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3498)}
+2019-12-04 02:40:53,647 [MainThread  ] train batch 43 / 351 (iter 2500), current average result {'loss': tensor(1.3368, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3564)}
+2019-12-04 02:41:52,159 [MainThread  ] train batch 293 / 351 (iter 2750), current average result {'loss': tensor(1.3310, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3617)}
+2019-12-04 02:42:53,070 [MainThread  ] train batch 192 / 351 (iter 3000), current average result {'loss': tensor(1.3323, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3597)}
+2019-12-04 02:43:54,149 [MainThread  ] train batch 91 / 351 (iter 3250), current average result {'loss': tensor(1.3347, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3571)}
+2019-12-04 02:44:52,862 [MainThread  ] train batch 341 / 351 (iter 3500), current average result {'loss': tensor(1.3324, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3576)}
+2019-12-04 02:45:53,603 [MainThread  ] train batch 240 / 351 (iter 3750), current average result {'loss': tensor(1.3279, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3600)}
+2019-12-04 02:46:54,520 [MainThread  ] train batch 139 / 351 (iter 4000), current average result {'loss': tensor(1.3238, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3623)}
+2019-12-04 02:46:54,520 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 02:47:00,964 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.2985), 'jigsaw_acc': tensor(0.3779)}
+2019-12-04 02:47:00,965 [MainThread  ] Best validation updated: {'best_iter': 4000, 'current_iter': 4000, 'best_performance': tensor(0.3779)}
+2019-12-04 02:47:01,109 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 02:48:01,800 [MainThread  ] train batch 38 / 351 (iter 4250), current average result {'loss': tensor(1.2887, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3849)}
+2019-12-04 02:49:00,203 [MainThread  ] train batch 288 / 351 (iter 4500), current average result {'loss': tensor(1.2865, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3867)}
+2019-12-04 02:50:00,981 [MainThread  ] train batch 187 / 351 (iter 4750), current average result {'loss': tensor(1.2853, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3873)}
+2019-12-04 02:51:01,804 [MainThread  ] train batch 86 / 351 (iter 5000), current average result {'loss': tensor(1.2831, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3890)}
+2019-12-04 02:52:00,317 [MainThread  ] train batch 336 / 351 (iter 5250), current average result {'loss': tensor(1.2808, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3910)}
+2019-12-04 02:53:01,137 [MainThread  ] train batch 235 / 351 (iter 5500), current average result {'loss': tensor(1.2789, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3927)}
+2019-12-04 02:54:02,219 [MainThread  ] train batch 134 / 351 (iter 5750), current average result {'loss': tensor(1.2770, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3944)}
+2019-12-04 02:55:03,379 [MainThread  ] train batch 33 / 351 (iter 6000), current average result {'loss': tensor(1.2750, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.3959)}
+2019-12-04 02:55:03,380 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 02:55:10,341 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.2554), 'jigsaw_acc': tensor(0.4099)}
+2019-12-04 02:55:10,342 [MainThread  ] Best validation updated: {'best_iter': 6000, 'current_iter': 6000, 'best_performance': tensor(0.4099)}
+2019-12-04 02:55:10,495 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 02:56:08,805 [MainThread  ] train batch 283 / 351 (iter 6250), current average result {'loss': tensor(1.2572, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4114)}
+2019-12-04 02:57:09,687 [MainThread  ] train batch 182 / 351 (iter 6500), current average result {'loss': tensor(1.2578, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4101)}
+2019-12-04 02:58:10,578 [MainThread  ] train batch 81 / 351 (iter 6750), current average result {'loss': tensor(1.2565, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4105)}
+2019-12-04 02:59:09,127 [MainThread  ] train batch 331 / 351 (iter 7000), current average result {'loss': tensor(1.2547, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4118)}
+2019-12-04 03:00:09,981 [MainThread  ] train batch 230 / 351 (iter 7250), current average result {'loss': tensor(1.2530, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4133)}
+2019-12-04 03:01:10,615 [MainThread  ] train batch 129 / 351 (iter 7500), current average result {'loss': tensor(1.2521, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4140)}
+2019-12-04 03:02:11,488 [MainThread  ] train batch 28 / 351 (iter 7750), current average result {'loss': tensor(1.2507, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4150)}
+2019-12-04 03:03:10,099 [MainThread  ] train batch 278 / 351 (iter 8000), current average result {'loss': tensor(1.2494, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4157)}
+2019-12-04 03:03:10,099 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 03:03:16,473 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.2405), 'jigsaw_acc': tensor(0.4230)}
+2019-12-04 03:03:16,474 [MainThread  ] Best validation updated: {'best_iter': 8000, 'current_iter': 8000, 'best_performance': tensor(0.4230)}
+2019-12-04 03:03:16,633 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 03:04:17,272 [MainThread  ] train batch 177 / 351 (iter 8250), current average result {'loss': tensor(1.2389, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4242)}
+2019-12-04 03:05:17,799 [MainThread  ] train batch 76 / 351 (iter 8500), current average result {'loss': tensor(1.2374, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4253)}
+2019-12-04 03:06:16,235 [MainThread  ] train batch 326 / 351 (iter 8750), current average result {'loss': tensor(1.2359, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4257)}
+2019-12-04 03:07:17,058 [MainThread  ] train batch 225 / 351 (iter 9000), current average result {'loss': tensor(1.2348, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4265)}
+2019-12-04 03:08:17,927 [MainThread  ] train batch 124 / 351 (iter 9250), current average result {'loss': tensor(1.2336, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4272)}
+2019-12-04 03:09:18,993 [MainThread  ] train batch 23 / 351 (iter 9500), current average result {'loss': tensor(1.2322, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4283)}
+2019-12-04 03:10:17,527 [MainThread  ] train batch 273 / 351 (iter 9750), current average result {'loss': tensor(1.2306, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4293)}
+2019-12-04 03:11:18,696 [MainThread  ] train batch 172 / 351 (iter 10000), current average result {'loss': tensor(1.2295, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4298)}
+2019-12-04 03:11:18,697 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 03:11:26,153 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.2266), 'jigsaw_acc': tensor(0.4376)}
+2019-12-04 03:11:26,153 [MainThread  ] Best validation updated: {'best_iter': 10000, 'current_iter': 10000, 'best_performance': tensor(0.4376)}
+2019-12-04 03:11:26,311 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 03:12:26,972 [MainThread  ] train batch 71 / 351 (iter 10250), current average result {'loss': tensor(1.2189, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4350)}
+2019-12-04 03:13:25,328 [MainThread  ] train batch 321 / 351 (iter 10500), current average result {'loss': tensor(1.2171, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4375)}
+2019-12-04 03:14:25,948 [MainThread  ] train batch 220 / 351 (iter 10750), current average result {'loss': tensor(1.2163, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4381)}
+2019-12-04 03:15:26,692 [MainThread  ] train batch 119 / 351 (iter 11000), current average result {'loss': tensor(1.2150, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4388)}
+2019-12-04 03:16:27,729 [MainThread  ] train batch 18 / 351 (iter 11250), current average result {'loss': tensor(1.2138, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4397)}
+2019-12-04 03:17:26,255 [MainThread  ] train batch 268 / 351 (iter 11500), current average result {'loss': tensor(1.2128, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4400)}
+2019-12-04 03:18:27,344 [MainThread  ] train batch 167 / 351 (iter 11750), current average result {'loss': tensor(1.2118, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4407)}
+2019-12-04 03:19:28,447 [MainThread  ] train batch 66 / 351 (iter 12000), current average result {'loss': tensor(1.2109, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4414)}
+2019-12-04 03:19:28,448 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 03:19:35,151 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.2039), 'jigsaw_acc': tensor(0.4463)}
+2019-12-04 03:19:35,152 [MainThread  ] Best validation updated: {'best_iter': 12000, 'current_iter': 12000, 'best_performance': tensor(0.4463)}
+2019-12-04 03:19:35,308 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 03:20:33,666 [MainThread  ] train batch 316 / 351 (iter 12250), current average result {'loss': tensor(1.2019, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4490)}
+2019-12-04 03:21:34,332 [MainThread  ] train batch 215 / 351 (iter 12500), current average result {'loss': tensor(1.2014, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4489)}
+2019-12-04 03:22:35,168 [MainThread  ] train batch 114 / 351 (iter 12750), current average result {'loss': tensor(1.2008, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4485)}
+2019-12-04 03:23:35,835 [MainThread  ] train batch 13 / 351 (iter 13000), current average result {'loss': tensor(1.1996, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4494)}
+2019-12-04 03:24:34,344 [MainThread  ] train batch 263 / 351 (iter 13250), current average result {'loss': tensor(1.1989, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4499)}
+2019-12-04 03:25:35,337 [MainThread  ] train batch 162 / 351 (iter 13500), current average result {'loss': tensor(1.1975, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4506)}
+2019-12-04 03:26:36,042 [MainThread  ] train batch 61 / 351 (iter 13750), current average result {'loss': tensor(1.1968, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4510)}
+2019-12-04 03:27:34,623 [MainThread  ] train batch 311 / 351 (iter 14000), current average result {'loss': tensor(1.1958, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4518)}
+2019-12-04 03:27:34,623 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 03:27:42,056 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1937), 'jigsaw_acc': tensor(0.4532)}
+2019-12-04 03:27:42,056 [MainThread  ] Best validation updated: {'best_iter': 14000, 'current_iter': 14000, 'best_performance': tensor(0.4532)}
+2019-12-04 03:27:42,214 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 03:28:42,672 [MainThread  ] train batch 210 / 351 (iter 14250), current average result {'loss': tensor(1.1860, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4564)}
+2019-12-04 03:29:43,374 [MainThread  ] train batch 109 / 351 (iter 14500), current average result {'loss': tensor(1.1862, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4566)}
+2019-12-04 03:30:43,998 [MainThread  ] train batch 8 / 351 (iter 14750), current average result {'loss': tensor(1.1852, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4571)}
+2019-12-04 03:31:42,430 [MainThread  ] train batch 258 / 351 (iter 15000), current average result {'loss': tensor(1.1843, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4574)}
+2019-12-04 03:32:43,452 [MainThread  ] train batch 157 / 351 (iter 15250), current average result {'loss': tensor(1.1837, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4575)}
+2019-12-04 03:33:44,432 [MainThread  ] train batch 56 / 351 (iter 15500), current average result {'loss': tensor(1.1831, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4580)}
+2019-12-04 03:34:42,944 [MainThread  ] train batch 306 / 351 (iter 15750), current average result {'loss': tensor(1.1821, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4585)}
+2019-12-04 03:35:43,995 [MainThread  ] train batch 205 / 351 (iter 16000), current average result {'loss': tensor(1.1813, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4589)}
+2019-12-04 03:35:43,996 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 03:35:51,493 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1856), 'jigsaw_acc': tensor(0.4555)}
+2019-12-04 03:35:51,494 [MainThread  ] Best validation updated: {'best_iter': 16000, 'current_iter': 16000, 'best_performance': tensor(0.4555)}
+2019-12-04 03:35:51,650 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 03:36:52,267 [MainThread  ] train batch 104 / 351 (iter 16250), current average result {'loss': tensor(1.1743, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4609)}
+2019-12-04 03:37:53,008 [MainThread  ] train batch 3 / 351 (iter 16500), current average result {'loss': tensor(1.1734, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4633)}
+2019-12-04 03:38:51,431 [MainThread  ] train batch 253 / 351 (iter 16750), current average result {'loss': tensor(1.1719, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4639)}
+2019-12-04 03:39:52,116 [MainThread  ] train batch 152 / 351 (iter 17000), current average result {'loss': tensor(1.1713, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4643)}
+2019-12-04 03:40:53,145 [MainThread  ] train batch 51 / 351 (iter 17250), current average result {'loss': tensor(1.1704, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4646)}
+2019-12-04 03:41:51,667 [MainThread  ] train batch 301 / 351 (iter 17500), current average result {'loss': tensor(1.1698, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4650)}
+2019-12-04 03:42:52,787 [MainThread  ] train batch 200 / 351 (iter 17750), current average result {'loss': tensor(1.1695, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4653)}
+2019-12-04 03:43:53,686 [MainThread  ] train batch 99 / 351 (iter 18000), current average result {'loss': tensor(1.1687, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4656)}
+2019-12-04 03:43:53,687 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 03:44:01,047 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1771), 'jigsaw_acc': tensor(0.4624)}
+2019-12-04 03:44:01,048 [MainThread  ] Best validation updated: {'best_iter': 18000, 'current_iter': 18000, 'best_performance': tensor(0.4624)}
+2019-12-04 03:44:01,206 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 03:44:59,494 [MainThread  ] train batch 349 / 351 (iter 18250), current average result {'loss': tensor(1.1630, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4690)}
+2019-12-04 03:46:00,093 [MainThread  ] train batch 248 / 351 (iter 18500), current average result {'loss': tensor(1.1626, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4699)}
+2019-12-04 03:47:00,702 [MainThread  ] train batch 147 / 351 (iter 18750), current average result {'loss': tensor(1.1619, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4700)}
+2019-12-04 03:48:01,601 [MainThread  ] train batch 46 / 351 (iter 19000), current average result {'loss': tensor(1.1604, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4707)}
+2019-12-04 03:49:00,064 [MainThread  ] train batch 296 / 351 (iter 19250), current average result {'loss': tensor(1.1601, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4705)}
+2019-12-04 03:50:01,081 [MainThread  ] train batch 195 / 351 (iter 19500), current average result {'loss': tensor(1.1593, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4710)}
+2019-12-04 03:51:02,142 [MainThread  ] train batch 94 / 351 (iter 19750), current average result {'loss': tensor(1.1589, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4712)}
+2019-12-04 03:52:00,670 [MainThread  ] train batch 344 / 351 (iter 20000), current average result {'loss': tensor(1.1585, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4712)}
+2019-12-04 03:52:00,670 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 03:52:07,057 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1545), 'jigsaw_acc': tensor(0.4738)}
+2019-12-04 03:52:07,058 [MainThread  ] Best validation updated: {'best_iter': 20000, 'current_iter': 20000, 'best_performance': tensor(0.4738)}
+2019-12-04 03:52:07,217 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 03:53:07,794 [MainThread  ] train batch 243 / 351 (iter 20250), current average result {'loss': tensor(1.1532, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4732)}
+2019-12-04 03:54:08,254 [MainThread  ] train batch 142 / 351 (iter 20500), current average result {'loss': tensor(1.1533, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4725)}
+2019-12-04 03:55:09,004 [MainThread  ] train batch 41 / 351 (iter 20750), current average result {'loss': tensor(1.1533, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4724)}
+2019-12-04 03:56:07,446 [MainThread  ] train batch 291 / 351 (iter 21000), current average result {'loss': tensor(1.1526, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4733)}
+2019-12-04 03:57:08,422 [MainThread  ] train batch 190 / 351 (iter 21250), current average result {'loss': tensor(1.1515, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4740)}
+2019-12-04 03:58:09,397 [MainThread  ] train batch 89 / 351 (iter 21500), current average result {'loss': tensor(1.1506, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4746)}
+2019-12-04 03:59:07,894 [MainThread  ] train batch 339 / 351 (iter 21750), current average result {'loss': tensor(1.1498, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4750)}
+2019-12-04 04:00:08,899 [MainThread  ] train batch 238 / 351 (iter 22000), current average result {'loss': tensor(1.1491, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4755)}
+2019-12-04 04:00:08,900 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 04:00:16,299 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1531), 'jigsaw_acc': tensor(0.4684)}
+2019-12-04 04:01:16,720 [MainThread  ] train batch 137 / 351 (iter 22250), current average result {'loss': tensor(1.1454, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4769)}
+2019-12-04 04:02:17,223 [MainThread  ] train batch 36 / 351 (iter 22500), current average result {'loss': tensor(1.1432, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4792)}
+2019-12-04 04:03:15,612 [MainThread  ] train batch 286 / 351 (iter 22750), current average result {'loss': tensor(1.1432, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4787)}
+2019-12-04 04:04:16,199 [MainThread  ] train batch 185 / 351 (iter 23000), current average result {'loss': tensor(1.1417, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4792)}
+2019-12-04 04:05:17,171 [MainThread  ] train batch 84 / 351 (iter 23250), current average result {'loss': tensor(1.1413, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4791)}
+2019-12-04 04:06:15,681 [MainThread  ] train batch 334 / 351 (iter 23500), current average result {'loss': tensor(1.1406, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4794)}
+2019-12-04 04:07:16,732 [MainThread  ] train batch 233 / 351 (iter 23750), current average result {'loss': tensor(1.1400, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4795)}
+2019-12-04 04:08:17,662 [MainThread  ] train batch 132 / 351 (iter 24000), current average result {'loss': tensor(1.1396, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4797)}
+2019-12-04 04:08:17,662 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 04:08:25,228 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1472), 'jigsaw_acc': tensor(0.4744)}
+2019-12-04 04:08:25,228 [MainThread  ] Best validation updated: {'best_iter': 24000, 'current_iter': 24000, 'best_performance': tensor(0.4744)}
+2019-12-04 04:08:25,388 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 04:09:26,045 [MainThread  ] train batch 31 / 351 (iter 24250), current average result {'loss': tensor(1.1357, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4843)}
+2019-12-04 04:10:24,390 [MainThread  ] train batch 281 / 351 (iter 24500), current average result {'loss': tensor(1.1346, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4844)}
+2019-12-04 04:11:25,234 [MainThread  ] train batch 180 / 351 (iter 24750), current average result {'loss': tensor(1.1344, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4839)}
+2019-12-04 04:12:26,097 [MainThread  ] train batch 79 / 351 (iter 25000), current average result {'loss': tensor(1.1335, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4831)}
+2019-12-04 04:13:24,571 [MainThread  ] train batch 329 / 351 (iter 25250), current average result {'loss': tensor(1.1335, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4833)}
+2019-12-04 04:14:25,351 [MainThread  ] train batch 228 / 351 (iter 25500), current average result {'loss': tensor(1.1331, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4837)}
+2019-12-04 04:15:26,303 [MainThread  ] train batch 127 / 351 (iter 25750), current average result {'loss': tensor(1.1328, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4836)}
+2019-12-04 04:16:27,416 [MainThread  ] train batch 26 / 351 (iter 26000), current average result {'loss': tensor(1.1324, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4837)}
+2019-12-04 04:16:27,416 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 04:16:34,940 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1286), 'jigsaw_acc': tensor(0.4852)}
+2019-12-04 04:16:34,941 [MainThread  ] Best validation updated: {'best_iter': 26000, 'current_iter': 26000, 'best_performance': tensor(0.4852)}
+2019-12-04 04:16:35,101 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 04:17:33,374 [MainThread  ] train batch 276 / 351 (iter 26250), current average result {'loss': tensor(1.1315, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4835)}
+2019-12-04 04:18:34,054 [MainThread  ] train batch 175 / 351 (iter 26500), current average result {'loss': tensor(1.1300, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4851)}
+2019-12-04 04:19:34,786 [MainThread  ] train batch 74 / 351 (iter 26750), current average result {'loss': tensor(1.1283, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4857)}
+2019-12-04 04:20:33,236 [MainThread  ] train batch 324 / 351 (iter 27000), current average result {'loss': tensor(1.1274, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4864)}
+2019-12-04 04:21:33,723 [MainThread  ] train batch 223 / 351 (iter 27250), current average result {'loss': tensor(1.1266, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4865)}
+2019-12-04 04:22:34,537 [MainThread  ] train batch 122 / 351 (iter 27500), current average result {'loss': tensor(1.1259, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4871)}
+2019-12-04 04:23:35,617 [MainThread  ] train batch 21 / 351 (iter 27750), current average result {'loss': tensor(1.1259, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4869)}
+2019-12-04 04:24:34,116 [MainThread  ] train batch 271 / 351 (iter 28000), current average result {'loss': tensor(1.1255, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4870)}
+2019-12-04 04:24:34,116 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 04:24:41,222 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1400), 'jigsaw_acc': tensor(0.4807)}
+2019-12-04 04:25:41,773 [MainThread  ] train batch 170 / 351 (iter 28250), current average result {'loss': tensor(1.1226, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4856)}
+2019-12-04 04:26:42,374 [MainThread  ] train batch 69 / 351 (iter 28500), current average result {'loss': tensor(1.1215, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4884)}
+2019-12-04 04:27:40,704 [MainThread  ] train batch 319 / 351 (iter 28750), current average result {'loss': tensor(1.1208, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4887)}
+2019-12-04 04:28:41,323 [MainThread  ] train batch 218 / 351 (iter 29000), current average result {'loss': tensor(1.1202, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4889)}
+2019-12-04 04:29:42,230 [MainThread  ] train batch 117 / 351 (iter 29250), current average result {'loss': tensor(1.1198, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4891)}
+2019-12-04 04:30:43,201 [MainThread  ] train batch 16 / 351 (iter 29500), current average result {'loss': tensor(1.1192, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4893)}
+2019-12-04 04:31:41,691 [MainThread  ] train batch 266 / 351 (iter 29750), current average result {'loss': tensor(1.1188, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4898)}
+2019-12-04 04:32:42,828 [MainThread  ] train batch 165 / 351 (iter 30000), current average result {'loss': tensor(1.1182, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4899)}
+2019-12-04 04:32:42,828 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 04:32:50,087 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1226), 'jigsaw_acc': tensor(0.4919)}
+2019-12-04 04:32:50,088 [MainThread  ] Best validation updated: {'best_iter': 30000, 'current_iter': 30000, 'best_performance': tensor(0.4919)}
+2019-12-04 04:32:50,247 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 04:33:50,895 [MainThread  ] train batch 64 / 351 (iter 30250), current average result {'loss': tensor(1.1131, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4941)}
+2019-12-04 04:34:49,185 [MainThread  ] train batch 314 / 351 (iter 30500), current average result {'loss': tensor(1.1126, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4940)}
+2019-12-04 04:35:49,943 [MainThread  ] train batch 213 / 351 (iter 30750), current average result {'loss': tensor(1.1124, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4943)}
+2019-12-04 04:36:50,587 [MainThread  ] train batch 112 / 351 (iter 31000), current average result {'loss': tensor(1.1125, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4943)}
+2019-12-04 04:37:51,506 [MainThread  ] train batch 11 / 351 (iter 31250), current average result {'loss': tensor(1.1125, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4942)}
+2019-12-04 04:38:49,963 [MainThread  ] train batch 261 / 351 (iter 31500), current average result {'loss': tensor(1.1119, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4943)}
+2019-12-04 04:39:50,809 [MainThread  ] train batch 160 / 351 (iter 31750), current average result {'loss': tensor(1.1118, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4943)}
+2019-12-04 04:40:51,830 [MainThread  ] train batch 59 / 351 (iter 32000), current average result {'loss': tensor(1.1117, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4941)}
+2019-12-04 04:40:51,831 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 04:40:59,175 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1189), 'jigsaw_acc': tensor(0.4906)}
+2019-12-04 04:41:57,400 [MainThread  ] train batch 309 / 351 (iter 32250), current average result {'loss': tensor(1.1066, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4963)}
+2019-12-04 04:42:58,264 [MainThread  ] train batch 208 / 351 (iter 32500), current average result {'loss': tensor(1.1077, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4953)}
+2019-12-04 04:43:59,066 [MainThread  ] train batch 107 / 351 (iter 32750), current average result {'loss': tensor(1.1064, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4954)}
+2019-12-04 04:44:59,758 [MainThread  ] train batch 6 / 351 (iter 33000), current average result {'loss': tensor(1.1068, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4951)}
+2019-12-04 04:45:58,190 [MainThread  ] train batch 256 / 351 (iter 33250), current average result {'loss': tensor(1.1061, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4955)}
+2019-12-04 04:46:59,237 [MainThread  ] train batch 155 / 351 (iter 33500), current average result {'loss': tensor(1.1063, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4954)}
+2019-12-04 04:48:00,238 [MainThread  ] train batch 54 / 351 (iter 33750), current average result {'loss': tensor(1.1063, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4954)}
+2019-12-04 04:48:58,769 [MainThread  ] train batch 304 / 351 (iter 34000), current average result {'loss': tensor(1.1056, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4960)}
+2019-12-04 04:48:58,770 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 04:49:06,394 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1168), 'jigsaw_acc': tensor(0.4921)}
+2019-12-04 04:49:06,394 [MainThread  ] Best validation updated: {'best_iter': 34000, 'current_iter': 34000, 'best_performance': tensor(0.4921)}
+2019-12-04 04:49:06,555 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 04:50:07,082 [MainThread  ] train batch 203 / 351 (iter 34250), current average result {'loss': tensor(1.1020, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4983)}
+2019-12-04 04:51:07,501 [MainThread  ] train batch 102 / 351 (iter 34500), current average result {'loss': tensor(1.1015, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4982)}
+2019-12-04 04:52:08,232 [MainThread  ] train batch 1 / 351 (iter 34750), current average result {'loss': tensor(1.1030, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4974)}
+2019-12-04 04:53:06,603 [MainThread  ] train batch 251 / 351 (iter 35000), current average result {'loss': tensor(1.1023, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4979)}
+2019-12-04 04:54:07,255 [MainThread  ] train batch 150 / 351 (iter 35250), current average result {'loss': tensor(1.1027, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4978)}
+2019-12-04 04:55:08,112 [MainThread  ] train batch 49 / 351 (iter 35500), current average result {'loss': tensor(1.1021, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4981)}
+2019-12-04 04:56:06,524 [MainThread  ] train batch 299 / 351 (iter 35750), current average result {'loss': tensor(1.1020, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4982)}
+2019-12-04 04:57:07,568 [MainThread  ] train batch 198 / 351 (iter 36000), current average result {'loss': tensor(1.1014, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4984)}
+2019-12-04 04:57:07,568 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 04:57:15,063 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0978), 'jigsaw_acc': tensor(0.5019)}
+2019-12-04 04:57:15,064 [MainThread  ] Best validation updated: {'best_iter': 36000, 'current_iter': 36000, 'best_performance': tensor(0.5019)}
+2019-12-04 04:57:15,223 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 04:58:15,760 [MainThread  ] train batch 97 / 351 (iter 36250), current average result {'loss': tensor(1.0977, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5010)}
+2019-12-04 04:59:14,007 [MainThread  ] train batch 347 / 351 (iter 36500), current average result {'loss': tensor(1.0988, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4998)}
+2019-12-04 05:00:14,692 [MainThread  ] train batch 246 / 351 (iter 36750), current average result {'loss': tensor(1.0971, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5000)}
+2019-12-04 05:01:15,446 [MainThread  ] train batch 145 / 351 (iter 37000), current average result {'loss': tensor(1.0972, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5000)}
+2019-12-04 05:02:16,326 [MainThread  ] train batch 44 / 351 (iter 37250), current average result {'loss': tensor(1.0973, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5001)}
+2019-12-04 05:03:14,749 [MainThread  ] train batch 294 / 351 (iter 37500), current average result {'loss': tensor(1.0969, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5003)}
+2019-12-04 05:04:15,515 [MainThread  ] train batch 193 / 351 (iter 37750), current average result {'loss': tensor(1.0967, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5006)}
+2019-12-04 05:05:16,607 [MainThread  ] train batch 92 / 351 (iter 38000), current average result {'loss': tensor(1.0965, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5006)}
+2019-12-04 05:05:16,608 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 05:05:24,045 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0913), 'jigsaw_acc': tensor(0.5056)}
+2019-12-04 05:05:24,045 [MainThread  ] Best validation updated: {'best_iter': 38000, 'current_iter': 38000, 'best_performance': tensor(0.5056)}
+2019-12-04 05:05:24,204 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 05:06:22,411 [MainThread  ] train batch 342 / 351 (iter 38250), current average result {'loss': tensor(1.0954, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.4996)}
+2019-12-04 05:07:22,853 [MainThread  ] train batch 241 / 351 (iter 38500), current average result {'loss': tensor(1.0941, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5016)}
+2019-12-04 05:08:23,222 [MainThread  ] train batch 140 / 351 (iter 38750), current average result {'loss': tensor(1.0944, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5013)}
+2019-12-04 05:09:23,859 [MainThread  ] train batch 39 / 351 (iter 39000), current average result {'loss': tensor(1.0937, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5021)}
+2019-12-04 05:10:22,290 [MainThread  ] train batch 289 / 351 (iter 39250), current average result {'loss': tensor(1.0934, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5020)}
+2019-12-04 05:11:22,902 [MainThread  ] train batch 188 / 351 (iter 39500), current average result {'loss': tensor(1.0926, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5026)}
+2019-12-04 05:12:23,860 [MainThread  ] train batch 87 / 351 (iter 39750), current average result {'loss': tensor(1.0923, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5027)}
+2019-12-04 05:13:22,325 [MainThread  ] train batch 337 / 351 (iter 40000), current average result {'loss': tensor(1.0923, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5026)}
+2019-12-04 05:13:22,325 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 05:13:28,521 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0930), 'jigsaw_acc': tensor(0.5023)}
+2019-12-04 05:14:28,984 [MainThread  ] train batch 236 / 351 (iter 40250), current average result {'loss': tensor(1.0879, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5042)}
+2019-12-04 05:15:29,227 [MainThread  ] train batch 135 / 351 (iter 40500), current average result {'loss': tensor(1.0885, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5041)}
+2019-12-04 05:16:29,932 [MainThread  ] train batch 34 / 351 (iter 40750), current average result {'loss': tensor(1.0879, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5044)}
+2019-12-04 05:17:28,294 [MainThread  ] train batch 284 / 351 (iter 41000), current average result {'loss': tensor(1.0877, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5044)}
+2019-12-04 05:18:29,040 [MainThread  ] train batch 183 / 351 (iter 41250), current average result {'loss': tensor(1.0877, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5045)}
+2019-12-04 05:19:29,926 [MainThread  ] train batch 82 / 351 (iter 41500), current average result {'loss': tensor(1.0879, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5044)}
+2019-12-04 05:20:28,364 [MainThread  ] train batch 332 / 351 (iter 41750), current average result {'loss': tensor(1.0879, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5043)}
+2019-12-04 05:21:29,139 [MainThread  ] train batch 231 / 351 (iter 42000), current average result {'loss': tensor(1.0880, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5041)}
+2019-12-04 05:21:29,140 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 05:21:36,472 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0914), 'jigsaw_acc': tensor(0.5039)}
+2019-12-04 05:22:36,996 [MainThread  ] train batch 130 / 351 (iter 42250), current average result {'loss': tensor(1.0881, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5032)}
+2019-12-04 05:23:37,608 [MainThread  ] train batch 29 / 351 (iter 42500), current average result {'loss': tensor(1.0859, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5056)}
+2019-12-04 05:24:35,958 [MainThread  ] train batch 279 / 351 (iter 42750), current average result {'loss': tensor(1.0855, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5060)}
+2019-12-04 05:25:36,617 [MainThread  ] train batch 178 / 351 (iter 43000), current average result {'loss': tensor(1.0851, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5059)}
+2019-12-04 05:26:37,489 [MainThread  ] train batch 77 / 351 (iter 43250), current average result {'loss': tensor(1.0856, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5054)}
+2019-12-04 05:27:35,909 [MainThread  ] train batch 327 / 351 (iter 43500), current average result {'loss': tensor(1.0853, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5056)}
+2019-12-04 05:28:36,868 [MainThread  ] train batch 226 / 351 (iter 43750), current average result {'loss': tensor(1.0849, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5059)}
+2019-12-04 05:29:37,635 [MainThread  ] train batch 125 / 351 (iter 44000), current average result {'loss': tensor(1.0844, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5062)}
+2019-12-04 05:29:37,635 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 05:29:45,213 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.1060), 'jigsaw_acc': tensor(0.4917)}
+2019-12-04 05:30:45,617 [MainThread  ] train batch 24 / 351 (iter 44250), current average result {'loss': tensor(1.0827, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5067)}
+2019-12-04 05:31:43,918 [MainThread  ] train batch 274 / 351 (iter 44500), current average result {'loss': tensor(1.0800, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5082)}
+2019-12-04 05:32:44,439 [MainThread  ] train batch 173 / 351 (iter 44750), current average result {'loss': tensor(1.0795, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5089)}
+2019-12-04 05:33:45,072 [MainThread  ] train batch 72 / 351 (iter 45000), current average result {'loss': tensor(1.0795, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5092)}
+2019-12-04 05:34:43,492 [MainThread  ] train batch 322 / 351 (iter 45250), current average result {'loss': tensor(1.0800, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5088)}
+2019-12-04 05:35:44,355 [MainThread  ] train batch 221 / 351 (iter 45500), current average result {'loss': tensor(1.0795, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5088)}
+2019-12-04 05:36:45,221 [MainThread  ] train batch 120 / 351 (iter 45750), current average result {'loss': tensor(1.0794, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5086)}
+2019-12-04 05:37:46,335 [MainThread  ] train batch 19 / 351 (iter 46000), current average result {'loss': tensor(1.0793, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5086)}
+2019-12-04 05:37:46,336 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 05:37:53,886 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0901), 'jigsaw_acc': tensor(0.5056)}
+2019-12-04 05:37:53,887 [MainThread  ] Best validation updated: {'best_iter': 46000, 'current_iter': 46000, 'best_performance': tensor(0.5056)}
+2019-12-04 05:37:54,043 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 05:38:52,235 [MainThread  ] train batch 269 / 351 (iter 46250), current average result {'loss': tensor(1.0798, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5096)}
+2019-12-04 05:39:52,949 [MainThread  ] train batch 168 / 351 (iter 46500), current average result {'loss': tensor(1.0788, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5094)}
+2019-12-04 05:40:53,718 [MainThread  ] train batch 67 / 351 (iter 46750), current average result {'loss': tensor(1.0781, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5098)}
+2019-12-04 05:41:52,112 [MainThread  ] train batch 317 / 351 (iter 47000), current average result {'loss': tensor(1.0782, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5099)}
+2019-12-04 05:42:53,004 [MainThread  ] train batch 216 / 351 (iter 47250), current average result {'loss': tensor(1.0778, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5100)}
+2019-12-04 05:43:53,876 [MainThread  ] train batch 115 / 351 (iter 47500), current average result {'loss': tensor(1.0774, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5102)}
+2019-12-04 05:44:54,952 [MainThread  ] train batch 14 / 351 (iter 47750), current average result {'loss': tensor(1.0772, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5102)}
+2019-12-04 05:45:53,396 [MainThread  ] train batch 264 / 351 (iter 48000), current average result {'loss': tensor(1.0767, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5104)}
+2019-12-04 05:45:53,396 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 05:45:59,833 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0846), 'jigsaw_acc': tensor(0.5066)}
+2019-12-04 05:45:59,834 [MainThread  ] Best validation updated: {'best_iter': 48000, 'current_iter': 48000, 'best_performance': tensor(0.5066)}
+2019-12-04 05:45:59,995 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 05:47:00,476 [MainThread  ] train batch 163 / 351 (iter 48250), current average result {'loss': tensor(1.0757, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5094)}
+2019-12-04 05:48:01,139 [MainThread  ] train batch 62 / 351 (iter 48500), current average result {'loss': tensor(1.0756, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5104)}
+2019-12-04 05:48:59,468 [MainThread  ] train batch 312 / 351 (iter 48750), current average result {'loss': tensor(1.0735, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5112)}
+2019-12-04 05:49:59,939 [MainThread  ] train batch 211 / 351 (iter 49000), current average result {'loss': tensor(1.0733, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5114)}
+2019-12-04 05:51:00,599 [MainThread  ] train batch 110 / 351 (iter 49250), current average result {'loss': tensor(1.0735, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5111)}
+2019-12-04 05:52:01,455 [MainThread  ] train batch 9 / 351 (iter 49500), current average result {'loss': tensor(1.0731, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5115)}
+2019-12-04 05:52:59,890 [MainThread  ] train batch 259 / 351 (iter 49750), current average result {'loss': tensor(1.0726, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5118)}
+2019-12-04 05:54:00,860 [MainThread  ] train batch 158 / 351 (iter 50000), current average result {'loss': tensor(1.0724, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5118)}
+2019-12-04 05:54:00,860 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 05:54:07,860 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0795), 'jigsaw_acc': tensor(0.5053)}
+2019-12-04 05:55:08,496 [MainThread  ] train batch 57 / 351 (iter 50250), current average result {'loss': tensor(1.0723, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5140)}
+2019-12-04 05:56:06,763 [MainThread  ] train batch 307 / 351 (iter 50500), current average result {'loss': tensor(1.0709, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5140)}
+2019-12-04 05:57:07,412 [MainThread  ] train batch 206 / 351 (iter 50750), current average result {'loss': tensor(1.0692, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5145)}
+2019-12-04 05:58:08,189 [MainThread  ] train batch 105 / 351 (iter 51000), current average result {'loss': tensor(1.0688, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5145)}
+2019-12-04 05:59:08,993 [MainThread  ] train batch 4 / 351 (iter 51250), current average result {'loss': tensor(1.0693, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5137)}
+2019-12-04 06:00:07,392 [MainThread  ] train batch 254 / 351 (iter 51500), current average result {'loss': tensor(1.0688, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5136)}
+2019-12-04 06:01:07,981 [MainThread  ] train batch 153 / 351 (iter 51750), current average result {'loss': tensor(1.0690, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5135)}
+2019-12-04 06:02:08,768 [MainThread  ] train batch 52 / 351 (iter 52000), current average result {'loss': tensor(1.0690, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5136)}
+2019-12-04 06:02:08,769 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 06:02:16,358 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0775), 'jigsaw_acc': tensor(0.5128)}
+2019-12-04 06:02:16,359 [MainThread  ] Best validation updated: {'best_iter': 52000, 'current_iter': 52000, 'best_performance': tensor(0.5128)}
+2019-12-04 06:02:16,519 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 06:03:14,716 [MainThread  ] train batch 302 / 351 (iter 52250), current average result {'loss': tensor(1.0702, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5134)}
+2019-12-04 06:04:15,480 [MainThread  ] train batch 201 / 351 (iter 52500), current average result {'loss': tensor(1.0688, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5131)}
+2019-12-04 06:05:16,262 [MainThread  ] train batch 100 / 351 (iter 52750), current average result {'loss': tensor(1.0690, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5132)}
+2019-12-04 06:06:14,655 [MainThread  ] train batch 350 / 351 (iter 53000), current average result {'loss': tensor(1.0691, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5132)}
+2019-12-04 06:07:15,589 [MainThread  ] train batch 249 / 351 (iter 53250), current average result {'loss': tensor(1.0685, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5135)}
+2019-12-04 06:08:16,344 [MainThread  ] train batch 148 / 351 (iter 53500), current average result {'loss': tensor(1.0679, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5137)}
+2019-12-04 06:09:17,173 [MainThread  ] train batch 47 / 351 (iter 53750), current average result {'loss': tensor(1.0678, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5137)}
+2019-12-04 06:10:15,619 [MainThread  ] train batch 297 / 351 (iter 54000), current average result {'loss': tensor(1.0675, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5140)}
+2019-12-04 06:10:15,619 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 06:10:23,206 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0689), 'jigsaw_acc': tensor(0.5153)}
+2019-12-04 06:10:23,206 [MainThread  ] Best validation updated: {'best_iter': 54000, 'current_iter': 54000, 'best_performance': tensor(0.5153)}
+2019-12-04 06:10:23,367 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 06:11:23,657 [MainThread  ] train batch 196 / 351 (iter 54250), current average result {'loss': tensor(1.0652, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5169)}
+2019-12-04 06:12:23,967 [MainThread  ] train batch 95 / 351 (iter 54500), current average result {'loss': tensor(1.0664, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5153)}
+2019-12-04 06:13:22,217 [MainThread  ] train batch 345 / 351 (iter 54750), current average result {'loss': tensor(1.0662, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5151)}
+2019-12-04 06:14:22,762 [MainThread  ] train batch 244 / 351 (iter 55000), current average result {'loss': tensor(1.0648, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5158)}
+2019-12-04 06:15:23,390 [MainThread  ] train batch 143 / 351 (iter 55250), current average result {'loss': tensor(1.0640, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5160)}
+2019-12-04 06:16:24,389 [MainThread  ] train batch 42 / 351 (iter 55500), current average result {'loss': tensor(1.0632, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5163)}
+2019-12-04 06:17:22,842 [MainThread  ] train batch 292 / 351 (iter 55750), current average result {'loss': tensor(1.0634, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5161)}
+2019-12-04 06:18:23,842 [MainThread  ] train batch 191 / 351 (iter 56000), current average result {'loss': tensor(1.0633, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5161)}
+2019-12-04 06:18:23,842 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 06:18:31,173 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0621), 'jigsaw_acc': tensor(0.5171)}
+2019-12-04 06:18:31,174 [MainThread  ] Best validation updated: {'best_iter': 56000, 'current_iter': 56000, 'best_performance': tensor(0.5171)}
+2019-12-04 06:18:31,336 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 06:19:31,853 [MainThread  ] train batch 90 / 351 (iter 56250), current average result {'loss': tensor(1.0589, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5190)}
+2019-12-04 06:20:30,118 [MainThread  ] train batch 340 / 351 (iter 56500), current average result {'loss': tensor(1.0602, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5183)}
+2019-12-04 06:21:30,600 [MainThread  ] train batch 239 / 351 (iter 56750), current average result {'loss': tensor(1.0604, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5184)}
+2019-12-04 06:22:31,473 [MainThread  ] train batch 138 / 351 (iter 57000), current average result {'loss': tensor(1.0607, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5181)}
+2019-12-04 06:23:32,435 [MainThread  ] train batch 37 / 351 (iter 57250), current average result {'loss': tensor(1.0605, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5179)}
+2019-12-04 06:24:30,866 [MainThread  ] train batch 287 / 351 (iter 57500), current average result {'loss': tensor(1.0607, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5177)}
+2019-12-04 06:25:31,348 [MainThread  ] train batch 186 / 351 (iter 57750), current average result {'loss': tensor(1.0606, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5177)}
+2019-12-04 06:26:32,874 [MainThread  ] train batch 85 / 351 (iter 58000), current average result {'loss': tensor(1.0605, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5180)}
+2019-12-04 06:26:32,875 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 06:26:40,393 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0671), 'jigsaw_acc': tensor(0.5182)}
+2019-12-04 06:26:40,394 [MainThread  ] Best validation updated: {'best_iter': 58000, 'current_iter': 58000, 'best_performance': tensor(0.5182)}
+2019-12-04 06:26:40,554 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 06:27:38,747 [MainThread  ] train batch 335 / 351 (iter 58250), current average result {'loss': tensor(1.0598, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5177)}
+2019-12-04 06:28:39,440 [MainThread  ] train batch 234 / 351 (iter 58500), current average result {'loss': tensor(1.0573, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5184)}
+2019-12-04 06:29:40,199 [MainThread  ] train batch 133 / 351 (iter 58750), current average result {'loss': tensor(1.0580, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5185)}
+2019-12-04 06:30:41,080 [MainThread  ] train batch 32 / 351 (iter 59000), current average result {'loss': tensor(1.0584, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5181)}
+2019-12-04 06:31:39,488 [MainThread  ] train batch 282 / 351 (iter 59250), current average result {'loss': tensor(1.0581, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5181)}
+2019-12-04 06:32:40,427 [MainThread  ] train batch 181 / 351 (iter 59500), current average result {'loss': tensor(1.0578, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5184)}
+2019-12-04 06:33:41,210 [MainThread  ] train batch 80 / 351 (iter 59750), current average result {'loss': tensor(1.0577, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5186)}
+2019-12-04 06:34:39,655 [MainThread  ] train batch 330 / 351 (iter 60000), current average result {'loss': tensor(1.0578, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5183)}
+2019-12-04 06:34:39,655 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 06:34:46,074 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0642), 'jigsaw_acc': tensor(0.5142)}
+2019-12-04 06:35:46,639 [MainThread  ] train batch 229 / 351 (iter 60250), current average result {'loss': tensor(1.0580, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5171)}
+2019-12-04 06:36:47,081 [MainThread  ] train batch 128 / 351 (iter 60500), current average result {'loss': tensor(1.0577, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5181)}
+2019-12-04 06:37:47,779 [MainThread  ] train batch 27 / 351 (iter 60750), current average result {'loss': tensor(1.0567, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5183)}
+2019-12-04 06:38:46,151 [MainThread  ] train batch 277 / 351 (iter 61000), current average result {'loss': tensor(1.0569, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5185)}
+2019-12-04 06:39:46,977 [MainThread  ] train batch 176 / 351 (iter 61250), current average result {'loss': tensor(1.0565, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5188)}
+2019-12-04 06:40:47,915 [MainThread  ] train batch 75 / 351 (iter 61500), current average result {'loss': tensor(1.0562, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5190)}
+2019-12-04 06:41:46,378 [MainThread  ] train batch 325 / 351 (iter 61750), current average result {'loss': tensor(1.0558, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5194)}
+2019-12-04 06:42:47,435 [MainThread  ] train batch 224 / 351 (iter 62000), current average result {'loss': tensor(1.0553, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5197)}
+2019-12-04 06:42:47,436 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 06:42:55,060 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0582), 'jigsaw_acc': tensor(0.5163)}
+2019-12-04 06:43:55,413 [MainThread  ] train batch 123 / 351 (iter 62250), current average result {'loss': tensor(1.0535, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5197)}
+2019-12-04 06:44:55,992 [MainThread  ] train batch 22 / 351 (iter 62500), current average result {'loss': tensor(1.0538, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5203)}
+2019-12-04 06:45:54,343 [MainThread  ] train batch 272 / 351 (iter 62750), current average result {'loss': tensor(1.0542, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5204)}
+2019-12-04 06:46:55,230 [MainThread  ] train batch 171 / 351 (iter 63000), current average result {'loss': tensor(1.0544, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5202)}
+2019-12-04 06:47:55,860 [MainThread  ] train batch 70 / 351 (iter 63250), current average result {'loss': tensor(1.0543, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5202)}
+2019-12-04 06:48:54,306 [MainThread  ] train batch 320 / 351 (iter 63500), current average result {'loss': tensor(1.0538, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5206)}
+2019-12-04 06:49:55,278 [MainThread  ] train batch 219 / 351 (iter 63750), current average result {'loss': tensor(1.0534, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5205)}
+2019-12-04 06:50:56,370 [MainThread  ] train batch 118 / 351 (iter 64000), current average result {'loss': tensor(1.0534, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5204)}
+2019-12-04 06:50:56,370 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 06:51:03,928 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0581), 'jigsaw_acc': tensor(0.5219)}
+2019-12-04 06:51:03,929 [MainThread  ] Best validation updated: {'best_iter': 64000, 'current_iter': 64000, 'best_performance': tensor(0.5219)}
+2019-12-04 06:51:04,088 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 06:52:04,374 [MainThread  ] train batch 17 / 351 (iter 64250), current average result {'loss': tensor(1.0525, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5210)}
+2019-12-04 06:53:02,636 [MainThread  ] train batch 267 / 351 (iter 64500), current average result {'loss': tensor(1.0507, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5222)}
+2019-12-04 06:54:03,325 [MainThread  ] train batch 166 / 351 (iter 64750), current average result {'loss': tensor(1.0493, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5224)}
+2019-12-04 06:55:03,947 [MainThread  ] train batch 65 / 351 (iter 65000), current average result {'loss': tensor(1.0505, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5216)}
+2019-12-04 06:56:02,379 [MainThread  ] train batch 315 / 351 (iter 65250), current average result {'loss': tensor(1.0509, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5216)}
+2019-12-04 06:57:02,927 [MainThread  ] train batch 214 / 351 (iter 65500), current average result {'loss': tensor(1.0507, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5218)}
+2019-12-04 06:58:03,950 [MainThread  ] train batch 113 / 351 (iter 65750), current average result {'loss': tensor(1.0504, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5218)}
+2019-12-04 06:59:04,903 [MainThread  ] train batch 12 / 351 (iter 66000), current average result {'loss': tensor(1.0503, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5220)}
+2019-12-04 06:59:04,903 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 06:59:11,761 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0570), 'jigsaw_acc': tensor(0.5167)}
+2019-12-04 07:00:09,983 [MainThread  ] train batch 262 / 351 (iter 66250), current average result {'loss': tensor(1.0474, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5231)}
+2019-12-04 07:01:10,764 [MainThread  ] train batch 161 / 351 (iter 66500), current average result {'loss': tensor(1.0489, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5219)}
+2019-12-04 07:02:11,356 [MainThread  ] train batch 60 / 351 (iter 66750), current average result {'loss': tensor(1.0487, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5226)}
+2019-12-04 07:03:09,768 [MainThread  ] train batch 310 / 351 (iter 67000), current average result {'loss': tensor(1.0488, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5226)}
+2019-12-04 07:04:10,173 [MainThread  ] train batch 209 / 351 (iter 67250), current average result {'loss': tensor(1.0484, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5228)}
+2019-12-04 07:05:11,212 [MainThread  ] train batch 108 / 351 (iter 67500), current average result {'loss': tensor(1.0484, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5227)}
+2019-12-04 07:06:12,045 [MainThread  ] train batch 7 / 351 (iter 67750), current average result {'loss': tensor(1.0481, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5230)}
+2019-12-04 07:07:10,544 [MainThread  ] train batch 257 / 351 (iter 68000), current average result {'loss': tensor(1.0480, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5229)}
+2019-12-04 07:07:10,545 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 07:07:17,140 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0454), 'jigsaw_acc': tensor(0.5263)}
+2019-12-04 07:07:17,141 [MainThread  ] Best validation updated: {'best_iter': 68000, 'current_iter': 68000, 'best_performance': tensor(0.5263)}
+2019-12-04 07:07:17,302 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 07:08:17,854 [MainThread  ] train batch 156 / 351 (iter 68250), current average result {'loss': tensor(1.0458, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5232)}
+2019-12-04 07:09:18,487 [MainThread  ] train batch 55 / 351 (iter 68500), current average result {'loss': tensor(1.0461, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5229)}
+2019-12-04 07:10:16,806 [MainThread  ] train batch 305 / 351 (iter 68750), current average result {'loss': tensor(1.0459, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5224)}
+2019-12-04 07:11:17,637 [MainThread  ] train batch 204 / 351 (iter 69000), current average result {'loss': tensor(1.0458, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5230)}
+2019-12-04 07:12:18,537 [MainThread  ] train batch 103 / 351 (iter 69250), current average result {'loss': tensor(1.0453, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5236)}
+2019-12-04 07:13:19,548 [MainThread  ] train batch 2 / 351 (iter 69500), current average result {'loss': tensor(1.0456, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5236)}
+2019-12-04 07:14:18,005 [MainThread  ] train batch 252 / 351 (iter 69750), current average result {'loss': tensor(1.0455, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5237)}
+2019-12-04 07:15:19,066 [MainThread  ] train batch 151 / 351 (iter 70000), current average result {'loss': tensor(1.0454, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5237)}
+2019-12-04 07:15:19,067 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 07:15:26,568 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0426), 'jigsaw_acc': tensor(0.5322)}
+2019-12-04 07:15:26,569 [MainThread  ] Best validation updated: {'best_iter': 70000, 'current_iter': 70000, 'best_performance': tensor(0.5322)}
+2019-12-04 07:15:26,730 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 07:16:27,295 [MainThread  ] train batch 50 / 351 (iter 70250), current average result {'loss': tensor(1.0437, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5250)}
+2019-12-04 07:17:25,554 [MainThread  ] train batch 300 / 351 (iter 70500), current average result {'loss': tensor(1.0442, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5245)}
+2019-12-04 07:18:26,103 [MainThread  ] train batch 199 / 351 (iter 70750), current average result {'loss': tensor(1.0438, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5250)}
+2019-12-04 07:19:26,947 [MainThread  ] train batch 98 / 351 (iter 71000), current average result {'loss': tensor(1.0441, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5250)}
+2019-12-04 07:20:25,360 [MainThread  ] train batch 348 / 351 (iter 71250), current average result {'loss': tensor(1.0434, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5253)}
+2019-12-04 07:21:26,354 [MainThread  ] train batch 247 / 351 (iter 71500), current average result {'loss': tensor(1.0438, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5250)}
+2019-12-04 07:22:27,095 [MainThread  ] train batch 146 / 351 (iter 71750), current average result {'loss': tensor(1.0440, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5247)}
+2019-12-04 07:23:28,099 [MainThread  ] train batch 45 / 351 (iter 72000), current average result {'loss': tensor(1.0434, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5252)}
+2019-12-04 07:23:28,100 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 07:23:34,940 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0508), 'jigsaw_acc': tensor(0.5177)}
+2019-12-04 07:24:33,124 [MainThread  ] train batch 295 / 351 (iter 72250), current average result {'loss': tensor(1.0443, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5240)}
+2019-12-04 07:25:33,544 [MainThread  ] train batch 194 / 351 (iter 72500), current average result {'loss': tensor(1.0428, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5254)}
+2019-12-04 07:26:34,037 [MainThread  ] train batch 93 / 351 (iter 72750), current average result {'loss': tensor(1.0421, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5257)}
+2019-12-04 07:27:32,403 [MainThread  ] train batch 343 / 351 (iter 73000), current average result {'loss': tensor(1.0431, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5250)}
+2019-12-04 07:28:33,037 [MainThread  ] train batch 242 / 351 (iter 73250), current average result {'loss': tensor(1.0423, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5255)}
+2019-12-04 07:29:33,906 [MainThread  ] train batch 141 / 351 (iter 73500), current average result {'loss': tensor(1.0427, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5253)}
+2019-12-04 07:30:34,754 [MainThread  ] train batch 40 / 351 (iter 73750), current average result {'loss': tensor(1.0432, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5248)}
+2019-12-04 07:31:33,256 [MainThread  ] train batch 290 / 351 (iter 74000), current average result {'loss': tensor(1.0428, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5251)}
+2019-12-04 07:31:33,257 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 07:31:40,866 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0373), 'jigsaw_acc': tensor(0.5332)}
+2019-12-04 07:31:40,867 [MainThread  ] Best validation updated: {'best_iter': 74000, 'current_iter': 74000, 'best_performance': tensor(0.5332)}
+2019-12-04 07:31:41,028 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 07:32:41,381 [MainThread  ] train batch 189 / 351 (iter 74250), current average result {'loss': tensor(1.0427, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5251)}
+2019-12-04 07:33:42,014 [MainThread  ] train batch 88 / 351 (iter 74500), current average result {'loss': tensor(1.0421, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5252)}
+2019-12-04 07:34:40,314 [MainThread  ] train batch 338 / 351 (iter 74750), current average result {'loss': tensor(1.0413, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5258)}
+2019-12-04 07:35:41,165 [MainThread  ] train batch 237 / 351 (iter 75000), current average result {'loss': tensor(1.0405, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5262)}
+2019-12-04 07:36:41,872 [MainThread  ] train batch 136 / 351 (iter 75250), current average result {'loss': tensor(1.0407, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5260)}
+2019-12-04 07:37:42,806 [MainThread  ] train batch 35 / 351 (iter 75500), current average result {'loss': tensor(1.0401, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5266)}
+2019-12-04 07:38:41,260 [MainThread  ] train batch 285 / 351 (iter 75750), current average result {'loss': tensor(1.0400, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5265)}
+2019-12-04 07:39:42,094 [MainThread  ] train batch 184 / 351 (iter 76000), current average result {'loss': tensor(1.0401, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5265)}
+2019-12-04 07:39:42,094 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 07:39:49,140 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0390), 'jigsaw_acc': tensor(0.5265)}
+2019-12-04 07:40:49,829 [MainThread  ] train batch 83 / 351 (iter 76250), current average result {'loss': tensor(1.0389, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5273)}
+2019-12-04 07:41:48,129 [MainThread  ] train batch 333 / 351 (iter 76500), current average result {'loss': tensor(1.0398, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5269)}
+2019-12-04 07:42:48,877 [MainThread  ] train batch 232 / 351 (iter 76750), current average result {'loss': tensor(1.0395, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5267)}
+2019-12-04 07:43:49,478 [MainThread  ] train batch 131 / 351 (iter 77000), current average result {'loss': tensor(1.0391, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5272)}
+2019-12-04 07:44:50,435 [MainThread  ] train batch 30 / 351 (iter 77250), current average result {'loss': tensor(1.0392, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5269)}
+2019-12-04 07:45:48,872 [MainThread  ] train batch 280 / 351 (iter 77500), current average result {'loss': tensor(1.0391, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5268)}
+2019-12-04 07:46:49,586 [MainThread  ] train batch 179 / 351 (iter 77750), current average result {'loss': tensor(1.0386, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5274)}
+2019-12-04 07:47:50,570 [MainThread  ] train batch 78 / 351 (iter 78000), current average result {'loss': tensor(1.0383, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5276)}
+2019-12-04 07:47:50,570 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 07:47:57,908 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0333), 'jigsaw_acc': tensor(0.5275)}
+2019-12-04 07:48:56,125 [MainThread  ] train batch 328 / 351 (iter 78250), current average result {'loss': tensor(1.0403, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5263)}
+2019-12-04 07:49:56,552 [MainThread  ] train batch 227 / 351 (iter 78500), current average result {'loss': tensor(1.0382, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5270)}
+2019-12-04 07:50:57,300 [MainThread  ] train batch 126 / 351 (iter 78750), current average result {'loss': tensor(1.0387, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5268)}
+2019-12-04 07:51:58,059 [MainThread  ] train batch 25 / 351 (iter 79000), current average result {'loss': tensor(1.0384, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5269)}
+2019-12-04 07:52:56,511 [MainThread  ] train batch 275 / 351 (iter 79250), current average result {'loss': tensor(1.0378, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5278)}
+2019-12-04 07:53:57,473 [MainThread  ] train batch 174 / 351 (iter 79500), current average result {'loss': tensor(1.0379, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5277)}
+2019-12-04 07:54:58,552 [MainThread  ] train batch 73 / 351 (iter 79750), current average result {'loss': tensor(1.0376, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5278)}
+2019-12-04 07:55:57,058 [MainThread  ] train batch 323 / 351 (iter 80000), current average result {'loss': tensor(1.0372, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5280)}
+2019-12-04 07:55:57,059 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 07:56:04,014 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0346), 'jigsaw_acc': tensor(0.5250)}
+2019-12-04 07:57:04,604 [MainThread  ] train batch 222 / 351 (iter 80250), current average result {'loss': tensor(1.0362, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5287)}
+2019-12-04 07:58:05,151 [MainThread  ] train batch 121 / 351 (iter 80500), current average result {'loss': tensor(1.0351, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5293)}
+2019-12-04 07:59:05,593 [MainThread  ] train batch 20 / 351 (iter 80750), current average result {'loss': tensor(1.0344, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5291)}
+2019-12-04 08:00:03,959 [MainThread  ] train batch 270 / 351 (iter 81000), current average result {'loss': tensor(1.0346, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5292)}
+2019-12-04 08:01:04,836 [MainThread  ] train batch 169 / 351 (iter 81250), current average result {'loss': tensor(1.0348, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5289)}
+2019-12-04 08:02:05,669 [MainThread  ] train batch 68 / 351 (iter 81500), current average result {'loss': tensor(1.0348, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5289)}
+2019-12-04 08:03:04,077 [MainThread  ] train batch 318 / 351 (iter 81750), current average result {'loss': tensor(1.0347, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5289)}
+2019-12-04 08:04:05,002 [MainThread  ] train batch 217 / 351 (iter 82000), current average result {'loss': tensor(1.0344, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5288)}
+2019-12-04 08:04:05,003 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 08:04:12,611 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0306), 'jigsaw_acc': tensor(0.5318)}
+2019-12-04 08:05:12,944 [MainThread  ] train batch 116 / 351 (iter 82250), current average result {'loss': tensor(1.0347, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5279)}
+2019-12-04 08:06:13,496 [MainThread  ] train batch 15 / 351 (iter 82500), current average result {'loss': tensor(1.0341, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5288)}
+2019-12-04 08:07:11,810 [MainThread  ] train batch 265 / 351 (iter 82750), current average result {'loss': tensor(1.0339, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5292)}
+2019-12-04 08:08:12,376 [MainThread  ] train batch 164 / 351 (iter 83000), current average result {'loss': tensor(1.0341, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5291)}
+2019-12-04 08:09:13,013 [MainThread  ] train batch 63 / 351 (iter 83250), current average result {'loss': tensor(1.0334, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5297)}
+2019-12-04 08:10:11,433 [MainThread  ] train batch 313 / 351 (iter 83500), current average result {'loss': tensor(1.0344, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5290)}
+2019-12-04 08:11:12,204 [MainThread  ] train batch 212 / 351 (iter 83750), current average result {'loss': tensor(1.0344, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5290)}
+2019-12-04 08:12:13,281 [MainThread  ] train batch 111 / 351 (iter 84000), current average result {'loss': tensor(1.0344, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5287)}
+2019-12-04 08:12:13,282 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 08:12:20,833 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0375), 'jigsaw_acc': tensor(0.5254)}
+2019-12-04 08:13:21,329 [MainThread  ] train batch 10 / 351 (iter 84250), current average result {'loss': tensor(1.0335, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5296)}
+2019-12-04 08:14:19,588 [MainThread  ] train batch 260 / 351 (iter 84500), current average result {'loss': tensor(1.0324, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5304)}
+2019-12-04 08:15:20,133 [MainThread  ] train batch 159 / 351 (iter 84750), current average result {'loss': tensor(1.0323, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5308)}
+2019-12-04 08:16:20,500 [MainThread  ] train batch 58 / 351 (iter 85000), current average result {'loss': tensor(1.0322, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5309)}
+2019-12-04 08:17:18,932 [MainThread  ] train batch 308 / 351 (iter 85250), current average result {'loss': tensor(1.0325, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5307)}
+2019-12-04 08:18:19,882 [MainThread  ] train batch 207 / 351 (iter 85500), current average result {'loss': tensor(1.0324, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5310)}
+2019-12-04 08:19:20,846 [MainThread  ] train batch 106 / 351 (iter 85750), current average result {'loss': tensor(1.0323, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5308)}
+2019-12-04 08:20:21,447 [MainThread  ] train batch 5 / 351 (iter 86000), current average result {'loss': tensor(1.0325, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5305)}
+2019-12-04 08:20:21,447 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 08:20:27,900 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0262), 'jigsaw_acc': tensor(0.5315)}
+2019-12-04 08:21:26,119 [MainThread  ] train batch 255 / 351 (iter 86250), current average result {'loss': tensor(1.0295, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5303)}
+2019-12-04 08:22:26,860 [MainThread  ] train batch 154 / 351 (iter 86500), current average result {'loss': tensor(1.0306, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5305)}
+2019-12-04 08:23:27,621 [MainThread  ] train batch 53 / 351 (iter 86750), current average result {'loss': tensor(1.0310, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5311)}
+2019-12-04 08:24:26,020 [MainThread  ] train batch 303 / 351 (iter 87000), current average result {'loss': tensor(1.0313, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5310)}
+2019-12-04 08:25:26,885 [MainThread  ] train batch 202 / 351 (iter 87250), current average result {'loss': tensor(1.0313, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5302)}
+2019-12-04 08:26:27,834 [MainThread  ] train batch 101 / 351 (iter 87500), current average result {'loss': tensor(1.0315, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5301)}
+2019-12-04 08:27:26,284 [MainThread  ] train batch 351 / 351 (iter 87750), current average result {'loss': tensor(1.0315, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5300)}
+2019-12-04 08:28:27,283 [MainThread  ] train batch 250 / 351 (iter 88000), current average result {'loss': tensor(1.0314, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5300)}
+2019-12-04 08:28:27,283 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 08:28:34,318 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0277), 'jigsaw_acc': tensor(0.5341)}
+2019-12-04 08:28:34,319 [MainThread  ] Best validation updated: {'best_iter': 88000, 'current_iter': 88000, 'best_performance': tensor(0.5341)}
+2019-12-04 08:28:34,482 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 08:29:34,800 [MainThread  ] train batch 149 / 351 (iter 88250), current average result {'loss': tensor(1.0300, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5308)}
+2019-12-04 08:30:35,431 [MainThread  ] train batch 48 / 351 (iter 88500), current average result {'loss': tensor(1.0303, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5306)}
+2019-12-04 08:31:33,757 [MainThread  ] train batch 298 / 351 (iter 88750), current average result {'loss': tensor(1.0310, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5304)}
+2019-12-04 08:32:34,484 [MainThread  ] train batch 197 / 351 (iter 89000), current average result {'loss': tensor(1.0316, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5300)}
+2019-12-04 08:33:35,186 [MainThread  ] train batch 96 / 351 (iter 89250), current average result {'loss': tensor(1.0323, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5297)}
+2019-12-04 08:34:33,499 [MainThread  ] train batch 346 / 351 (iter 89500), current average result {'loss': tensor(1.0323, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5296)}
+2019-12-04 08:35:34,300 [MainThread  ] train batch 245 / 351 (iter 89750), current average result {'loss': tensor(1.0316, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5300)}
+2019-12-04 08:36:35,243 [MainThread  ] train batch 144 / 351 (iter 90000), current average result {'loss': tensor(1.0319, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5300)}
+2019-12-04 08:36:35,243 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 08:36:42,726 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0288), 'jigsaw_acc': tensor(0.5300)}
+2019-12-04 08:37:43,183 [MainThread  ] train batch 43 / 351 (iter 90250), current average result {'loss': tensor(1.0335, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5296)}
+2019-12-04 08:38:41,388 [MainThread  ] train batch 293 / 351 (iter 90500), current average result {'loss': tensor(1.0313, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5304)}
+2019-12-04 08:39:42,020 [MainThread  ] train batch 192 / 351 (iter 90750), current average result {'loss': tensor(1.0307, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5307)}
+2019-12-04 08:40:42,793 [MainThread  ] train batch 91 / 351 (iter 91000), current average result {'loss': tensor(1.0298, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5312)}
+2019-12-04 08:41:41,165 [MainThread  ] train batch 341 / 351 (iter 91250), current average result {'loss': tensor(1.0303, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5307)}
+2019-12-04 08:42:42,090 [MainThread  ] train batch 240 / 351 (iter 91500), current average result {'loss': tensor(1.0299, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5308)}
+2019-12-04 08:43:43,102 [MainThread  ] train batch 139 / 351 (iter 91750), current average result {'loss': tensor(1.0301, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5306)}
+2019-12-04 08:44:43,796 [MainThread  ] train batch 38 / 351 (iter 92000), current average result {'loss': tensor(1.0304, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5305)}
+2019-12-04 08:44:43,796 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 08:44:51,537 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0258), 'jigsaw_acc': tensor(0.5348)}
+2019-12-04 08:44:51,537 [MainThread  ] Best validation updated: {'best_iter': 92000, 'current_iter': 92000, 'best_performance': tensor(0.5348)}
+2019-12-04 08:44:51,698 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 08:45:49,844 [MainThread  ] train batch 288 / 351 (iter 92250), current average result {'loss': tensor(1.0316, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5297)}
+2019-12-04 08:46:50,224 [MainThread  ] train batch 187 / 351 (iter 92500), current average result {'loss': tensor(1.0309, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5303)}
+2019-12-04 08:47:50,929 [MainThread  ] train batch 86 / 351 (iter 92750), current average result {'loss': tensor(1.0301, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5309)}
+2019-12-04 08:48:49,291 [MainThread  ] train batch 336 / 351 (iter 93000), current average result {'loss': tensor(1.0301, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5310)}
+2019-12-04 08:49:50,059 [MainThread  ] train batch 235 / 351 (iter 93250), current average result {'loss': tensor(1.0297, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5311)}
+2019-12-04 08:50:50,939 [MainThread  ] train batch 134 / 351 (iter 93500), current average result {'loss': tensor(1.0296, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5310)}
+2019-12-04 08:51:51,704 [MainThread  ] train batch 33 / 351 (iter 93750), current average result {'loss': tensor(1.0295, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5309)}
+2019-12-04 08:52:50,137 [MainThread  ] train batch 283 / 351 (iter 94000), current average result {'loss': tensor(1.0298, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5309)}
+2019-12-04 08:52:50,138 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 08:52:57,528 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0267), 'jigsaw_acc': tensor(0.5321)}
+2019-12-04 08:53:57,807 [MainThread  ] train batch 182 / 351 (iter 94250), current average result {'loss': tensor(1.0322, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5293)}
+2019-12-04 08:54:58,193 [MainThread  ] train batch 81 / 351 (iter 94500), current average result {'loss': tensor(1.0298, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5303)}
+2019-12-04 08:55:56,493 [MainThread  ] train batch 331 / 351 (iter 94750), current average result {'loss': tensor(1.0298, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5305)}
+2019-12-04 08:56:57,010 [MainThread  ] train batch 230 / 351 (iter 95000), current average result {'loss': tensor(1.0292, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5312)}
+2019-12-04 08:57:57,634 [MainThread  ] train batch 129 / 351 (iter 95250), current average result {'loss': tensor(1.0297, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5311)}
+2019-12-04 08:58:58,541 [MainThread  ] train batch 28 / 351 (iter 95500), current average result {'loss': tensor(1.0295, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5313)}
+2019-12-04 08:59:56,952 [MainThread  ] train batch 278 / 351 (iter 95750), current average result {'loss': tensor(1.0291, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5315)}
+2019-12-04 09:00:57,922 [MainThread  ] train batch 177 / 351 (iter 96000), current average result {'loss': tensor(1.0294, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5313)}
+2019-12-04 09:00:57,922 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 09:01:04,450 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0265), 'jigsaw_acc': tensor(0.5291)}
+2019-12-04 09:02:04,997 [MainThread  ] train batch 76 / 351 (iter 96250), current average result {'loss': tensor(1.0301, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5300)}
+2019-12-04 09:03:03,245 [MainThread  ] train batch 326 / 351 (iter 96500), current average result {'loss': tensor(1.0308, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5297)}
+2019-12-04 09:04:03,592 [MainThread  ] train batch 225 / 351 (iter 96750), current average result {'loss': tensor(1.0296, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5309)}
+2019-12-04 09:05:04,138 [MainThread  ] train batch 124 / 351 (iter 97000), current average result {'loss': tensor(1.0302, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5306)}
+2019-12-04 09:06:05,064 [MainThread  ] train batch 23 / 351 (iter 97250), current average result {'loss': tensor(1.0296, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5307)}
+2019-12-04 09:07:03,497 [MainThread  ] train batch 273 / 351 (iter 97500), current average result {'loss': tensor(1.0297, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5308)}
+2019-12-04 09:08:04,226 [MainThread  ] train batch 172 / 351 (iter 97750), current average result {'loss': tensor(1.0300, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5306)}
+2019-12-04 09:09:05,271 [MainThread  ] train batch 71 / 351 (iter 98000), current average result {'loss': tensor(1.0298, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5305)}
+2019-12-04 09:09:05,272 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 09:09:12,892 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0181), 'jigsaw_acc': tensor(0.5368)}
+2019-12-04 09:09:12,893 [MainThread  ] Best validation updated: {'best_iter': 98000, 'current_iter': 98000, 'best_performance': tensor(0.5368)}
+2019-12-04 09:09:13,053 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_best.ckpt
+2019-12-04 09:10:11,258 [MainThread  ] train batch 321 / 351 (iter 98250), current average result {'loss': tensor(1.0278, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5328)}
+2019-12-04 09:11:11,918 [MainThread  ] train batch 220 / 351 (iter 98500), current average result {'loss': tensor(1.0284, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5317)}
+2019-12-04 09:12:12,575 [MainThread  ] train batch 119 / 351 (iter 98750), current average result {'loss': tensor(1.0291, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5311)}
+2019-12-04 09:13:13,382 [MainThread  ] train batch 18 / 351 (iter 99000), current average result {'loss': tensor(1.0289, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5310)}
+2019-12-04 09:14:11,727 [MainThread  ] train batch 268 / 351 (iter 99250), current average result {'loss': tensor(1.0290, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5312)}
+2019-12-04 09:15:12,538 [MainThread  ] train batch 167 / 351 (iter 99500), current average result {'loss': tensor(1.0295, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5310)}
+2019-12-04 09:16:13,385 [MainThread  ] train batch 66 / 351 (iter 99750), current average result {'loss': tensor(1.0296, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5311)}
+2019-12-04 09:17:11,859 [MainThread  ] train batch 316 / 351 (iter 100000), current average result {'loss': tensor(1.0295, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.5313)}
+2019-12-04 09:17:11,859 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-04 09:17:19,346 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(1.0247), 'jigsaw_acc': tensor(0.5333)}
+2019-12-04 09:17:19,649 [MainThread  ] Training complete
+2019-12-04 09:17:19,650 [MainThread  ] Best result found for cifar10_un: {'best_iter': 98000, 'current_iter': 100000, 'best_performance': tensor(0.5368)}
+2019-12-04 09:17:19,778 [MainThread  ] Save parameters for ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_complete.pth
+2019-12-04 09:17:19,866 [MainThread  ] Load parameters from ./results/Selfie-revised-pretrain-final/pretrain_cifar10_un_complete.pth
+2019-12-04 09:17:19,867 [MainThread  ] Setup trainer for cifar10_lp10
+2019-12-04 09:17:19,868 [MainThread  ] Start training cifar10_lp10
