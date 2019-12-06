@@ -5,6 +5,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 import torchvision.models.resnet as resnet
 import itertools
+from tasks import nce_loss
 
 def get_model(name, args):
     if name == "selfie":
@@ -470,7 +471,11 @@ class AllPatchModel(JigsawModel):
                 jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
                 #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
-            batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
+            if args.loss== "nce":
+                batch_output["loss"] = nce_loss.nce_loss(jigsaw_pred, jigsaw_label)
+            elif args.loss=="bce":
+                batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred, jigsaw_label)
+            
             jigsaw_pred1 = jigsaw_pred.clone()
             jigsaw_pred1[jigsaw_pred>0.5] = 1
             jigsaw_pred1[jigsaw_pred<=0.5] = 0
@@ -484,7 +489,10 @@ class AllPatchModel(JigsawModel):
             features_pool = self.avg_pool(features).view(bs,-1)
             
             cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
-            batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
+            if args.loss== "nce":
+                batch_output["loss"] = nce_loss.nce_loss(cls_pred, batch_input["label"])
+            elif args.loss=="bce":
+                batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
             batch_output["predict"] = cls_pred.max(dim=1)[1]
             batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
         return batch_output

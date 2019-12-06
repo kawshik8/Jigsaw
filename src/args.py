@@ -139,6 +139,11 @@ parser.add_argument(
             tunable: finetune the whole model,
             (unimplemented) bound: parameters are tunable but decay towards pretrained model""",
 )
+#select loss option
+parser.add_argument('--loss', type=str, default='bce',
+                    help='bce|nce')
+parser.add_argument('--num_noise', type=int, default=64,
+                    help='number of noise samples per target for nce')
 
 
 def process_args(args):
