@@ -15,3 +15,10 @@ data/cifar10/cifar-10-batches-py/test_batch
 data/cifar10/cifar-10-python.tar.gz
 data/cifar10/cifar10_lp5.json
 data/cifar10/cifar10_lp100.json
+results/baseline-whole/finetune_cifar10_lp100_best.ckpt
+results/baseline-whole/finetune_cifar10_lp10_best.ckpt
+results/selfie-finetune-whole/models/finetune_cifar10_lp100_best.ckpt
+results/selfie-finetune-whole/models/finetune_cifar10_lp10_best.ckpt
+results/selfie-finetune-whole/models/pretrain_cifar10_un_best.ckpt
+results/selfie-finetune-whole/pretrain_cifar10_un_complete.pth
+results/selfie-finetune-whole/selfie-models.tar.gz
