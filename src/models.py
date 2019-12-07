@@ -131,6 +131,17 @@ class BaselineModel(JigsawModel):
             full_resnet.layer3,
         )
 
+        self.res_block4 = full_resnet.layer4
+
+        self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
+
+        self.reduce = nn.Linear(self.num_patches*self.d_model, self.d_model)
+
+        self.pretrain_network = nn.Sequential(
+            self.patch_network,
+            self.avg_pool,
+        )
+
         self.cls_classifiers = nn.ModuleDict()
 
         from tasks import task_num_class
@@ -138,12 +149,13 @@ class BaselineModel(JigsawModel):
         for taskname in args.finetune_tasks:
             self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.d_model, task_num_class(taskname))
 
-        self.avg_pool = nn.AvgPool1d(self.num_patches)
+        self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
         self.sigmoid = nn.Sigmoid()
         self.shared_params = list(self.patch_network.parameters())
         #self.shared_params += list(self.attention_pooling.parameters())
-        self.pretrain_params = list(self.cls_classifiers.parameters())
+        self.pretrain_params = list(self.reduce.parameters())
         self.finetune_params = list(self.cls_classifiers.parameters())
+        self.finetune_params += list(self.res_block4.parameters())
 
     def forward(self, batch_input, task=None):
         batch_output = {}
@@ -153,16 +165,43 @@ class BaselineModel(JigsawModel):
         device = inp.device#batch_input["aug"].device
         bs = inp.size(0)
 
-        patches = self.patch_network(inp.flatten(0, 1)).view(
-            bs, self.num_patches, -1
-        )  # (bs, num_patches, d_model)
-        # pool = self.attention_pooling(patches)# (bs, aug_patches, d_model)
-        final = self.avg_pool(patches.transpose(1,2)).view(bs,self.d_model) # (bs, d_model)
-        #print(final.shape)
-        cls_pred = self.cls_classifiers[task.name.split("_")[0]](final)
-        batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
-        batch_output["predict"] = cls_pred.max(dim=1)[1]
-        batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
+        if self.stage == "pretrain":
+
+            patches = self.pretrain_network(inp.flatten(0, 1)).view(
+                bs, self.num_patches, -1
+            )  # (bs, num_patches, d_model)
+           
+            flatten = patches.view(bs,-1)
+            final = self.reduce(flatten)
+
+            jigsaw_pred = torch.mm(
+                final, final.transpose(0,1)
+            )/(self.d_model**(1/2.0))  # (bs, bs)
+
+            jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
+            for i in range(bs):
+                
+                indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
+                #### Creates an array of size self.dup_pos_patches 
+                jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
+                #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
+
+            batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
+            jigsaw_pred1 = jigsaw_pred.clone()
+            jigsaw_pred1[jigsaw_pred>0.5] = 1
+            jigsaw_pred1[jigsaw_pred<=0.5] = 0
+            batch_output["jigsaw_acc"] = ((jigsaw_pred1) == jigsaw_label).float().mean()
+
+        if self.stage == "finetune"
+
+            features = self.patch_network(batch_input["image"])
+            features = self.finetune_conv_layer(features)
+            features_pool = self.avg_pool(features).view(bs,-1)
+
+            cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
+            batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
+            batch_output["predict"] = cls_pred.max(dim=1)[1]
+            batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
 
         return batch_output
 
@@ -456,11 +495,11 @@ class AllPatchModel(JigsawModel):
             ) # (bs, 1, d_model)
             final = self.attention_pooling(torch.cat([u0, patches], dim=1))[:,0,:]
             
-            similarity = torch.mm(
+            jigsaw_pred = torch.mm(
                 final, final.transpose(0,1)
             )/(self.d_model**(1/2.0))  # (bs, bs)
             
-            jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
+            #jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
 
             jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
             for i in range(bs):
@@ -470,7 +509,7 @@ class AllPatchModel(JigsawModel):
                 jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
                 #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
-            batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
+            batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
             jigsaw_pred1 = jigsaw_pred.clone()
             jigsaw_pred1[jigsaw_pred>0.5] = 1
             jigsaw_pred1[jigsaw_pred<=0.5] = 0
@@ -624,11 +663,11 @@ class ExchangePatchModel(JigsawModel):
             ) # (bs, 1, d_model)
             final = self.attention_pooling(torch.cat([u0, input_attn_pool.view(bs,self.num_patches,-1)], dim=1))[:,0,:]   
 
-            similarity = torch.mm(
+            jigsaw_pred = torch.mm(
                 final, final.transpose(0,1)
             )/(self.d_model**(1/2.0))  # (bs, bs)
             
-            jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
+            #jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
 
             jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
             for i in range(bs):
@@ -638,7 +677,7 @@ class ExchangePatchModel(JigsawModel):
                 jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
                 #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
-            batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
+            batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
             jigsaw_pred1 = jigsaw_pred.clone()
             jigsaw_pred1[jigsaw_pred>0.5] = 1
             jigsaw_pred1[jigsaw_pred<=0.5] = 0

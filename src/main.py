@@ -45,12 +45,14 @@ def main(args):
     else:
         pretrain_complete_ckpt = args.load_ckpt
 
-    # finetune
+    # finetune and test
     for task in finetune_tasks:
         if pretrain_complete_ckpt != "none":
             load_model(pretrain_complete_ckpt, model)
         finetune = Trainer("finetune", model, task, args)
         finetune.train()
+
+        finetune.eval("test")
 
     # evaluate
     # TODO: evaluate result on test split, write prediction for leaderboard submission (for dataset
