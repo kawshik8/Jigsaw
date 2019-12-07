@@ -19,19 +19,19 @@ def get_task(name, args):
     elif name == "cifar10_un":
         return CIFAR10(name, args, pretrain=True)
     elif name.startswith("cifar10_lp"):
-        return CIFAR10(name, args, label_pct=float(name.replace("cifar10_lp", "")) / 100)
+        return CIFAR10(name, args, label_pct=float(name.replace("cifar10_lp", "").split("_")[0]) / 100)
     elif name == "cifar100_un":
         return CIFAR100(name, args, pretrain=True)
     elif name.startswith("cifar100_lp"):
-        return CIFAR100(name, args, label_pct=float(name.replace("cifar100_lp", "")) / 100)
+        return CIFAR100(name, args, label_pct=float(name.replace("cifar100_lp", "").split("_")[0]) / 100)
     elif name.startswith("mnist_un"):
         return MNIST(name, args, pretrain=True)
     elif name.startswith("mnist_lp"):
-        return MNIST(name, args, label_pct=float(name.replace("mnist_lp", "")) / 100)
+        return MNIST(name, args, label_pct=float(name.replace("mnist_lp", "").split("_")[0]) / 100)
     elif name.startswith("imagenet_un"):
         return ImageNet(name, args, pretrain=True)
     elif name.startswith("imagenet_lp"):
-        return ImageNet(name, args, label_pct=float(name.replace("imagenet_lp", "")) / 100)
+        return ImageNet(name, args, label_pct=float(name.replace("imagenet_lp", "").split("_")[0]) / 100)
     else:
         raise NotImplementedError
 

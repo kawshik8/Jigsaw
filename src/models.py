@@ -29,7 +29,7 @@ def get_part_model(model,layer):
         return model[:6]
     elif layer == "res4":
         return model[:7]
-    else layer == "res5":
+    elif layer == "res5":
         return model
 
 def get_resize_dim(layer):
@@ -41,11 +41,11 @@ def get_resize_dim(layer):
         return 4
     elif layer == "res4":
         return 3
-    else layer == "res5":
+    elif layer == "res5":
         return 2
 
-def flatten_dim(tasklayer):
-    task,layer = tasklayer.split("_")
+def flatten_dim(layer):
+    #task,layer = tasklayer.split("_")
     
     if layer == "res1" or layer == "res2" or layer == "res4":
         return 9216
@@ -223,7 +223,7 @@ class BaselineModel(JigsawModel):
             jigsaw_pred1[jigsaw_pred<=0.5] = 0
             batch_output["jigsaw_acc"] = ((jigsaw_pred1) == jigsaw_label).float().mean()
 
-        if self.stage == "finetune"
+        if self.stage == "finetune":
 
             features = self.patch_network(batch_input["image"])
             features = self.finetune_conv_layer(features)
@@ -382,12 +382,15 @@ class SelfieModel(JigsawModel):
 
         self.linear = False
         for taskname in args.finetune_tasks:
-            name = "_".join(taskname.split("_")[:2])
+            name = taskname.split("_")[0]
+            tasklayer = "_".join([taskname.split("_")[0],taskname.split("_")[2]])
+            layer = taskname.split("_")[2]
             
-            if len(taskname.split("_")) > 2 :
+            if len(taskname.split("_")) > 2 and taskname.split("_")[2]!="none":
                 self.linear = True
                 for layer in (taskname.split("_")[2:]):
-                    self.cls_classifiers[taskname.split("_")[0] + "_" + layer] = nn.Linear(flatten_dim(taskname), task_num_class(name))
+                    print(tasklayer,flatten_dim(layer))
+                    self.cls_classifiers[tasklayer] = nn.Linear(flatten_dim(layer), task_num_class(name))
                     self.resize_dim[layer] = get_resize_dim(layer)
             else:
                 self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.f_model, task_num_class(name))
@@ -396,12 +399,13 @@ class SelfieModel(JigsawModel):
         self.pretrain_params = list(self.position_embedding.parameters())
         self.pretrain_params += list(self.attention_pooling.parameters())
         self.pretrain_params += [self.attention_pool_u0]
-        
+        self.finetune_params = list(self.cls_classifiers.parameters())
+
         if self.linear is False:
-            self.finetune_params = list(self.cls_classifiers.parameters())
+            #self.finetune_params = list(self.cls_classifiers.parameters())
             self.finetune_params += list(self.finetune_conv_layer.parameters())
         else:
-            self.finetune_params = list(self.linear_classifiers.parameters())
+            #self.finetune_params = list(self.linear_classifiers.parameters())
             self.finetune_params += list(self.dropout.parameters())
 
     def forward(self, batch_input, task=None):
@@ -457,12 +461,17 @@ class SelfieModel(JigsawModel):
 
         elif self.stage == "finetune":
             if self.linear:
-                task = self.args.finetune_tasks.split("_")[0]
-                layer = self.args.finetune_tasks.split("_")[2]
+                name = task.name
+                taskname = name.split("_")[0]
+                tasklayer = "_".join([name.split("_")[0],name.split("_")[2]])
+                layer = name.split("_")[2]
                 features = get_part_model(self.patch_network,layer)(batch_input["image"])
+                #print(layer,features.shape,self.resize_dim[layer])
                 resize = F.interpolate(features,size=(self.resize_dim[layer],self.resize_dim[layer])).view(bs,-1)
                 dropout = self.dropout(resize)
-                cls_pred = self.cls_classifiers[task+"_"+layer](dropout)
+                
+                #print(layer,dropout.shape)
+                cls_pred = self.cls_classifiers[tasklayer](dropout)
                 batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
                 batch_output["predict"] = cls_pred.max(dim=1)[1]
                 batch_output["cls_acc"] = (
