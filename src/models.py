@@ -587,10 +587,10 @@ class AllPatchModel(JigsawModel):
                 #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
             batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
-            jigsaw_pred1 = jigsaw_pred.clone()
-            jigsaw_pred1[jigsaw_pred>0.5] = 1
-            jigsaw_pred1[jigsaw_pred<=0.5] = 0
-            batch_output["jigsaw_acc"] = ((jigsaw_pred1) == jigsaw_label).float().mean()
+            jigsaw_pred = torch.ge(jigsaw_pred,0.5)*1
+            #jigsaw_pred1[jigsaw_pred>0.5] = 1
+            #jigsaw_pred1[jigsaw_pred<=0.5] = 0
+            batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
 
