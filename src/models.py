@@ -5,6 +5,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 import torchvision.models.resnet as resnet
 import itertools
+from itertools import permutations,combinations
 
 def get_model(name, args):
     if name == "selfie":
@@ -593,26 +594,62 @@ class AllPatchModel(JigsawModel):
                     bs,1,self.d_model
             ) # (bs, 1, d_model)
             final = self.attention_pooling(torch.cat([u0, patches], dim=1))[:,0,:]
-            
-            jigsaw_pred = torch.mm(
-                final, final.transpose(0,1)
-            )/(self.d_model**(1/2.0))  # (bs, bs)
-            
-            #jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
+            print(final.shape)
+            final = final.view(bs,-1,self.d_model)
+            print(final.shape)
 
-            jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
-            for i in range(bs):
+            combinations = list(combinations(torch.arange(self.dup_pos), 2))
+            pos_ind = torch.Tensor([list[i] for i in combinations]).long()
+            print(pos_ind.shape)
+            neg_ind = torch.cat(
+                [torch.cat([torch.arange(bs)[0:i],torch.arange(bs)[i+1:]]) for i in range(bs)]
+                ).view(bs,-1).unsqueeze(1).repeat(1,pos_ind.shape[0],1)
+            print(neg_ind.shape)
+            negatives = final[neg_ind].view(bs,pos_ind.shape[0],-1,self.d_model)
+            print(negatives.shape)
+            positives = final[pos_ind]
+            print(positives.shape)
+            final = torch.cat([positives,negatives],dim = 2)
+            print(final.shape)
+            
+            query = final[:,:,0:1,:].view(-1,1,self.d_model)
+            print(query.shape)
+            key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)
+            print(key.shape)
+
+            jigsaw_pred = torch.bmm(
+                query,key.transpose(1,2)
+            ).view(bs*len(pos_ind),-1)/(self.d_model**(1/2.0))
+            print(jigsaw_pred.shape)
+
+            jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
+            jigsaw_labels[:,0] = 1
+            print(jigsaw_labels.shape)
+
+            randperm = torch.cat[torch.randperm(jigsaw_pred.shape[1]) for i in range(jigsaw_pred.shape[0])].view_as(jigsaw_labels)
+            print(randperm.shape)
+            jigsaw_pred = jigsaw_pred[:,randperm][:,0]
+            jigsaw_labels = jigsaw_labels[:,randperm][:,0]
+            
+            # jigsaw_pred = torch.mm(
+            #     final, final.transpose(0,1)
+            # )/(self.d_model**(1/2.0))  # (bs, bs)
+            
+            # #jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
+
+            # jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
+            # for i in range(bs):
                 
-                indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
-                #### Creates an array of size self.dup_pos_patches 
-                jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
-                #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
+            #     indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
+            #     #### Creates an array of size self.dup_pos_patches 
+            #     jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
+            #     #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
-            batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
-            ones = torch.ones(jigsaw_pred.shape)
-            zeros = torch.zeros(jigsaw_pred.shape)
-            jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
-            batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
+            batch_output["loss"] = F.cross_entropy(jigsaw_pred, jigsaw_labels)#F.cross_entropy(jigsaw_pred, jigsaw_label)
+            # ones = torch.ones(jigsaw_pred.shape)
+            # zeros = torch.zeros(jigsaw_pred.shape)
+            # jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
+            batch_output["jigsaw_acc"] = (jigsaw_pred == jigsaw_labels).float().mean()
 
         elif self.stage == "finetune":
             if self.linear:
