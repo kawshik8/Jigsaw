@@ -34,11 +34,15 @@ parser.add_argument(
     "--finetune-tasks",
     type=str,
     default="cifar10_lp5",
-    help="""any non-empty subset from ['cifar10', 'mnist', 'imagenet'] x ['_lp5', '_lp10', '_lp20', '_lp100']
-    (percent of labels available) and 'stl10_fd' X ['0', ..., '9'] (fold number of supervised data),
+    help="""any non-empty subset from ['cifar10', 'mnist', 'imagenet'] x ['_lp5', '_lp10', '_lp20', '_lp100'] 
+    (percent of labels available) x ["_res1", "_res2", "_res3", "_res4", "_res5"] 
+    dont mention the layer in case of finetuning the whole layer
+    (layers from the resnet to use for linear evaluation ) and 
+    'stl10_fd' X ['0', ..., '9'] (fold number of supervised data), 
     seperated by comma (no space!), e.g. 'stl_10_fd0,cifar10_lp5'.
     or, choose 'none' to skip finetune&evaluation. """,
 )
+
 # num_patches
 parser.add_argument(
     "--num-patches", type=int, default=16, help="number of patches an image is broken into"

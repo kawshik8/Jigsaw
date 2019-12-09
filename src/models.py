@@ -20,6 +20,37 @@ def get_model(name, args):
     else:
         raise NotImplementedError
 
+def get_part_model(model,layer):
+    if layer == "res1":
+        return model[:4]
+    elif layer == "res2":
+        return model[:5]
+    elif layer == "res3":
+        return model[:6]
+    elif layer == "res4":
+        return model[:7]
+    elif layer == "res5":
+        return model
+
+def get_resize_dim(layer):
+    if layer == "res1":
+        return 12
+    elif layer == "res2":
+        return 6
+    elif layer == "res3":
+        return 4
+    elif layer == "res4":
+        return 3
+    elif layer == "res5":
+        return 2
+
+def flatten_dim(layer):
+    #task,layer = tasklayer.split("_")
+    
+    if layer == "res1" or layer == "res2" or layer == "res4":
+        return 9216
+    else:
+        return 8192
 
 class JigsawModel(nn.Module):
     def __init__(self, args):
@@ -192,7 +223,7 @@ class BaselineModel(JigsawModel):
             jigsaw_pred1[jigsaw_pred<=0.5] = 0
             batch_output["jigsaw_acc"] = ((jigsaw_pred1) == jigsaw_label).float().mean()
 
-        if self.stage == "finetune"
+        if self.stage == "finetune":
 
             features = self.patch_network(batch_input["image"])
             features = self.finetune_conv_layer(features)
@@ -295,6 +326,8 @@ class BaselineModel(JigsawModel):
 #                 (batch_output["predict"] == batch_input["label"]).float().mean()
 #             )
 #         return batch_output
+    
+
 
 class SelfieModel(JigsawModel):
     def __init__(self, args, task = None):
@@ -327,6 +360,11 @@ class SelfieModel(JigsawModel):
 
         self.d_model = 1024
         self.f_model = 2048
+        self.f1 = 256
+        self.f2 = 1024
+        self.f3 = 512
+
+        self.dropout = torch.nn.Dropout(p=0.5, inplace=False)
 
         self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.d_model,), dtype = torch.float, requires_grad=True))
         #print(self.attention_pool_u0.shape)
@@ -337,18 +375,38 @@ class SelfieModel(JigsawModel):
         )
         self.position_embedding = nn.Embedding(self.num_patches, self.d_model)
         self.cls_classifiers = nn.ModuleDict()
+        self.resize_dim = {}
+        #self.linear_classifiers = nn.ModuleDict()
 
         from tasks import task_num_class
 
+        self.linear = False
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.f_model, task_num_class(taskname))
+            name = taskname.split("_")[0]
+            tasklayer = "_".join([taskname.split("_")[0],taskname.split("_")[2]])
+            layer = taskname.split("_")[2]
+            
+            if len(taskname.split("_")) > 2 and taskname.split("_")[2]!="none":
+                self.linear = True
+                for layer in (taskname.split("_")[2:]):
+                    print(tasklayer,flatten_dim(layer))
+                    self.cls_classifiers[tasklayer] = nn.Linear(flatten_dim(layer), task_num_class(name))
+                    self.resize_dim[layer] = get_resize_dim(layer)
+            else:
+                self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.f_model, task_num_class(name))
 
         self.shared_params = list(self.patch_network.parameters())
         self.pretrain_params = list(self.position_embedding.parameters())
         self.pretrain_params += list(self.attention_pooling.parameters())
         self.pretrain_params += [self.attention_pool_u0]
         self.finetune_params = list(self.cls_classifiers.parameters())
-        self.finetune_params += list(self.finetune_conv_layer.parameters())
+
+        if self.linear is False:
+            #self.finetune_params = list(self.cls_classifiers.parameters())
+            self.finetune_params += list(self.finetune_conv_layer.parameters())
+        else:
+            #self.finetune_params = list(self.linear_classifiers.parameters())
+            self.finetune_params += list(self.dropout.parameters())
 
     def forward(self, batch_input, task=None):
         batch_output = {}
@@ -402,18 +460,38 @@ class SelfieModel(JigsawModel):
             batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
+            if self.linear:
+                name = task.name
+                taskname = name.split("_")[0]
+                tasklayer = "_".join([name.split("_")[0],name.split("_")[2]])
+                layer = name.split("_")[2]
+                features = get_part_model(self.patch_network,layer)(batch_input["image"])
+                #print(layer,features.shape,self.resize_dim[layer])
+                resize = F.interpolate(features,size=(self.resize_dim[layer],self.resize_dim[layer])).view(bs,-1)
+                dropout = self.dropout(resize)
+                
+                #print(layer,dropout.shape)
+                cls_pred = self.cls_classifiers[tasklayer](dropout)
+                batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
+                batch_output["predict"] = cls_pred.max(dim=1)[1]
+                batch_output["cls_acc"] = (
+                    (batch_output["predict"] == batch_input["label"]).float().mean()
+                )
 
-            features = self.patch_network(batch_input["image"])
-            features = self.finetune_conv_layer(features)
-            features_pool = self.avg_pool(features).view(bs,-1)
-            #print(features_pool.shape)
+            else:
 
-            cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
-            batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
-            batch_output["predict"] = cls_pred.max(dim=1)[1]
-            batch_output["cls_acc"] = (
-                (batch_output["predict"] == batch_input["label"]).float().mean()
-            )
+                features = self.patch_network(batch_input["image"])
+                features = self.finetune_conv_layer(features)
+                features_pool = self.avg_pool(features).view(bs,-1)
+                dropout = self.dropout(features_pool)
+                #print(features_pool.shape)
+
+                cls_pred = self.cls_classifiers[task.name.split("_")[0]](dropout)
+                batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
+                batch_output["predict"] = cls_pred.max(dim=1)[1]
+                batch_output["cls_acc"] = (
+                    (batch_output["predict"] == batch_input["label"]).float().mean()
+                )
         return batch_output
 
 class AllPatchModel(JigsawModel):
@@ -446,6 +524,8 @@ class AllPatchModel(JigsawModel):
             self.avg_pool
         )
 
+        self.dropout = torch.nn.Dropout(p=0.5, inplace=False)
+
         self.finetune_conv_layer = full_resnet.layer4
 
         self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.d_model,), dtype = torch.float, requires_grad=True))
@@ -457,19 +537,38 @@ class AllPatchModel(JigsawModel):
         )
         self.position_embedding = nn.Embedding(self.num_patches, self.d_model)
         self.cls_classifiers = nn.ModuleDict()
+        self.resize_dim = {}
 
         from tasks import task_num_class
 
+        self.linear = False
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.f_model, task_num_class(taskname))
+            name = taskname.split("_")[0]
+            tasklayer = "_".join([taskname.split("_")[0],taskname.split("_")[2]])
+            layer = taskname.split("_")[2]
+            
+            if len(taskname.split("_")) > 2 and taskname.split("_")[2]!="none":
+                self.linear = True
+                for layer in (taskname.split("_")[2:]):
+                    print(tasklayer,flatten_dim(layer))
+                    self.cls_classifiers[tasklayer] = nn.Linear(flatten_dim(layer), task_num_class(name))
+                    self.resize_dim[layer] = get_resize_dim(layer)
+            else:
+                self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.f_model, task_num_class(name))
 
         #self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
         self.sigmoid = nn.Sigmoid()
         self.shared_params = list(self.patch_network.parameters())
         self.pretrain_params = list(self.attention_pooling.parameters())
         self.pretrain_params += [self.attention_pool_u0]
-        self.finetune_params = list(self.finetune_conv_layer.parameters())
-        self.finetune_params += list(self.cls_classifiers.parameters())
+        self.finetune_params = list(self.cls_classifiers.parameters())
+
+        if self.linear is False:
+            #self.finetune_params = list(self.cls_classifiers.parameters())
+            self.finetune_params += list(self.finetune_conv_layer.parameters())
+        else:
+            #self.finetune_params = list(self.linear_classifiers.parameters())
+            self.finetune_params += list(self.dropout.parameters())
 
     def forward(self, batch_input, task=None):
         batch_output = {}
@@ -510,22 +609,44 @@ class AllPatchModel(JigsawModel):
                 #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
             batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
-            jigsaw_pred1 = jigsaw_pred.clone()
-            jigsaw_pred1[jigsaw_pred>0.5] = 1
-            jigsaw_pred1[jigsaw_pred<=0.5] = 0
-            batch_output["jigsaw_acc"] = ((jigsaw_pred1) == jigsaw_label).float().mean()
+            ones = torch.ones(jigsaw_pred.shape)
+            zeros = torch.zeros(jigsaw_pred.shape)
+            jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
+            batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
+            if self.linear:
+                name = task.name
+                taskname = name.split("_")[0]
+                tasklayer = "_".join([name.split("_")[0],name.split("_")[2]])
+                layer = name.split("_")[2]
+                features = get_part_model(self.patch_network,layer)(batch_input["image"])
+                #print(layer,features.shape,self.resize_dim[layer])
+                resize = F.interpolate(features,size=(self.resize_dim[layer],self.resize_dim[layer])).view(bs,-1)
+                dropout = self.dropout(resize)
+                
+                #print(layer,dropout.shape)
+                cls_pred = self.cls_classifiers[tasklayer](dropout)
+                batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
+                batch_output["predict"] = cls_pred.max(dim=1)[1]
+                batch_output["cls_acc"] = (
+                    (batch_output["predict"] == batch_input["label"]).float().mean()
+                )
 
-            features = self.patch_network(batch_input["image"])
-            features = self.finetune_conv_layer(features)
-            
-            features_pool = self.avg_pool(features).view(bs,-1)
-            
-            cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
-            batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
-            batch_output["predict"] = cls_pred.max(dim=1)[1]
-            batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
+            else:
+
+                features = self.patch_network(batch_input["image"])
+                features = self.finetune_conv_layer(features)
+                features_pool = self.avg_pool(features).view(bs,-1)
+                dropout = self.dropout(features_pool)
+                #print(features_pool.shape)
+
+                cls_pred = self.cls_classifiers[task.name.split("_")[0]](dropout)
+                batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
+                batch_output["predict"] = cls_pred.max(dim=1)[1]
+                batch_output["cls_acc"] = (
+                    (batch_output["predict"] == batch_input["label"]).float().mean()
+                )
         return batch_output
 
 class ExchangePatchModel(JigsawModel):
@@ -537,8 +658,8 @@ class ExchangePatchModel(JigsawModel):
         self.num_patches = args.num_patches
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
-        self.f1 = 256
-        self.f2 = 1024
+        self.f1 = 64
+        self.f2 = 256
         self.f3 = 512
         self.d_model = 1024
         self.f_model = 2048
@@ -551,7 +672,9 @@ class ExchangePatchModel(JigsawModel):
             full_resnet.maxpool,
         )
 
-        transformer_layer1 = nn.TransformerEncoderLayer(d_model=self.f1, nhead=32, dropout=0.1, dim_feedforward=640, activation='gelu')
+        self.dropout = torch.nn.Dropout(p=0.5, inplace=False)
+
+        transformer_layer1 = nn.TransformerEncoderLayer(d_model=self.f1, nhead=32, dropout=0.1, dim_feedforward=160, activation='gelu')
         layer_norm1 = nn.LayerNorm(normalized_shape=self.f1)
         self.attention_exchange1 = nn.TransformerEncoder(
             encoder_layer=transformer_layer1, num_layers=3, norm=layer_norm1
@@ -563,7 +686,7 @@ class ExchangePatchModel(JigsawModel):
             encoder_layer=transformer_layer2, num_layers=3, norm=layer_norm2
         )
 
-        transformer_layer3 = nn.TransformerEncoderLayer(d_model=self.f3, nhead=32, dropout=0.1, dim_feedforward=640, activation='gelu')
+        transformer_layer3 = nn.TransformerEncoderLayer(d_model=self.f3, nhead=32, dropout=0.1, dim_feedforward=320, activation='gelu')
         layer_norm3 = nn.LayerNorm(normalized_shape=self.f3)
         self.attention_exchange3 = nn.TransformerEncoder(
             encoder_layer=transformer_layer3, num_layers=3, norm=layer_norm3
@@ -572,7 +695,7 @@ class ExchangePatchModel(JigsawModel):
         self.res_block1  =  full_resnet.layer1
         self.res_block2  =  full_resnet.layer2
         self.res_block3  =  full_resnet.layer3
-        self.res_block4  =  full_resnet.layer4
+        self.finetune_conv_layer  =  full_resnet.layer4
 
         self.attention_pool_u0 = nn.Parameter(torch.rand(size = (self.d_model,), dtype = torch.float, requires_grad=True))
 
@@ -584,11 +707,24 @@ class ExchangePatchModel(JigsawModel):
 
         #self.position_embedding = nn.Embedding(self.num_patches, self.d_model)
         self.cls_classifiers = nn.ModuleDict()
+        self.resize_dim = {}
 
         from tasks import task_num_class
 
+        self.linear = False
         for taskname in args.finetune_tasks:
-            self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.f_model, task_num_class(taskname))
+            name = taskname.split("_")[0]
+            tasklayer = "_".join([taskname.split("_")[0],taskname.split("_")[2]])
+            layer = taskname.split("_")[2]
+            
+            if len(taskname.split("_")) > 2 and taskname.split("_")[2]!="none":
+                self.linear = True
+                for layer in (taskname.split("_")[2:]):
+                    print(tasklayer,flatten_dim(layer))
+                    self.cls_classifiers[tasklayer] = nn.Linear(flatten_dim(layer), task_num_class(name))
+                    self.resize_dim[layer] = get_resize_dim(layer)
+            else:
+                self.cls_classifiers[taskname.split("_")[0]] = nn.Linear(self.f_model, task_num_class(name))
 
         self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
 
@@ -622,8 +758,14 @@ class ExchangePatchModel(JigsawModel):
         self.shared_params = list(self.patch_network.parameters())
         self.pretrain_params = list(self.pretrain_layers.parameters())
         self.pretrain_params += [self.attention_pool_u0]
-        self.finetune_params = list(self.res_block4.parameters())
-        self.finetune_params += list(self.cls_classifiers.parameters())
+        self.finetune_params = list(self.cls_classifiers.parameters())
+
+        if self.linear is False:
+            #self.finetune_params = list(self.cls_classifiers.parameters())
+            self.finetune_params += list(self.finetune_conv_layer.parameters())
+        else:
+            #self.finetune_params = list(self.linear_classifiers.parameters())
+            self.finetune_params += list(self.dropout.parameters())
 
     def forward(self, batch_input, task=None):
         batch_output = {}
@@ -678,19 +820,43 @@ class ExchangePatchModel(JigsawModel):
                 #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
             batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
-            jigsaw_pred1 = jigsaw_pred.clone()
-            jigsaw_pred1[jigsaw_pred>0.5] = 1
-            jigsaw_pred1[jigsaw_pred<=0.5] = 0
-            batch_output["jigsaw_acc"] = ((jigsaw_pred1) == jigsaw_label).float().mean()
+            ones = torch.ones(jigsaw_pred.shape)
+            zeros = torch.zeros(jigsaw_pred.shape)
+            jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
+            batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
-            #hidden = self.attention_pooling(patches)
-            features = self.patch_network(batch_input["image"])
-            features = self.res_block4(features)
-            features_pool = self.avg_pool(features).view(bs,-1)
+            if self.linear:
+                name = task.name
+                taskname = name.split("_")[0]
+                tasklayer = "_".join([name.split("_")[0],name.split("_")[2]])
+                layer = name.split("_")[2]
+                features = get_part_model(self.patch_network,layer)(batch_input["image"])
+                #print(layer,features.shape,self.resize_dim[layer])
+                resize = F.interpolate(features,size=(self.resize_dim[layer],self.resize_dim[layer])).view(bs,-1)
+                dropout = self.dropout(resize)
+                
+                #print(layer,dropout.shape)
+                cls_pred = self.cls_classifiers[tasklayer](dropout)
+                batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
+                batch_output["predict"] = cls_pred.max(dim=1)[1]
+                batch_output["cls_acc"] = (
+                    (batch_output["predict"] == batch_input["label"]).float().mean()
+                )
 
-            cls_pred = self.cls_classifiers[task.name.split("_")[0]](features_pool)
-            batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
-            batch_output["predict"] = cls_pred.max(dim=1)[1]
-            batch_output["cls_acc"] = (batch_output["predict"] == batch_input["label"]).float().mean()
+            else:
+
+                features = self.patch_network(batch_input["image"])
+                features = self.finetune_conv_layer(features)
+                features_pool = self.avg_pool(features).view(bs,-1)
+                dropout = self.dropout(features_pool)
+                #print(features_pool.shape)
+
+                cls_pred = self.cls_classifiers[task.name.split("_")[0]](dropout)
+                batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
+                batch_output["predict"] = cls_pred.max(dim=1)[1]
+                batch_output["cls_acc"] = (
+                    (batch_output["predict"] == batch_input["label"]).float().mean()
+                )
+
         return batch_output
