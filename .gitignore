@@ -23,3 +23,11 @@ results/selfie-finetune-whole/pretrain_cifar10_un_complete.pth
 results/baseline-whole/finetune_cifar10_lp10_best.ckpt
 results/baseline-whole/finetune_cifar10_lp100_best.ckpt
 results/selfie-finetune-whole/selfie-models.tar.gz
+.vscode/settings.json
+results/allp-finetune-whole/pretrain_cifar10_un_best.ckpt
+results/selfie-finetune-whole-linear/finetune_cifar10_lp100_res1_best.ckpt
+results/selfie-finetune-whole-linear/finetune_cifar10_lp100_res2_best.ckpt
+results/selfie-finetune-whole-linear/finetune_cifar10_lp100_res3_best.ckpt
+results/selfie-finetune-whole-linear/finetune_cifar10_lp100_res4_best.ckpt
+results/selfie-finetune-whole-linear/pretrain_cifar10_un_best.ckpt
+results/selfie-finetune-whole-linear/pretrain_cifar10_un_complete.pth
