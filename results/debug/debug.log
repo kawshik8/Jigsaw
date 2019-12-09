@@ -1377,3 +1377,1382 @@ Average result {'loss': tensor(14.5923), 'cls_acc': tensor(0.1058)}
 2019-12-06 00:59:54,006 [MainThread  ] Training complete
 2019-12-06 00:59:54,007 [MainThread  ] Best result found for cifar10_lp100: {'current_iter': 2, 'best_iter': 2, 'best_performance': tensor(0.1058)}
 2019-12-06 00:59:54,007 [MainThread  ] Done
+2019-12-08 17:54:15,314 [MainThread  ] Experiment debug
+2019-12-08 17:54:15,315 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=8, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 17:54:15,315 [MainThread  ] Start creating tasks
+2019-12-08 17:54:15,315 [MainThread  ] Start loading data
+2019-12-08 17:54:15,316 [MainThread  ] Loading cifar10_un data
+2019-12-08 17:54:26,195 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 17:54:30,945 [MainThread  ] Start creating models
+2019-12-08 17:58:46,491 [MainThread  ] Experiment debug
+2019-12-08 17:58:46,492 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=8, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 17:58:46,492 [MainThread  ] Start creating tasks
+2019-12-08 17:58:46,492 [MainThread  ] Start loading data
+2019-12-08 17:58:46,492 [MainThread  ] Loading cifar10_un data
+2019-12-08 17:58:50,001 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 17:58:54,816 [MainThread  ] Start creating models
+2019-12-08 17:58:55,237 [MainThread  ] Loaded Allp model
+2019-12-08 17:58:55,241 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 17:58:55,242 [MainThread  ] Start training cifar10_un
+2019-12-08 17:59:49,740 [MainThread  ] Experiment debug
+2019-12-08 17:59:49,740 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=8, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 17:59:49,741 [MainThread  ] Start creating tasks
+2019-12-08 17:59:49,741 [MainThread  ] Start loading data
+2019-12-08 17:59:49,741 [MainThread  ] Loading cifar10_un data
+2019-12-08 17:59:53,401 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 17:59:58,180 [MainThread  ] Start creating models
+2019-12-08 17:59:58,601 [MainThread  ] Loaded Allp model
+2019-12-08 17:59:58,604 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 17:59:58,605 [MainThread  ] Start training cifar10_un
+2019-12-08 18:02:54,858 [MainThread  ] Experiment debug
+2019-12-08 18:02:54,858 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=8, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:02:54,859 [MainThread  ] Start creating tasks
+2019-12-08 18:02:54,859 [MainThread  ] Start loading data
+2019-12-08 18:02:54,859 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:02:58,303 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:03:03,038 [MainThread  ] Start creating models
+2019-12-08 18:03:03,454 [MainThread  ] Loaded Allp model
+2019-12-08 18:03:03,457 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:03:03,457 [MainThread  ] Start training cifar10_un
+2019-12-08 18:03:51,386 [MainThread  ] Experiment debug
+2019-12-08 18:03:51,386 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=8, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:03:51,386 [MainThread  ] Start creating tasks
+2019-12-08 18:03:51,386 [MainThread  ] Start loading data
+2019-12-08 18:03:51,387 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:03:54,836 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:03:59,792 [MainThread  ] Start creating models
+2019-12-08 18:04:00,211 [MainThread  ] Loaded Allp model
+2019-12-08 18:04:00,215 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:04:00,215 [MainThread  ] Start training cifar10_un
+2019-12-08 18:05:41,898 [MainThread  ] Experiment debug
+2019-12-08 18:05:41,899 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=8, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:05:41,899 [MainThread  ] Start creating tasks
+2019-12-08 18:05:41,899 [MainThread  ] Start loading data
+2019-12-08 18:05:41,899 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:05:45,440 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:05:50,527 [MainThread  ] Start creating models
+2019-12-08 18:05:50,951 [MainThread  ] Loaded Allp model
+2019-12-08 18:05:50,954 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:05:50,954 [MainThread  ] Start training cifar10_un
+2019-12-08 18:09:17,289 [MainThread  ] Experiment debug
+2019-12-08 18:09:17,290 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=8, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:09:17,290 [MainThread  ] Start creating tasks
+2019-12-08 18:09:17,291 [MainThread  ] Start loading data
+2019-12-08 18:09:17,291 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:09:20,769 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:09:26,973 [MainThread  ] Start creating models
+2019-12-08 18:09:27,390 [MainThread  ] Loaded Allp model
+2019-12-08 18:09:27,393 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:09:27,393 [MainThread  ] Start training cifar10_un
+2019-12-08 18:11:38,203 [MainThread  ] Experiment debug
+2019-12-08 18:11:38,203 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=8, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:11:38,203 [MainThread  ] Start creating tasks
+2019-12-08 18:11:38,203 [MainThread  ] Start loading data
+2019-12-08 18:11:38,203 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:11:41,902 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:11:48,769 [MainThread  ] Start creating models
+2019-12-08 18:11:49,183 [MainThread  ] Loaded Allp model
+2019-12-08 18:11:49,186 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:11:49,186 [MainThread  ] Start training cifar10_un
+2019-12-08 18:12:58,077 [MainThread  ] Experiment debug
+2019-12-08 18:12:58,078 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=4, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:12:58,078 [MainThread  ] Start creating tasks
+2019-12-08 18:12:58,078 [MainThread  ] Start loading data
+2019-12-08 18:12:58,078 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:13:01,594 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:13:06,330 [MainThread  ] Start creating models
+2019-12-08 18:13:06,751 [MainThread  ] Loaded Allp model
+2019-12-08 18:13:06,754 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:13:06,755 [MainThread  ] Start training cifar10_un
+2019-12-08 18:14:41,373 [MainThread  ] Experiment debug
+2019-12-08 18:14:41,373 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=4, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:14:41,373 [MainThread  ] Start creating tasks
+2019-12-08 18:14:41,373 [MainThread  ] Start loading data
+2019-12-08 18:14:41,373 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:14:44,795 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:14:49,472 [MainThread  ] Start creating models
+2019-12-08 18:14:49,892 [MainThread  ] Loaded Allp model
+2019-12-08 18:14:49,896 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:14:49,896 [MainThread  ] Start training cifar10_un
+2019-12-08 18:25:46,405 [MainThread  ] Experiment debug
+2019-12-08 18:25:46,406 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=4, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:25:46,406 [MainThread  ] Start creating tasks
+2019-12-08 18:25:46,407 [MainThread  ] Start loading data
+2019-12-08 18:25:46,407 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:25:50,141 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:25:55,169 [MainThread  ] Start creating models
+2019-12-08 18:25:55,590 [MainThread  ] Loaded Allp model
+2019-12-08 18:25:55,594 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:25:55,594 [MainThread  ] Start training cifar10_un
+2019-12-08 18:28:07,687 [MainThread  ] Experiment debug
+2019-12-08 18:28:07,688 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=4, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:28:07,688 [MainThread  ] Start creating tasks
+2019-12-08 18:28:07,688 [MainThread  ] Start loading data
+2019-12-08 18:28:07,688 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:28:11,051 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:28:15,719 [MainThread  ] Start creating models
+2019-12-08 18:28:16,135 [MainThread  ] Loaded Allp model
+2019-12-08 18:28:16,139 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:28:16,139 [MainThread  ] Start training cifar10_un
+2019-12-08 18:36:35,547 [MainThread  ] Experiment debug
+2019-12-08 18:36:35,548 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=4, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:36:35,548 [MainThread  ] Start creating tasks
+2019-12-08 18:36:35,548 [MainThread  ] Start loading data
+2019-12-08 18:36:35,548 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:36:39,139 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:36:44,151 [MainThread  ] Start creating models
+2019-12-08 18:36:44,570 [MainThread  ] Loaded Allp model
+2019-12-08 18:36:44,573 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:36:44,574 [MainThread  ] Start training cifar10_un
+2019-12-08 18:44:15,595 [MainThread  ] Experiment debug
+2019-12-08 18:44:15,595 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=4, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:44:15,595 [MainThread  ] Start creating tasks
+2019-12-08 18:44:15,596 [MainThread  ] Start loading data
+2019-12-08 18:44:15,596 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:44:18,998 [MainThread  ] Loading cifar10_lp100 data
+2019-12-08 18:44:23,697 [MainThread  ] Start creating models
+2019-12-08 18:44:24,117 [MainThread  ] Loaded Allp model
+2019-12-08 18:44:24,120 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:44:24,121 [MainThread  ] Start training cifar10_un
+2019-12-08 18:44:43,412 [MainThread  ] train batch 1 / 703 (iter 1), current average result {'loss': tensor(5.6394, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.)}
+2019-12-08 18:44:58,853 [MainThread  ] train batch 2 / 703 (iter 2), current average result {'loss': tensor(5.8655, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.)}
+2019-12-08 18:44:58,853 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-08 18:45:06,166 [MainThread  ] eval batch 1 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0063)}
+2019-12-08 18:45:10,209 [MainThread  ] eval batch 2 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0047)}
+2019-12-08 18:45:14,201 [MainThread  ] eval batch 3 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0042)}
+2019-12-08 18:45:18,160 [MainThread  ] eval batch 4 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0043)}
+2019-12-08 18:45:22,195 [MainThread  ] eval batch 5 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0041)}
+2019-12-08 18:45:26,194 [MainThread  ] eval batch 6 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 18:45:30,261 [MainThread  ] eval batch 7 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:45:34,219 [MainThread  ] eval batch 8 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:45:38,257 [MainThread  ] eval batch 9 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:45:42,294 [MainThread  ] eval batch 10 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 18:45:46,244 [MainThread  ] eval batch 11 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0037)}
+2019-12-08 18:45:50,270 [MainThread  ] eval batch 12 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 18:47:53,240 [MainThread  ] Experiment debug
+2019-12-08 18:47:53,241 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=8, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100_res1', 'cifar10_lp100_res2', 'cifar10_lp100_res3', 'cifar10_lp100_res4'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:47:53,241 [MainThread  ] Start creating tasks
+2019-12-08 18:47:53,241 [MainThread  ] Start loading data
+2019-12-08 18:47:53,241 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:47:56,671 [MainThread  ] Loading cifar10_lp100_res1 data
+2019-12-08 18:48:01,425 [MainThread  ] Loading cifar10_lp100_res2 data
+2019-12-08 18:48:06,450 [MainThread  ] Loading cifar10_lp100_res3 data
+2019-12-08 18:48:11,262 [MainThread  ] Loading cifar10_lp100_res4 data
+2019-12-08 18:48:15,928 [MainThread  ] Start creating models
+2019-12-08 18:48:16,350 [MainThread  ] Loaded Allp model
+2019-12-08 18:48:16,354 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:48:16,354 [MainThread  ] Start training cifar10_un
+2019-12-08 18:49:35,028 [MainThread  ] Experiment debug
+2019-12-08 18:49:35,029 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=4, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100_res1', 'cifar10_lp100_res2', 'cifar10_lp100_res3', 'cifar10_lp100_res4'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 18:49:35,029 [MainThread  ] Start creating tasks
+2019-12-08 18:49:35,030 [MainThread  ] Start loading data
+2019-12-08 18:49:35,030 [MainThread  ] Loading cifar10_un data
+2019-12-08 18:49:39,616 [MainThread  ] Loading cifar10_lp100_res1 data
+2019-12-08 18:49:44,402 [MainThread  ] Loading cifar10_lp100_res2 data
+2019-12-08 18:49:49,241 [MainThread  ] Loading cifar10_lp100_res3 data
+2019-12-08 18:49:54,415 [MainThread  ] Loading cifar10_lp100_res4 data
+2019-12-08 18:49:59,323 [MainThread  ] Start creating models
+2019-12-08 18:49:59,743 [MainThread  ] Loaded Allp model
+2019-12-08 18:49:59,747 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 18:49:59,748 [MainThread  ] Start training cifar10_un
+2019-12-08 18:50:18,400 [MainThread  ] train batch 1 / 703 (iter 1), current average result {'loss': tensor(6.0322, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.)}
+2019-12-08 18:50:33,819 [MainThread  ] train batch 2 / 703 (iter 2), current average result {'loss': tensor(6.0288, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.)}
+2019-12-08 18:50:33,819 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-08 18:50:41,207 [MainThread  ] eval batch 1 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0047)}
+2019-12-08 18:50:45,150 [MainThread  ] eval batch 2 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 18:50:49,020 [MainThread  ] eval batch 3 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 18:50:52,900 [MainThread  ] eval batch 4 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0023)}
+2019-12-08 18:50:56,755 [MainThread  ] eval batch 5 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0028)}
+2019-12-08 18:51:00,614 [MainThread  ] eval batch 6 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0039)}
+2019-12-08 18:51:04,588 [MainThread  ] eval batch 7 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 18:51:08,474 [MainThread  ] eval batch 8 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 18:51:12,298 [MainThread  ] eval batch 9 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:51:16,145 [MainThread  ] eval batch 10 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:51:19,993 [MainThread  ] eval batch 11 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 18:51:23,818 [MainThread  ] eval batch 12 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:51:27,697 [MainThread  ] eval batch 13 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 18:51:31,553 [MainThread  ] eval batch 14 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0037)}
+2019-12-08 18:51:35,420 [MainThread  ] eval batch 15 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0040)}
+2019-12-08 18:51:39,264 [MainThread  ] eval batch 16 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0038)}
+2019-12-08 18:51:43,129 [MainThread  ] eval batch 17 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0039)}
+2019-12-08 18:51:46,976 [MainThread  ] eval batch 18 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0037)}
+2019-12-08 18:51:50,802 [MainThread  ] eval batch 19 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0037)}
+2019-12-08 18:51:54,658 [MainThread  ] eval batch 20 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0037)}
+2019-12-08 18:51:58,515 [MainThread  ] eval batch 21 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 18:52:02,319 [MainThread  ] eval batch 22 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:52:06,167 [MainThread  ] eval batch 23 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:52:10,002 [MainThread  ] eval batch 24 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:52:13,809 [MainThread  ] eval batch 25 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:52:17,639 [MainThread  ] eval batch 26 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:52:21,501 [MainThread  ] eval batch 27 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:52:25,319 [MainThread  ] eval batch 28 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:52:29,193 [MainThread  ] eval batch 29 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:52:33,054 [MainThread  ] eval batch 30 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:52:36,924 [MainThread  ] eval batch 31 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:52:40,772 [MainThread  ] eval batch 32 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:52:44,644 [MainThread  ] eval batch 33 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 18:52:48,502 [MainThread  ] eval batch 34 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:52:52,334 [MainThread  ] eval batch 35 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:52:56,175 [MainThread  ] eval batch 36 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:53:00,015 [MainThread  ] eval batch 37 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:53:03,866 [MainThread  ] eval batch 38 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:53:07,690 [MainThread  ] eval batch 39 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:53:11,540 [MainThread  ] eval batch 40 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:53:15,399 [MainThread  ] eval batch 41 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:53:19,253 [MainThread  ] eval batch 42 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:53:23,127 [MainThread  ] eval batch 43 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:53:26,986 [MainThread  ] eval batch 44 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:53:30,817 [MainThread  ] eval batch 45 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:53:34,705 [MainThread  ] eval batch 46 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:53:38,321 [MainThread  ] eval batch 47 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:53:41,900 [MainThread  ] eval batch 48 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:53:45,478 [MainThread  ] eval batch 49 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:53:49,057 [MainThread  ] eval batch 50 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:53:52,637 [MainThread  ] eval batch 51 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:53:56,215 [MainThread  ] eval batch 52 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:53:59,795 [MainThread  ] eval batch 53 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 18:54:03,381 [MainThread  ] eval batch 54 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:54:06,984 [MainThread  ] eval batch 55 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:54:10,661 [MainThread  ] eval batch 56 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:54:14,240 [MainThread  ] eval batch 57 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:54:17,811 [MainThread  ] eval batch 58 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:54:21,396 [MainThread  ] eval batch 59 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:54:24,980 [MainThread  ] eval batch 60 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:54:28,571 [MainThread  ] eval batch 61 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:54:32,162 [MainThread  ] eval batch 62 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:54:35,753 [MainThread  ] eval batch 63 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:54:39,319 [MainThread  ] eval batch 64 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:54:42,916 [MainThread  ] eval batch 65 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:54:46,507 [MainThread  ] eval batch 66 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:54:50,085 [MainThread  ] eval batch 67 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 18:54:53,661 [MainThread  ] eval batch 68 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 18:54:57,234 [MainThread  ] eval batch 69 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:55:00,789 [MainThread  ] eval batch 70 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:55:04,325 [MainThread  ] eval batch 71 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 18:55:07,906 [MainThread  ] eval batch 72 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:55:11,491 [MainThread  ] eval batch 73 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:55:15,071 [MainThread  ] eval batch 74 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:55:18,636 [MainThread  ] eval batch 75 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:55:22,236 [MainThread  ] eval batch 76 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:55:25,797 [MainThread  ] eval batch 77 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 18:55:29,378 [MainThread  ] eval batch 78 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 19:00:07,259 [MainThread  ] Experiment debug
+2019-12-08 19:00:07,260 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=4, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100_res1', 'cifar10_lp100_res2', 'cifar10_lp100_res3', 'cifar10_lp100_res4'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 19:00:07,260 [MainThread  ] Start creating tasks
+2019-12-08 19:00:07,260 [MainThread  ] Start loading data
+2019-12-08 19:00:07,260 [MainThread  ] Loading cifar10_un data
+2019-12-08 19:00:10,787 [MainThread  ] Loading cifar10_lp100_res1 data
+2019-12-08 19:00:15,668 [MainThread  ] Loading cifar10_lp100_res2 data
+2019-12-08 19:00:20,605 [MainThread  ] Loading cifar10_lp100_res3 data
+2019-12-08 19:00:25,650 [MainThread  ] Loading cifar10_lp100_res4 data
+2019-12-08 19:00:30,599 [MainThread  ] Start creating models
+2019-12-08 19:00:31,016 [MainThread  ] Loaded Allp model
+2019-12-08 19:00:31,019 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 19:00:31,020 [MainThread  ] Start training cifar10_un
+2019-12-08 19:01:12,888 [MainThread  ] Experiment debug
+2019-12-08 19:01:12,889 [MainThread  ] Receive config Namespace(batch_size=64, cache_neg=0, clip=0.5, data_dir='./data', device='cpu', dup_pos=4, exp_dir='./results/debug', exp_name='debug', finetune_ckpt_interval=0, finetune_learning_rate=0.01, finetune_tasks=['cifar10_lp100_res1', 'cifar10_lp100_res2', 'cifar10_lp100_res3', 'cifar10_lp100_res4'], finetune_total_iters=2, finetune_val_interval=2, finetune_weight_decay=0.0001, load_ckpt='none', model='Allp', num_patches=16, num_queries=4, num_queries_percentage=0.25, num_workers=16, pretrain_ckpt_interval=0, pretrain_learning_rate=0.01, pretrain_task=['cifar10_un'], pretrain_total_iters=2, pretrain_val_interval=2, pretrain_weight_decay=0.0001, report_interval=1, results_dir='./results', transfer_paradigm='tunable', warmup_iters=0)
+2019-12-08 19:01:12,889 [MainThread  ] Start creating tasks
+2019-12-08 19:01:12,890 [MainThread  ] Start loading data
+2019-12-08 19:01:12,890 [MainThread  ] Loading cifar10_un data
+2019-12-08 19:01:16,395 [MainThread  ] Loading cifar10_lp100_res1 data
+2019-12-08 19:01:21,162 [MainThread  ] Loading cifar10_lp100_res2 data
+2019-12-08 19:01:26,104 [MainThread  ] Loading cifar10_lp100_res3 data
+2019-12-08 19:01:31,173 [MainThread  ] Loading cifar10_lp100_res4 data
+2019-12-08 19:01:35,813 [MainThread  ] Start creating models
+2019-12-08 19:01:36,230 [MainThread  ] Loaded Allp model
+2019-12-08 19:01:36,233 [MainThread  ] Setup trainer for cifar10_un
+2019-12-08 19:01:36,234 [MainThread  ] Start training cifar10_un
+2019-12-08 19:01:55,276 [MainThread  ] train batch 1 / 703 (iter 1), current average result {'loss': tensor(5.7947, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.)}
+2019-12-08 19:02:10,652 [MainThread  ] train batch 2 / 703 (iter 2), current average result {'loss': tensor(5.6922, grad_fn=<DivBackward0>), 'jigsaw_acc': tensor(0.)}
+2019-12-08 19:02:10,653 [MainThread  ] Evaluate on  cifar10_un:val data
+2019-12-08 19:02:18,227 [MainThread  ] eval batch 1 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0047)}
+2019-12-08 19:02:22,288 [MainThread  ] eval batch 2 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0039)}
+2019-12-08 19:02:26,264 [MainThread  ] eval batch 3 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:02:30,289 [MainThread  ] eval batch 4 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0043)}
+2019-12-08 19:02:34,224 [MainThread  ] eval batch 5 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0041)}
+2019-12-08 19:02:38,245 [MainThread  ] eval batch 6 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0042)}
+2019-12-08 19:02:42,297 [MainThread  ] eval batch 7 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0036)}
+2019-12-08 19:02:46,335 [MainThread  ] eval batch 8 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 19:02:50,252 [MainThread  ] eval batch 9 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:02:54,187 [MainThread  ] eval batch 10 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:02:58,208 [MainThread  ] eval batch 11 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:03:02,166 [MainThread  ] eval batch 12 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:03:06,095 [MainThread  ] eval batch 13 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:03:10,023 [MainThread  ] eval batch 14 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 19:03:13,958 [MainThread  ] eval batch 15 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 19:03:17,887 [MainThread  ] eval batch 16 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:03:21,790 [MainThread  ] eval batch 17 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:03:25,734 [MainThread  ] eval batch 18 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:03:29,674 [MainThread  ] eval batch 19 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:03:33,598 [MainThread  ] eval batch 20 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:03:37,597 [MainThread  ] eval batch 21 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 19:03:41,503 [MainThread  ] eval batch 22 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 19:03:45,421 [MainThread  ] eval batch 23 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:03:49,376 [MainThread  ] eval batch 24 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:03:53,283 [MainThread  ] eval batch 25 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:03:57,213 [MainThread  ] eval batch 26 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 19:04:01,166 [MainThread  ] eval batch 27 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 19:04:05,187 [MainThread  ] eval batch 28 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 19:04:09,125 [MainThread  ] eval batch 29 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 19:04:13,059 [MainThread  ] eval batch 30 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 19:04:16,990 [MainThread  ] eval batch 31 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 19:04:20,924 [MainThread  ] eval batch 32 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0035)}
+2019-12-08 19:04:24,812 [MainThread  ] eval batch 33 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 19:04:28,743 [MainThread  ] eval batch 34 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 19:04:32,650 [MainThread  ] eval batch 35 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:04:36,579 [MainThread  ] eval batch 36 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:04:40,505 [MainThread  ] eval batch 37 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:04:44,471 [MainThread  ] eval batch 38 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:04:48,410 [MainThread  ] eval batch 39 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:04:52,327 [MainThread  ] eval batch 40 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:04:56,251 [MainThread  ] eval batch 41 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:05:00,181 [MainThread  ] eval batch 42 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:05:04,110 [MainThread  ] eval batch 43 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:05:08,047 [MainThread  ] eval batch 44 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:05:11,989 [MainThread  ] eval batch 45 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:05:15,915 [MainThread  ] eval batch 46 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0034)}
+2019-12-08 19:05:19,607 [MainThread  ] eval batch 47 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0033)}
+2019-12-08 19:05:23,240 [MainThread  ] eval batch 48 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:05:26,899 [MainThread  ] eval batch 49 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:05:30,659 [MainThread  ] eval batch 50 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:05:34,329 [MainThread  ] eval batch 51 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:05:37,991 [MainThread  ] eval batch 52 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:05:41,642 [MainThread  ] eval batch 53 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:05:45,285 [MainThread  ] eval batch 54 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:05:48,943 [MainThread  ] eval batch 55 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:05:52,691 [MainThread  ] eval batch 56 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:05:56,324 [MainThread  ] eval batch 57 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:05:59,978 [MainThread  ] eval batch 58 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:06:03,644 [MainThread  ] eval batch 59 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:06:07,285 [MainThread  ] eval batch 60 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:06:10,951 [MainThread  ] eval batch 61 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:06:14,620 [MainThread  ] eval batch 62 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:06:18,262 [MainThread  ] eval batch 63 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:06:21,914 [MainThread  ] eval batch 64 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:06:25,550 [MainThread  ] eval batch 65 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:06:29,189 [MainThread  ] eval batch 66 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:06:32,829 [MainThread  ] eval batch 67 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:06:36,485 [MainThread  ] eval batch 68 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:06:40,140 [MainThread  ] eval batch 69 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:06:43,781 [MainThread  ] eval batch 70 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:06:47,461 [MainThread  ] eval batch 71 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:06:51,124 [MainThread  ] eval batch 72 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:06:54,777 [MainThread  ] eval batch 73 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:06:58,442 [MainThread  ] eval batch 74 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:07:02,101 [MainThread  ] eval batch 75 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:07:05,751 [MainThread  ] eval batch 76 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:07:09,423 [MainThread  ] eval batch 77 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:07:13,076 [MainThread  ] eval batch 78 / 79, current average result {'loss': tensor(5.7558), 'jigsaw_acc': tensor(0.0031)}
+2019-12-08 19:07:13,405 [MainThread  ] eval batch 79 / 79, current average result {'loss': tensor(5.7523), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:07:13,734 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(5.7523), 'jigsaw_acc': tensor(0.0032)}
+2019-12-08 19:07:13,735 [MainThread  ] Best validation updated: {'best_performance': tensor(0.0032), 'current_iter': 2, 'best_iter': 2}
+2019-12-08 19:07:13,904 [MainThread  ] Save parameters for ./results/debug/pretrain_cifar10_un_best.ckpt
+2019-12-08 19:07:14,068 [MainThread  ] Training complete
+2019-12-08 19:07:14,069 [MainThread  ] Best result found for cifar10_un: {'best_performance': tensor(0.0032), 'current_iter': 2, 'best_iter': 2}
+2019-12-08 19:07:14,277 [MainThread  ] Save parameters for ./results/debug/pretrain_cifar10_un_complete.pth
+2019-12-08 19:07:14,451 [MainThread  ] Load parameters from ./results/debug/pretrain_cifar10_un_complete.pth
+2019-12-08 19:07:14,453 [MainThread  ] Setup trainer for cifar10_lp100_res1
+2019-12-08 19:07:14,454 [MainThread  ] Start training cifar10_lp100_res1
+2019-12-08 19:07:15,984 [MainThread  ] train batch 1 / 703 (iter 1), current average result {'loss': tensor(2.8936, grad_fn=<DivBackward0>), 'cls_acc': tensor(0.0625)}
+2019-12-08 19:07:16,224 [MainThread  ] train batch 2 / 703 (iter 2), current average result {'loss': tensor(21.8127, grad_fn=<DivBackward0>), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:16,225 [MainThread  ] Evaluate on  cifar10_lp100_res1:val data
+2019-12-08 19:07:17,118 [MainThread  ] eval batch 1 / 79, current average result {'loss': tensor(19.8029), 'cls_acc': tensor(0.0625)}
+2019-12-08 19:07:17,148 [MainThread  ] eval batch 2 / 79, current average result {'loss': tensor(20.8968), 'cls_acc': tensor(0.0391)}
+2019-12-08 19:07:17,171 [MainThread  ] eval batch 3 / 79, current average result {'loss': tensor(19.2365), 'cls_acc': tensor(0.0625)}
+2019-12-08 19:07:17,196 [MainThread  ] eval batch 4 / 79, current average result {'loss': tensor(19.2213), 'cls_acc': tensor(0.0625)}
+2019-12-08 19:07:17,226 [MainThread  ] eval batch 5 / 79, current average result {'loss': tensor(19.8642), 'cls_acc': tensor(0.0625)}
+2019-12-08 19:07:17,248 [MainThread  ] eval batch 6 / 79, current average result {'loss': tensor(19.8029), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:17,277 [MainThread  ] eval batch 7 / 79, current average result {'loss': tensor(19.7482), 'cls_acc': tensor(0.0759)}
+2019-12-08 19:07:17,299 [MainThread  ] eval batch 8 / 79, current average result {'loss': tensor(19.4941), 'cls_acc': tensor(0.0820)}
+2019-12-08 19:07:17,321 [MainThread  ] eval batch 9 / 79, current average result {'loss': tensor(19.2834), 'cls_acc': tensor(0.0868)}
+2019-12-08 19:07:17,344 [MainThread  ] eval batch 10 / 79, current average result {'loss': tensor(19.2052), 'cls_acc': tensor(0.0891)}
+2019-12-08 19:07:17,385 [MainThread  ] eval batch 11 / 79, current average result {'loss': tensor(19.1163), 'cls_acc': tensor(0.0895)}
+2019-12-08 19:07:17,408 [MainThread  ] eval batch 12 / 79, current average result {'loss': tensor(19.3421), 'cls_acc': tensor(0.0859)}
+2019-12-08 19:07:17,434 [MainThread  ] eval batch 13 / 79, current average result {'loss': tensor(19.4192), 'cls_acc': tensor(0.0853)}
+2019-12-08 19:07:17,465 [MainThread  ] eval batch 14 / 79, current average result {'loss': tensor(19.3476), 'cls_acc': tensor(0.0859)}
+2019-12-08 19:07:17,487 [MainThread  ] eval batch 15 / 79, current average result {'loss': tensor(19.2573), 'cls_acc': tensor(0.0896)}
+2019-12-08 19:07:17,512 [MainThread  ] eval batch 16 / 79, current average result {'loss': tensor(19.2510), 'cls_acc': tensor(0.0947)}
+2019-12-08 19:07:17,535 [MainThread  ] eval batch 17 / 79, current average result {'loss': tensor(19.2491), 'cls_acc': tensor(0.0919)}
+2019-12-08 19:07:17,558 [MainThread  ] eval batch 18 / 79, current average result {'loss': tensor(19.2327), 'cls_acc': tensor(0.0964)}
+2019-12-08 19:07:17,581 [MainThread  ] eval batch 19 / 79, current average result {'loss': tensor(19.2712), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:07:17,605 [MainThread  ] eval batch 20 / 79, current average result {'loss': tensor(19.2578), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:07:17,628 [MainThread  ] eval batch 21 / 79, current average result {'loss': tensor(19.3107), 'cls_acc': tensor(0.0945)}
+2019-12-08 19:07:17,651 [MainThread  ] eval batch 22 / 79, current average result {'loss': tensor(19.4610), 'cls_acc': tensor(0.0923)}
+2019-12-08 19:07:17,673 [MainThread  ] eval batch 23 / 79, current average result {'loss': tensor(19.5117), 'cls_acc': tensor(0.0910)}
+2019-12-08 19:07:17,696 [MainThread  ] eval batch 24 / 79, current average result {'loss': tensor(19.4262), 'cls_acc': tensor(0.0918)}
+2019-12-08 19:07:17,719 [MainThread  ] eval batch 25 / 79, current average result {'loss': tensor(19.4324), 'cls_acc': tensor(0.0925)}
+2019-12-08 19:07:17,742 [MainThread  ] eval batch 26 / 79, current average result {'loss': tensor(19.5094), 'cls_acc': tensor(0.0956)}
+2019-12-08 19:07:17,765 [MainThread  ] eval batch 27 / 79, current average result {'loss': tensor(19.5610), 'cls_acc': tensor(0.0943)}
+2019-12-08 19:07:17,789 [MainThread  ] eval batch 28 / 79, current average result {'loss': tensor(19.6062), 'cls_acc': tensor(0.0943)}
+2019-12-08 19:07:17,811 [MainThread  ] eval batch 29 / 79, current average result {'loss': tensor(19.5840), 'cls_acc': tensor(0.0921)}
+2019-12-08 19:07:17,839 [MainThread  ] eval batch 30 / 79, current average result {'loss': tensor(19.5206), 'cls_acc': tensor(0.0927)}
+2019-12-08 19:07:17,865 [MainThread  ] eval batch 31 / 79, current average result {'loss': tensor(19.5499), 'cls_acc': tensor(0.0917)}
+2019-12-08 19:07:17,892 [MainThread  ] eval batch 32 / 79, current average result {'loss': tensor(19.5320), 'cls_acc': tensor(0.0923)}
+2019-12-08 19:07:17,922 [MainThread  ] eval batch 33 / 79, current average result {'loss': tensor(19.5024), 'cls_acc': tensor(0.0947)}
+2019-12-08 19:07:17,947 [MainThread  ] eval batch 34 / 79, current average result {'loss': tensor(19.5139), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:07:17,973 [MainThread  ] eval batch 35 / 79, current average result {'loss': tensor(19.4701), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:17,999 [MainThread  ] eval batch 36 / 79, current average result {'loss': tensor(19.4419), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:18,024 [MainThread  ] eval batch 37 / 79, current average result {'loss': tensor(19.3877), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:18,049 [MainThread  ] eval batch 38 / 79, current average result {'loss': tensor(19.3433), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:18,074 [MainThread  ] eval batch 39 / 79, current average result {'loss': tensor(19.3441), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:07:18,099 [MainThread  ] eval batch 40 / 79, current average result {'loss': tensor(19.3024), 'cls_acc': tensor(0.0973)}
+2019-12-08 19:07:18,124 [MainThread  ] eval batch 41 / 79, current average result {'loss': tensor(19.3403), 'cls_acc': tensor(0.0960)}
+2019-12-08 19:07:18,149 [MainThread  ] eval batch 42 / 79, current average result {'loss': tensor(19.3123), 'cls_acc': tensor(0.0964)}
+2019-12-08 19:07:18,173 [MainThread  ] eval batch 43 / 79, current average result {'loss': tensor(19.3396), 'cls_acc': tensor(0.0967)}
+2019-12-08 19:07:18,198 [MainThread  ] eval batch 44 / 79, current average result {'loss': tensor(19.3344), 'cls_acc': tensor(0.0959)}
+2019-12-08 19:07:18,222 [MainThread  ] eval batch 45 / 79, current average result {'loss': tensor(19.2931), 'cls_acc': tensor(0.0972)}
+2019-12-08 19:07:18,247 [MainThread  ] eval batch 46 / 79, current average result {'loss': tensor(19.3177), 'cls_acc': tensor(0.0961)}
+2019-12-08 19:07:18,261 [MainThread  ] eval batch 47 / 79, current average result {'loss': tensor(19.3433), 'cls_acc': tensor(0.0964)}
+2019-12-08 19:07:18,272 [MainThread  ] eval batch 48 / 79, current average result {'loss': tensor(19.3401), 'cls_acc': tensor(0.0973)}
+2019-12-08 19:07:18,283 [MainThread  ] eval batch 49 / 79, current average result {'loss': tensor(19.3383), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:18,294 [MainThread  ] eval batch 50 / 79, current average result {'loss': tensor(19.3337), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:07:18,306 [MainThread  ] eval batch 51 / 79, current average result {'loss': tensor(19.2920), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:18,318 [MainThread  ] eval batch 52 / 79, current average result {'loss': tensor(19.3098), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:07:18,329 [MainThread  ] eval batch 53 / 79, current average result {'loss': tensor(19.3259), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:18,341 [MainThread  ] eval batch 54 / 79, current average result {'loss': tensor(19.3341), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:07:18,352 [MainThread  ] eval batch 55 / 79, current average result {'loss': tensor(19.3268), 'cls_acc': tensor(0.0972)}
+2019-12-08 19:07:18,363 [MainThread  ] eval batch 56 / 79, current average result {'loss': tensor(19.3106), 'cls_acc': tensor(0.0979)}
+2019-12-08 19:07:18,374 [MainThread  ] eval batch 57 / 79, current average result {'loss': tensor(19.2868), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:18,386 [MainThread  ] eval batch 58 / 79, current average result {'loss': tensor(19.2800), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:07:18,397 [MainThread  ] eval batch 59 / 79, current average result {'loss': tensor(19.3126), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:07:18,409 [MainThread  ] eval batch 60 / 79, current average result {'loss': tensor(19.3135), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:07:18,420 [MainThread  ] eval batch 61 / 79, current average result {'loss': tensor(19.2917), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:18,431 [MainThread  ] eval batch 62 / 79, current average result {'loss': tensor(19.2963), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:07:18,442 [MainThread  ] eval batch 63 / 79, current average result {'loss': tensor(19.2944), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:07:18,453 [MainThread  ] eval batch 64 / 79, current average result {'loss': tensor(19.2451), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:07:18,465 [MainThread  ] eval batch 65 / 79, current average result {'loss': tensor(19.2112), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:07:18,476 [MainThread  ] eval batch 66 / 79, current average result {'loss': tensor(19.2148), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:07:18,487 [MainThread  ] eval batch 67 / 79, current average result {'loss': tensor(19.2003), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:18,499 [MainThread  ] eval batch 68 / 79, current average result {'loss': tensor(19.1732), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:18,510 [MainThread  ] eval batch 69 / 79, current average result {'loss': tensor(19.1797), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:18,521 [MainThread  ] eval batch 70 / 79, current average result {'loss': tensor(19.1727), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:18,533 [MainThread  ] eval batch 71 / 79, current average result {'loss': tensor(19.2013), 'cls_acc': tensor(0.0995)}
+2019-12-08 19:07:18,544 [MainThread  ] eval batch 72 / 79, current average result {'loss': tensor(19.1850), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:18,556 [MainThread  ] eval batch 73 / 79, current average result {'loss': tensor(19.1840), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:18,568 [MainThread  ] eval batch 74 / 79, current average result {'loss': tensor(19.1806), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:18,580 [MainThread  ] eval batch 75 / 79, current average result {'loss': tensor(19.1618), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:18,591 [MainThread  ] eval batch 76 / 79, current average result {'loss': tensor(19.1792), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:07:18,604 [MainThread  ] eval batch 77 / 79, current average result {'loss': tensor(19.1772), 'cls_acc': tensor(0.0992)}
+2019-12-08 19:07:18,615 [MainThread  ] eval batch 78 / 79, current average result {'loss': tensor(19.1607), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:18,621 [MainThread  ] eval batch 79 / 79, current average result {'loss': tensor(19.1536), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:18,860 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(19.1536), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:18,861 [MainThread  ] Best validation updated: {'best_performance': tensor(0.0988), 'current_iter': 2, 'best_iter': 2}
+2019-12-08 19:07:19,022 [MainThread  ] Save parameters for ./results/debug/finetune_cifar10_lp100_res1_best.ckpt
+2019-12-08 19:07:19,245 [MainThread  ] Training complete
+2019-12-08 19:07:19,246 [MainThread  ] Best result found for cifar10_lp100_res1: {'best_performance': tensor(0.0988), 'current_iter': 2, 'best_iter': 2}
+2019-12-08 19:07:19,246 [MainThread  ] Evaluate on  cifar10_lp100_res1:test data
+2019-12-08 19:07:20,095 [MainThread  ] eval batch 1 / 157, current average result {'loss': tensor(20.4100), 'cls_acc': tensor(0.0469)}
+2019-12-08 19:07:20,124 [MainThread  ] eval batch 2 / 157, current average result {'loss': tensor(20.1605), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:20,149 [MainThread  ] eval batch 3 / 157, current average result {'loss': tensor(20.3407), 'cls_acc': tensor(0.0677)}
+2019-12-08 19:07:20,174 [MainThread  ] eval batch 4 / 157, current average result {'loss': tensor(19.9213), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:20,199 [MainThread  ] eval batch 5 / 157, current average result {'loss': tensor(19.8924), 'cls_acc': tensor(0.0812)}
+2019-12-08 19:07:20,224 [MainThread  ] eval batch 6 / 157, current average result {'loss': tensor(19.8659), 'cls_acc': tensor(0.0833)}
+2019-12-08 19:07:20,249 [MainThread  ] eval batch 7 / 157, current average result {'loss': tensor(20.0081), 'cls_acc': tensor(0.0826)}
+2019-12-08 19:07:20,273 [MainThread  ] eval batch 8 / 157, current average result {'loss': tensor(19.6952), 'cls_acc': tensor(0.0801)}
+2019-12-08 19:07:20,300 [MainThread  ] eval batch 9 / 157, current average result {'loss': tensor(19.7698), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:20,322 [MainThread  ] eval batch 10 / 157, current average result {'loss': tensor(19.7393), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:20,347 [MainThread  ] eval batch 11 / 157, current average result {'loss': tensor(19.8384), 'cls_acc': tensor(0.0795)}
+2019-12-08 19:07:20,372 [MainThread  ] eval batch 12 / 157, current average result {'loss': tensor(19.6818), 'cls_acc': tensor(0.0820)}
+2019-12-08 19:07:20,396 [MainThread  ] eval batch 13 / 157, current average result {'loss': tensor(19.6018), 'cls_acc': tensor(0.0817)}
+2019-12-08 19:07:20,446 [MainThread  ] eval batch 14 / 157, current average result {'loss': tensor(19.5865), 'cls_acc': tensor(0.0848)}
+2019-12-08 19:07:20,469 [MainThread  ] eval batch 15 / 157, current average result {'loss': tensor(19.5675), 'cls_acc': tensor(0.0844)}
+2019-12-08 19:07:20,492 [MainThread  ] eval batch 16 / 157, current average result {'loss': tensor(19.3793), 'cls_acc': tensor(0.0928)}
+2019-12-08 19:07:20,515 [MainThread  ] eval batch 17 / 157, current average result {'loss': tensor(19.5951), 'cls_acc': tensor(0.0910)}
+2019-12-08 19:07:20,538 [MainThread  ] eval batch 18 / 157, current average result {'loss': tensor(19.5477), 'cls_acc': tensor(0.0911)}
+2019-12-08 19:07:20,561 [MainThread  ] eval batch 19 / 157, current average result {'loss': tensor(19.4778), 'cls_acc': tensor(0.0954)}
+2019-12-08 19:07:20,585 [MainThread  ] eval batch 20 / 157, current average result {'loss': tensor(19.4179), 'cls_acc': tensor(0.0961)}
+2019-12-08 19:07:20,608 [MainThread  ] eval batch 21 / 157, current average result {'loss': tensor(19.3771), 'cls_acc': tensor(0.0967)}
+2019-12-08 19:07:20,631 [MainThread  ] eval batch 22 / 157, current average result {'loss': tensor(19.3347), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:20,653 [MainThread  ] eval batch 23 / 157, current average result {'loss': tensor(19.2986), 'cls_acc': tensor(0.1019)}
+2019-12-08 19:07:20,676 [MainThread  ] eval batch 24 / 157, current average result {'loss': tensor(19.2453), 'cls_acc': tensor(0.1022)}
+2019-12-08 19:07:20,698 [MainThread  ] eval batch 25 / 157, current average result {'loss': tensor(19.1344), 'cls_acc': tensor(0.1019)}
+2019-12-08 19:07:20,721 [MainThread  ] eval batch 26 / 157, current average result {'loss': tensor(19.1780), 'cls_acc': tensor(0.1010)}
+2019-12-08 19:07:20,745 [MainThread  ] eval batch 27 / 157, current average result {'loss': tensor(19.1607), 'cls_acc': tensor(0.1001)}
+2019-12-08 19:07:20,768 [MainThread  ] eval batch 28 / 157, current average result {'loss': tensor(19.0851), 'cls_acc': tensor(0.1010)}
+2019-12-08 19:07:20,792 [MainThread  ] eval batch 29 / 157, current average result {'loss': tensor(19.0741), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:20,819 [MainThread  ] eval batch 30 / 157, current average result {'loss': tensor(19.1145), 'cls_acc': tensor(0.0995)}
+2019-12-08 19:07:20,843 [MainThread  ] eval batch 31 / 157, current average result {'loss': tensor(19.1323), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:20,866 [MainThread  ] eval batch 32 / 157, current average result {'loss': tensor(19.0785), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:20,889 [MainThread  ] eval batch 33 / 157, current average result {'loss': tensor(19.0541), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:20,914 [MainThread  ] eval batch 34 / 157, current average result {'loss': tensor(19.0960), 'cls_acc': tensor(0.0979)}
+2019-12-08 19:07:20,939 [MainThread  ] eval batch 35 / 157, current average result {'loss': tensor(19.1025), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:07:20,964 [MainThread  ] eval batch 36 / 157, current average result {'loss': tensor(19.1167), 'cls_acc': tensor(0.0972)}
+2019-12-08 19:07:20,989 [MainThread  ] eval batch 37 / 157, current average result {'loss': tensor(19.1136), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:21,014 [MainThread  ] eval batch 38 / 157, current average result {'loss': tensor(19.0589), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:07:21,039 [MainThread  ] eval batch 39 / 157, current average result {'loss': tensor(19.0866), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:07:21,064 [MainThread  ] eval batch 40 / 157, current average result {'loss': tensor(19.1187), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:07:21,090 [MainThread  ] eval batch 41 / 157, current average result {'loss': tensor(19.0871), 'cls_acc': tensor(0.0960)}
+2019-12-08 19:07:21,115 [MainThread  ] eval batch 42 / 157, current average result {'loss': tensor(19.0742), 'cls_acc': tensor(0.0960)}
+2019-12-08 19:07:21,139 [MainThread  ] eval batch 43 / 157, current average result {'loss': tensor(19.0868), 'cls_acc': tensor(0.0956)}
+2019-12-08 19:07:21,164 [MainThread  ] eval batch 44 / 157, current average result {'loss': tensor(19.1182), 'cls_acc': tensor(0.0959)}
+2019-12-08 19:07:21,188 [MainThread  ] eval batch 45 / 157, current average result {'loss': tensor(19.1386), 'cls_acc': tensor(0.0958)}
+2019-12-08 19:07:21,212 [MainThread  ] eval batch 46 / 157, current average result {'loss': tensor(19.1491), 'cls_acc': tensor(0.0961)}
+2019-12-08 19:07:21,237 [MainThread  ] eval batch 47 / 157, current average result {'loss': tensor(19.1229), 'cls_acc': tensor(0.0957)}
+2019-12-08 19:07:21,261 [MainThread  ] eval batch 48 / 157, current average result {'loss': tensor(19.0576), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:07:21,286 [MainThread  ] eval batch 49 / 157, current average result {'loss': tensor(19.0524), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:07:21,311 [MainThread  ] eval batch 50 / 157, current average result {'loss': tensor(19.0911), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:07:21,335 [MainThread  ] eval batch 51 / 157, current average result {'loss': tensor(19.1093), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:07:21,360 [MainThread  ] eval batch 52 / 157, current average result {'loss': tensor(19.0892), 'cls_acc': tensor(0.0959)}
+2019-12-08 19:07:21,385 [MainThread  ] eval batch 53 / 157, current average result {'loss': tensor(19.0805), 'cls_acc': tensor(0.0961)}
+2019-12-08 19:07:21,409 [MainThread  ] eval batch 54 / 157, current average result {'loss': tensor(19.0743), 'cls_acc': tensor(0.0958)}
+2019-12-08 19:07:21,434 [MainThread  ] eval batch 55 / 157, current average result {'loss': tensor(19.0670), 'cls_acc': tensor(0.0957)}
+2019-12-08 19:07:21,458 [MainThread  ] eval batch 56 / 157, current average result {'loss': tensor(19.0390), 'cls_acc': tensor(0.0971)}
+2019-12-08 19:07:21,483 [MainThread  ] eval batch 57 / 157, current average result {'loss': tensor(19.0511), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:21,508 [MainThread  ] eval batch 58 / 157, current average result {'loss': tensor(19.0303), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:07:21,533 [MainThread  ] eval batch 59 / 157, current average result {'loss': tensor(19.0640), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:21,558 [MainThread  ] eval batch 60 / 157, current average result {'loss': tensor(19.0470), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:07:21,582 [MainThread  ] eval batch 61 / 157, current average result {'loss': tensor(19.0668), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:21,607 [MainThread  ] eval batch 62 / 157, current average result {'loss': tensor(19.0565), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:21,631 [MainThread  ] eval batch 63 / 157, current average result {'loss': tensor(19.0396), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:21,656 [MainThread  ] eval batch 64 / 157, current average result {'loss': tensor(19.0259), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:07:21,681 [MainThread  ] eval batch 65 / 157, current average result {'loss': tensor(19.0178), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:21,705 [MainThread  ] eval batch 66 / 157, current average result {'loss': tensor(18.9947), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:21,730 [MainThread  ] eval batch 67 / 157, current average result {'loss': tensor(18.9692), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:07:21,755 [MainThread  ] eval batch 68 / 157, current average result {'loss': tensor(18.9668), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:21,779 [MainThread  ] eval batch 69 / 157, current average result {'loss': tensor(18.9762), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:21,804 [MainThread  ] eval batch 70 / 157, current average result {'loss': tensor(18.9804), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:21,829 [MainThread  ] eval batch 71 / 157, current average result {'loss': tensor(18.9964), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:21,854 [MainThread  ] eval batch 72 / 157, current average result {'loss': tensor(19.0052), 'cls_acc': tensor(0.0992)}
+2019-12-08 19:07:21,879 [MainThread  ] eval batch 73 / 157, current average result {'loss': tensor(18.9727), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:21,904 [MainThread  ] eval batch 74 / 157, current average result {'loss': tensor(19.0027), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:07:21,929 [MainThread  ] eval batch 75 / 157, current average result {'loss': tensor(19.0276), 'cls_acc': tensor(0.0992)}
+2019-12-08 19:07:21,954 [MainThread  ] eval batch 76 / 157, current average result {'loss': tensor(19.0162), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:21,979 [MainThread  ] eval batch 77 / 157, current average result {'loss': tensor(19.0107), 'cls_acc': tensor(0.1002)}
+2019-12-08 19:07:22,004 [MainThread  ] eval batch 78 / 157, current average result {'loss': tensor(19.0084), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:22,029 [MainThread  ] eval batch 79 / 157, current average result {'loss': tensor(18.9946), 'cls_acc': tensor(0.1007)}
+2019-12-08 19:07:22,053 [MainThread  ] eval batch 80 / 157, current average result {'loss': tensor(18.9938), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:22,078 [MainThread  ] eval batch 81 / 157, current average result {'loss': tensor(19.0045), 'cls_acc': tensor(0.1007)}
+2019-12-08 19:07:22,103 [MainThread  ] eval batch 82 / 157, current average result {'loss': tensor(18.9817), 'cls_acc': tensor(0.1012)}
+2019-12-08 19:07:22,128 [MainThread  ] eval batch 83 / 157, current average result {'loss': tensor(18.9941), 'cls_acc': tensor(0.1005)}
+2019-12-08 19:07:22,152 [MainThread  ] eval batch 84 / 157, current average result {'loss': tensor(18.9843), 'cls_acc': tensor(0.1010)}
+2019-12-08 19:07:22,177 [MainThread  ] eval batch 85 / 157, current average result {'loss': tensor(18.9749), 'cls_acc': tensor(0.1017)}
+2019-12-08 19:07:22,202 [MainThread  ] eval batch 86 / 157, current average result {'loss': tensor(18.9921), 'cls_acc': tensor(0.1017)}
+2019-12-08 19:07:22,227 [MainThread  ] eval batch 87 / 157, current average result {'loss': tensor(19.0084), 'cls_acc': tensor(0.1011)}
+2019-12-08 19:07:22,252 [MainThread  ] eval batch 88 / 157, current average result {'loss': tensor(18.9954), 'cls_acc': tensor(0.1009)}
+2019-12-08 19:07:22,277 [MainThread  ] eval batch 89 / 157, current average result {'loss': tensor(18.9917), 'cls_acc': tensor(0.1002)}
+2019-12-08 19:07:22,301 [MainThread  ] eval batch 90 / 157, current average result {'loss': tensor(19.0083), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:22,326 [MainThread  ] eval batch 91 / 157, current average result {'loss': tensor(18.9996), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:22,351 [MainThread  ] eval batch 92 / 157, current average result {'loss': tensor(18.9894), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:22,376 [MainThread  ] eval batch 93 / 157, current average result {'loss': tensor(18.9837), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:22,401 [MainThread  ] eval batch 94 / 157, current average result {'loss': tensor(19.0009), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:22,426 [MainThread  ] eval batch 95 / 157, current average result {'loss': tensor(18.9946), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:22,451 [MainThread  ] eval batch 96 / 157, current average result {'loss': tensor(19.0045), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:07:22,475 [MainThread  ] eval batch 97 / 157, current average result {'loss': tensor(18.9989), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:22,501 [MainThread  ] eval batch 98 / 157, current average result {'loss': tensor(18.9992), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:07:22,526 [MainThread  ] eval batch 99 / 157, current average result {'loss': tensor(18.9968), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:07:22,551 [MainThread  ] eval batch 100 / 157, current average result {'loss': tensor(19.0013), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:07:22,575 [MainThread  ] eval batch 101 / 157, current average result {'loss': tensor(18.9827), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:22,600 [MainThread  ] eval batch 102 / 157, current average result {'loss': tensor(18.9900), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:22,625 [MainThread  ] eval batch 103 / 157, current average result {'loss': tensor(18.9844), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:07:22,650 [MainThread  ] eval batch 104 / 157, current average result {'loss': tensor(18.9644), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:07:22,676 [MainThread  ] eval batch 105 / 157, current average result {'loss': tensor(18.9758), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:22,701 [MainThread  ] eval batch 106 / 157, current average result {'loss': tensor(18.9629), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:22,725 [MainThread  ] eval batch 107 / 157, current average result {'loss': tensor(18.9510), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:22,750 [MainThread  ] eval batch 108 / 157, current average result {'loss': tensor(18.9704), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:22,775 [MainThread  ] eval batch 109 / 157, current average result {'loss': tensor(18.9777), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:22,800 [MainThread  ] eval batch 110 / 157, current average result {'loss': tensor(18.9599), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:22,825 [MainThread  ] eval batch 111 / 157, current average result {'loss': tensor(18.9584), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:22,849 [MainThread  ] eval batch 112 / 157, current average result {'loss': tensor(18.9495), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:22,874 [MainThread  ] eval batch 113 / 157, current average result {'loss': tensor(18.9554), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:22,899 [MainThread  ] eval batch 114 / 157, current average result {'loss': tensor(18.9132), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:22,924 [MainThread  ] eval batch 115 / 157, current average result {'loss': tensor(18.9046), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:22,949 [MainThread  ] eval batch 116 / 157, current average result {'loss': tensor(18.9051), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:22,974 [MainThread  ] eval batch 117 / 157, current average result {'loss': tensor(18.8937), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:22,999 [MainThread  ] eval batch 118 / 157, current average result {'loss': tensor(18.9077), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:23,024 [MainThread  ] eval batch 119 / 157, current average result {'loss': tensor(18.9047), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:23,048 [MainThread  ] eval batch 120 / 157, current average result {'loss': tensor(18.9041), 'cls_acc': tensor(0.0995)}
+2019-12-08 19:07:23,073 [MainThread  ] eval batch 121 / 157, current average result {'loss': tensor(18.9076), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:23,098 [MainThread  ] eval batch 122 / 157, current average result {'loss': tensor(18.9232), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:23,123 [MainThread  ] eval batch 123 / 157, current average result {'loss': tensor(18.9358), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:07:23,148 [MainThread  ] eval batch 124 / 157, current average result {'loss': tensor(18.9354), 'cls_acc': tensor(0.0992)}
+2019-12-08 19:07:23,163 [MainThread  ] eval batch 125 / 157, current average result {'loss': tensor(18.9274), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:23,175 [MainThread  ] eval batch 126 / 157, current average result {'loss': tensor(18.9284), 'cls_acc': tensor(0.1002)}
+2019-12-08 19:07:23,186 [MainThread  ] eval batch 127 / 157, current average result {'loss': tensor(18.9158), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:23,198 [MainThread  ] eval batch 128 / 157, current average result {'loss': tensor(18.9162), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:23,210 [MainThread  ] eval batch 129 / 157, current average result {'loss': tensor(18.9199), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:23,221 [MainThread  ] eval batch 130 / 157, current average result {'loss': tensor(18.9205), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:23,233 [MainThread  ] eval batch 131 / 157, current average result {'loss': tensor(18.9249), 'cls_acc': tensor(0.0998)}
+2019-12-08 19:07:23,244 [MainThread  ] eval batch 132 / 157, current average result {'loss': tensor(18.9211), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:23,256 [MainThread  ] eval batch 133 / 157, current average result {'loss': tensor(18.9111), 'cls_acc': tensor(0.1007)}
+2019-12-08 19:07:23,268 [MainThread  ] eval batch 134 / 157, current average result {'loss': tensor(18.9238), 'cls_acc': tensor(0.1009)}
+2019-12-08 19:07:23,279 [MainThread  ] eval batch 135 / 157, current average result {'loss': tensor(18.9217), 'cls_acc': tensor(0.1013)}
+2019-12-08 19:07:23,291 [MainThread  ] eval batch 136 / 157, current average result {'loss': tensor(18.9237), 'cls_acc': tensor(0.1012)}
+2019-12-08 19:07:23,303 [MainThread  ] eval batch 137 / 157, current average result {'loss': tensor(18.9337), 'cls_acc': tensor(0.1012)}
+2019-12-08 19:07:23,315 [MainThread  ] eval batch 138 / 157, current average result {'loss': tensor(18.9462), 'cls_acc': tensor(0.1010)}
+2019-12-08 19:07:23,326 [MainThread  ] eval batch 139 / 157, current average result {'loss': tensor(18.9391), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:23,338 [MainThread  ] eval batch 140 / 157, current average result {'loss': tensor(18.9481), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:23,350 [MainThread  ] eval batch 141 / 157, current average result {'loss': tensor(18.9621), 'cls_acc': tensor(0.1004)}
+2019-12-08 19:07:23,361 [MainThread  ] eval batch 142 / 157, current average result {'loss': tensor(18.9661), 'cls_acc': tensor(0.1001)}
+2019-12-08 19:07:23,373 [MainThread  ] eval batch 143 / 157, current average result {'loss': tensor(18.9638), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:23,384 [MainThread  ] eval batch 144 / 157, current average result {'loss': tensor(18.9629), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:23,396 [MainThread  ] eval batch 145 / 157, current average result {'loss': tensor(18.9747), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:23,408 [MainThread  ] eval batch 146 / 157, current average result {'loss': tensor(18.9782), 'cls_acc': tensor(0.0997)}
+2019-12-08 19:07:23,420 [MainThread  ] eval batch 147 / 157, current average result {'loss': tensor(18.9823), 'cls_acc': tensor(0.0997)}
+2019-12-08 19:07:23,432 [MainThread  ] eval batch 148 / 157, current average result {'loss': tensor(18.9855), 'cls_acc': tensor(0.0997)}
+2019-12-08 19:07:23,443 [MainThread  ] eval batch 149 / 157, current average result {'loss': tensor(18.9946), 'cls_acc': tensor(0.0995)}
+2019-12-08 19:07:23,455 [MainThread  ] eval batch 150 / 157, current average result {'loss': tensor(18.9905), 'cls_acc': tensor(0.0997)}
+2019-12-08 19:07:23,467 [MainThread  ] eval batch 151 / 157, current average result {'loss': tensor(18.9656), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:23,479 [MainThread  ] eval batch 152 / 157, current average result {'loss': tensor(18.9811), 'cls_acc': tensor(0.0998)}
+2019-12-08 19:07:23,491 [MainThread  ] eval batch 153 / 157, current average result {'loss': tensor(18.9974), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:23,503 [MainThread  ] eval batch 154 / 157, current average result {'loss': tensor(18.9794), 'cls_acc': tensor(0.1001)}
+2019-12-08 19:07:23,515 [MainThread  ] eval batch 155 / 157, current average result {'loss': tensor(18.9706), 'cls_acc': tensor(0.1004)}
+2019-12-08 19:07:23,526 [MainThread  ] eval batch 156 / 157, current average result {'loss': tensor(18.9739), 'cls_acc': tensor(0.1001)}
+2019-12-08 19:07:23,534 [MainThread  ] eval batch 157 / 157, current average result {'loss': tensor(18.9704), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:23,790 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(18.9704), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:23,952 [MainThread  ] Load parameters from ./results/debug/pretrain_cifar10_un_complete.pth
+2019-12-08 19:07:23,954 [MainThread  ] Setup trainer for cifar10_lp100_res2
+2019-12-08 19:07:23,955 [MainThread  ] Start training cifar10_lp100_res2
+2019-12-08 19:07:25,691 [MainThread  ] train batch 1 / 703 (iter 1), current average result {'loss': tensor(2.9125, grad_fn=<DivBackward0>), 'cls_acc': tensor(0.1250)}
+2019-12-08 19:07:26,040 [MainThread  ] train batch 2 / 703 (iter 2), current average result {'loss': tensor(20.4363, grad_fn=<DivBackward0>), 'cls_acc': tensor(0.1484)}
+2019-12-08 19:07:26,042 [MainThread  ] Evaluate on  cifar10_lp100_res2:val data
+2019-12-08 19:07:27,010 [MainThread  ] eval batch 1 / 79, current average result {'loss': tensor(14.3936), 'cls_acc': tensor(0.1094)}
+2019-12-08 19:07:27,050 [MainThread  ] eval batch 2 / 79, current average result {'loss': tensor(13.0870), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:07:27,094 [MainThread  ] eval batch 3 / 79, current average result {'loss': tensor(12.7187), 'cls_acc': tensor(0.0833)}
+2019-12-08 19:07:27,139 [MainThread  ] eval batch 4 / 79, current average result {'loss': tensor(12.4410), 'cls_acc': tensor(0.0898)}
+2019-12-08 19:07:27,184 [MainThread  ] eval batch 5 / 79, current average result {'loss': tensor(12.4617), 'cls_acc': tensor(0.0812)}
+2019-12-08 19:07:27,225 [MainThread  ] eval batch 6 / 79, current average result {'loss': tensor(12.7685), 'cls_acc': tensor(0.0859)}
+2019-12-08 19:07:27,272 [MainThread  ] eval batch 7 / 79, current average result {'loss': tensor(12.6621), 'cls_acc': tensor(0.0871)}
+2019-12-08 19:07:27,314 [MainThread  ] eval batch 8 / 79, current average result {'loss': tensor(12.5854), 'cls_acc': tensor(0.0879)}
+2019-12-08 19:07:27,353 [MainThread  ] eval batch 9 / 79, current average result {'loss': tensor(12.4938), 'cls_acc': tensor(0.0955)}
+2019-12-08 19:07:27,393 [MainThread  ] eval batch 10 / 79, current average result {'loss': tensor(12.4241), 'cls_acc': tensor(0.0922)}
+2019-12-08 19:07:27,432 [MainThread  ] eval batch 11 / 79, current average result {'loss': tensor(12.5697), 'cls_acc': tensor(0.0866)}
+2019-12-08 19:07:27,474 [MainThread  ] eval batch 12 / 79, current average result {'loss': tensor(12.6689), 'cls_acc': tensor(0.0794)}
+2019-12-08 19:07:27,518 [MainThread  ] eval batch 13 / 79, current average result {'loss': tensor(12.5976), 'cls_acc': tensor(0.0793)}
+2019-12-08 19:07:27,577 [MainThread  ] eval batch 14 / 79, current average result {'loss': tensor(12.6843), 'cls_acc': tensor(0.0804)}
+2019-12-08 19:07:27,616 [MainThread  ] eval batch 15 / 79, current average result {'loss': tensor(12.6467), 'cls_acc': tensor(0.0854)}
+2019-12-08 19:07:27,655 [MainThread  ] eval batch 16 / 79, current average result {'loss': tensor(12.6113), 'cls_acc': tensor(0.0879)}
+2019-12-08 19:07:27,696 [MainThread  ] eval batch 17 / 79, current average result {'loss': tensor(12.5829), 'cls_acc': tensor(0.0873)}
+2019-12-08 19:07:27,737 [MainThread  ] eval batch 18 / 79, current average result {'loss': tensor(12.5946), 'cls_acc': tensor(0.0868)}
+2019-12-08 19:07:27,778 [MainThread  ] eval batch 19 / 79, current average result {'loss': tensor(12.5163), 'cls_acc': tensor(0.0905)}
+2019-12-08 19:07:27,819 [MainThread  ] eval batch 20 / 79, current average result {'loss': tensor(12.4506), 'cls_acc': tensor(0.0906)}
+2019-12-08 19:07:27,860 [MainThread  ] eval batch 21 / 79, current average result {'loss': tensor(12.4684), 'cls_acc': tensor(0.0908)}
+2019-12-08 19:07:27,899 [MainThread  ] eval batch 22 / 79, current average result {'loss': tensor(12.5192), 'cls_acc': tensor(0.0909)}
+2019-12-08 19:07:27,938 [MainThread  ] eval batch 23 / 79, current average result {'loss': tensor(12.5277), 'cls_acc': tensor(0.0931)}
+2019-12-08 19:07:27,977 [MainThread  ] eval batch 24 / 79, current average result {'loss': tensor(12.5750), 'cls_acc': tensor(0.0911)}
+2019-12-08 19:07:28,015 [MainThread  ] eval batch 25 / 79, current average result {'loss': tensor(12.5350), 'cls_acc': tensor(0.0900)}
+2019-12-08 19:07:28,054 [MainThread  ] eval batch 26 / 79, current average result {'loss': tensor(12.5280), 'cls_acc': tensor(0.0913)}
+2019-12-08 19:07:28,093 [MainThread  ] eval batch 27 / 79, current average result {'loss': tensor(12.5101), 'cls_acc': tensor(0.0914)}
+2019-12-08 19:07:28,133 [MainThread  ] eval batch 28 / 79, current average result {'loss': tensor(12.5083), 'cls_acc': tensor(0.0910)}
+2019-12-08 19:07:28,171 [MainThread  ] eval batch 29 / 79, current average result {'loss': tensor(12.5062), 'cls_acc': tensor(0.0894)}
+2019-12-08 19:07:28,217 [MainThread  ] eval batch 30 / 79, current average result {'loss': tensor(12.4929), 'cls_acc': tensor(0.0896)}
+2019-12-08 19:07:28,256 [MainThread  ] eval batch 31 / 79, current average result {'loss': tensor(12.4804), 'cls_acc': tensor(0.0897)}
+2019-12-08 19:07:28,294 [MainThread  ] eval batch 32 / 79, current average result {'loss': tensor(12.4942), 'cls_acc': tensor(0.0903)}
+2019-12-08 19:07:28,336 [MainThread  ] eval batch 33 / 79, current average result {'loss': tensor(12.4979), 'cls_acc': tensor(0.0900)}
+2019-12-08 19:07:28,377 [MainThread  ] eval batch 34 / 79, current average result {'loss': tensor(12.4642), 'cls_acc': tensor(0.0915)}
+2019-12-08 19:07:28,419 [MainThread  ] eval batch 35 / 79, current average result {'loss': tensor(12.4861), 'cls_acc': tensor(0.0924)}
+2019-12-08 19:07:28,462 [MainThread  ] eval batch 36 / 79, current average result {'loss': tensor(12.4487), 'cls_acc': tensor(0.0946)}
+2019-12-08 19:07:28,503 [MainThread  ] eval batch 37 / 79, current average result {'loss': tensor(12.4778), 'cls_acc': tensor(0.0942)}
+2019-12-08 19:07:28,545 [MainThread  ] eval batch 38 / 79, current average result {'loss': tensor(12.4486), 'cls_acc': tensor(0.0962)}
+2019-12-08 19:07:28,585 [MainThread  ] eval batch 39 / 79, current average result {'loss': tensor(12.4467), 'cls_acc': tensor(0.0966)}
+2019-12-08 19:07:28,627 [MainThread  ] eval batch 40 / 79, current average result {'loss': tensor(12.4856), 'cls_acc': tensor(0.0949)}
+2019-12-08 19:07:28,668 [MainThread  ] eval batch 41 / 79, current average result {'loss': tensor(12.4808), 'cls_acc': tensor(0.0949)}
+2019-12-08 19:07:28,709 [MainThread  ] eval batch 42 / 79, current average result {'loss': tensor(12.4864), 'cls_acc': tensor(0.0941)}
+2019-12-08 19:07:28,749 [MainThread  ] eval batch 43 / 79, current average result {'loss': tensor(12.4909), 'cls_acc': tensor(0.0952)}
+2019-12-08 19:07:28,789 [MainThread  ] eval batch 44 / 79, current average result {'loss': tensor(12.4992), 'cls_acc': tensor(0.0945)}
+2019-12-08 19:07:28,829 [MainThread  ] eval batch 45 / 79, current average result {'loss': tensor(12.4867), 'cls_acc': tensor(0.0948)}
+2019-12-08 19:07:28,870 [MainThread  ] eval batch 46 / 79, current average result {'loss': tensor(12.4441), 'cls_acc': tensor(0.0954)}
+2019-12-08 19:07:28,900 [MainThread  ] eval batch 47 / 79, current average result {'loss': tensor(12.5387), 'cls_acc': tensor(0.0941)}
+2019-12-08 19:07:28,927 [MainThread  ] eval batch 48 / 79, current average result {'loss': tensor(12.5170), 'cls_acc': tensor(0.0947)}
+2019-12-08 19:07:28,954 [MainThread  ] eval batch 49 / 79, current average result {'loss': tensor(12.5160), 'cls_acc': tensor(0.0944)}
+2019-12-08 19:07:28,981 [MainThread  ] eval batch 50 / 79, current average result {'loss': tensor(12.5427), 'cls_acc': tensor(0.0934)}
+2019-12-08 19:07:29,008 [MainThread  ] eval batch 51 / 79, current average result {'loss': tensor(12.5567), 'cls_acc': tensor(0.0928)}
+2019-12-08 19:07:29,035 [MainThread  ] eval batch 52 / 79, current average result {'loss': tensor(12.5624), 'cls_acc': tensor(0.0934)}
+2019-12-08 19:07:29,062 [MainThread  ] eval batch 53 / 79, current average result {'loss': tensor(12.5841), 'cls_acc': tensor(0.0929)}
+2019-12-08 19:07:29,090 [MainThread  ] eval batch 54 / 79, current average result {'loss': tensor(12.5612), 'cls_acc': tensor(0.0923)}
+2019-12-08 19:07:29,117 [MainThread  ] eval batch 55 / 79, current average result {'loss': tensor(12.5442), 'cls_acc': tensor(0.0923)}
+2019-12-08 19:07:29,144 [MainThread  ] eval batch 56 / 79, current average result {'loss': tensor(12.5456), 'cls_acc': tensor(0.0924)}
+2019-12-08 19:07:29,171 [MainThread  ] eval batch 57 / 79, current average result {'loss': tensor(12.5727), 'cls_acc': tensor(0.0929)}
+2019-12-08 19:07:29,197 [MainThread  ] eval batch 58 / 79, current average result {'loss': tensor(12.5674), 'cls_acc': tensor(0.0932)}
+2019-12-08 19:07:29,225 [MainThread  ] eval batch 59 / 79, current average result {'loss': tensor(12.5739), 'cls_acc': tensor(0.0932)}
+2019-12-08 19:07:29,251 [MainThread  ] eval batch 60 / 79, current average result {'loss': tensor(12.5639), 'cls_acc': tensor(0.0930)}
+2019-12-08 19:07:29,278 [MainThread  ] eval batch 61 / 79, current average result {'loss': tensor(12.5859), 'cls_acc': tensor(0.0927)}
+2019-12-08 19:07:29,305 [MainThread  ] eval batch 62 / 79, current average result {'loss': tensor(12.5489), 'cls_acc': tensor(0.0932)}
+2019-12-08 19:07:29,333 [MainThread  ] eval batch 63 / 79, current average result {'loss': tensor(12.5542), 'cls_acc': tensor(0.0925)}
+2019-12-08 19:07:29,359 [MainThread  ] eval batch 64 / 79, current average result {'loss': tensor(12.5596), 'cls_acc': tensor(0.0920)}
+2019-12-08 19:07:29,387 [MainThread  ] eval batch 65 / 79, current average result {'loss': tensor(12.5361), 'cls_acc': tensor(0.0921)}
+2019-12-08 19:07:29,414 [MainThread  ] eval batch 66 / 79, current average result {'loss': tensor(12.5116), 'cls_acc': tensor(0.0921)}
+2019-12-08 19:07:29,441 [MainThread  ] eval batch 67 / 79, current average result {'loss': tensor(12.5293), 'cls_acc': tensor(0.0924)}
+2019-12-08 19:07:29,468 [MainThread  ] eval batch 68 / 79, current average result {'loss': tensor(12.5420), 'cls_acc': tensor(0.0926)}
+2019-12-08 19:07:29,496 [MainThread  ] eval batch 69 / 79, current average result {'loss': tensor(12.5416), 'cls_acc': tensor(0.0931)}
+2019-12-08 19:07:29,523 [MainThread  ] eval batch 70 / 79, current average result {'loss': tensor(12.5555), 'cls_acc': tensor(0.0931)}
+2019-12-08 19:07:29,550 [MainThread  ] eval batch 71 / 79, current average result {'loss': tensor(12.5478), 'cls_acc': tensor(0.0933)}
+2019-12-08 19:07:29,578 [MainThread  ] eval batch 72 / 79, current average result {'loss': tensor(12.5426), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:07:29,605 [MainThread  ] eval batch 73 / 79, current average result {'loss': tensor(12.5284), 'cls_acc': tensor(0.0944)}
+2019-12-08 19:07:29,633 [MainThread  ] eval batch 74 / 79, current average result {'loss': tensor(12.5388), 'cls_acc': tensor(0.0942)}
+2019-12-08 19:07:29,660 [MainThread  ] eval batch 75 / 79, current average result {'loss': tensor(12.5452), 'cls_acc': tensor(0.0946)}
+2019-12-08 19:07:29,688 [MainThread  ] eval batch 76 / 79, current average result {'loss': tensor(12.5337), 'cls_acc': tensor(0.0944)}
+2019-12-08 19:07:29,715 [MainThread  ] eval batch 77 / 79, current average result {'loss': tensor(12.5533), 'cls_acc': tensor(0.0940)}
+2019-12-08 19:07:29,742 [MainThread  ] eval batch 78 / 79, current average result {'loss': tensor(12.5551), 'cls_acc': tensor(0.0952)}
+2019-12-08 19:07:29,754 [MainThread  ] eval batch 79 / 79, current average result {'loss': tensor(12.5584), 'cls_acc': tensor(0.0950)}
+2019-12-08 19:07:29,978 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(12.5584), 'cls_acc': tensor(0.0950)}
+2019-12-08 19:07:29,979 [MainThread  ] Best validation updated: {'best_performance': tensor(0.0950), 'current_iter': 2, 'best_iter': 2}
+2019-12-08 19:07:30,137 [MainThread  ] Save parameters for ./results/debug/finetune_cifar10_lp100_res2_best.ckpt
+2019-12-08 19:07:30,348 [MainThread  ] Training complete
+2019-12-08 19:07:30,349 [MainThread  ] Best result found for cifar10_lp100_res2: {'best_performance': tensor(0.0950), 'current_iter': 2, 'best_iter': 2}
+2019-12-08 19:07:30,350 [MainThread  ] Evaluate on  cifar10_lp100_res2:test data
+2019-12-08 19:07:31,269 [MainThread  ] eval batch 1 / 157, current average result {'loss': tensor(12.8455), 'cls_acc': tensor(0.0469)}
+2019-12-08 19:07:31,319 [MainThread  ] eval batch 2 / 157, current average result {'loss': tensor(13.5524), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:31,361 [MainThread  ] eval batch 3 / 157, current average result {'loss': tensor(13.4289), 'cls_acc': tensor(0.0677)}
+2019-12-08 19:07:31,402 [MainThread  ] eval batch 4 / 157, current average result {'loss': tensor(13.0566), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:31,443 [MainThread  ] eval batch 5 / 157, current average result {'loss': tensor(13.0893), 'cls_acc': tensor(0.0812)}
+2019-12-08 19:07:31,484 [MainThread  ] eval batch 6 / 157, current average result {'loss': tensor(12.9731), 'cls_acc': tensor(0.0833)}
+2019-12-08 19:07:31,522 [MainThread  ] eval batch 7 / 157, current average result {'loss': tensor(12.9692), 'cls_acc': tensor(0.0826)}
+2019-12-08 19:07:31,560 [MainThread  ] eval batch 8 / 157, current average result {'loss': tensor(12.7559), 'cls_acc': tensor(0.0801)}
+2019-12-08 19:07:31,627 [MainThread  ] eval batch 9 / 157, current average result {'loss': tensor(12.8189), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:31,665 [MainThread  ] eval batch 10 / 157, current average result {'loss': tensor(12.7323), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:31,704 [MainThread  ] eval batch 11 / 157, current average result {'loss': tensor(12.6894), 'cls_acc': tensor(0.0795)}
+2019-12-08 19:07:31,743 [MainThread  ] eval batch 12 / 157, current average result {'loss': tensor(12.5827), 'cls_acc': tensor(0.0820)}
+2019-12-08 19:07:31,781 [MainThread  ] eval batch 13 / 157, current average result {'loss': tensor(12.5893), 'cls_acc': tensor(0.0817)}
+2019-12-08 19:07:31,827 [MainThread  ] eval batch 14 / 157, current average result {'loss': tensor(12.6489), 'cls_acc': tensor(0.0848)}
+2019-12-08 19:07:31,865 [MainThread  ] eval batch 15 / 157, current average result {'loss': tensor(12.6199), 'cls_acc': tensor(0.0844)}
+2019-12-08 19:07:31,903 [MainThread  ] eval batch 16 / 157, current average result {'loss': tensor(12.4636), 'cls_acc': tensor(0.0928)}
+2019-12-08 19:07:31,942 [MainThread  ] eval batch 17 / 157, current average result {'loss': tensor(12.6398), 'cls_acc': tensor(0.0910)}
+2019-12-08 19:07:31,982 [MainThread  ] eval batch 18 / 157, current average result {'loss': tensor(12.6602), 'cls_acc': tensor(0.0911)}
+2019-12-08 19:07:32,021 [MainThread  ] eval batch 19 / 157, current average result {'loss': tensor(12.5988), 'cls_acc': tensor(0.0954)}
+2019-12-08 19:07:32,059 [MainThread  ] eval batch 20 / 157, current average result {'loss': tensor(12.5359), 'cls_acc': tensor(0.0961)}
+2019-12-08 19:07:32,098 [MainThread  ] eval batch 21 / 157, current average result {'loss': tensor(12.5263), 'cls_acc': tensor(0.0967)}
+2019-12-08 19:07:32,138 [MainThread  ] eval batch 22 / 157, current average result {'loss': tensor(12.4305), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:32,176 [MainThread  ] eval batch 23 / 157, current average result {'loss': tensor(12.3669), 'cls_acc': tensor(0.1019)}
+2019-12-08 19:07:32,215 [MainThread  ] eval batch 24 / 157, current average result {'loss': tensor(12.3839), 'cls_acc': tensor(0.1022)}
+2019-12-08 19:07:32,254 [MainThread  ] eval batch 25 / 157, current average result {'loss': tensor(12.4038), 'cls_acc': tensor(0.1019)}
+2019-12-08 19:07:32,294 [MainThread  ] eval batch 26 / 157, current average result {'loss': tensor(12.3548), 'cls_acc': tensor(0.1010)}
+2019-12-08 19:07:32,333 [MainThread  ] eval batch 27 / 157, current average result {'loss': tensor(12.3437), 'cls_acc': tensor(0.1001)}
+2019-12-08 19:07:32,371 [MainThread  ] eval batch 28 / 157, current average result {'loss': tensor(12.3425), 'cls_acc': tensor(0.1010)}
+2019-12-08 19:07:32,411 [MainThread  ] eval batch 29 / 157, current average result {'loss': tensor(12.3038), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:32,451 [MainThread  ] eval batch 30 / 157, current average result {'loss': tensor(12.2696), 'cls_acc': tensor(0.0995)}
+2019-12-08 19:07:32,491 [MainThread  ] eval batch 31 / 157, current average result {'loss': tensor(12.3142), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:32,530 [MainThread  ] eval batch 32 / 157, current average result {'loss': tensor(12.2901), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:32,568 [MainThread  ] eval batch 33 / 157, current average result {'loss': tensor(12.3418), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:32,609 [MainThread  ] eval batch 34 / 157, current average result {'loss': tensor(12.3228), 'cls_acc': tensor(0.0979)}
+2019-12-08 19:07:32,650 [MainThread  ] eval batch 35 / 157, current average result {'loss': tensor(12.3392), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:07:32,691 [MainThread  ] eval batch 36 / 157, current average result {'loss': tensor(12.3085), 'cls_acc': tensor(0.0972)}
+2019-12-08 19:07:32,732 [MainThread  ] eval batch 37 / 157, current average result {'loss': tensor(12.3366), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:32,772 [MainThread  ] eval batch 38 / 157, current average result {'loss': tensor(12.3574), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:07:32,812 [MainThread  ] eval batch 39 / 157, current average result {'loss': tensor(12.3581), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:07:32,852 [MainThread  ] eval batch 40 / 157, current average result {'loss': tensor(12.3700), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:07:32,893 [MainThread  ] eval batch 41 / 157, current average result {'loss': tensor(12.3822), 'cls_acc': tensor(0.0960)}
+2019-12-08 19:07:32,933 [MainThread  ] eval batch 42 / 157, current average result {'loss': tensor(12.3975), 'cls_acc': tensor(0.0960)}
+2019-12-08 19:07:32,974 [MainThread  ] eval batch 43 / 157, current average result {'loss': tensor(12.4051), 'cls_acc': tensor(0.0956)}
+2019-12-08 19:07:33,014 [MainThread  ] eval batch 44 / 157, current average result {'loss': tensor(12.4061), 'cls_acc': tensor(0.0959)}
+2019-12-08 19:07:33,054 [MainThread  ] eval batch 45 / 157, current average result {'loss': tensor(12.3928), 'cls_acc': tensor(0.0958)}
+2019-12-08 19:07:33,094 [MainThread  ] eval batch 46 / 157, current average result {'loss': tensor(12.3910), 'cls_acc': tensor(0.0961)}
+2019-12-08 19:07:33,134 [MainThread  ] eval batch 47 / 157, current average result {'loss': tensor(12.3836), 'cls_acc': tensor(0.0957)}
+2019-12-08 19:07:33,175 [MainThread  ] eval batch 48 / 157, current average result {'loss': tensor(12.3465), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:07:33,216 [MainThread  ] eval batch 49 / 157, current average result {'loss': tensor(12.3287), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:07:33,256 [MainThread  ] eval batch 50 / 157, current average result {'loss': tensor(12.3005), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:07:33,297 [MainThread  ] eval batch 51 / 157, current average result {'loss': tensor(12.2899), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:07:33,337 [MainThread  ] eval batch 52 / 157, current average result {'loss': tensor(12.2842), 'cls_acc': tensor(0.0959)}
+2019-12-08 19:07:33,379 [MainThread  ] eval batch 53 / 157, current average result {'loss': tensor(12.2770), 'cls_acc': tensor(0.0961)}
+2019-12-08 19:07:33,419 [MainThread  ] eval batch 54 / 157, current average result {'loss': tensor(12.3217), 'cls_acc': tensor(0.0958)}
+2019-12-08 19:07:33,460 [MainThread  ] eval batch 55 / 157, current average result {'loss': tensor(12.3065), 'cls_acc': tensor(0.0957)}
+2019-12-08 19:07:33,500 [MainThread  ] eval batch 56 / 157, current average result {'loss': tensor(12.2947), 'cls_acc': tensor(0.0971)}
+2019-12-08 19:07:33,541 [MainThread  ] eval batch 57 / 157, current average result {'loss': tensor(12.3006), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:33,581 [MainThread  ] eval batch 58 / 157, current average result {'loss': tensor(12.2859), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:07:33,622 [MainThread  ] eval batch 59 / 157, current average result {'loss': tensor(12.2995), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:33,662 [MainThread  ] eval batch 60 / 157, current average result {'loss': tensor(12.2837), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:07:33,702 [MainThread  ] eval batch 61 / 157, current average result {'loss': tensor(12.2711), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:33,743 [MainThread  ] eval batch 62 / 157, current average result {'loss': tensor(12.2692), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:33,783 [MainThread  ] eval batch 63 / 157, current average result {'loss': tensor(12.2537), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:33,823 [MainThread  ] eval batch 64 / 157, current average result {'loss': tensor(12.2607), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:07:33,864 [MainThread  ] eval batch 65 / 157, current average result {'loss': tensor(12.2942), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:33,904 [MainThread  ] eval batch 66 / 157, current average result {'loss': tensor(12.2801), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:33,945 [MainThread  ] eval batch 67 / 157, current average result {'loss': tensor(12.2627), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:07:33,985 [MainThread  ] eval batch 68 / 157, current average result {'loss': tensor(12.2420), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:34,025 [MainThread  ] eval batch 69 / 157, current average result {'loss': tensor(12.2525), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:34,066 [MainThread  ] eval batch 70 / 157, current average result {'loss': tensor(12.2691), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:34,107 [MainThread  ] eval batch 71 / 157, current average result {'loss': tensor(12.2598), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:34,148 [MainThread  ] eval batch 72 / 157, current average result {'loss': tensor(12.2728), 'cls_acc': tensor(0.0992)}
+2019-12-08 19:07:34,189 [MainThread  ] eval batch 73 / 157, current average result {'loss': tensor(12.2637), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:34,229 [MainThread  ] eval batch 74 / 157, current average result {'loss': tensor(12.2510), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:07:34,269 [MainThread  ] eval batch 75 / 157, current average result {'loss': tensor(12.2685), 'cls_acc': tensor(0.0992)}
+2019-12-08 19:07:34,310 [MainThread  ] eval batch 76 / 157, current average result {'loss': tensor(12.2501), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:34,350 [MainThread  ] eval batch 77 / 157, current average result {'loss': tensor(12.2531), 'cls_acc': tensor(0.1002)}
+2019-12-08 19:07:34,390 [MainThread  ] eval batch 78 / 157, current average result {'loss': tensor(12.2325), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:34,431 [MainThread  ] eval batch 79 / 157, current average result {'loss': tensor(12.2368), 'cls_acc': tensor(0.1007)}
+2019-12-08 19:07:34,471 [MainThread  ] eval batch 80 / 157, current average result {'loss': tensor(12.2333), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:34,512 [MainThread  ] eval batch 81 / 157, current average result {'loss': tensor(12.2337), 'cls_acc': tensor(0.1007)}
+2019-12-08 19:07:34,552 [MainThread  ] eval batch 82 / 157, current average result {'loss': tensor(12.2345), 'cls_acc': tensor(0.1012)}
+2019-12-08 19:07:34,592 [MainThread  ] eval batch 83 / 157, current average result {'loss': tensor(12.2460), 'cls_acc': tensor(0.1005)}
+2019-12-08 19:07:34,633 [MainThread  ] eval batch 84 / 157, current average result {'loss': tensor(12.2444), 'cls_acc': tensor(0.1010)}
+2019-12-08 19:07:34,673 [MainThread  ] eval batch 85 / 157, current average result {'loss': tensor(12.2326), 'cls_acc': tensor(0.1017)}
+2019-12-08 19:07:34,713 [MainThread  ] eval batch 86 / 157, current average result {'loss': tensor(12.2509), 'cls_acc': tensor(0.1017)}
+2019-12-08 19:07:34,753 [MainThread  ] eval batch 87 / 157, current average result {'loss': tensor(12.2702), 'cls_acc': tensor(0.1011)}
+2019-12-08 19:07:34,793 [MainThread  ] eval batch 88 / 157, current average result {'loss': tensor(12.2637), 'cls_acc': tensor(0.1009)}
+2019-12-08 19:07:34,833 [MainThread  ] eval batch 89 / 157, current average result {'loss': tensor(12.2872), 'cls_acc': tensor(0.1002)}
+2019-12-08 19:07:34,874 [MainThread  ] eval batch 90 / 157, current average result {'loss': tensor(12.3120), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:34,914 [MainThread  ] eval batch 91 / 157, current average result {'loss': tensor(12.3086), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:34,955 [MainThread  ] eval batch 92 / 157, current average result {'loss': tensor(12.3171), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:34,996 [MainThread  ] eval batch 93 / 157, current average result {'loss': tensor(12.3089), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:35,036 [MainThread  ] eval batch 94 / 157, current average result {'loss': tensor(12.3051), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:35,076 [MainThread  ] eval batch 95 / 157, current average result {'loss': tensor(12.3172), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:35,117 [MainThread  ] eval batch 96 / 157, current average result {'loss': tensor(12.3118), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:07:35,157 [MainThread  ] eval batch 97 / 157, current average result {'loss': tensor(12.2959), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:35,196 [MainThread  ] eval batch 98 / 157, current average result {'loss': tensor(12.3251), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:07:35,237 [MainThread  ] eval batch 99 / 157, current average result {'loss': tensor(12.3158), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:07:35,277 [MainThread  ] eval batch 100 / 157, current average result {'loss': tensor(12.3151), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:07:35,318 [MainThread  ] eval batch 101 / 157, current average result {'loss': tensor(12.3180), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:35,358 [MainThread  ] eval batch 102 / 157, current average result {'loss': tensor(12.3409), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:35,399 [MainThread  ] eval batch 103 / 157, current average result {'loss': tensor(12.3390), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:07:35,439 [MainThread  ] eval batch 104 / 157, current average result {'loss': tensor(12.3480), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:07:35,480 [MainThread  ] eval batch 105 / 157, current average result {'loss': tensor(12.3754), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:35,520 [MainThread  ] eval batch 106 / 157, current average result {'loss': tensor(12.3561), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:35,561 [MainThread  ] eval batch 107 / 157, current average result {'loss': tensor(12.3321), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:35,601 [MainThread  ] eval batch 108 / 157, current average result {'loss': tensor(12.3519), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:35,642 [MainThread  ] eval batch 109 / 157, current average result {'loss': tensor(12.3608), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:35,683 [MainThread  ] eval batch 110 / 157, current average result {'loss': tensor(12.3496), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:35,723 [MainThread  ] eval batch 111 / 157, current average result {'loss': tensor(12.3448), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:35,763 [MainThread  ] eval batch 112 / 157, current average result {'loss': tensor(12.3643), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:35,803 [MainThread  ] eval batch 113 / 157, current average result {'loss': tensor(12.3654), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:35,844 [MainThread  ] eval batch 114 / 157, current average result {'loss': tensor(12.3454), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:35,884 [MainThread  ] eval batch 115 / 157, current average result {'loss': tensor(12.3523), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:35,925 [MainThread  ] eval batch 116 / 157, current average result {'loss': tensor(12.3490), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:35,965 [MainThread  ] eval batch 117 / 157, current average result {'loss': tensor(12.3359), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:36,006 [MainThread  ] eval batch 118 / 157, current average result {'loss': tensor(12.3377), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:36,046 [MainThread  ] eval batch 119 / 157, current average result {'loss': tensor(12.3222), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:36,088 [MainThread  ] eval batch 120 / 157, current average result {'loss': tensor(12.3140), 'cls_acc': tensor(0.0995)}
+2019-12-08 19:07:36,130 [MainThread  ] eval batch 121 / 157, current average result {'loss': tensor(12.3134), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:36,170 [MainThread  ] eval batch 122 / 157, current average result {'loss': tensor(12.3185), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:36,211 [MainThread  ] eval batch 123 / 157, current average result {'loss': tensor(12.3326), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:07:36,251 [MainThread  ] eval batch 124 / 157, current average result {'loss': tensor(12.3238), 'cls_acc': tensor(0.0992)}
+2019-12-08 19:07:36,283 [MainThread  ] eval batch 125 / 157, current average result {'loss': tensor(12.3147), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:36,311 [MainThread  ] eval batch 126 / 157, current average result {'loss': tensor(12.3140), 'cls_acc': tensor(0.1002)}
+2019-12-08 19:07:36,338 [MainThread  ] eval batch 127 / 157, current average result {'loss': tensor(12.3015), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:36,366 [MainThread  ] eval batch 128 / 157, current average result {'loss': tensor(12.2920), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:36,394 [MainThread  ] eval batch 129 / 157, current average result {'loss': tensor(12.2890), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:36,421 [MainThread  ] eval batch 130 / 157, current average result {'loss': tensor(12.2891), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:36,449 [MainThread  ] eval batch 131 / 157, current average result {'loss': tensor(12.2919), 'cls_acc': tensor(0.0998)}
+2019-12-08 19:07:36,476 [MainThread  ] eval batch 132 / 157, current average result {'loss': tensor(12.2905), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:36,505 [MainThread  ] eval batch 133 / 157, current average result {'loss': tensor(12.2833), 'cls_acc': tensor(0.1007)}
+2019-12-08 19:07:36,532 [MainThread  ] eval batch 134 / 157, current average result {'loss': tensor(12.2902), 'cls_acc': tensor(0.1009)}
+2019-12-08 19:07:36,560 [MainThread  ] eval batch 135 / 157, current average result {'loss': tensor(12.2875), 'cls_acc': tensor(0.1013)}
+2019-12-08 19:07:36,587 [MainThread  ] eval batch 136 / 157, current average result {'loss': tensor(12.2924), 'cls_acc': tensor(0.1012)}
+2019-12-08 19:07:36,615 [MainThread  ] eval batch 137 / 157, current average result {'loss': tensor(12.2989), 'cls_acc': tensor(0.1012)}
+2019-12-08 19:07:36,643 [MainThread  ] eval batch 138 / 157, current average result {'loss': tensor(12.3190), 'cls_acc': tensor(0.1010)}
+2019-12-08 19:07:36,670 [MainThread  ] eval batch 139 / 157, current average result {'loss': tensor(12.3208), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:36,698 [MainThread  ] eval batch 140 / 157, current average result {'loss': tensor(12.3204), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:36,726 [MainThread  ] eval batch 141 / 157, current average result {'loss': tensor(12.3327), 'cls_acc': tensor(0.1004)}
+2019-12-08 19:07:36,754 [MainThread  ] eval batch 142 / 157, current average result {'loss': tensor(12.3338), 'cls_acc': tensor(0.1001)}
+2019-12-08 19:07:36,782 [MainThread  ] eval batch 143 / 157, current average result {'loss': tensor(12.3233), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:36,809 [MainThread  ] eval batch 144 / 157, current average result {'loss': tensor(12.3227), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:36,837 [MainThread  ] eval batch 145 / 157, current average result {'loss': tensor(12.3172), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:36,865 [MainThread  ] eval batch 146 / 157, current average result {'loss': tensor(12.3073), 'cls_acc': tensor(0.0997)}
+2019-12-08 19:07:36,892 [MainThread  ] eval batch 147 / 157, current average result {'loss': tensor(12.3071), 'cls_acc': tensor(0.0997)}
+2019-12-08 19:07:36,920 [MainThread  ] eval batch 148 / 157, current average result {'loss': tensor(12.3121), 'cls_acc': tensor(0.0997)}
+2019-12-08 19:07:36,948 [MainThread  ] eval batch 149 / 157, current average result {'loss': tensor(12.3164), 'cls_acc': tensor(0.0995)}
+2019-12-08 19:07:36,976 [MainThread  ] eval batch 150 / 157, current average result {'loss': tensor(12.3153), 'cls_acc': tensor(0.0997)}
+2019-12-08 19:07:37,004 [MainThread  ] eval batch 151 / 157, current average result {'loss': tensor(12.3102), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:37,032 [MainThread  ] eval batch 152 / 157, current average result {'loss': tensor(12.3162), 'cls_acc': tensor(0.0998)}
+2019-12-08 19:07:37,060 [MainThread  ] eval batch 153 / 157, current average result {'loss': tensor(12.3259), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:37,087 [MainThread  ] eval batch 154 / 157, current average result {'loss': tensor(12.3203), 'cls_acc': tensor(0.1001)}
+2019-12-08 19:07:37,116 [MainThread  ] eval batch 155 / 157, current average result {'loss': tensor(12.3170), 'cls_acc': tensor(0.1004)}
+2019-12-08 19:07:37,144 [MainThread  ] eval batch 156 / 157, current average result {'loss': tensor(12.3263), 'cls_acc': tensor(0.1001)}
+2019-12-08 19:07:37,160 [MainThread  ] eval batch 157 / 157, current average result {'loss': tensor(12.3253), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:37,407 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(12.3253), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:37,570 [MainThread  ] Load parameters from ./results/debug/pretrain_cifar10_un_complete.pth
+2019-12-08 19:07:37,572 [MainThread  ] Setup trainer for cifar10_lp100_res3
+2019-12-08 19:07:37,573 [MainThread  ] Start training cifar10_lp100_res3
+2019-12-08 19:07:39,417 [MainThread  ] train batch 1 / 703 (iter 1), current average result {'loss': tensor(3.2888, grad_fn=<DivBackward0>), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:07:39,894 [MainThread  ] train batch 2 / 703 (iter 2), current average result {'loss': tensor(20.2611, grad_fn=<DivBackward0>), 'cls_acc': tensor(0.0703)}
+2019-12-08 19:07:39,895 [MainThread  ] Evaluate on  cifar10_lp100_res3:val data
+2019-12-08 19:07:40,900 [MainThread  ] eval batch 1 / 79, current average result {'loss': tensor(7.2338), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:07:40,962 [MainThread  ] eval batch 2 / 79, current average result {'loss': tensor(7.6682), 'cls_acc': tensor(0.0781)}
+2019-12-08 19:07:41,024 [MainThread  ] eval batch 3 / 79, current average result {'loss': tensor(8.0628), 'cls_acc': tensor(0.0521)}
+2019-12-08 19:07:41,083 [MainThread  ] eval batch 4 / 79, current average result {'loss': tensor(8.0052), 'cls_acc': tensor(0.0664)}
+2019-12-08 19:07:41,155 [MainThread  ] eval batch 5 / 79, current average result {'loss': tensor(8.0032), 'cls_acc': tensor(0.0812)}
+2019-12-08 19:07:41,212 [MainThread  ] eval batch 6 / 79, current average result {'loss': tensor(7.9804), 'cls_acc': tensor(0.0885)}
+2019-12-08 19:07:41,269 [MainThread  ] eval batch 7 / 79, current average result {'loss': tensor(7.9759), 'cls_acc': tensor(0.0826)}
+2019-12-08 19:07:41,325 [MainThread  ] eval batch 8 / 79, current average result {'loss': tensor(7.9801), 'cls_acc': tensor(0.0801)}
+2019-12-08 19:07:41,381 [MainThread  ] eval batch 9 / 79, current average result {'loss': tensor(8.2637), 'cls_acc': tensor(0.0747)}
+2019-12-08 19:07:41,437 [MainThread  ] eval batch 10 / 79, current average result {'loss': tensor(8.2396), 'cls_acc': tensor(0.0703)}
+2019-12-08 19:07:41,493 [MainThread  ] eval batch 11 / 79, current average result {'loss': tensor(8.2267), 'cls_acc': tensor(0.0767)}
+2019-12-08 19:07:41,549 [MainThread  ] eval batch 12 / 79, current average result {'loss': tensor(8.2354), 'cls_acc': tensor(0.0742)}
+2019-12-08 19:07:41,616 [MainThread  ] eval batch 13 / 79, current average result {'loss': tensor(8.1993), 'cls_acc': tensor(0.0745)}
+2019-12-08 19:07:41,685 [MainThread  ] eval batch 14 / 79, current average result {'loss': tensor(8.1682), 'cls_acc': tensor(0.0737)}
+2019-12-08 19:07:41,742 [MainThread  ] eval batch 15 / 79, current average result {'loss': tensor(8.1336), 'cls_acc': tensor(0.0729)}
+2019-12-08 19:07:41,797 [MainThread  ] eval batch 16 / 79, current average result {'loss': tensor(8.1719), 'cls_acc': tensor(0.0742)}
+2019-12-08 19:07:41,853 [MainThread  ] eval batch 17 / 79, current average result {'loss': tensor(8.1718), 'cls_acc': tensor(0.0754)}
+2019-12-08 19:07:41,909 [MainThread  ] eval batch 18 / 79, current average result {'loss': tensor(8.1525), 'cls_acc': tensor(0.0773)}
+2019-12-08 19:07:41,965 [MainThread  ] eval batch 19 / 79, current average result {'loss': tensor(8.2109), 'cls_acc': tensor(0.0757)}
+2019-12-08 19:07:42,023 [MainThread  ] eval batch 20 / 79, current average result {'loss': tensor(8.2255), 'cls_acc': tensor(0.0789)}
+2019-12-08 19:07:42,079 [MainThread  ] eval batch 21 / 79, current average result {'loss': tensor(8.2340), 'cls_acc': tensor(0.0766)}
+2019-12-08 19:07:42,136 [MainThread  ] eval batch 22 / 79, current average result {'loss': tensor(8.2624), 'cls_acc': tensor(0.0788)}
+2019-12-08 19:07:42,194 [MainThread  ] eval batch 23 / 79, current average result {'loss': tensor(8.2383), 'cls_acc': tensor(0.0802)}
+2019-12-08 19:07:42,253 [MainThread  ] eval batch 24 / 79, current average result {'loss': tensor(8.2082), 'cls_acc': tensor(0.0827)}
+2019-12-08 19:07:42,311 [MainThread  ] eval batch 25 / 79, current average result {'loss': tensor(8.1684), 'cls_acc': tensor(0.0850)}
+2019-12-08 19:07:42,367 [MainThread  ] eval batch 26 / 79, current average result {'loss': tensor(8.1686), 'cls_acc': tensor(0.0871)}
+2019-12-08 19:07:42,423 [MainThread  ] eval batch 27 / 79, current average result {'loss': tensor(8.1392), 'cls_acc': tensor(0.0880)}
+2019-12-08 19:07:42,480 [MainThread  ] eval batch 28 / 79, current average result {'loss': tensor(8.1162), 'cls_acc': tensor(0.0898)}
+2019-12-08 19:07:42,539 [MainThread  ] eval batch 29 / 79, current average result {'loss': tensor(8.1482), 'cls_acc': tensor(0.0921)}
+2019-12-08 19:07:42,598 [MainThread  ] eval batch 30 / 79, current average result {'loss': tensor(8.1533), 'cls_acc': tensor(0.0911)}
+2019-12-08 19:07:42,660 [MainThread  ] eval batch 31 / 79, current average result {'loss': tensor(8.1317), 'cls_acc': tensor(0.0912)}
+2019-12-08 19:07:42,717 [MainThread  ] eval batch 32 / 79, current average result {'loss': tensor(8.1360), 'cls_acc': tensor(0.0918)}
+2019-12-08 19:07:42,774 [MainThread  ] eval batch 33 / 79, current average result {'loss': tensor(8.1500), 'cls_acc': tensor(0.0914)}
+2019-12-08 19:07:42,834 [MainThread  ] eval batch 34 / 79, current average result {'loss': tensor(8.1296), 'cls_acc': tensor(0.0924)}
+2019-12-08 19:07:42,893 [MainThread  ] eval batch 35 / 79, current average result {'loss': tensor(8.2033), 'cls_acc': tensor(0.0911)}
+2019-12-08 19:07:42,953 [MainThread  ] eval batch 36 / 79, current average result {'loss': tensor(8.1991), 'cls_acc': tensor(0.0907)}
+2019-12-08 19:07:43,011 [MainThread  ] eval batch 37 / 79, current average result {'loss': tensor(8.1988), 'cls_acc': tensor(0.0904)}
+2019-12-08 19:07:43,071 [MainThread  ] eval batch 38 / 79, current average result {'loss': tensor(8.1922), 'cls_acc': tensor(0.0905)}
+2019-12-08 19:07:43,130 [MainThread  ] eval batch 39 / 79, current average result {'loss': tensor(8.2110), 'cls_acc': tensor(0.0909)}
+2019-12-08 19:07:43,191 [MainThread  ] eval batch 40 / 79, current average result {'loss': tensor(8.2171), 'cls_acc': tensor(0.0898)}
+2019-12-08 19:07:43,252 [MainThread  ] eval batch 41 / 79, current average result {'loss': tensor(8.1968), 'cls_acc': tensor(0.0903)}
+2019-12-08 19:07:43,311 [MainThread  ] eval batch 42 / 79, current average result {'loss': tensor(8.1757), 'cls_acc': tensor(0.0919)}
+2019-12-08 19:07:43,372 [MainThread  ] eval batch 43 / 79, current average result {'loss': tensor(8.1861), 'cls_acc': tensor(0.0927)}
+2019-12-08 19:07:43,433 [MainThread  ] eval batch 44 / 79, current average result {'loss': tensor(8.1709), 'cls_acc': tensor(0.0934)}
+2019-12-08 19:07:43,493 [MainThread  ] eval batch 45 / 79, current average result {'loss': tensor(8.1837), 'cls_acc': tensor(0.0920)}
+2019-12-08 19:07:43,553 [MainThread  ] eval batch 46 / 79, current average result {'loss': tensor(8.1817), 'cls_acc': tensor(0.0934)}
+2019-12-08 19:07:43,603 [MainThread  ] eval batch 47 / 79, current average result {'loss': tensor(8.1683), 'cls_acc': tensor(0.0947)}
+2019-12-08 19:07:43,647 [MainThread  ] eval batch 48 / 79, current average result {'loss': tensor(8.1592), 'cls_acc': tensor(0.0947)}
+2019-12-08 19:07:43,691 [MainThread  ] eval batch 49 / 79, current average result {'loss': tensor(8.1297), 'cls_acc': tensor(0.0953)}
+2019-12-08 19:07:43,733 [MainThread  ] eval batch 50 / 79, current average result {'loss': tensor(8.1180), 'cls_acc': tensor(0.0966)}
+2019-12-08 19:07:43,777 [MainThread  ] eval batch 51 / 79, current average result {'loss': tensor(8.1013), 'cls_acc': tensor(0.0971)}
+2019-12-08 19:07:43,821 [MainThread  ] eval batch 52 / 79, current average result {'loss': tensor(8.1065), 'cls_acc': tensor(0.0962)}
+2019-12-08 19:07:43,866 [MainThread  ] eval batch 53 / 79, current average result {'loss': tensor(8.0994), 'cls_acc': tensor(0.0973)}
+2019-12-08 19:07:43,910 [MainThread  ] eval batch 54 / 79, current average result {'loss': tensor(8.1165), 'cls_acc': tensor(0.0972)}
+2019-12-08 19:07:43,954 [MainThread  ] eval batch 55 / 79, current average result {'loss': tensor(8.1153), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:43,998 [MainThread  ] eval batch 56 / 79, current average result {'loss': tensor(8.1116), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:44,042 [MainThread  ] eval batch 57 / 79, current average result {'loss': tensor(8.1194), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:07:44,085 [MainThread  ] eval batch 58 / 79, current average result {'loss': tensor(8.1189), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:44,129 [MainThread  ] eval batch 59 / 79, current average result {'loss': tensor(8.1155), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:44,172 [MainThread  ] eval batch 60 / 79, current average result {'loss': tensor(8.1160), 'cls_acc': tensor(0.0992)}
+2019-12-08 19:07:44,216 [MainThread  ] eval batch 61 / 79, current average result {'loss': tensor(8.1232), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:44,259 [MainThread  ] eval batch 62 / 79, current average result {'loss': tensor(8.1257), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:44,302 [MainThread  ] eval batch 63 / 79, current average result {'loss': tensor(8.1095), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:44,346 [MainThread  ] eval batch 64 / 79, current average result {'loss': tensor(8.1149), 'cls_acc': tensor(0.0979)}
+2019-12-08 19:07:44,390 [MainThread  ] eval batch 65 / 79, current average result {'loss': tensor(8.1235), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:44,434 [MainThread  ] eval batch 66 / 79, current average result {'loss': tensor(8.1174), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:07:44,477 [MainThread  ] eval batch 67 / 79, current average result {'loss': tensor(8.1072), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:07:44,522 [MainThread  ] eval batch 68 / 79, current average result {'loss': tensor(8.0993), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:07:44,566 [MainThread  ] eval batch 69 / 79, current average result {'loss': tensor(8.0914), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:07:44,610 [MainThread  ] eval batch 70 / 79, current average result {'loss': tensor(8.0879), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:07:44,653 [MainThread  ] eval batch 71 / 79, current average result {'loss': tensor(8.0667), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:44,697 [MainThread  ] eval batch 72 / 79, current average result {'loss': tensor(8.0551), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:44,742 [MainThread  ] eval batch 73 / 79, current average result {'loss': tensor(8.0438), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:44,786 [MainThread  ] eval batch 74 / 79, current average result {'loss': tensor(8.0625), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:44,830 [MainThread  ] eval batch 75 / 79, current average result {'loss': tensor(8.0671), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:07:44,874 [MainThread  ] eval batch 76 / 79, current average result {'loss': tensor(8.0605), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:44,917 [MainThread  ] eval batch 77 / 79, current average result {'loss': tensor(8.0676), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:44,961 [MainThread  ] eval batch 78 / 79, current average result {'loss': tensor(8.0871), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:07:44,980 [MainThread  ] eval batch 79 / 79, current average result {'loss': tensor(8.0927), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:45,224 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(8.0927), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:45,225 [MainThread  ] Best validation updated: {'best_performance': tensor(0.0988), 'current_iter': 2, 'best_iter': 2}
+2019-12-08 19:07:45,387 [MainThread  ] Save parameters for ./results/debug/finetune_cifar10_lp100_res3_best.ckpt
+2019-12-08 19:07:45,621 [MainThread  ] Training complete
+2019-12-08 19:07:45,622 [MainThread  ] Best result found for cifar10_lp100_res3: {'best_performance': tensor(0.0988), 'current_iter': 2, 'best_iter': 2}
+2019-12-08 19:07:45,622 [MainThread  ] Evaluate on  cifar10_lp100_res3:test data
+2019-12-08 19:07:46,567 [MainThread  ] eval batch 1 / 157, current average result {'loss': tensor(8.0418), 'cls_acc': tensor(0.1406)}
+2019-12-08 19:07:46,640 [MainThread  ] eval batch 2 / 157, current average result {'loss': tensor(8.1340), 'cls_acc': tensor(0.0859)}
+2019-12-08 19:07:46,696 [MainThread  ] eval batch 3 / 157, current average result {'loss': tensor(8.2458), 'cls_acc': tensor(0.1094)}
+2019-12-08 19:07:46,752 [MainThread  ] eval batch 4 / 157, current average result {'loss': tensor(8.2306), 'cls_acc': tensor(0.1172)}
+2019-12-08 19:07:46,809 [MainThread  ] eval batch 5 / 157, current average result {'loss': tensor(7.9959), 'cls_acc': tensor(0.1094)}
+2019-12-08 19:07:46,865 [MainThread  ] eval batch 6 / 157, current average result {'loss': tensor(7.9738), 'cls_acc': tensor(0.1146)}
+2019-12-08 19:07:46,922 [MainThread  ] eval batch 7 / 157, current average result {'loss': tensor(7.9306), 'cls_acc': tensor(0.1138)}
+2019-12-08 19:07:46,978 [MainThread  ] eval batch 8 / 157, current average result {'loss': tensor(7.9284), 'cls_acc': tensor(0.1152)}
+2019-12-08 19:07:47,037 [MainThread  ] eval batch 9 / 157, current average result {'loss': tensor(8.0749), 'cls_acc': tensor(0.1163)}
+2019-12-08 19:07:47,093 [MainThread  ] eval batch 10 / 157, current average result {'loss': tensor(8.0461), 'cls_acc': tensor(0.1172)}
+2019-12-08 19:07:47,152 [MainThread  ] eval batch 11 / 157, current average result {'loss': tensor(8.0016), 'cls_acc': tensor(0.1179)}
+2019-12-08 19:07:47,207 [MainThread  ] eval batch 12 / 157, current average result {'loss': tensor(7.9832), 'cls_acc': tensor(0.1172)}
+2019-12-08 19:07:47,265 [MainThread  ] eval batch 13 / 157, current average result {'loss': tensor(7.9849), 'cls_acc': tensor(0.1118)}
+2019-12-08 19:07:47,323 [MainThread  ] eval batch 14 / 157, current average result {'loss': tensor(7.9903), 'cls_acc': tensor(0.1083)}
+2019-12-08 19:07:47,380 [MainThread  ] eval batch 15 / 157, current average result {'loss': tensor(7.9487), 'cls_acc': tensor(0.1073)}
+2019-12-08 19:07:47,464 [MainThread  ] eval batch 16 / 157, current average result {'loss': tensor(7.8847), 'cls_acc': tensor(0.1074)}
+2019-12-08 19:07:47,521 [MainThread  ] eval batch 17 / 157, current average result {'loss': tensor(7.9222), 'cls_acc': tensor(0.1057)}
+2019-12-08 19:07:47,577 [MainThread  ] eval batch 18 / 157, current average result {'loss': tensor(7.9473), 'cls_acc': tensor(0.1033)}
+2019-12-08 19:07:47,633 [MainThread  ] eval batch 19 / 157, current average result {'loss': tensor(7.9100), 'cls_acc': tensor(0.1020)}
+2019-12-08 19:07:47,688 [MainThread  ] eval batch 20 / 157, current average result {'loss': tensor(7.8834), 'cls_acc': tensor(0.1023)}
+2019-12-08 19:07:47,744 [MainThread  ] eval batch 21 / 157, current average result {'loss': tensor(7.9226), 'cls_acc': tensor(0.1034)}
+2019-12-08 19:07:47,800 [MainThread  ] eval batch 22 / 157, current average result {'loss': tensor(7.9151), 'cls_acc': tensor(0.1051)}
+2019-12-08 19:07:47,855 [MainThread  ] eval batch 23 / 157, current average result {'loss': tensor(7.9278), 'cls_acc': tensor(0.1046)}
+2019-12-08 19:07:47,911 [MainThread  ] eval batch 24 / 157, current average result {'loss': tensor(7.9791), 'cls_acc': tensor(0.1022)}
+2019-12-08 19:07:47,966 [MainThread  ] eval batch 25 / 157, current average result {'loss': tensor(8.0394), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:48,021 [MainThread  ] eval batch 26 / 157, current average result {'loss': tensor(8.0175), 'cls_acc': tensor(0.1010)}
+2019-12-08 19:07:48,077 [MainThread  ] eval batch 27 / 157, current average result {'loss': tensor(7.9983), 'cls_acc': tensor(0.1019)}
+2019-12-08 19:07:48,133 [MainThread  ] eval batch 28 / 157, current average result {'loss': tensor(8.0194), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:48,190 [MainThread  ] eval batch 29 / 157, current average result {'loss': tensor(8.0056), 'cls_acc': tensor(0.1018)}
+2019-12-08 19:07:48,245 [MainThread  ] eval batch 30 / 157, current average result {'loss': tensor(7.9567), 'cls_acc': tensor(0.1031)}
+2019-12-08 19:07:48,301 [MainThread  ] eval batch 31 / 157, current average result {'loss': tensor(7.9926), 'cls_acc': tensor(0.1013)}
+2019-12-08 19:07:48,356 [MainThread  ] eval batch 32 / 157, current average result {'loss': tensor(8.0214), 'cls_acc': tensor(0.1011)}
+2019-12-08 19:07:48,411 [MainThread  ] eval batch 33 / 157, current average result {'loss': tensor(8.0308), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:07:48,468 [MainThread  ] eval batch 34 / 157, current average result {'loss': tensor(7.9969), 'cls_acc': tensor(0.1011)}
+2019-12-08 19:07:48,525 [MainThread  ] eval batch 35 / 157, current average result {'loss': tensor(8.0111), 'cls_acc': tensor(0.1013)}
+2019-12-08 19:07:48,582 [MainThread  ] eval batch 36 / 157, current average result {'loss': tensor(7.9712), 'cls_acc': tensor(0.1024)}
+2019-12-08 19:07:48,639 [MainThread  ] eval batch 37 / 157, current average result {'loss': tensor(8.0053), 'cls_acc': tensor(0.1018)}
+2019-12-08 19:07:48,697 [MainThread  ] eval batch 38 / 157, current average result {'loss': tensor(8.0039), 'cls_acc': tensor(0.1007)}
+2019-12-08 19:07:48,754 [MainThread  ] eval batch 39 / 157, current average result {'loss': tensor(8.0008), 'cls_acc': tensor(0.1026)}
+2019-12-08 19:07:48,811 [MainThread  ] eval batch 40 / 157, current average result {'loss': tensor(8.0056), 'cls_acc': tensor(0.1031)}
+2019-12-08 19:07:48,868 [MainThread  ] eval batch 41 / 157, current average result {'loss': tensor(8.0123), 'cls_acc': tensor(0.1018)}
+2019-12-08 19:07:48,924 [MainThread  ] eval batch 42 / 157, current average result {'loss': tensor(8.0282), 'cls_acc': tensor(0.1001)}
+2019-12-08 19:07:48,981 [MainThread  ] eval batch 43 / 157, current average result {'loss': tensor(8.0379), 'cls_acc': tensor(0.1003)}
+2019-12-08 19:07:49,038 [MainThread  ] eval batch 44 / 157, current average result {'loss': tensor(8.0445), 'cls_acc': tensor(0.1005)}
+2019-12-08 19:07:49,094 [MainThread  ] eval batch 45 / 157, current average result {'loss': tensor(8.0404), 'cls_acc': tensor(0.1007)}
+2019-12-08 19:07:49,151 [MainThread  ] eval batch 46 / 157, current average result {'loss': tensor(8.0442), 'cls_acc': tensor(0.1009)}
+2019-12-08 19:07:49,208 [MainThread  ] eval batch 47 / 157, current average result {'loss': tensor(8.0354), 'cls_acc': tensor(0.1007)}
+2019-12-08 19:07:49,263 [MainThread  ] eval batch 48 / 157, current average result {'loss': tensor(8.0338), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:49,319 [MainThread  ] eval batch 49 / 157, current average result {'loss': tensor(8.0172), 'cls_acc': tensor(0.0998)}
+2019-12-08 19:07:49,377 [MainThread  ] eval batch 50 / 157, current average result {'loss': tensor(7.9898), 'cls_acc': tensor(0.1022)}
+2019-12-08 19:07:49,435 [MainThread  ] eval batch 51 / 157, current average result {'loss': tensor(7.9809), 'cls_acc': tensor(0.1026)}
+2019-12-08 19:07:49,492 [MainThread  ] eval batch 52 / 157, current average result {'loss': tensor(7.9916), 'cls_acc': tensor(0.1028)}
+2019-12-08 19:07:49,550 [MainThread  ] eval batch 53 / 157, current average result {'loss': tensor(7.9992), 'cls_acc': tensor(0.1026)}
+2019-12-08 19:07:49,608 [MainThread  ] eval batch 54 / 157, current average result {'loss': tensor(8.0322), 'cls_acc': tensor(0.1021)}
+2019-12-08 19:07:49,665 [MainThread  ] eval batch 55 / 157, current average result {'loss': tensor(8.0251), 'cls_acc': tensor(0.1023)}
+2019-12-08 19:07:49,722 [MainThread  ] eval batch 56 / 157, current average result {'loss': tensor(8.0393), 'cls_acc': tensor(0.1021)}
+2019-12-08 19:07:49,780 [MainThread  ] eval batch 57 / 157, current average result {'loss': tensor(8.0469), 'cls_acc': tensor(0.1014)}
+2019-12-08 19:07:49,837 [MainThread  ] eval batch 58 / 157, current average result {'loss': tensor(8.0570), 'cls_acc': tensor(0.1016)}
+2019-12-08 19:07:49,894 [MainThread  ] eval batch 59 / 157, current average result {'loss': tensor(8.0707), 'cls_acc': tensor(0.1022)}
+2019-12-08 19:07:49,952 [MainThread  ] eval batch 60 / 157, current average result {'loss': tensor(8.0647), 'cls_acc': tensor(0.1026)}
+2019-12-08 19:07:50,009 [MainThread  ] eval batch 61 / 157, current average result {'loss': tensor(8.0624), 'cls_acc': tensor(0.1030)}
+2019-12-08 19:07:50,068 [MainThread  ] eval batch 62 / 157, current average result {'loss': tensor(8.0691), 'cls_acc': tensor(0.1031)}
+2019-12-08 19:07:50,126 [MainThread  ] eval batch 63 / 157, current average result {'loss': tensor(8.0583), 'cls_acc': tensor(0.1037)}
+2019-12-08 19:07:50,183 [MainThread  ] eval batch 64 / 157, current average result {'loss': tensor(8.0694), 'cls_acc': tensor(0.1025)}
+2019-12-08 19:07:50,239 [MainThread  ] eval batch 65 / 157, current average result {'loss': tensor(8.0842), 'cls_acc': tensor(0.1014)}
+2019-12-08 19:07:50,296 [MainThread  ] eval batch 66 / 157, current average result {'loss': tensor(8.0733), 'cls_acc': tensor(0.1009)}
+2019-12-08 19:07:50,353 [MainThread  ] eval batch 67 / 157, current average result {'loss': tensor(8.0726), 'cls_acc': tensor(0.1012)}
+2019-12-08 19:07:50,409 [MainThread  ] eval batch 68 / 157, current average result {'loss': tensor(8.0664), 'cls_acc': tensor(0.1016)}
+2019-12-08 19:07:50,466 [MainThread  ] eval batch 69 / 157, current average result {'loss': tensor(8.0678), 'cls_acc': tensor(0.1014)}
+2019-12-08 19:07:50,522 [MainThread  ] eval batch 70 / 157, current average result {'loss': tensor(8.0748), 'cls_acc': tensor(0.1016)}
+2019-12-08 19:07:50,579 [MainThread  ] eval batch 71 / 157, current average result {'loss': tensor(8.0542), 'cls_acc': tensor(0.1019)}
+2019-12-08 19:07:50,636 [MainThread  ] eval batch 72 / 157, current average result {'loss': tensor(8.0548), 'cls_acc': tensor(0.1020)}
+2019-12-08 19:07:50,693 [MainThread  ] eval batch 73 / 157, current average result {'loss': tensor(8.0694), 'cls_acc': tensor(0.1010)}
+2019-12-08 19:07:50,750 [MainThread  ] eval batch 74 / 157, current average result {'loss': tensor(8.0651), 'cls_acc': tensor(0.1020)}
+2019-12-08 19:07:50,807 [MainThread  ] eval batch 75 / 157, current average result {'loss': tensor(8.0881), 'cls_acc': tensor(0.1025)}
+2019-12-08 19:07:50,864 [MainThread  ] eval batch 76 / 157, current average result {'loss': tensor(8.0748), 'cls_acc': tensor(0.1026)}
+2019-12-08 19:07:50,921 [MainThread  ] eval batch 77 / 157, current average result {'loss': tensor(8.0722), 'cls_acc': tensor(0.1023)}
+2019-12-08 19:07:50,977 [MainThread  ] eval batch 78 / 157, current average result {'loss': tensor(8.0615), 'cls_acc': tensor(0.1028)}
+2019-12-08 19:07:51,034 [MainThread  ] eval batch 79 / 157, current average result {'loss': tensor(8.0625), 'cls_acc': tensor(0.1021)}
+2019-12-08 19:07:51,091 [MainThread  ] eval batch 80 / 157, current average result {'loss': tensor(8.0676), 'cls_acc': tensor(0.1025)}
+2019-12-08 19:07:51,149 [MainThread  ] eval batch 81 / 157, current average result {'loss': tensor(8.0685), 'cls_acc': tensor(0.1030)}
+2019-12-08 19:07:51,207 [MainThread  ] eval batch 82 / 157, current average result {'loss': tensor(8.0734), 'cls_acc': tensor(0.1021)}
+2019-12-08 19:07:51,265 [MainThread  ] eval batch 83 / 157, current average result {'loss': tensor(8.0700), 'cls_acc': tensor(0.1022)}
+2019-12-08 19:07:51,323 [MainThread  ] eval batch 84 / 157, current average result {'loss': tensor(8.0684), 'cls_acc': tensor(0.1019)}
+2019-12-08 19:07:51,380 [MainThread  ] eval batch 85 / 157, current average result {'loss': tensor(8.0740), 'cls_acc': tensor(0.1018)}
+2019-12-08 19:07:51,437 [MainThread  ] eval batch 86 / 157, current average result {'loss': tensor(8.0798), 'cls_acc': tensor(0.1019)}
+2019-12-08 19:07:51,495 [MainThread  ] eval batch 87 / 157, current average result {'loss': tensor(8.0994), 'cls_acc': tensor(0.1015)}
+2019-12-08 19:07:51,553 [MainThread  ] eval batch 88 / 157, current average result {'loss': tensor(8.0931), 'cls_acc': tensor(0.1014)}
+2019-12-08 19:07:51,611 [MainThread  ] eval batch 89 / 157, current average result {'loss': tensor(8.1113), 'cls_acc': tensor(0.1006)}
+2019-12-08 19:07:51,668 [MainThread  ] eval batch 90 / 157, current average result {'loss': tensor(8.1303), 'cls_acc': tensor(0.1002)}
+2019-12-08 19:07:51,726 [MainThread  ] eval batch 91 / 157, current average result {'loss': tensor(8.1263), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:51,783 [MainThread  ] eval batch 92 / 157, current average result {'loss': tensor(8.1396), 'cls_acc': tensor(0.0995)}
+2019-12-08 19:07:51,841 [MainThread  ] eval batch 93 / 157, current average result {'loss': tensor(8.1407), 'cls_acc': tensor(0.0998)}
+2019-12-08 19:07:51,898 [MainThread  ] eval batch 94 / 157, current average result {'loss': tensor(8.1367), 'cls_acc': tensor(0.1006)}
+2019-12-08 19:07:51,955 [MainThread  ] eval batch 95 / 157, current average result {'loss': tensor(8.1314), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:52,011 [MainThread  ] eval batch 96 / 157, current average result {'loss': tensor(8.1239), 'cls_acc': tensor(0.1004)}
+2019-12-08 19:07:52,067 [MainThread  ] eval batch 97 / 157, current average result {'loss': tensor(8.1141), 'cls_acc': tensor(0.1008)}
+2019-12-08 19:07:52,124 [MainThread  ] eval batch 98 / 157, current average result {'loss': tensor(8.1371), 'cls_acc': tensor(0.1003)}
+2019-12-08 19:07:52,181 [MainThread  ] eval batch 99 / 157, current average result {'loss': tensor(8.1347), 'cls_acc': tensor(0.1004)}
+2019-12-08 19:07:52,237 [MainThread  ] eval batch 100 / 157, current average result {'loss': tensor(8.1240), 'cls_acc': tensor(0.1003)}
+2019-12-08 19:07:52,294 [MainThread  ] eval batch 101 / 157, current average result {'loss': tensor(8.1189), 'cls_acc': tensor(0.0998)}
+2019-12-08 19:07:52,351 [MainThread  ] eval batch 102 / 157, current average result {'loss': tensor(8.1276), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:52,406 [MainThread  ] eval batch 103 / 157, current average result {'loss': tensor(8.1337), 'cls_acc': tensor(0.0997)}
+2019-12-08 19:07:52,462 [MainThread  ] eval batch 104 / 157, current average result {'loss': tensor(8.1424), 'cls_acc': tensor(0.0993)}
+2019-12-08 19:07:52,518 [MainThread  ] eval batch 105 / 157, current average result {'loss': tensor(8.1534), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:52,575 [MainThread  ] eval batch 106 / 157, current average result {'loss': tensor(8.1382), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:52,631 [MainThread  ] eval batch 107 / 157, current average result {'loss': tensor(8.1241), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:52,688 [MainThread  ] eval batch 108 / 157, current average result {'loss': tensor(8.1330), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:52,744 [MainThread  ] eval batch 109 / 157, current average result {'loss': tensor(8.1417), 'cls_acc': tensor(0.0992)}
+2019-12-08 19:07:52,801 [MainThread  ] eval batch 110 / 157, current average result {'loss': tensor(8.1307), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:52,857 [MainThread  ] eval batch 111 / 157, current average result {'loss': tensor(8.1314), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:52,913 [MainThread  ] eval batch 112 / 157, current average result {'loss': tensor(8.1419), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:07:52,971 [MainThread  ] eval batch 113 / 157, current average result {'loss': tensor(8.1413), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:07:53,030 [MainThread  ] eval batch 114 / 157, current average result {'loss': tensor(8.1401), 'cls_acc': tensor(0.0981)}
+2019-12-08 19:07:53,088 [MainThread  ] eval batch 115 / 157, current average result {'loss': tensor(8.1524), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:07:53,146 [MainThread  ] eval batch 116 / 157, current average result {'loss': tensor(8.1508), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:07:53,204 [MainThread  ] eval batch 117 / 157, current average result {'loss': tensor(8.1463), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:07:53,261 [MainThread  ] eval batch 118 / 157, current average result {'loss': tensor(8.1409), 'cls_acc': tensor(0.0979)}
+2019-12-08 19:07:53,319 [MainThread  ] eval batch 119 / 157, current average result {'loss': tensor(8.1315), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:53,377 [MainThread  ] eval batch 120 / 157, current average result {'loss': tensor(8.1292), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:07:53,434 [MainThread  ] eval batch 121 / 157, current average result {'loss': tensor(8.1252), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:07:53,492 [MainThread  ] eval batch 122 / 157, current average result {'loss': tensor(8.1227), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:53,550 [MainThread  ] eval batch 123 / 157, current average result {'loss': tensor(8.1170), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:07:53,609 [MainThread  ] eval batch 124 / 157, current average result {'loss': tensor(8.1154), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:53,657 [MainThread  ] eval batch 125 / 157, current average result {'loss': tensor(8.1123), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:53,702 [MainThread  ] eval batch 126 / 157, current average result {'loss': tensor(8.1063), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:53,746 [MainThread  ] eval batch 127 / 157, current average result {'loss': tensor(8.1029), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:07:53,791 [MainThread  ] eval batch 128 / 157, current average result {'loss': tensor(8.0954), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:53,835 [MainThread  ] eval batch 129 / 157, current average result {'loss': tensor(8.0874), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:53,878 [MainThread  ] eval batch 130 / 157, current average result {'loss': tensor(8.0827), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:53,922 [MainThread  ] eval batch 131 / 157, current average result {'loss': tensor(8.0838), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:07:53,966 [MainThread  ] eval batch 132 / 157, current average result {'loss': tensor(8.0799), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:07:54,010 [MainThread  ] eval batch 133 / 157, current average result {'loss': tensor(8.0787), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:07:54,054 [MainThread  ] eval batch 134 / 157, current average result {'loss': tensor(8.0795), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:07:54,098 [MainThread  ] eval batch 135 / 157, current average result {'loss': tensor(8.0831), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:07:54,143 [MainThread  ] eval batch 136 / 157, current average result {'loss': tensor(8.0862), 'cls_acc': tensor(0.0981)}
+2019-12-08 19:07:54,186 [MainThread  ] eval batch 137 / 157, current average result {'loss': tensor(8.0893), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:07:54,232 [MainThread  ] eval batch 138 / 157, current average result {'loss': tensor(8.0960), 'cls_acc': tensor(0.0981)}
+2019-12-08 19:07:54,275 [MainThread  ] eval batch 139 / 157, current average result {'loss': tensor(8.0939), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:07:54,320 [MainThread  ] eval batch 140 / 157, current average result {'loss': tensor(8.0984), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:07:54,364 [MainThread  ] eval batch 141 / 157, current average result {'loss': tensor(8.0964), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:07:54,409 [MainThread  ] eval batch 142 / 157, current average result {'loss': tensor(8.0950), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:07:54,455 [MainThread  ] eval batch 143 / 157, current average result {'loss': tensor(8.0882), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:07:54,500 [MainThread  ] eval batch 144 / 157, current average result {'loss': tensor(8.0878), 'cls_acc': tensor(0.0991)}
+2019-12-08 19:07:54,543 [MainThread  ] eval batch 145 / 157, current average result {'loss': tensor(8.0788), 'cls_acc': tensor(0.0992)}
+2019-12-08 19:07:54,588 [MainThread  ] eval batch 146 / 157, current average result {'loss': tensor(8.0738), 'cls_acc': tensor(0.0995)}
+2019-12-08 19:07:54,633 [MainThread  ] eval batch 147 / 157, current average result {'loss': tensor(8.0756), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:07:54,677 [MainThread  ] eval batch 148 / 157, current average result {'loss': tensor(8.0767), 'cls_acc': tensor(0.0998)}
+2019-12-08 19:07:54,720 [MainThread  ] eval batch 149 / 157, current average result {'loss': tensor(8.0714), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:54,764 [MainThread  ] eval batch 150 / 157, current average result {'loss': tensor(8.0761), 'cls_acc': tensor(0.1002)}
+2019-12-08 19:07:54,808 [MainThread  ] eval batch 151 / 157, current average result {'loss': tensor(8.0827), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:54,853 [MainThread  ] eval batch 152 / 157, current average result {'loss': tensor(8.0801), 'cls_acc': tensor(0.1003)}
+2019-12-08 19:07:54,898 [MainThread  ] eval batch 153 / 157, current average result {'loss': tensor(8.0806), 'cls_acc': tensor(0.1006)}
+2019-12-08 19:07:54,942 [MainThread  ] eval batch 154 / 157, current average result {'loss': tensor(8.0814), 'cls_acc': tensor(0.1004)}
+2019-12-08 19:07:54,987 [MainThread  ] eval batch 155 / 157, current average result {'loss': tensor(8.0829), 'cls_acc': tensor(0.1004)}
+2019-12-08 19:07:55,031 [MainThread  ] eval batch 156 / 157, current average result {'loss': tensor(8.0822), 'cls_acc': tensor(0.1002)}
+2019-12-08 19:07:55,055 [MainThread  ] eval batch 157 / 157, current average result {'loss': tensor(8.0810), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:55,289 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(8.0810), 'cls_acc': tensor(0.1000)}
+2019-12-08 19:07:55,460 [MainThread  ] Load parameters from ./results/debug/pretrain_cifar10_un_complete.pth
+2019-12-08 19:07:55,462 [MainThread  ] Setup trainer for cifar10_lp100_res4
+2019-12-08 19:07:55,463 [MainThread  ] Start training cifar10_lp100_res4
+2019-12-08 19:07:57,508 [MainThread  ] train batch 1 / 703 (iter 1), current average result {'loss': tensor(3.3978, grad_fn=<DivBackward0>), 'cls_acc': tensor(0.0469)}
+2019-12-08 19:07:58,143 [MainThread  ] train batch 2 / 703 (iter 2), current average result {'loss': tensor(24.3761, grad_fn=<DivBackward0>), 'cls_acc': tensor(0.1016)}
+2019-12-08 19:07:58,144 [MainThread  ] Evaluate on  cifar10_lp100_res4:val data
+2019-12-08 19:07:59,213 [MainThread  ] eval batch 1 / 79, current average result {'loss': tensor(39.8829), 'cls_acc': tensor(0.1406)}
+2019-12-08 19:07:59,300 [MainThread  ] eval batch 2 / 79, current average result {'loss': tensor(38.0068), 'cls_acc': tensor(0.1094)}
+2019-12-08 19:07:59,384 [MainThread  ] eval batch 3 / 79, current average result {'loss': tensor(38.9092), 'cls_acc': tensor(0.1250)}
+2019-12-08 19:07:59,472 [MainThread  ] eval batch 4 / 79, current average result {'loss': tensor(49.0817), 'cls_acc': tensor(0.1172)}
+2019-12-08 19:07:59,560 [MainThread  ] eval batch 5 / 79, current average result {'loss': tensor(46.7472), 'cls_acc': tensor(0.1125)}
+2019-12-08 19:07:59,643 [MainThread  ] eval batch 6 / 79, current average result {'loss': tensor(44.3239), 'cls_acc': tensor(0.1172)}
+2019-12-08 19:07:59,729 [MainThread  ] eval batch 7 / 79, current average result {'loss': tensor(46.2573), 'cls_acc': tensor(0.1004)}
+2019-12-08 19:07:59,812 [MainThread  ] eval batch 8 / 79, current average result {'loss': tensor(46.1783), 'cls_acc': tensor(0.0996)}
+2019-12-08 19:07:59,899 [MainThread  ] eval batch 9 / 79, current average result {'loss': tensor(47.6662), 'cls_acc': tensor(0.0955)}
+2019-12-08 19:07:59,982 [MainThread  ] eval batch 10 / 79, current average result {'loss': tensor(46.8257), 'cls_acc': tensor(0.0953)}
+2019-12-08 19:08:00,068 [MainThread  ] eval batch 11 / 79, current average result {'loss': tensor(48.4848), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:08:00,166 [MainThread  ] eval batch 12 / 79, current average result {'loss': tensor(48.4889), 'cls_acc': tensor(0.1094)}
+2019-12-08 19:08:00,264 [MainThread  ] eval batch 13 / 79, current average result {'loss': tensor(49.8856), 'cls_acc': tensor(0.1082)}
+2019-12-08 19:08:00,348 [MainThread  ] eval batch 14 / 79, current average result {'loss': tensor(50.0585), 'cls_acc': tensor(0.1027)}
+2019-12-08 19:08:00,433 [MainThread  ] eval batch 15 / 79, current average result {'loss': tensor(49.3458), 'cls_acc': tensor(0.1104)}
+2019-12-08 19:08:00,518 [MainThread  ] eval batch 16 / 79, current average result {'loss': tensor(49.3803), 'cls_acc': tensor(0.1055)}
+2019-12-08 19:08:00,602 [MainThread  ] eval batch 17 / 79, current average result {'loss': tensor(49.2169), 'cls_acc': tensor(0.1011)}
+2019-12-08 19:08:00,686 [MainThread  ] eval batch 18 / 79, current average result {'loss': tensor(49.3455), 'cls_acc': tensor(0.1024)}
+2019-12-08 19:08:00,771 [MainThread  ] eval batch 19 / 79, current average result {'loss': tensor(49.3952), 'cls_acc': tensor(0.1028)}
+2019-12-08 19:08:00,857 [MainThread  ] eval batch 20 / 79, current average result {'loss': tensor(48.8783), 'cls_acc': tensor(0.1039)}
+2019-12-08 19:08:00,941 [MainThread  ] eval batch 21 / 79, current average result {'loss': tensor(48.7923), 'cls_acc': tensor(0.1012)}
+2019-12-08 19:08:01,024 [MainThread  ] eval batch 22 / 79, current average result {'loss': tensor(49.5287), 'cls_acc': tensor(0.0994)}
+2019-12-08 19:08:01,109 [MainThread  ] eval batch 23 / 79, current average result {'loss': tensor(49.7534), 'cls_acc': tensor(0.0971)}
+2019-12-08 19:08:01,193 [MainThread  ] eval batch 24 / 79, current average result {'loss': tensor(49.7320), 'cls_acc': tensor(0.0951)}
+2019-12-08 19:08:01,276 [MainThread  ] eval batch 25 / 79, current average result {'loss': tensor(49.3808), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:08:01,360 [MainThread  ] eval batch 26 / 79, current average result {'loss': tensor(49.6811), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:08:01,443 [MainThread  ] eval batch 27 / 79, current average result {'loss': tensor(49.5982), 'cls_acc': tensor(0.0949)}
+2019-12-08 19:08:01,527 [MainThread  ] eval batch 28 / 79, current average result {'loss': tensor(49.4851), 'cls_acc': tensor(0.0954)}
+2019-12-08 19:08:01,613 [MainThread  ] eval batch 29 / 79, current average result {'loss': tensor(49.4200), 'cls_acc': tensor(0.0948)}
+2019-12-08 19:08:01,700 [MainThread  ] eval batch 30 / 79, current average result {'loss': tensor(49.4082), 'cls_acc': tensor(0.0953)}
+2019-12-08 19:08:01,785 [MainThread  ] eval batch 31 / 79, current average result {'loss': tensor(48.8623), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:08:01,869 [MainThread  ] eval batch 32 / 79, current average result {'loss': tensor(49.1845), 'cls_acc': tensor(0.0923)}
+2019-12-08 19:08:01,954 [MainThread  ] eval batch 33 / 79, current average result {'loss': tensor(49.0366), 'cls_acc': tensor(0.0933)}
+2019-12-08 19:08:02,040 [MainThread  ] eval batch 34 / 79, current average result {'loss': tensor(48.8735), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:08:02,125 [MainThread  ] eval batch 35 / 79, current average result {'loss': tensor(48.5149), 'cls_acc': tensor(0.0960)}
+2019-12-08 19:08:02,211 [MainThread  ] eval batch 36 / 79, current average result {'loss': tensor(48.5962), 'cls_acc': tensor(0.0964)}
+2019-12-08 19:08:02,297 [MainThread  ] eval batch 37 / 79, current average result {'loss': tensor(48.5140), 'cls_acc': tensor(0.0971)}
+2019-12-08 19:08:02,384 [MainThread  ] eval batch 38 / 79, current average result {'loss': tensor(48.3144), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:08:02,469 [MainThread  ] eval batch 39 / 79, current average result {'loss': tensor(48.4658), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:08:02,555 [MainThread  ] eval batch 40 / 79, current average result {'loss': tensor(48.5336), 'cls_acc': tensor(0.0965)}
+2019-12-08 19:08:02,645 [MainThread  ] eval batch 41 / 79, current average result {'loss': tensor(48.4031), 'cls_acc': tensor(0.0960)}
+2019-12-08 19:08:02,730 [MainThread  ] eval batch 42 / 79, current average result {'loss': tensor(48.4780), 'cls_acc': tensor(0.0956)}
+2019-12-08 19:08:02,816 [MainThread  ] eval batch 43 / 79, current average result {'loss': tensor(48.4390), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:08:02,901 [MainThread  ] eval batch 44 / 79, current average result {'loss': tensor(48.2390), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:08:02,987 [MainThread  ] eval batch 45 / 79, current average result {'loss': tensor(48.1822), 'cls_acc': tensor(0.0941)}
+2019-12-08 19:08:03,074 [MainThread  ] eval batch 46 / 79, current average result {'loss': tensor(47.8897), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:08:03,150 [MainThread  ] eval batch 47 / 79, current average result {'loss': tensor(48.1483), 'cls_acc': tensor(0.0928)}
+2019-12-08 19:08:03,221 [MainThread  ] eval batch 48 / 79, current average result {'loss': tensor(48.4804), 'cls_acc': tensor(0.0934)}
+2019-12-08 19:08:03,292 [MainThread  ] eval batch 49 / 79, current average result {'loss': tensor(48.6078), 'cls_acc': tensor(0.0925)}
+2019-12-08 19:08:03,362 [MainThread  ] eval batch 50 / 79, current average result {'loss': tensor(48.5142), 'cls_acc': tensor(0.0934)}
+2019-12-08 19:08:03,432 [MainThread  ] eval batch 51 / 79, current average result {'loss': tensor(48.4469), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:08:03,503 [MainThread  ] eval batch 52 / 79, current average result {'loss': tensor(48.3571), 'cls_acc': tensor(0.0947)}
+2019-12-08 19:08:03,574 [MainThread  ] eval batch 53 / 79, current average result {'loss': tensor(48.4872), 'cls_acc': tensor(0.0955)}
+2019-12-08 19:08:03,645 [MainThread  ] eval batch 54 / 79, current average result {'loss': tensor(48.3296), 'cls_acc': tensor(0.0966)}
+2019-12-08 19:08:03,716 [MainThread  ] eval batch 55 / 79, current average result {'loss': tensor(48.2647), 'cls_acc': tensor(0.0966)}
+2019-12-08 19:08:03,787 [MainThread  ] eval batch 56 / 79, current average result {'loss': tensor(48.2784), 'cls_acc': tensor(0.0963)}
+2019-12-08 19:08:03,857 [MainThread  ] eval batch 57 / 79, current average result {'loss': tensor(47.9908), 'cls_acc': tensor(0.0965)}
+2019-12-08 19:08:03,927 [MainThread  ] eval batch 58 / 79, current average result {'loss': tensor(47.8730), 'cls_acc': tensor(0.0964)}
+2019-12-08 19:08:03,998 [MainThread  ] eval batch 59 / 79, current average result {'loss': tensor(47.9747), 'cls_acc': tensor(0.0951)}
+2019-12-08 19:08:04,069 [MainThread  ] eval batch 60 / 79, current average result {'loss': tensor(47.8107), 'cls_acc': tensor(0.0958)}
+2019-12-08 19:08:04,140 [MainThread  ] eval batch 61 / 79, current average result {'loss': tensor(47.8029), 'cls_acc': tensor(0.0955)}
+2019-12-08 19:08:04,210 [MainThread  ] eval batch 62 / 79, current average result {'loss': tensor(47.7797), 'cls_acc': tensor(0.0958)}
+2019-12-08 19:08:04,282 [MainThread  ] eval batch 63 / 79, current average result {'loss': tensor(48.1282), 'cls_acc': tensor(0.0947)}
+2019-12-08 19:08:04,353 [MainThread  ] eval batch 64 / 79, current average result {'loss': tensor(48.1453), 'cls_acc': tensor(0.0945)}
+2019-12-08 19:08:04,424 [MainThread  ] eval batch 65 / 79, current average result {'loss': tensor(47.9833), 'cls_acc': tensor(0.0940)}
+2019-12-08 19:08:04,495 [MainThread  ] eval batch 66 / 79, current average result {'loss': tensor(47.8797), 'cls_acc': tensor(0.0945)}
+2019-12-08 19:08:04,566 [MainThread  ] eval batch 67 / 79, current average result {'loss': tensor(48.0104), 'cls_acc': tensor(0.0947)}
+2019-12-08 19:08:04,638 [MainThread  ] eval batch 68 / 79, current average result {'loss': tensor(48.0866), 'cls_acc': tensor(0.0940)}
+2019-12-08 19:08:04,709 [MainThread  ] eval batch 69 / 79, current average result {'loss': tensor(48.2281), 'cls_acc': tensor(0.0949)}
+2019-12-08 19:08:04,781 [MainThread  ] eval batch 70 / 79, current average result {'loss': tensor(48.1962), 'cls_acc': tensor(0.0955)}
+2019-12-08 19:08:04,852 [MainThread  ] eval batch 71 / 79, current average result {'loss': tensor(48.1611), 'cls_acc': tensor(0.0957)}
+2019-12-08 19:08:04,924 [MainThread  ] eval batch 72 / 79, current average result {'loss': tensor(47.9296), 'cls_acc': tensor(0.0955)}
+2019-12-08 19:08:04,996 [MainThread  ] eval batch 73 / 79, current average result {'loss': tensor(47.9184), 'cls_acc': tensor(0.0957)}
+2019-12-08 19:08:05,068 [MainThread  ] eval batch 74 / 79, current average result {'loss': tensor(47.7404), 'cls_acc': tensor(0.0963)}
+2019-12-08 19:08:05,139 [MainThread  ] eval batch 75 / 79, current average result {'loss': tensor(47.6655), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:08:05,210 [MainThread  ] eval batch 76 / 79, current average result {'loss': tensor(47.7459), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:08:05,282 [MainThread  ] eval batch 77 / 79, current average result {'loss': tensor(47.8234), 'cls_acc': tensor(0.0962)}
+2019-12-08 19:08:05,353 [MainThread  ] eval batch 78 / 79, current average result {'loss': tensor(47.9093), 'cls_acc': tensor(0.0966)}
+2019-12-08 19:08:05,382 [MainThread  ] eval batch 79 / 79, current average result {'loss': tensor(47.9223), 'cls_acc': tensor(0.0966)}
+2019-12-08 19:08:05,615 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(47.9223), 'cls_acc': tensor(0.0966)}
+2019-12-08 19:08:05,616 [MainThread  ] Best validation updated: {'best_performance': tensor(0.0966), 'current_iter': 2, 'best_iter': 2}
+2019-12-08 19:08:05,773 [MainThread  ] Save parameters for ./results/debug/finetune_cifar10_lp100_res4_best.ckpt
+2019-12-08 19:08:06,028 [MainThread  ] Training complete
+2019-12-08 19:08:06,028 [MainThread  ] Best result found for cifar10_lp100_res4: {'best_performance': tensor(0.0966), 'current_iter': 2, 'best_iter': 2}
+2019-12-08 19:08:06,029 [MainThread  ] Evaluate on  cifar10_lp100_res4:test data
+2019-12-08 19:08:07,036 [MainThread  ] eval batch 1 / 157, current average result {'loss': tensor(51.3452), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:08:07,119 [MainThread  ] eval batch 2 / 157, current average result {'loss': tensor(61.0077), 'cls_acc': tensor(0.0938)}
+2019-12-08 19:08:07,202 [MainThread  ] eval batch 3 / 157, current average result {'loss': tensor(53.9100), 'cls_acc': tensor(0.0990)}
+2019-12-08 19:08:07,284 [MainThread  ] eval batch 4 / 157, current average result {'loss': tensor(54.9939), 'cls_acc': tensor(0.1016)}
+2019-12-08 19:08:07,375 [MainThread  ] eval batch 5 / 157, current average result {'loss': tensor(51.7540), 'cls_acc': tensor(0.1219)}
+2019-12-08 19:08:07,459 [MainThread  ] eval batch 6 / 157, current average result {'loss': tensor(48.3519), 'cls_acc': tensor(0.1172)}
+2019-12-08 19:08:07,542 [MainThread  ] eval batch 7 / 157, current average result {'loss': tensor(48.6492), 'cls_acc': tensor(0.1161)}
+2019-12-08 19:08:07,627 [MainThread  ] eval batch 8 / 157, current average result {'loss': tensor(45.6014), 'cls_acc': tensor(0.1133)}
+2019-12-08 19:08:07,732 [MainThread  ] eval batch 9 / 157, current average result {'loss': tensor(45.7583), 'cls_acc': tensor(0.1111)}
+2019-12-08 19:08:07,817 [MainThread  ] eval batch 10 / 157, current average result {'loss': tensor(45.2629), 'cls_acc': tensor(0.1063)}
+2019-12-08 19:08:07,901 [MainThread  ] eval batch 11 / 157, current average result {'loss': tensor(44.9566), 'cls_acc': tensor(0.1023)}
+2019-12-08 19:08:07,984 [MainThread  ] eval batch 12 / 157, current average result {'loss': tensor(45.0736), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:08,073 [MainThread  ] eval batch 13 / 157, current average result {'loss': tensor(44.8175), 'cls_acc': tensor(0.0962)}
+2019-12-08 19:08:08,160 [MainThread  ] eval batch 14 / 157, current average result {'loss': tensor(46.0961), 'cls_acc': tensor(0.1004)}
+2019-12-08 19:08:08,248 [MainThread  ] eval batch 15 / 157, current average result {'loss': tensor(46.4037), 'cls_acc': tensor(0.1021)}
+2019-12-08 19:08:08,330 [MainThread  ] eval batch 16 / 157, current average result {'loss': tensor(46.0197), 'cls_acc': tensor(0.1035)}
+2019-12-08 19:08:08,414 [MainThread  ] eval batch 17 / 157, current average result {'loss': tensor(46.3731), 'cls_acc': tensor(0.1066)}
+2019-12-08 19:08:08,498 [MainThread  ] eval batch 18 / 157, current average result {'loss': tensor(46.2911), 'cls_acc': tensor(0.1042)}
+2019-12-08 19:08:08,580 [MainThread  ] eval batch 19 / 157, current average result {'loss': tensor(47.1669), 'cls_acc': tensor(0.1061)}
+2019-12-08 19:08:08,664 [MainThread  ] eval batch 20 / 157, current average result {'loss': tensor(47.4107), 'cls_acc': tensor(0.1031)}
+2019-12-08 19:08:08,745 [MainThread  ] eval batch 21 / 157, current average result {'loss': tensor(47.2899), 'cls_acc': tensor(0.1027)}
+2019-12-08 19:08:08,828 [MainThread  ] eval batch 22 / 157, current average result {'loss': tensor(47.0816), 'cls_acc': tensor(0.1009)}
+2019-12-08 19:08:08,910 [MainThread  ] eval batch 23 / 157, current average result {'loss': tensor(47.7037), 'cls_acc': tensor(0.0999)}
+2019-12-08 19:08:08,991 [MainThread  ] eval batch 24 / 157, current average result {'loss': tensor(47.7664), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:08:09,073 [MainThread  ] eval batch 25 / 157, current average result {'loss': tensor(47.0929), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:08:09,155 [MainThread  ] eval batch 26 / 157, current average result {'loss': tensor(46.9443), 'cls_acc': tensor(0.0950)}
+2019-12-08 19:08:09,238 [MainThread  ] eval batch 27 / 157, current average result {'loss': tensor(46.6656), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:08:09,320 [MainThread  ] eval batch 28 / 157, current average result {'loss': tensor(46.8381), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:08:09,404 [MainThread  ] eval batch 29 / 157, current average result {'loss': tensor(46.9215), 'cls_acc': tensor(0.0981)}
+2019-12-08 19:08:09,485 [MainThread  ] eval batch 30 / 157, current average result {'loss': tensor(47.3355), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:08:09,567 [MainThread  ] eval batch 31 / 157, current average result {'loss': tensor(47.2276), 'cls_acc': tensor(0.0973)}
+2019-12-08 19:08:09,649 [MainThread  ] eval batch 32 / 157, current average result {'loss': tensor(47.3482), 'cls_acc': tensor(0.0952)}
+2019-12-08 19:08:09,732 [MainThread  ] eval batch 33 / 157, current average result {'loss': tensor(46.9915), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:08:09,817 [MainThread  ] eval batch 34 / 157, current average result {'loss': tensor(46.6260), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:08:09,901 [MainThread  ] eval batch 35 / 157, current average result {'loss': tensor(46.9589), 'cls_acc': tensor(0.0964)}
+2019-12-08 19:08:09,986 [MainThread  ] eval batch 36 / 157, current average result {'loss': tensor(46.6437), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:10,070 [MainThread  ] eval batch 37 / 157, current average result {'loss': tensor(46.6402), 'cls_acc': tensor(0.0967)}
+2019-12-08 19:08:10,156 [MainThread  ] eval batch 38 / 157, current average result {'loss': tensor(46.4487), 'cls_acc': tensor(0.0987)}
+2019-12-08 19:08:10,239 [MainThread  ] eval batch 39 / 157, current average result {'loss': tensor(46.7126), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:08:10,325 [MainThread  ] eval batch 40 / 157, current average result {'loss': tensor(46.8776), 'cls_acc': tensor(0.0973)}
+2019-12-08 19:08:10,429 [MainThread  ] eval batch 41 / 157, current average result {'loss': tensor(46.6951), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:08:10,517 [MainThread  ] eval batch 42 / 157, current average result {'loss': tensor(46.6188), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:08:10,601 [MainThread  ] eval batch 43 / 157, current average result {'loss': tensor(46.8451), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:08:10,687 [MainThread  ] eval batch 44 / 157, current average result {'loss': tensor(46.9934), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:08:10,772 [MainThread  ] eval batch 45 / 157, current average result {'loss': tensor(46.9461), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:08:10,857 [MainThread  ] eval batch 46 / 157, current average result {'loss': tensor(47.1143), 'cls_acc': tensor(0.0965)}
+2019-12-08 19:08:10,942 [MainThread  ] eval batch 47 / 157, current average result {'loss': tensor(46.7797), 'cls_acc': tensor(0.0981)}
+2019-12-08 19:08:11,025 [MainThread  ] eval batch 48 / 157, current average result {'loss': tensor(46.6403), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:11,110 [MainThread  ] eval batch 49 / 157, current average result {'loss': tensor(46.6145), 'cls_acc': tensor(0.0979)}
+2019-12-08 19:08:11,193 [MainThread  ] eval batch 50 / 157, current average result {'loss': tensor(46.5945), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:08:11,277 [MainThread  ] eval batch 51 / 157, current average result {'loss': tensor(46.4989), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:08:11,362 [MainThread  ] eval batch 52 / 157, current average result {'loss': tensor(46.2349), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:08:11,449 [MainThread  ] eval batch 53 / 157, current average result {'loss': tensor(46.5278), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:08:11,535 [MainThread  ] eval batch 54 / 157, current average result {'loss': tensor(46.3177), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:08:11,621 [MainThread  ] eval batch 55 / 157, current average result {'loss': tensor(46.2344), 'cls_acc': tensor(0.0989)}
+2019-12-08 19:08:11,706 [MainThread  ] eval batch 56 / 157, current average result {'loss': tensor(46.3111), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:08:11,791 [MainThread  ] eval batch 57 / 157, current average result {'loss': tensor(46.6621), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:08:11,876 [MainThread  ] eval batch 58 / 157, current average result {'loss': tensor(46.5196), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:08:11,960 [MainThread  ] eval batch 59 / 157, current average result {'loss': tensor(46.6828), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:12,045 [MainThread  ] eval batch 60 / 157, current average result {'loss': tensor(46.6015), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:08:12,130 [MainThread  ] eval batch 61 / 157, current average result {'loss': tensor(46.5688), 'cls_acc': tensor(0.0973)}
+2019-12-08 19:08:12,215 [MainThread  ] eval batch 62 / 157, current average result {'loss': tensor(46.4863), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:08:12,301 [MainThread  ] eval batch 63 / 157, current average result {'loss': tensor(46.2462), 'cls_acc': tensor(0.0962)}
+2019-12-08 19:08:12,386 [MainThread  ] eval batch 64 / 157, current average result {'loss': tensor(46.3395), 'cls_acc': tensor(0.0962)}
+2019-12-08 19:08:12,471 [MainThread  ] eval batch 65 / 157, current average result {'loss': tensor(46.4510), 'cls_acc': tensor(0.0959)}
+2019-12-08 19:08:12,556 [MainThread  ] eval batch 66 / 157, current average result {'loss': tensor(46.4281), 'cls_acc': tensor(0.0973)}
+2019-12-08 19:08:12,641 [MainThread  ] eval batch 67 / 157, current average result {'loss': tensor(46.4290), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:08:12,726 [MainThread  ] eval batch 68 / 157, current average result {'loss': tensor(46.4485), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:08:12,811 [MainThread  ] eval batch 69 / 157, current average result {'loss': tensor(46.2929), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:08:12,896 [MainThread  ] eval batch 70 / 157, current average result {'loss': tensor(46.4666), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:08:12,981 [MainThread  ] eval batch 71 / 157, current average result {'loss': tensor(46.4396), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:13,067 [MainThread  ] eval batch 72 / 157, current average result {'loss': tensor(46.4059), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:13,152 [MainThread  ] eval batch 73 / 157, current average result {'loss': tensor(46.4830), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:08:13,238 [MainThread  ] eval batch 74 / 157, current average result {'loss': tensor(46.3474), 'cls_acc': tensor(0.0965)}
+2019-12-08 19:08:13,323 [MainThread  ] eval batch 75 / 157, current average result {'loss': tensor(46.3323), 'cls_acc': tensor(0.0967)}
+2019-12-08 19:08:13,410 [MainThread  ] eval batch 76 / 157, current average result {'loss': tensor(46.2449), 'cls_acc': tensor(0.0966)}
+2019-12-08 19:08:13,495 [MainThread  ] eval batch 77 / 157, current average result {'loss': tensor(46.3042), 'cls_acc': tensor(0.0964)}
+2019-12-08 19:08:13,581 [MainThread  ] eval batch 78 / 157, current average result {'loss': tensor(46.2023), 'cls_acc': tensor(0.0962)}
+2019-12-08 19:08:13,666 [MainThread  ] eval batch 79 / 157, current average result {'loss': tensor(46.0327), 'cls_acc': tensor(0.0963)}
+2019-12-08 19:08:13,751 [MainThread  ] eval batch 80 / 157, current average result {'loss': tensor(46.0352), 'cls_acc': tensor(0.0959)}
+2019-12-08 19:08:13,835 [MainThread  ] eval batch 81 / 157, current average result {'loss': tensor(45.8755), 'cls_acc': tensor(0.0959)}
+2019-12-08 19:08:13,919 [MainThread  ] eval batch 82 / 157, current average result {'loss': tensor(46.1084), 'cls_acc': tensor(0.0960)}
+2019-12-08 19:08:14,003 [MainThread  ] eval batch 83 / 157, current average result {'loss': tensor(46.1123), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:08:14,087 [MainThread  ] eval batch 84 / 157, current average result {'loss': tensor(46.1802), 'cls_acc': tensor(0.0971)}
+2019-12-08 19:08:14,171 [MainThread  ] eval batch 85 / 157, current average result {'loss': tensor(46.2069), 'cls_acc': tensor(0.0967)}
+2019-12-08 19:08:14,255 [MainThread  ] eval batch 86 / 157, current average result {'loss': tensor(46.3064), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:08:14,341 [MainThread  ] eval batch 87 / 157, current average result {'loss': tensor(46.3249), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:08:14,427 [MainThread  ] eval batch 88 / 157, current average result {'loss': tensor(46.2384), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:08:14,511 [MainThread  ] eval batch 89 / 157, current average result {'loss': tensor(46.1662), 'cls_acc': tensor(0.0966)}
+2019-12-08 19:08:14,596 [MainThread  ] eval batch 90 / 157, current average result {'loss': tensor(46.2135), 'cls_acc': tensor(0.0965)}
+2019-12-08 19:08:14,681 [MainThread  ] eval batch 91 / 157, current average result {'loss': tensor(46.2446), 'cls_acc': tensor(0.0967)}
+2019-12-08 19:08:14,765 [MainThread  ] eval batch 92 / 157, current average result {'loss': tensor(46.1671), 'cls_acc': tensor(0.0965)}
+2019-12-08 19:08:14,848 [MainThread  ] eval batch 93 / 157, current average result {'loss': tensor(46.0860), 'cls_acc': tensor(0.0959)}
+2019-12-08 19:08:14,933 [MainThread  ] eval batch 94 / 157, current average result {'loss': tensor(45.9907), 'cls_acc': tensor(0.0961)}
+2019-12-08 19:08:15,016 [MainThread  ] eval batch 95 / 157, current average result {'loss': tensor(45.8775), 'cls_acc': tensor(0.0964)}
+2019-12-08 19:08:15,100 [MainThread  ] eval batch 96 / 157, current average result {'loss': tensor(45.8993), 'cls_acc': tensor(0.0965)}
+2019-12-08 19:08:15,187 [MainThread  ] eval batch 97 / 157, current average result {'loss': tensor(45.8482), 'cls_acc': tensor(0.0962)}
+2019-12-08 19:08:15,274 [MainThread  ] eval batch 98 / 157, current average result {'loss': tensor(45.8161), 'cls_acc': tensor(0.0961)}
+2019-12-08 19:08:15,359 [MainThread  ] eval batch 99 / 157, current average result {'loss': tensor(45.7668), 'cls_acc': tensor(0.0963)}
+2019-12-08 19:08:15,446 [MainThread  ] eval batch 100 / 157, current average result {'loss': tensor(45.6996), 'cls_acc': tensor(0.0966)}
+2019-12-08 19:08:15,531 [MainThread  ] eval batch 101 / 157, current average result {'loss': tensor(45.6584), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:08:15,616 [MainThread  ] eval batch 102 / 157, current average result {'loss': tensor(45.7343), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:08:15,701 [MainThread  ] eval batch 103 / 157, current average result {'loss': tensor(45.7258), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:08:15,786 [MainThread  ] eval batch 104 / 157, current average result {'loss': tensor(45.6779), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:08:15,871 [MainThread  ] eval batch 105 / 157, current average result {'loss': tensor(45.8190), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:08:15,957 [MainThread  ] eval batch 106 / 157, current average result {'loss': tensor(45.7621), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:16,043 [MainThread  ] eval batch 107 / 157, current average result {'loss': tensor(45.7487), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:08:16,129 [MainThread  ] eval batch 108 / 157, current average result {'loss': tensor(45.5860), 'cls_acc': tensor(0.0981)}
+2019-12-08 19:08:16,214 [MainThread  ] eval batch 109 / 157, current average result {'loss': tensor(45.6610), 'cls_acc': tensor(0.0981)}
+2019-12-08 19:08:16,301 [MainThread  ] eval batch 110 / 157, current average result {'loss': tensor(45.6744), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:08:16,387 [MainThread  ] eval batch 111 / 157, current average result {'loss': tensor(45.6375), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:08:16,470 [MainThread  ] eval batch 112 / 157, current average result {'loss': tensor(45.6195), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:08:16,556 [MainThread  ] eval batch 113 / 157, current average result {'loss': tensor(45.7590), 'cls_acc': tensor(0.0982)}
+2019-12-08 19:08:16,642 [MainThread  ] eval batch 114 / 157, current average result {'loss': tensor(45.6823), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:08:16,726 [MainThread  ] eval batch 115 / 157, current average result {'loss': tensor(45.6756), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:16,812 [MainThread  ] eval batch 116 / 157, current average result {'loss': tensor(45.8177), 'cls_acc': tensor(0.0971)}
+2019-12-08 19:08:16,897 [MainThread  ] eval batch 117 / 157, current average result {'loss': tensor(45.7775), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:08:16,983 [MainThread  ] eval batch 118 / 157, current average result {'loss': tensor(45.7406), 'cls_acc': tensor(0.0973)}
+2019-12-08 19:08:17,068 [MainThread  ] eval batch 119 / 157, current average result {'loss': tensor(45.7287), 'cls_acc': tensor(0.0972)}
+2019-12-08 19:08:17,152 [MainThread  ] eval batch 120 / 157, current average result {'loss': tensor(45.6502), 'cls_acc': tensor(0.0970)}
+2019-12-08 19:08:17,236 [MainThread  ] eval batch 121 / 157, current average result {'loss': tensor(45.5637), 'cls_acc': tensor(0.0978)}
+2019-12-08 19:08:17,320 [MainThread  ] eval batch 122 / 157, current average result {'loss': tensor(45.5145), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:17,406 [MainThread  ] eval batch 123 / 157, current average result {'loss': tensor(45.4826), 'cls_acc': tensor(0.0986)}
+2019-12-08 19:08:17,491 [MainThread  ] eval batch 124 / 157, current average result {'loss': tensor(45.5128), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:08:17,568 [MainThread  ] eval batch 125 / 157, current average result {'loss': tensor(45.4112), 'cls_acc': tensor(0.0984)}
+2019-12-08 19:08:17,640 [MainThread  ] eval batch 126 / 157, current average result {'loss': tensor(45.4565), 'cls_acc': tensor(0.0988)}
+2019-12-08 19:08:17,713 [MainThread  ] eval batch 127 / 157, current average result {'loss': tensor(45.4449), 'cls_acc': tensor(0.0985)}
+2019-12-08 19:08:17,784 [MainThread  ] eval batch 128 / 157, current average result {'loss': tensor(45.4384), 'cls_acc': tensor(0.0981)}
+2019-12-08 19:08:17,855 [MainThread  ] eval batch 129 / 157, current average result {'loss': tensor(45.5736), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:17,926 [MainThread  ] eval batch 130 / 157, current average result {'loss': tensor(45.5823), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:17,998 [MainThread  ] eval batch 131 / 157, current average result {'loss': tensor(45.7630), 'cls_acc': tensor(0.0973)}
+2019-12-08 19:08:18,070 [MainThread  ] eval batch 132 / 157, current average result {'loss': tensor(45.7825), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:08:18,142 [MainThread  ] eval batch 133 / 157, current average result {'loss': tensor(45.8546), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:08:18,214 [MainThread  ] eval batch 134 / 157, current average result {'loss': tensor(45.9325), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:08:18,285 [MainThread  ] eval batch 135 / 157, current average result {'loss': tensor(46.0392), 'cls_acc': tensor(0.0971)}
+2019-12-08 19:08:18,357 [MainThread  ] eval batch 136 / 157, current average result {'loss': tensor(45.9919), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:08:18,429 [MainThread  ] eval batch 137 / 157, current average result {'loss': tensor(45.9514), 'cls_acc': tensor(0.0964)}
+2019-12-08 19:08:18,500 [MainThread  ] eval batch 138 / 157, current average result {'loss': tensor(45.9308), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:08:18,572 [MainThread  ] eval batch 139 / 157, current average result {'loss': tensor(45.9438), 'cls_acc': tensor(0.0972)}
+2019-12-08 19:08:18,645 [MainThread  ] eval batch 140 / 157, current average result {'loss': tensor(45.9152), 'cls_acc': tensor(0.0971)}
+2019-12-08 19:08:18,717 [MainThread  ] eval batch 141 / 157, current average result {'loss': tensor(45.8901), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:08:18,790 [MainThread  ] eval batch 142 / 157, current average result {'loss': tensor(45.7473), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:08:18,862 [MainThread  ] eval batch 143 / 157, current average result {'loss': tensor(45.6391), 'cls_acc': tensor(0.0976)}
+2019-12-08 19:08:18,934 [MainThread  ] eval batch 144 / 157, current average result {'loss': tensor(45.6915), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:08:19,006 [MainThread  ] eval batch 145 / 157, current average result {'loss': tensor(45.7717), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:08:19,078 [MainThread  ] eval batch 146 / 157, current average result {'loss': tensor(45.7398), 'cls_acc': tensor(0.0971)}
+2019-12-08 19:08:19,151 [MainThread  ] eval batch 147 / 157, current average result {'loss': tensor(45.7216), 'cls_acc': tensor(0.0969)}
+2019-12-08 19:08:19,223 [MainThread  ] eval batch 148 / 157, current average result {'loss': tensor(45.7192), 'cls_acc': tensor(0.0968)}
+2019-12-08 19:08:19,295 [MainThread  ] eval batch 149 / 157, current average result {'loss': tensor(45.7257), 'cls_acc': tensor(0.0974)}
+2019-12-08 19:08:19,368 [MainThread  ] eval batch 150 / 157, current average result {'loss': tensor(45.7207), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:08:19,440 [MainThread  ] eval batch 151 / 157, current average result {'loss': tensor(45.6944), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:08:19,513 [MainThread  ] eval batch 152 / 157, current average result {'loss': tensor(45.7055), 'cls_acc': tensor(0.0975)}
+2019-12-08 19:08:19,586 [MainThread  ] eval batch 153 / 157, current average result {'loss': tensor(45.6832), 'cls_acc': tensor(0.0973)}
+2019-12-08 19:08:19,657 [MainThread  ] eval batch 154 / 157, current average result {'loss': tensor(45.6781), 'cls_acc': tensor(0.0977)}
+2019-12-08 19:08:19,729 [MainThread  ] eval batch 155 / 157, current average result {'loss': tensor(45.7720), 'cls_acc': tensor(0.0980)}
+2019-12-08 19:08:19,801 [MainThread  ] eval batch 156 / 157, current average result {'loss': tensor(45.7523), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:08:19,839 [MainThread  ] eval batch 157 / 157, current average result {'loss': tensor(45.7919), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:08:20,085 [MainThread  ] Evalutation complete
+Average result {'loss': tensor(45.7919), 'cls_acc': tensor(0.0983)}
+2019-12-08 19:08:20,085 [MainThread  ] Done
