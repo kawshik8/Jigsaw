@@ -580,27 +580,27 @@ class AllPatchModel(JigsawModel):
             u0 = u0.view(
                     bs,1,self.d_model
             ) # (bs, 1, d_model)
-            final = self.attention_pooling(torch.cat([u0, patches], dim=1))[:,0,:]
+            final = self.attention_pooling(torch.cat([u0, patches], dim=1))[:,0,:] ### (bs,self.d_model)
          #   final = self.project(final)
           #  self.d_model = 128
          #   print(bs,final.shape)
 
             if self.pretrain_obj == "nce_loss":
-                final = final.view(self.batch_size,self.dup_pos+1,self.d_model)
+                final = final.view(self.batch_size,self.dup_pos+1,self.d_model) ## (self.batch_size,dup_pos+1,self.d_model)
 
-                c = list(combinations(torch.arange(self.dup_pos+1), 2))
-                pos_ind = torch.Tensor([list(i) for i in c]).long()
+                c = list(combinations(torch.arange(self.dup_pos+1), 2)) ###((self.dup_pos+1)C2, 2)
+                pos_ind = torch.Tensor([list(i) for i in c]).long()     ###((self.dup_pos+1)C2, 2)
                 neg_ind = torch.cat(
                     [torch.cat([torch.arange(self.batch_size)[0:i],torch.arange(self.batch_size)[i+1:]]) for i in range(self.batch_size)]
-                    ).view(self.batch_size,-1).unsqueeze(1).repeat(1,pos_ind.shape[0],1)
-                negatives = final[neg_ind].view(self.batch_size,pos_ind.shape[0],-1,self.d_model)
-                positives = final[:,pos_ind]
-                final = torch.cat([positives,negatives],dim = 2)
+                    ).view(self.batch_size,-1).unsqueeze(1).repeat(1,pos_ind.shape[0],1) ###(self.batch_size, (self.dup_pos+1)C2, self.batch_size-1)
+                negatives = final[neg_ind].view(self.batch_size,pos_ind.shape[0],-1,self.d_model) ### (self.batch_size,(self.dup_pos+1)C2,(self.batch_size-1)*self.dup_pos,self.d_model)
+                positives = final[:,pos_ind] ###(self.batch_size,(self.dup_pos+1)C2, 2, self.d_model)
+                final = torch.cat([positives,negatives],dim = 2)###(self.batch_size,(self.dup_pos+1)C2, 2 + (self.batch_size-1)*self.dup_pos, self.d_model)
                 
-                query = final[:,:,0:1,:].view(-1,1,self.d_model)
-                key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)
+                query = final[:,:,0:1,:].view(-1,1,self.d_model) ###(self.batch_size*(self.dup_pos+1)C2, 1, self.d_model )
+                key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)  ###(self.batch_size*(self.dup_pos+1)C2, 1 + (self.batch_size-1)*self.dup_pos, self.d_model )
 
-                jigsaw_pred = F.cosine_similarity(query,key,axis=-1)/0.07
+                jigsaw_pred = F.cosine_similarity(query,key,axis=-1)/0.07 ###(self.batch_size*(self.dup_pos+1)C2, 1 + (self.batch_size-1)*self.dup_pos)
                 jigsaw_pred = F.softmax(jigsaw_pred,1)
 
                 jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).long().unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
