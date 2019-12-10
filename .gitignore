@@ -36,3 +36,15 @@ results/allp-finetune-whole-linear-nce/finetune_cifar10_lp100_res3_best.ckpt
 results/allp-finetune-whole-linear-nce/finetune_cifar10_lp100_res4_best.ckpt
 results/allp-finetune-whole-linear-nce/pretrain_cifar10_un_best.ckpt
 results/allp-finetune-whole-linear-nce/pretrain_cifar10_un_complete.pth
+results/allp-finetune-whole-linear-nce-correct-lr-0.1/finetune_cifar10_lp100_res1_best.ckpt
+results/allp-finetune-whole-linear-nce-correct-lr-0.1/finetune_cifar10_lp100_res2_best.ckpt
+results/allp-finetune-whole-linear-nce-correct-lr-0.1/finetune_cifar10_lp100_res3_best.ckpt
+results/allp-finetune-whole-linear-nce-correct-lr-0.1/finetune_cifar10_lp100_res4_best.ckpt
+results/allp-finetune-whole-linear-nce-correct-lr-0.1/pretrain_cifar10_un_best.ckpt
+results/allp-finetune-whole-linear-nce-correct-lr-0.1/pretrain_cifar10_un_complete.pth
+results/allp-finetune-whole-linear-nce-correct/finetune_cifar10_lp100_res1_best.ckpt
+results/allp-finetune-whole-linear-nce-correct/finetune_cifar10_lp100_res2_best.ckpt
+results/allp-finetune-whole-linear-nce-correct/finetune_cifar10_lp100_res3_best.ckpt
+results/allp-finetune-whole-linear-nce-correct/finetune_cifar10_lp100_res4_best.ckpt
+results/allp-finetune-whole-linear-nce-correct/pretrain_cifar10_un_best.ckpt
+results/allp-finetune-whole-linear-nce-correct/pretrain_cifar10_un_complete.pth

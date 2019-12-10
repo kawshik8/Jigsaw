@@ -242,8 +242,7 @@ class BaselineModel(JigsawModel):
             jigsaw_pred1 = jigsaw_pred.clone()
             jigsaw_pred1[jigsaw_pred>0.5] = 1
             jigsaw_pred1[jigsaw_pred<=0.5] = 0
-            batch_output["jigsaw_acc"] = ((jigsaw_pred1) == jigsaw_label).float().mean() 
-
+            batch_output["jigsaw_acc"] = ((jigsaw_pred1) == jigsaw_label).float().mean()
 
         elif self.stage == "finetune":
             if self.linear:
@@ -263,15 +262,12 @@ class BaselineModel(JigsawModel):
                 batch_output["cls_acc"] = (
                     (batch_output["predict"] == batch_input["label"]).float().mean()
                 )
-
             else:
-
                 features = self.patch_network(batch_input["image"])
                 features = self.finetune_conv_layer(features)
                 features_pool = self.avg_pool(features).view(bs,-1)
                 dropout = self.dropout(features_pool)
                 #print(features_pool.shape)
-
                 cls_pred = self.cls_classifiers[task.name.split("_")[0]](dropout)
                 batch_output["loss"] = F.cross_entropy(cls_pred, batch_input["label"])
                 batch_output["predict"] = cls_pred.max(dim=1)[1]
