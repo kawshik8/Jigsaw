@@ -404,7 +404,7 @@ class STL10(Task):
                         rnd_gray,
                         transforms.ToTensor(),
                         normalize,
-                        ToPatches(self.args.num_patches),
+                        #ToPatches(self.args.num_patches),
                     ]
                 ),
             }
@@ -414,22 +414,19 @@ class STL10(Task):
                         center_crop,
                         transforms.ToTensor(),
                         normalize,
-                        ToPatches(self.args.num_patches),
+                        #ToPatches(self.args.num_patches),
                     ]
                 ),
             }
         return train_transform, eval_transform
 
     def _load_raw_data(self):
-        stl10_unlabeled = datasets.STL10(root=self.path, split="unlabeled", download=True)
+        
         if self.pretrain:
-            stl10_unlabeled_f = datasets.STL10(
-                root=self.path,
-                split="unlabeled",
-                transform=transforms.RandomHorizontalFlip(p=1.0),
-                download=True,
-            )
-            raw_data = {"train": stl10_unlabeled + stl10_unlabeled_f}
+            stl10_train = datasets.STL10(root=self.path, split="unlabeled", download=True)
+            stl10_train, stl10_val = self.make_data_split(stl10_train)
+            raw_data = {"train": stl10_train, "val": stl10_val}
+
         else:
             stl10_train = datasets.STL10(
                 root=self.path, split="train", folds=self.fold, download=True
@@ -451,13 +448,8 @@ class MNIST(Task):
     def _load_raw_data(self):
         mnist_train = datasets.MNIST(root=self.path, train=True, download=True)
         if self.pretrain:
-            mnist_train_f = datasets.MNIST(
-                root=self.path,
-                train=True,
-                transform=transforms.RandomHorizontalFlip(p=1.0),
-                download=True,
-            )
-            raw_data = {"train": mnist_train + mnist_train_f}
+            mnist_train, mnist_val = self.make_data_split(mnist_train)
+            raw_data = {"train": mnist_train, "val": mnist_val}
         else:
             mnist_test = datasets.MNIST(root=self.path, train=False, download=True)
             mnist_train, mnist_val = self.make_data_split(mnist_train, self.label_pct)
