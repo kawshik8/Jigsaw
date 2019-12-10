@@ -226,23 +226,58 @@ class BaselineModel(JigsawModel):
             flatten = patches.view(bs,-1)
             final = self.reduce(flatten)
 
-            jigsaw_pred = torch.mm(
-                final, final.transpose(0,1)
-            )/(self.d_model**(1/2.0))  # (bs, bs)
+            if self.pretrain_obj == "nce_loss":
+                final = final.view(self.batch_size,self.dup_pos+1,self.d_model)
 
-            jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
-            for i in range(bs):
+                c = list(combinations(torch.arange(self.dup_pos+1), 2))
+                pos_ind = torch.Tensor([list(i) for i in c]).long()
+                neg_ind = torch.cat(
+                    [torch.cat([torch.arange(self.batch_size)[0:i],torch.arange(self.batch_size)[i+1:]]) for i in range(self.batch_size)]
+                    ).view(self.batch_size,-1).unsqueeze(1).repeat(1,pos_ind.shape[0],1)
+                negatives = final[neg_ind].view(self.batch_size,pos_ind.shape[0],-1,self.d_model)
+                positives = final[:,pos_ind]
+                final = torch.cat([positives,negatives],dim = 2)
                 
-                indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
-                #### Creates an array of size self.dup_pos_patches 
-                jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
-                #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
+                query = final[:,:,0:1,:].view(-1,1,self.d_model)
+                key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)
 
-            batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
-            jigsaw_pred1 = jigsaw_pred.clone()
-            jigsaw_pred1[jigsaw_pred>0.5] = 1
-            jigsaw_pred1[jigsaw_pred<=0.5] = 0
-            batch_output["jigsaw_acc"] = ((jigsaw_pred1) == jigsaw_label).float().mean()
+                jigsaw_pred = F.cosine_similarity(query,key,axis=-1)/0.07
+                jigsaw_pred = F.softmax(jigsaw_pred,1)
+
+                jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).long().unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
+                jigsaw_labels[:,0] = 1
+
+                randperm = torch.cat([torch.randperm(jigsaw_pred.shape[1]) for i in range(jigsaw_pred.shape[0])]).view_as(jigsaw_labels)
+                jigsaw_pred = jigsaw_pred[:,randperm][0]
+                jigsaw_labels = jigsaw_labels[:,randperm][0]
+
+            
+                batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+                batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()#F.nll_loss(F.log_softmax(jigsaw_pred,1), jigsaw_labels.max(dim=1)[1])#(jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()
+            
+            elif self.pretrain_obj == "multilabel_loss":
+                jigsaw_pred = torch.mm(
+                final, final.transpose(0,1)
+                )/(self.d_model**(1/2.0))  # (bs, bs)
+                
+                #jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
+
+                jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
+                for i in range(bs):
+                    
+                    indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
+                    #### Creates an array of size self.dup_pos_patches 
+                    jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
+                    #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
+
+                batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
+                ones = torch.ones(jigsaw_pred.shape)
+                zeros = torch.zeros(jigsaw_pred.shape)
+                jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
+                batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
+
+            else:
+                raise NotImplementedError
 
         elif self.stage == "finetune":
             if self.linear:
@@ -284,7 +319,7 @@ class SelfieModel(JigsawModel):
         self.num_patches = args.num_patches
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
-
+        self.pretrain_obj = args.pretrain_obj
         self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
 
         full_resnet = resnet.resnet50()
@@ -549,68 +584,60 @@ class AllPatchModel(JigsawModel):
          #   final = self.project(final)
           #  self.d_model = 128
          #   print(bs,final.shape)
-            final = final.view(self.batch_size,self.dup_pos+1,self.d_model)
-          #  print(final.shape)
 
-            c = list(combinations(torch.arange(self.dup_pos+1), 2))
-            pos_ind = torch.Tensor([list(i) for i in c]).long()
-           # print(pos_ind.shape)
-            neg_ind = torch.cat(
-                [torch.cat([torch.arange(self.batch_size)[0:i],torch.arange(self.batch_size)[i+1:]]) for i in range(self.batch_size)]
-                ).view(self.batch_size,-1).unsqueeze(1).repeat(1,pos_ind.shape[0],1)
-            #print(neg_ind.shape)
-            negatives = final[neg_ind].view(self.batch_size,pos_ind.shape[0],-1,self.d_model)
-            #print(negatives.shape)
-            positives = final[:,pos_ind]
-            #print(positives.shape)
-            final = torch.cat([positives,negatives],dim = 2)
-            #print(final.shape)
-            
-            query = final[:,:,0:1,:].view(-1,1,self.d_model)
-            #print(query.shape)
-            key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)
-            #print(key.shape)
+            if self.pretrain_obj == "nce_loss":
+                final = final.view(self.batch_size,self.dup_pos+1,self.d_model)
 
-            jigsaw_pred = F.cosine_similarity(query,key,axis=-1)/0.07
-            jigsaw_pred = F.softmax(jigsaw_pred,1)
-            #jigsaw_pred[:,1:] = 1 - jigsaw_pred[:,1:]
-            #jigsaw_pred = cosin
-            #jigsaw_pred = torch.bmm(
-            #    query,key.transpose(1,2)
-            #).view(self.batch_size*len(pos_ind),-1)/(0.07*(self.d_model**(1)))#/2.0)))#*self.batch_size*len(pos_ind))#(torch.norm(query,2)*torch.norm(key,2)*0.07)#(self.d_model**(1/2.0))
-            #jigsaw_pred = F.log_softmax(pred,1)
-            #print(jigsaw_pred[0])
-
-            jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).long().unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
-            jigsaw_labels[:,0] = 1
-            #print(jigsaw_labels.shape)
-
-            randperm = torch.cat([torch.randperm(jigsaw_pred.shape[1]) for i in range(jigsaw_pred.shape[0])]).view_as(jigsaw_labels)
-            #print(randperm.shape)
-            jigsaw_pred = jigsaw_pred[:,randperm][0]
-            jigsaw_labels = jigsaw_labels[:,randperm][0]
-            
-            # jigsaw_pred = torch.mm(
-            #     final, final.transpose(0,1)
-            # )/(self.d_model**(1/2.0))  # (bs, bs)
-            
-            # #jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
-
-            # jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
-            # for i in range(bs):
+                c = list(combinations(torch.arange(self.dup_pos+1), 2))
+                pos_ind = torch.Tensor([list(i) for i in c]).long()
+                neg_ind = torch.cat(
+                    [torch.cat([torch.arange(self.batch_size)[0:i],torch.arange(self.batch_size)[i+1:]]) for i in range(self.batch_size)]
+                    ).view(self.batch_size,-1).unsqueeze(1).repeat(1,pos_ind.shape[0],1)
+                negatives = final[neg_ind].view(self.batch_size,pos_ind.shape[0],-1,self.d_model)
+                positives = final[:,pos_ind]
+                final = torch.cat([positives,negatives],dim = 2)
                 
-            #     indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
-            #     #### Creates an array of size self.dup_pos_patches 
-            #     jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
-            #     #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
-           
-            batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+                query = final[:,:,0:1,:].view(-1,1,self.d_model)
+                key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)
+
+                jigsaw_pred = F.cosine_similarity(query,key,axis=-1)/0.07
+                jigsaw_pred = F.softmax(jigsaw_pred,1)
+
+                jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).long().unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
+                jigsaw_labels[:,0] = 1
+
+                randperm = torch.cat([torch.randperm(jigsaw_pred.shape[1]) for i in range(jigsaw_pred.shape[0])]).view_as(jigsaw_labels)
+                jigsaw_pred = jigsaw_pred[:,randperm][0]
+                jigsaw_labels = jigsaw_labels[:,randperm][0]
+
             
-            #batch_output["loss"] = F.nll_loss(jigsaw_pred, jigsaw_labels.max(dim=1)[1])#F.cross_entropy(jigsaw_pred, jigsaw_label)
-            # ones = torch.ones(jigsaw_pred.shape)
-            # zeros = torch.zeros(jigsaw_pred.shape)
-            # jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
-            batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()#F.nll_loss(F.log_softmax(jigsaw_pred,1), jigsaw_labels.max(dim=1)[1])#(jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()
+                batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+                batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()#F.nll_loss(F.log_softmax(jigsaw_pred,1), jigsaw_labels.max(dim=1)[1])#(jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()
+            
+            elif self.pretrain_obj == "multilabel_loss":
+                jigsaw_pred = torch.mm(
+                final, final.transpose(0,1)
+                )/(self.d_model**(1/2.0))  # (bs, bs)
+                
+                #jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
+
+                jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
+                for i in range(bs):
+                    
+                    indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
+                    #### Creates an array of size self.dup_pos_patches 
+                    jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
+                    #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
+
+                batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
+                ones = torch.ones(jigsaw_pred.shape)
+                zeros = torch.zeros(jigsaw_pred.shape)
+                jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
+                batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
+
+            else:
+                raise NotImplementedError
+
 
         elif self.stage == "finetune":
             if self.linear:
@@ -803,25 +830,58 @@ class ExchangePatchModel(JigsawModel):
             ) # (bs, 1, d_model)
             final = self.attention_pooling(torch.cat([u0, input_attn_pool.view(bs,self.num_patches,-1)], dim=1))[:,0,:]   
 
-            jigsaw_pred = torch.mm(
-                final, final.transpose(0,1)
-            )/(self.d_model**(1/2.0))  # (bs, bs)
+            if self.pretrain_obj == "nce_loss":
+                final = final.view(self.batch_size,self.dup_pos+1,self.d_model)
+
+                c = list(combinations(torch.arange(self.dup_pos+1), 2))
+                pos_ind = torch.Tensor([list(i) for i in c]).long()
+                neg_ind = torch.cat(
+                    [torch.cat([torch.arange(self.batch_size)[0:i],torch.arange(self.batch_size)[i+1:]]) for i in range(self.batch_size)]
+                    ).view(self.batch_size,-1).unsqueeze(1).repeat(1,pos_ind.shape[0],1)
+                negatives = final[neg_ind].view(self.batch_size,pos_ind.shape[0],-1,self.d_model)
+                positives = final[:,pos_ind]
+                final = torch.cat([positives,negatives],dim = 2)
+                
+                query = final[:,:,0:1,:].view(-1,1,self.d_model)
+                key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)
+
+                jigsaw_pred = F.cosine_similarity(query,key,axis=-1)/0.07
+                jigsaw_pred = F.softmax(jigsaw_pred,1)
+
+                jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).long().unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
+                jigsaw_labels[:,0] = 1
+
+                randperm = torch.cat([torch.randperm(jigsaw_pred.shape[1]) for i in range(jigsaw_pred.shape[0])]).view_as(jigsaw_labels)
+                jigsaw_pred = jigsaw_pred[:,randperm][0]
+                jigsaw_labels = jigsaw_labels[:,randperm][0]
+
             
-            #jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
+                batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+                batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()#F.nll_loss(F.log_softmax(jigsaw_pred,1), jigsaw_labels.max(dim=1)[1])#(jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()
+            
+            elif self.pretrain_obj == "multilabel_loss":
+                jigsaw_pred = torch.mm(
+                final, final.transpose(0,1)
+                )/(self.d_model**(1/2.0))  # (bs, bs)
+                
+                #jigsaw_pred = self.sigmoid(similarity) # (bs , bs)
 
-            jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
-            for i in range(bs):
-                #print((i/self.dup_pos)*self.dup_pos,((i/self.dup_pos)+1)*self.dup_pos)
-                indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
-                #### Creates an array of size self.dup_pos_patches 
-                jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
-                #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
+                jigsaw_label = torch.zeros(size=(bs,bs),dtype=torch.float).to(device)
+                for i in range(bs):
+                    
+                    indices = torch.arange(int((i/self.dup_pos))*self.dup_pos,int(((i/self.dup_pos))+1)*self.dup_pos).type(torch.long).to(device)
+                    #### Creates an array of size self.dup_pos_patches 
+                    jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
+                    #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
-            batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
-            ones = torch.ones(jigsaw_pred.shape)
-            zeros = torch.zeros(jigsaw_pred.shape)
-            jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
-            batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
+                batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
+                ones = torch.ones(jigsaw_pred.shape)
+                zeros = torch.zeros(jigsaw_pred.shape)
+                jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
+                batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
+
+            else:
+                raise NotImplementedError
 
         elif self.stage == "finetune":
             if self.linear:

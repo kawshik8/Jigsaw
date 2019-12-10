@@ -21,6 +21,16 @@ parser.add_argument(
     "--data-dir", type=str, default="/scratch/hl3236/data/", help="directory of the data files",
 )
 
+
+# pretrain_task objective settings for models other than selfie
+parser.add_argument(
+    "--pretrain-obj",
+    type=str,
+    default="nce_loss",
+    choices=["nce_loss", "multilabel_loss", "deepinfomax_loss"],
+    help="pretrain task, '_un' is for unsupervised. 'none' means skip pretrain",
+)
+
 # Data settings
 # pretrain_task and finetune_task
 parser.add_argument(
@@ -30,6 +40,7 @@ parser.add_argument(
     choices=["cifar10_un", "stl10_un", "mnist_un", "imagenet_un", "none"],
     help="pretrain task, '_un' is for unsupervised. 'none' means skip pretrain",
 )
+
 parser.add_argument(
     "--finetune-tasks",
     type=str,
