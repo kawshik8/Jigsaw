@@ -541,9 +541,11 @@ class AllPatchModel(JigsawModel):
 
         self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
 
+        #self.project = nn.Linear(self.d_model,128)
+
         self.pretrain_network = nn.Sequential(
             self.patch_network,
-            self.avg_pool
+            self.avg_pool,
         )
 
         self.dropout = torch.nn.Dropout(p=0.5, inplace=False)
@@ -583,6 +585,7 @@ class AllPatchModel(JigsawModel):
         self.shared_params = list(self.patch_network.parameters())
         self.pretrain_params = list(self.attention_pooling.parameters())
         self.pretrain_params += [self.attention_pool_u0]
+        #self.pretrain_params += list(self.project.parameters())
         self.finetune_params = list(self.cls_classifiers.parameters())
         
         self.batch_size = 0        
@@ -607,7 +610,7 @@ class AllPatchModel(JigsawModel):
         #final = self.avg_pool(attn_pool.transpose(1,2)).view(bs,self.d_model) # (bs, d_model)
 
         if self.stage == "pretrain":
-
+            self.d_model = 1024
             u0 = self.attention_pool_u0.view(1,self.d_model).repeat(bs,1).to(device)
             u0 = u0.to(device)
 
@@ -618,6 +621,11 @@ class AllPatchModel(JigsawModel):
                     bs,1,self.d_model
             ) # (bs, 1, d_model)
             final = self.attention_pooling(torch.cat([u0, patches], dim=1))[:,0,:]
+<<<<<<< Updated upstream
+=======
+         #   final = self.project(final)
+          #  self.d_model = 128
+>>>>>>> Stashed changes
          #   print(bs,final.shape)
             final = final.view(self.batch_size,self.dup_pos+1,self.d_model)
           #  print(final.shape)
@@ -641,11 +649,23 @@ class AllPatchModel(JigsawModel):
             key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)
             #print(key.shape)
 
+<<<<<<< Updated upstream
             pred = torch.bmm(
                 query,key.transpose(1,2)
             ).view(self.batch_size*len(pos_ind),-1)/(self.d_model**(1/2.0))
             jigsaw_pred = F.log_softmax(pred,1)
             #print(jigsaw_pred.shape)
+=======
+            jigsaw_pred = F.cosine_similarity(query,key,axis=-1)/0.07
+            jigsaw_pred = F.softmax(jigsaw_pred,1)
+            #jigsaw_pred[:,1:] = 1 - jigsaw_pred[:,1:]
+            #jigsaw_pred = cosin
+            #jigsaw_pred = torch.bmm(
+            #    query,key.transpose(1,2)
+            #).view(self.batch_size*len(pos_ind),-1)/(0.07*(self.d_model**(1)))#/2.0)))#*self.batch_size*len(pos_ind))#(torch.norm(query,2)*torch.norm(key,2)*0.07)#(self.d_model**(1/2.0))
+            #jigsaw_pred = F.log_softmax(pred,1)
+            #print(jigsaw_pred[0])
+>>>>>>> Stashed changes
 
             jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).long().unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
             jigsaw_labels[:,0] = 1
@@ -669,12 +689,23 @@ class AllPatchModel(JigsawModel):
             #     #### Creates an array of size self.dup_pos_patches 
             #     jigsaw_label[i] = jigsaw_label[i].scatter_(dim=0, index=indices, value=1.)
             #     #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
+<<<<<<< Updated upstream
 
             batch_output["loss"] = F.nll_loss(jigsaw_pred, jigsaw_labels.max(dim=1)[1])#F.cross_entropy(jigsaw_pred, jigsaw_label)
             # ones = torch.ones(jigsaw_pred.shape)
             # zeros = torch.zeros(jigsaw_pred.shape)
             # jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
             batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()
+=======
+           
+            batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+            
+            #batch_output["loss"] = F.nll_loss(jigsaw_pred, jigsaw_labels.max(dim=1)[1])#F.cross_entropy(jigsaw_pred, jigsaw_label)
+            # ones = torch.ones(jigsaw_pred.shape)
+            # zeros = torch.zeros(jigsaw_pred.shape)
+            # jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
+            batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()#F.nll_loss(F.log_softmax(jigsaw_pred,1), jigsaw_labels.max(dim=1)[1])#(jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()
+>>>>>>> Stashed changes
 
         elif self.stage == "finetune":
             if self.linear:
