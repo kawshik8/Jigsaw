@@ -271,8 +271,8 @@ class BaselineModel(JigsawModel):
                     #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
                 batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
-                ones = torch.ones(jigsaw_pred.shape)
-                zeros = torch.zeros(jigsaw_pred.shape)
+                ones = torch.ones(jigsaw_pred.shape).to(device)
+                zeros = torch.zeros(jigsaw_pred.shape).to(device)
                 jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
                 batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
 
@@ -606,9 +606,9 @@ class AllPatchModel(JigsawModel):
                 jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).long().unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
                 jigsaw_labels[:,0] = 1
 
-                randperm = torch.cat([torch.randperm(jigsaw_pred.shape[1]) for i in range(jigsaw_pred.shape[0])]).view_as(jigsaw_labels)
-                jigsaw_pred = jigsaw_pred[:,randperm][0]
-                jigsaw_labels = jigsaw_labels[:,randperm][0]
+                # randperm = torch.randperm(jigsaw_pred.shape[1])#torch.cat([torch.randperm(jigsaw_pred.shape[1]) for i in range(jigsaw_pred.shape[0])]).view_as(jigsaw_labels)
+                # jigsaw_pred = jigsaw_pred[:,randperm][0]
+                # jigsaw_labels = jigsaw_labels[:,randperm][0]
 
             
                 batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
@@ -630,8 +630,8 @@ class AllPatchModel(JigsawModel):
                     #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
                 batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
-                ones = torch.ones(jigsaw_pred.shape)
-                zeros = torch.zeros(jigsaw_pred.shape)
+                ones = torch.ones(jigsaw_pred.shape).to(device)
+                zeros = torch.zeros(jigsaw_pred.shape).to(device)
                 jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
                 batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
 
@@ -875,8 +875,8 @@ class ExchangePatchModel(JigsawModel):
                     #### Makes the indices of jigsaw_labels (array of zeros) 1 based on the labels in indices
 
                 batch_output["loss"] = F.binary_cross_entropy_with_logits(jigsaw_pred, jigsaw_label)#F.cross_entropy(jigsaw_pred, jigsaw_label)
-                ones = torch.ones(jigsaw_pred.shape)
-                zeros = torch.zeros(jigsaw_pred.shape)
+                ones = torch.ones(jigsaw_pred.shape).to(device)
+                zeros = torch.zeros(jigsaw_pred.shape).to(device)
                 jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
                 batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
 
