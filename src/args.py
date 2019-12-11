@@ -27,7 +27,7 @@ parser.add_argument(
     "--pretrain-obj",
     type=str,
     default="nce_loss",
-    choices=["nce_loss", "multilabel_loss", "deepinfomax_loss"],
+    choices=["nce_loss", "crossentropy_loss", "multilabel_loss", "deepinfomax_loss"],
     help="pretrain task, '_un' is for unsupervised. 'none' means skip pretrain",
 )
 

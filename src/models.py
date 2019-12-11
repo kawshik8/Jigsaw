@@ -226,7 +226,7 @@ class BaselineModel(JigsawModel):
             flatten = patches.view(bs,-1)
             final = self.reduce(flatten)
 
-            if self.pretrain_obj == "nce_loss":
+            if self.pretrain_obj == "nce_loss" or self.pretrain_obj == "crossentropy_loss":
                 final = final.view(self.batch_size,self.dup_pos+1,self.d_model)
 
                 c = list(combinations(torch.arange(self.dup_pos+1), 2))
@@ -242,7 +242,9 @@ class BaselineModel(JigsawModel):
                 key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)
 
                 jigsaw_pred = F.cosine_similarity(query,key,axis=-1)/0.07
-                jigsaw_pred = F.softmax(jigsaw_pred,1)
+                
+                if self.pretrain_obj == "nce_loss":
+                    jigsaw_pred = F.softmax(jigsaw_pred,1)
 
                 jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).long().unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
                 jigsaw_labels[:,0] = 1
@@ -251,8 +253,10 @@ class BaselineModel(JigsawModel):
                 jigsaw_pred = jigsaw_pred[:,randperm][0]
                 jigsaw_labels = jigsaw_labels[:,randperm][0]
 
-            
-                batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+                if self.pretrain_obj == "nce_loss":
+                    batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+                else:
+                    batch_output["loss"] = F.cross_entropy(jigsaw_pred.float(),jigsaw_labels.max(dim=1)[1].long())
                 batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()#F.nll_loss(F.log_softmax(jigsaw_pred,1), jigsaw_labels.max(dim=1)[1])#(jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()
             
             elif self.pretrain_obj == "multilabel_loss":
@@ -585,7 +589,7 @@ class AllPatchModel(JigsawModel):
           #  self.d_model = 128
          #   print(bs,final.shape)
 
-            if self.pretrain_obj == "nce_loss":
+            if self.pretrain_obj == "nce_loss" or self.pretrain_obj == "crossentropy_loss":
                 final = final.view(self.batch_size,self.dup_pos+1,self.d_model) ## (self.batch_size,dup_pos+1,self.d_model)
 
                 c = list(combinations(torch.arange(self.dup_pos+1), 2)) ###((self.dup_pos+1)C2, 2)
@@ -601,7 +605,8 @@ class AllPatchModel(JigsawModel):
                 key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)  ###(self.batch_size*(self.dup_pos+1)C2, 1 + (self.batch_size-1)*self.dup_pos, self.d_model )
 
                 jigsaw_pred = F.cosine_similarity(query,key,axis=-1)/0.07 ###(self.batch_size*(self.dup_pos+1)C2, 1 + (self.batch_size-1)*self.dup_pos)
-                jigsaw_pred = F.softmax(jigsaw_pred,1)
+                if self.pretrain_obj == "nce_loss":
+                    jigsaw_pred = F.softmax(jigsaw_pred,1)
 
                 jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).long().unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
                 jigsaw_labels[:,0] = 1
@@ -610,8 +615,11 @@ class AllPatchModel(JigsawModel):
                 # jigsaw_pred = jigsaw_pred[:,randperm][0]
                 # jigsaw_labels = jigsaw_labels[:,randperm][0]
 
-            
-                batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+                if self.pretrain_obj == "nce_loss":
+                    batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+                else:
+                    batch_output["loss"] = F.cross_entropy(jigsaw_pred.float(), jigsaw_labels.max(dim=1)[1].long())
+
                 batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()#F.nll_loss(F.log_softmax(jigsaw_pred,1), jigsaw_labels.max(dim=1)[1])#(jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()
             
             elif self.pretrain_obj == "multilabel_loss":
@@ -830,7 +838,7 @@ class ExchangePatchModel(JigsawModel):
             ) # (bs, 1, d_model)
             final = self.attention_pooling(torch.cat([u0, input_attn_pool.view(bs,self.num_patches,-1)], dim=1))[:,0,:]   
 
-            if self.pretrain_obj == "nce_loss":
+            if self.pretrain_obj == "nce_loss" or self.pretrain_obj == "crossentropy_loss":
                 final = final.view(self.batch_size,self.dup_pos+1,self.d_model)
 
                 c = list(combinations(torch.arange(self.dup_pos+1), 2))
@@ -846,7 +854,8 @@ class ExchangePatchModel(JigsawModel):
                 key = final[:,:,1:,:].view(query.shape[0],-1,self.d_model)
 
                 jigsaw_pred = F.cosine_similarity(query,key,axis=-1)/0.07
-                jigsaw_pred = F.softmax(jigsaw_pred,1)
+                if self.pretrain_obj == "nce_loss":
+                    jigsaw_pred = F.softmax(jigsaw_pred,1)
 
                 jigsaw_labels = torch.zeros(jigsaw_pred.shape[1]).long().unsqueeze(0).repeat(jigsaw_pred.shape[0],1).to(device)
                 jigsaw_labels[:,0] = 1
@@ -855,8 +864,10 @@ class ExchangePatchModel(JigsawModel):
                 jigsaw_pred = jigsaw_pred[:,randperm][0]
                 jigsaw_labels = jigsaw_labels[:,randperm][0]
 
-            
-                batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+                if self.pretrain_obj == "nce_loss":
+                    batch_output["loss"] = F.binary_cross_entropy(jigsaw_pred.float(), jigsaw_labels.float(),reduction='none').sum()/jigsaw_pred.shape[0]
+                else:
+                    batch_output["loss"] = F.cross_entropy(jigsaw_pred.float(), jigsaw_labels.max(dim=1)[1])
                 batch_output["jigsaw_acc"] = (jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()#F.nll_loss(F.log_softmax(jigsaw_pred,1), jigsaw_labels.max(dim=1)[1])#(jigsaw_pred.max(dim=1)[1] == jigsaw_labels.max(dim=1)[1]).float().mean()
             
             elif self.pretrain_obj == "multilabel_loss":
