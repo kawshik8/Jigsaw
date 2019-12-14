@@ -184,11 +184,11 @@ class BaselineModel(JigsawModel):
         self.linear = False
         for taskname in args.finetune_tasks:
             name = taskname.split("_")[0]
-            tasklayer = "_".join([taskname.split("_")[0],taskname.split("_")[2]])
-            layer = taskname.split("_")[2]
             
             if len(taskname.split("_")) > 2 and taskname.split("_")[2]!="none":
                 self.linear = True
+                tasklayer = "_".join([taskname.split("_")[0],taskname.split("_")[2]])
+                layer = taskname.split("_")[2]
                 for layer in (taskname.split("_")[2:]):
                     print(tasklayer,flatten_dim(layer))
                     self.cls_classifiers[tasklayer] = nn.Linear(flatten_dim(layer), task_num_class(name))
@@ -643,6 +643,9 @@ class AllPatchModel(JigsawModel):
                 jigsaw_pred = torch.where(jigsaw_pred>0.5,ones,zeros)
                 batch_output["jigsaw_acc"] = ((jigsaw_pred) == jigsaw_label).float().mean()
 
+            elif self.pretrain_obj == "deepinfomax_loss":
+                
+                
             else:
                 raise NotImplementedError
 
@@ -691,8 +694,8 @@ class ExchangePatchModel(JigsawModel):
         self.num_patches = args.num_patches
         self.num_queries = args.num_queries
         self.num_context = self.num_patches - self.num_queries
-        self.f1 = 64
-        self.f2 = 256
+        self.f1 = 256
+        self.f2 = 1024
         self.f3 = 512
         self.d_model = 1024
         self.f_model = 2048
@@ -780,14 +783,17 @@ class ExchangePatchModel(JigsawModel):
         )
 
         self.patch_network = nn.Sequential(
-            self.initial_layers,
+            full_resnet.conv1,
+            full_resnet.bn1,
+            full_resnet.relu,
+            full_resnet.maxpool,
             self.res_block1,
             self.res_block2,
             self.res_block3,
         )
 
         self.sigmoid = nn.Sigmoid()
-        
+        self.batch_size = 0
         self.shared_params = list(self.patch_network.parameters())
         self.pretrain_params = list(self.pretrain_layers.parameters())
         self.pretrain_params += [self.attention_pool_u0]
@@ -807,7 +813,7 @@ class ExchangePatchModel(JigsawModel):
 
         device = inp.device
         bs = inp.size(0)
-
+        self.batch_size = int(bs/(self.dup_pos+1))
         # (bs, aug_patches, d_model)
         # output_attn_pool = self.attention_pooling(input_attn_pool.view(bs,self.num_patches,-1)).view_as(input_attn_pool)
         # final = self.avg_pool(output_attn_pool.view(bs,self.num_patches,-1).transpose(1,2)).view(bs,self.d_model)
