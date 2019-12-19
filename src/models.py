@@ -425,8 +425,8 @@ class SelfieModel(JigsawModel):
          #   print(self.attention_pool_u0.shape,query_patch.shape)
             u0 = u0.view(bs,1,1,self.d_model).repeat(1,self.num_queries,1,1).flatten(0,1) # (bs * num_queries, 1, d_model)
             global_vector = self.attention_pooling(
-                torch.cat([u0, visible_patch], dim=1)
-            )[:, 0, :].view_as(
+                torch.cat([u0, visible_patch], dim=1).transpose(0,1)
+            ).transpose(0,1)[:, 0, :].view_as(
                 query_patch
             )  # (bs, num_queries, d_model)
 

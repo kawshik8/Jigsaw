@@ -60,7 +60,7 @@ parser.add_argument(
 )
 # num_queries
 parser.add_argument(
-    "--num-queries-percentage", type=float, default=0.25, help="number of patches an image to predict", choices=["0.5","0.25"]
+    "--num-queries-percentage", type=float, default=0.3, help="number of patches an image to predict", choices=["0.5","0.3"]
 )
 # num_workers
 parser.add_argument("--num_workers", type=int, default=16, help="number of cpu workers in iterator")
