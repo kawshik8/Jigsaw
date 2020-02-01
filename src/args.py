@@ -27,7 +27,7 @@ parser.add_argument(
     "--pretrain-obj",
     type=str,
     default="nce_loss",
-    choices=["nce_loss", "crossentropy_loss", "multilabel_loss", "deepinfomax_loss"],
+    choices=["nce_loss", "multilabel_loss", "deepinfomax_loss"],
     help="pretrain task, '_un' is for unsupervised. 'none' means skip pretrain",
 )
 
@@ -60,7 +60,7 @@ parser.add_argument(
 )
 # num_queries
 parser.add_argument(
-    "--num-queries-percentage", type=float, default=0.3, help="number of patches an image to predict", choices=["0.5","0.3"]
+    "--num-queries-percentage", type=float, default=0.25, help="number of patches an image to predict"
 )
 # num_workers
 parser.add_argument("--num_workers", type=int, default=16, help="number of cpu workers in iterator")
