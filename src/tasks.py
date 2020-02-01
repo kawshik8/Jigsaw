@@ -15,10 +15,11 @@ def get_task(name, args):
     if name == "stl10_un":
         return STL10(name, args, pretrain=True)
     if name.startswith("stl10_fd"):
-        return STL10(name, args, fold=int(name.replace("stl10_fd", "")))
+        return STL10(name, args, fold=int(name.replace("stl10_fd", "").split("_")[0]))
     elif name == "cifar10_un":
         return CIFAR10(name, args, pretrain=True)
     elif name.startswith("cifar10_lp"):
+        print(float(name.replace("cifar10_lp", "").split("_")[0]) / 100)
         return CIFAR10(name, args, label_pct=float(name.replace("cifar10_lp", "").split("_")[0]) / 100)
     elif name == "cifar100_un":
         return CIFAR100(name, args, pretrain=True)
@@ -122,6 +123,7 @@ class ToPatches:
 
     def __call__(self, inp):
         channel, height, width = inp.size()
+        #print(inp.size())
         out = (
             inp.view(
                 channel, self.num_div, height // self.num_div, self.num_div, width // self.num_div
@@ -381,7 +383,7 @@ class STL10(Task):
                     self.args.dup_pos,
                     transforms.Compose(
                         [
-                            rand_crop,
+         #                   rand_crop,
                             col_jitter,
                             rnd_gray,
                             transforms.ToTensor(),
@@ -399,7 +401,7 @@ class STL10(Task):
                 "image": transforms.Compose(
                     [
                         flip_lr,
-                        rand_crop,
+        #                rand_crop,
                         col_jitter,
                         rnd_gray,
                         transforms.ToTensor(),
@@ -411,7 +413,7 @@ class STL10(Task):
             eval_transform = {
                 "image": transforms.Compose(
                     [
-                        center_crop,
+          #              center_crop,
                         transforms.ToTensor(),
                         normalize,
                         #ToPatches(self.args.num_patches),
