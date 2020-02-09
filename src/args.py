@@ -56,7 +56,7 @@ parser.add_argument(
 
 # num_patches
 parser.add_argument(
-    "--num-patches", type=int, default=16, help="number of patches an image is broken into"
+    "--num-patches", type=int, default=9, help="number of patches an image is broken into"
 )
 # num_queries
 parser.add_argument(
