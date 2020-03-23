@@ -15,23 +15,24 @@ def get_task(name, args):
     if name == "stl10_un":
         return STL10(name, args, pretrain=True)
     if name.startswith("stl10_fd"):
-        return STL10(name, args, fold=int(name.replace("stl10_fd", "")))
+        return STL10(name, args, fold=int(name.replace("stl10_fd", "").split("_")[0]))
     elif name == "cifar10_un":
         return CIFAR10(name, args, pretrain=True)
     elif name.startswith("cifar10_lp"):
-        return CIFAR10(name, args, label_pct=float(name.replace("cifar10_lp", "")) / 100)
+        print(float(name.replace("cifar10_lp", "").split("_")[0]) / 100)
+        return CIFAR10(name, args, label_pct=float(name.replace("cifar10_lp", "").split("_")[0]) / 100)
     elif name == "cifar100_un":
         return CIFAR100(name, args, pretrain=True)
     elif name.startswith("cifar100_lp"):
-        return CIFAR100(name, args, label_pct=float(name.replace("cifar100_lp", "")) / 100)
+        return CIFAR100(name, args, label_pct=float(name.replace("cifar100_lp", "").split("_")[0]) / 100)
     elif name.startswith("mnist_un"):
         return MNIST(name, args, pretrain=True)
     elif name.startswith("mnist_lp"):
-        return MNIST(name, args, label_pct=float(name.replace("mnist_lp", "")) / 100)
+        return MNIST(name, args, label_pct=float(name.replace("mnist_lp", "").split("_")[0]) / 100)
     elif name.startswith("imagenet_un"):
         return ImageNet(name, args, pretrain=True)
     elif name.startswith("imagenet_lp"):
-        return ImageNet(name, args, label_pct=float(name.replace("imagenet_lp", "")) / 100)
+        return ImageNet(name, args, label_pct=float(name.replace("imagenet_lp", "").split("_")[0]) / 100)
     else:
         raise NotImplementedError
 
@@ -122,6 +123,7 @@ class ToPatches:
 
     def __call__(self, inp):
         channel, height, width = inp.size()
+        #print(inp.size())
         out = (
             inp.view(
                 channel, self.num_div, height // self.num_div, self.num_div, width // self.num_div
@@ -231,6 +233,7 @@ class Task(object):
         train_transform, eval_transform = self._get_transforms()
         if self.pretrain:
             data["train"] = TransformDataset(train_transform, data["train"])
+            data["val"] = TransformDataset(eval_transform, data["val"])
         else:
             data["train"] = TransformDataset(train_transform, data["train"])
             data["val"] = TransformDataset(eval_transform, data["val"])
@@ -290,6 +293,7 @@ class CIFAR10(Task):
                     self.args.dup_pos,
                     transforms.Compose(
                         [
+                            flip_lr,
                             img_jitter,
                             col_jitter,
                             rnd_gray,
@@ -313,13 +317,17 @@ class CIFAR10(Task):
                         rnd_gray,
                         transforms.ToTensor(),
                         normalize,
-                        ToPatches(self.args.num_patches),
+                       # ToPatches(self.args.num_patches),
                     ]
                 ),
             }
             eval_transform = {
                 "image": transforms.Compose(
-                    [transforms.ToTensor(), normalize, ToPatches(self.args.num_patches)]
+                    [
+                        transforms.ToTensor(), 
+                        normalize, 
+                        #ToPatches(self.args.num_patches)
+                    ]
                 ),
             }
         return train_transform, eval_transform
@@ -327,13 +335,8 @@ class CIFAR10(Task):
     def _load_raw_data(self):
         cifar10_train = datasets.CIFAR10(root=self.path, train=True, download=True)
         if self.pretrain:
-            cifar10_train_f = datasets.CIFAR10(
-                root=self.path,
-                train=True,
-                transform=transforms.RandomHorizontalFlip(p=1.0),
-                download=True,
-            )
-            raw_data = {"train": cifar10_train + cifar10_train_f}
+            cifar10_train, cifar10_val = self.make_data_split(cifar10_train, 1.0)
+            raw_data = {"train": cifar10_train, "val": cifar10_val}
         else:
             cifar10_test = datasets.CIFAR10(root=self.path, train=False, download=True)
             cifar10_train, cifar10_val = self.make_data_split(cifar10_train, self.label_pct)
@@ -348,13 +351,8 @@ class CIFAR100(CIFAR10):
     def _load_raw_data(self):
         cifar100_train = datasets.CIFAR100(root=self.path, train=True, download=True)
         if self.pretrain:
-            cifar100_train_f = datasets.CIFAR100(
-                root=self.path,
-                train=True,
-                transform=transforms.RandomHorizontalFlip(p=1.0),
-                download=True,
-            )
-            raw_data = {"train": cifar100_train + cifar100_train_f}
+            cifar100_train, cifar100_val = self.make_data_split(cifar100_train, 1.0)
+            raw_data = {"train": cifar100_train, "val": cifar100_val}
         else:
             cifar100_test = datasets.CIFAR100(root=self.path, train=False, download=True)
             cifar100_train, cifar100_val = self.make_data_split(cifar100_train, self.label_pct)
@@ -385,7 +383,7 @@ class STL10(Task):
                     self.args.dup_pos,
                     transforms.Compose(
                         [
-                            rand_crop,
+         #                   rand_crop,
                             col_jitter,
                             rnd_gray,
                             transforms.ToTensor(),
@@ -403,37 +401,34 @@ class STL10(Task):
                 "image": transforms.Compose(
                     [
                         flip_lr,
-                        rand_crop,
+        #                rand_crop,
                         col_jitter,
                         rnd_gray,
                         transforms.ToTensor(),
                         normalize,
-                        ToPatches(self.args.num_patches),
+                        #ToPatches(self.args.num_patches),
                     ]
                 ),
             }
             eval_transform = {
                 "image": transforms.Compose(
                     [
-                        center_crop,
+          #              center_crop,
                         transforms.ToTensor(),
                         normalize,
-                        ToPatches(self.args.num_patches),
+                        #ToPatches(self.args.num_patches),
                     ]
                 ),
             }
         return train_transform, eval_transform
 
     def _load_raw_data(self):
-        stl10_unlabeled = datasets.STL10(root=self.path, split="unlabeled", download=True)
+        
         if self.pretrain:
-            stl10_unlabeled_f = datasets.STL10(
-                root=self.path,
-                split="unlabeled",
-                transform=transforms.RandomHorizontalFlip(p=1.0),
-                download=True,
-            )
-            raw_data = {"train": stl10_unlabeled + stl10_unlabeled_f}
+            stl10_train = datasets.STL10(root=self.path, split="unlabeled", download=True)
+            stl10_train, stl10_val = self.make_data_split(stl10_train)
+            raw_data = {"train": stl10_train, "val": stl10_val}
+
         else:
             stl10_train = datasets.STL10(
                 root=self.path, split="train", folds=self.fold, download=True
@@ -455,13 +450,8 @@ class MNIST(Task):
     def _load_raw_data(self):
         mnist_train = datasets.MNIST(root=self.path, train=True, download=True)
         if self.pretrain:
-            mnist_train_f = datasets.MNIST(
-                root=self.path,
-                train=True,
-                transform=transforms.RandomHorizontalFlip(p=1.0),
-                download=True,
-            )
-            raw_data = {"train": mnist_train + mnist_train_f}
+            mnist_train, mnist_val = self.make_data_split(mnist_train)
+            raw_data = {"train": mnist_train, "val": mnist_val}
         else:
             mnist_test = datasets.MNIST(root=self.path, train=False, download=True)
             mnist_train, mnist_val = self.make_data_split(mnist_train, self.label_pct)

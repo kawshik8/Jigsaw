@@ -18,11 +18,11 @@ class Trainer(object):
         self.task = task
         self.stage = stage
 
-        self.training_infos = {"best_iter": -1, "best_performance": math.inf, "current_iter": 0}
+        self.training_infos = {"best_iter": -1, "best_performance": 0, "current_iter": 0}
         self.report_interval = args.report_interval
         if stage == "pretrain":
             self.total_iters = args.pretrain_total_iters
-            self.val_interval = args.val_interval
+            self.val_interval = args.pretrain_val_interval
             self.ckpt_interval = args.pretrain_ckpt_interval
         elif stage == "finetune":
             self.total_iters = args.finetune_total_iters
@@ -71,6 +71,7 @@ class Trainer(object):
         log.info("Start training %s" % self.task.name)
         self.model.train()
         self.task.reset_scorers()
+        #self.val_interval = len(self.task.data_iterators["train"])
         all_param = [param for group in self.optimizer.param_groups for param in group["params"]]
         for epoch in range(math.ceil(self.total_iters / len(self.task.data_iterators["train"]))):
             for batch, batch_input in enumerate(self.task.data_iterators["train"]):
@@ -103,7 +104,7 @@ class Trainer(object):
                     and self.training_infos["current_iter"] % self.val_interval == 0
                 ):
                     eval_scores = self.eval("val")
-                    if eval_scores[self.task.eval_metric] < self.training_infos["best_performance"]:
+                    if eval_scores[self.task.eval_metric] > self.training_infos["best_performance"]:
                         self.training_infos["best_performance"] = eval_scores[self.task.eval_metric]
                         self.training_infos["best_iter"] = self.training_infos["current_iter"]
                         log.info("Best validation updated: %s" % self.training_infos)
