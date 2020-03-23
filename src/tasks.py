@@ -8,6 +8,8 @@ import json
 import numpy
 from PIL import Image
 from torchvision import datasets, transforms
+import random
+import torch.nn.functional as F
 
 
 def get_task(name, args):
@@ -118,20 +120,36 @@ class RandZero:
 
 
 class ToPatches:
-    def __init__(self, num_patches):
+    def __init__(self, num_patches, type="normal"):
         self.num_div = int(numpy.sqrt(num_patches))
+        self.type = type
 
     def __call__(self, inp):
-        channel, height, width = inp.size()
-        #print(inp.size())
-        out = (
-            inp.view(
-                channel, self.num_div, height // self.num_div, self.num_div, width // self.num_div
+        if "random" in self.type:
+            channel, height, width = inp.size()
+            out = torch.zeros(self.num_div, channel, height, width)
+
+            if "multi_view" in self.type:
+                high = 0.5
+            else:
+                high = 0.75
+
+            for i in range(self.num_div):
+                size = int(random.uniform(0.25,high)*height)
+                pixel = random.randrange(0,height-size)
+                out[i] = F.interpolate(inp[:,pixel:pixel+size,pixel:pixel+size], size=(3,height,height))
+
+        else:
+            channel, height, width = inp.size()
+            #print(inp.size())
+            out = (
+                inp.view(
+                    channel, self.num_div, height // self.num_div, self.num_div, width // self.num_div
+                )
+                .transpose(2, 3)
+                .flatten(1, 2)
+                .transpose(0, 1)
             )
-            .transpose(2, 3)
-            .flatten(1, 2)
-            .transpose(0, 1)
-        )
         return out
 
 
@@ -299,7 +317,7 @@ class CIFAR10(Task):
                             rnd_gray,
                             transforms.ToTensor(),
                             normalize,
-                            ToPatches(self.args.num_patches),
+                            ToPatches(self.args.num_patches,self.args.view),
                         ]
                     ),
                 ),
@@ -388,7 +406,7 @@ class STL10(Task):
                             rnd_gray,
                             transforms.ToTensor(),
                             normalize,
-                            ToPatches(self.args.num_patches),
+                            ToPatches(self.args.num_patches,self.args.view),
                         ]
                     ),
                 ),

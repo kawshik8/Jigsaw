@@ -169,6 +169,7 @@ class BaselineModel(JigsawModel):
         self.avg_pool = nn.AdaptiveAvgPool2d((1,1))
 
         self.reduce = nn.Linear(self.num_patches*self.d_model, self.d_model)
+        self.project = nn.Linear(self.d_model, 128)
 
         self.pretrain_network = nn.Sequential(
             self.patch_network,
@@ -226,7 +227,7 @@ class BaselineModel(JigsawModel):
             )  # (bs, num_patches, d_model)
            
             flatten = patches.view(bs,-1)
-            final = self.reduce(flatten)
+            final = self.project(self.reduce(flatten))
 
             if self.pretrain_obj == "nce_loss" or self.pretrain_obj == "crossentropy_loss":
                 final = final.view(self.batch_size,self.dup_pos+1,self.d_model)

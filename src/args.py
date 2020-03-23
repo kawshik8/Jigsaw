@@ -54,6 +54,11 @@ parser.add_argument(
     or, choose 'none' to skip finetune&evaluation. """,
 )
 
+# view_type
+parser.add_argument(
+    "--view", type=str, default="normal", help="multiview or single view", choices = ["random_normal","random_multiview","random_singleview"]
+)
+
 # num_patches
 parser.add_argument(
     "--num-patches", type=int, default=9, help="number of patches an image is broken into"
