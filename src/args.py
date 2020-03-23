@@ -63,12 +63,12 @@ parser.add_argument(
     "--num-queries-percentage", type=float, default=0.25, help="number of patches an image to predict"
 )
 # num_workers
-parser.add_argument("--num_workers", type=int, default=16, help="number of cpu workers in iterator")
+parser.add_argument("--num-workers", type=int, default=16, help="number of cpu workers in iterator")
 # batch_size
 parser.add_argument(
     "--batch-size", type=int, default=64, help="number of images per minibatch",
 )
-# cache_pos
+# dup_pos
 parser.add_argument(
     "--dup-pos",
     type=int,
@@ -85,7 +85,9 @@ parser.add_argument(
 
 # Model settings
 # model
+
 parser.add_argument("--model", type=str, default="selfie", choices=["baseline","selfie","Allp","Exp","selfie1"])
+
 # TODO: some settings about model extensions
 # TODO: e.g. whether to use negative example from minibatch
 
@@ -105,7 +107,7 @@ parser.add_argument(
     "--pretrain-learning-rate", type=float, default=1e-2, help="learning rate for pretraining"
 )
 parser.add_argument(
-    "--finetune_learning_rate", type=float, default=1e-4, help="learning rate for finetuning"
+    "--finetune-learning-rate", type=float, default=1e-4, help="learning rate for finetuning"
 )
 # weight_decay
 parser.add_argument(
@@ -124,7 +126,9 @@ parser.add_argument(
     default=10000,
     help="maximum iters for finetuning, set to 0 to skip finetune training",
 )
+
 parser.add_argument("--warmup-iters", type=int, default=100, help="lr warmup iters")
+
 parser.add_argument(
     "--report-interval", type=int, default=250, help="number of iteratiopns between reports"
 )
@@ -149,10 +153,9 @@ parser.add_argument(
     "--transfer-paradigm",
     type=str,
     default="frozen",
-    choices=["frozen", "tunable", "bound"],
+    choices=["frozen", "tunable"],
     help="""frozen: use fixed representation,
-            tunable: finetune the whole model,
-            (unimplemented) bound: parameters are tunable but decay towards pretrained model""",
+            tunable: finetune the whole model""",
 )
 
 
